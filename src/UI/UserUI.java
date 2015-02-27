@@ -4,30 +4,29 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
+
+import java.awt.GridBagConstraints;
+
 import javax.swing.JTextField;
 
-import java.awt.GridLayout;
+import java.awt.Insets;
 
 import javax.swing.SwingConstants;
 
-import java.awt.Font;
-
-
-
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
-import javax.swing.AbstractAction;
+import javax.swing.JCheckBox;
 
-import java.awt.event.ActionEvent;
 
-import javax.swing.Action;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //Test commit
 public class UserUI extends JFrame {
@@ -35,26 +34,19 @@ public class UserUI extends JFrame {
 	/**
 	 * 
 	 */
-	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldLastName;
-	private JTextField textFieldFirstName;
-	private JTextField textFieldMail;
-	private JTextField textFieldPhone;
-	private JTextField textFieldStreetName;
-	private JTextField textFieldNumHouse;
-	private JTextField textFieldCity;
-	private JTextField textFieldPostCode;
-	private final Action action = new OkButton();
-	private final Action action_1 = new CancelButton();
-	private JTextField textField;
-	private JTextField textField_1;
-	
-	final JFrame parent = new JFrame();
+	private JTextField TFLastName;
+	private JTextField TFFirstName;
+	private JTextField TFAdress;
+	private JTextField TFPhone;
+	private JTextField TFStreet;
+	private JTextField TFHouse;
+	private JTextField TFCity;
+	private JTextField TFPostCode;
+	private JTextField TFPassword;
+	private JTextField TFConfirmPw;
 
-
-	static UserUI frame = new UserUI();
 	/**
 	 * Launch the application.
 	 */
@@ -62,9 +54,7 @@ public class UserUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//UserUI frame = new UserUI();
-					 //frame.pack();
-					 frame.setResizable(false);
+					UserUI frame = new UserUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,181 +67,258 @@ public class UserUI extends JFrame {
 	 * Create the frame.
 	 */
 	public UserUI() {
-		setAutoRequestFocus(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 400, 400);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
-		setTitle("LotuZ");setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(100, 100, 323, 357);
-	contentPane = new JPanel();
-	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	contentPane.setLayout(new BorderLayout(0, 0));
-	setContentPane(contentPane);
-	
-	JPanel panel = new JPanel();
-	contentPane.add(panel, BorderLayout.NORTH);
-	
-	JLabel lblInscription = new JLabel("Inscription");
-	lblInscription.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	panel.add(lblInscription);
-	
-	JPanel panel_1 = new JPanel();
-	contentPane.add(panel_1, BorderLayout.CENTER);
-	panel_1.setLayout(new GridLayout(10, 1, 0, 0));
-	
-	JPanel panel_2 = new JPanel();
-	panel_1.add(panel_2);
-	panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-	
-	JLabel lblLastName = new JLabel("Last name : ");
-	lblLastName.setHorizontalAlignment(SwingConstants.RIGHT);
-	
-	panel_2.add(lblLastName);
-	
-	textFieldLastName = new JTextField();
-	panel_2.add(textFieldLastName);
-	textFieldLastName.setColumns(10);
-	
-	JPanel panel_3 = new JPanel();
-	panel_1.add(panel_3);
-	
-	JLabel lblFirstName = new JLabel("First name : ");
-	lblFirstName.setHorizontalAlignment(SwingConstants.RIGHT);
-	panel_3.add(lblFirstName);
-	
-	textFieldFirstName = new JTextField();
-	panel_3.add(textFieldFirstName);
-	textFieldFirstName.setColumns(10);
-	
-	JPanel panel_4 = new JPanel();
-	panel_1.add(panel_4);
-	
-	JLabel lblMail = new JLabel("Adress mail : ");
-	lblMail.setHorizontalAlignment(SwingConstants.RIGHT);
-	panel_4.add(lblMail);
-	
-	textFieldMail = new JTextField();
-	panel_4.add(textFieldMail);
-	textFieldMail.setColumns(10);
-	
-	JPanel panel_5 = new JPanel();
-	
-	panel_1.add(panel_5);
-	
-	JLabel lblPhone = new JLabel("Phone number : ");
-	lblPhone.setHorizontalAlignment(SwingConstants.CENTER);
-	panel_5.add(lblPhone);
-	
-	textFieldPhone = new JTextField();
-	panel_5.add(textFieldPhone);
-	textFieldPhone.setColumns(10);
-	
-	JPanel panel_6 = new JPanel();
-	panel_1.add(panel_6);
-	
-	JLabel lblStreetName = new JLabel("Street name : ");
-	panel_6.add(lblStreetName);
-	
-	textFieldStreetName = new JTextField();
-	panel_6.add(textFieldStreetName);
-	textFieldStreetName.setColumns(10);
-	
-	JPanel panel_7 = new JPanel();
-	panel_1.add(panel_7);
-	
-	JLabel lblNumHouse = new JLabel("House number : ");
-	panel_7.add(lblNumHouse);
-	
-	textFieldNumHouse = new JTextField();
-	panel_7.add(textFieldNumHouse);
-	textFieldNumHouse.setColumns(10);
-	
-	JPanel panel_9 = new JPanel();
-	panel_1.add(panel_9);
-	
-	JLabel lblCity = new JLabel("City : ");
-	panel_9.add(lblCity);
-	
-	textFieldCity = new JTextField();
-	panel_9.add(textFieldCity);
-	textFieldCity.setColumns(10);
-	
-	JPanel panel_10 = new JPanel();
-	panel_1.add(panel_10);
-	
-	JLabel lblPostCode = new JLabel("Post code : ");
-	panel_10.add(lblPostCode);
-	
-	textFieldPostCode = new JTextField();
-	panel_10.add(textFieldPostCode);
-	textFieldPostCode.setColumns(10);
-	
-	JPanel panel_11 = new JPanel();
-	panel_1.add(panel_11);
-	
-	JLabel lblPassword = new JLabel("Password : ");
-	panel_11.add(lblPassword);
-	
-	textField = new JTextField();
-	panel_11.add(textField);
-	textField.setColumns(10);
-	
-	JPanel panel_12 = new JPanel();
-	panel_1.add(panel_12);
-	
-	JLabel lblConfPassword = new JLabel("Confirm password : ");
-	panel_12.add(lblConfPassword);
-	
-	textField_1 = new JTextField();
-	panel_12.add(textField_1);
-	textField_1.setColumns(10);
-	
-	JPanel panel_8 = new JPanel();
-	contentPane.add(panel_8, BorderLayout.SOUTH);
-	panel_8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-	
-	JButton btnOk = new JButton("Ok");
-	btnOk.setAction(action);
-	panel_8.add(btnOk);
-	
-	JButton btnCancel = new JButton("Cancel");
-	btnCancel.setAction(action_1);
-	panel_8.add(btnCancel);
-	
-}
+		JPanel panelTitle = new JPanel();
+		FlowLayout fl_panelTitle = (FlowLayout) panelTitle.getLayout();
+		fl_panelTitle.setVgap(12);
+		fl_panelTitle.setHgap(15);
+		contentPane.add(panelTitle, BorderLayout.NORTH);
+		
+		JLabel lblTitle = new JLabel("Inscription");
+		panelTitle.add(lblTitle);
+		
+		JPanel panelLabel = new JPanel();
+		contentPane.add(panelLabel, BorderLayout.WEST);
+		GridBagLayout gbl_panelLabel = new GridBagLayout();
+		gbl_panelLabel.columnWidths = new int[] {0};
+		gbl_panelLabel.rowHeights = new int[]{25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 0};
+		gbl_panelLabel.columnWeights = new double[]{1.0};
+		gbl_panelLabel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelLabel.setLayout(gbl_panelLabel);
+		
+		JLabel lblLastName = new JLabel("Last Name : ");
+		GridBagConstraints gbc_lblLastName = new GridBagConstraints();
+		gbc_lblLastName.insets = new Insets(0, 5, 5, 0);
+		gbc_lblLastName.anchor = GridBagConstraints.EAST;
+		gbc_lblLastName.gridx = 0;
+		gbc_lblLastName.gridy = 0;
+		panelLabel.add(lblLastName, gbc_lblLastName);
+		
+		JLabel lblFirstName = new JLabel("First Name : ");
+		lblFirstName.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_lblFirstName = new GridBagConstraints();
+		gbc_lblFirstName.anchor = GridBagConstraints.EAST;
+		gbc_lblFirstName.insets = new Insets(0, 5, 5, 0);
+		gbc_lblFirstName.gridx = 0;
+		gbc_lblFirstName.gridy = 1;
+		panelLabel.add(lblFirstName, gbc_lblFirstName);
+		
+		JLabel lblAdressMail = new JLabel("Adress mail : ");
+		GridBagConstraints gbc_lblAdressMail = new GridBagConstraints();
+		gbc_lblAdressMail.anchor = GridBagConstraints.EAST;
+		gbc_lblAdressMail.insets = new Insets(0, 0, 5, 0);
+		gbc_lblAdressMail.gridx = 0;
+		gbc_lblAdressMail.gridy = 2;
+		panelLabel.add(lblAdressMail, gbc_lblAdressMail);
+		
+		JLabel lblPhoneNumber = new JLabel("Phone Number : ");
+		GridBagConstraints gbc_lblPhoneNumber = new GridBagConstraints();
+		gbc_lblPhoneNumber.anchor = GridBagConstraints.EAST;
+		gbc_lblPhoneNumber.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPhoneNumber.gridx = 0;
+		gbc_lblPhoneNumber.gridy = 3;
+		panelLabel.add(lblPhoneNumber, gbc_lblPhoneNumber);
+		
+		JLabel lblStreetName = new JLabel("Street Name : ");
+		GridBagConstraints gbc_lblStreetName = new GridBagConstraints();
+		gbc_lblStreetName.anchor = GridBagConstraints.EAST;
+		gbc_lblStreetName.insets = new Insets(0, 0, 5, 0);
+		gbc_lblStreetName.gridx = 0;
+		gbc_lblStreetName.gridy = 4;
+		panelLabel.add(lblStreetName, gbc_lblStreetName);
+		
+		JLabel lblHouseNumber = new JLabel("House Number : ");
+		GridBagConstraints gbc_lblHouseNumber = new GridBagConstraints();
+		gbc_lblHouseNumber.anchor = GridBagConstraints.EAST;
+		gbc_lblHouseNumber.insets = new Insets(0, 0, 5, 0);
+		gbc_lblHouseNumber.gridx = 0;
+		gbc_lblHouseNumber.gridy = 5;
+		panelLabel.add(lblHouseNumber, gbc_lblHouseNumber);
+		
+		JLabel lblCity = new JLabel("City : ");
+		GridBagConstraints gbc_lblCity = new GridBagConstraints();
+		gbc_lblCity.anchor = GridBagConstraints.EAST;
+		gbc_lblCity.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCity.gridx = 0;
+		gbc_lblCity.gridy = 6;
+		panelLabel.add(lblCity, gbc_lblCity);
+		
+		JLabel lblPostCode = new JLabel("Post code : ");
+		GridBagConstraints gbc_lblPostCode = new GridBagConstraints();
+		gbc_lblPostCode.anchor = GridBagConstraints.EAST;
+		gbc_lblPostCode.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPostCode.gridx = 0;
+		gbc_lblPostCode.gridy = 7;
+		panelLabel.add(lblPostCode, gbc_lblPostCode);
+		
+		JLabel lblPassword = new JLabel("Password : ");
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPassword.gridx = 0;
+		gbc_lblPassword.gridy = 8;
+		panelLabel.add(lblPassword, gbc_lblPassword);
+		
+		JLabel lblConfirmPw = new JLabel("Confirm Password : ");
+		GridBagConstraints gbc_lblConfirmPw = new GridBagConstraints();
+		gbc_lblConfirmPw.anchor = GridBagConstraints.EAST;
+		gbc_lblConfirmPw.insets = new Insets(0, 0, 5, 0);
+		gbc_lblConfirmPw.gridx = 0;
+		gbc_lblConfirmPw.gridy = 9;
+		panelLabel.add(lblConfirmPw, gbc_lblConfirmPw);
+		
+		JLabel label = new JLabel("");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.gridx = 0;
+		gbc_label.gridy = 10;
+		panelLabel.add(label, gbc_label);
+		
+		JPanel panelTF = new JPanel();
+		contentPane.add(panelTF, BorderLayout.CENTER);
+		GridBagLayout gbl_panelTF = new GridBagLayout();
+		gbl_panelTF.columnWidths = new int[]{0, 0};
+		gbl_panelTF.rowHeights = new int[]{25, 25, 0, 0, 0, 0, 0, 0, 25, 25, 0, 0};
+		gbl_panelTF.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panelTF.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelTF.setLayout(gbl_panelTF);
+		
+		TFLastName = new JTextField();
+		GridBagConstraints gbc_TFLastName = new GridBagConstraints();
+		gbc_TFLastName.insets = new Insets(0, 0, 5, 0);
+		gbc_TFLastName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFLastName.gridx = 0;
+		gbc_TFLastName.gridy = 0;
+		panelTF.add(TFLastName, gbc_TFLastName);
+		TFLastName.setColumns(10);
+		
+		TFFirstName = new JTextField();
+		GridBagConstraints gbc_TFFirstName = new GridBagConstraints();
+		gbc_TFFirstName.insets = new Insets(0, 0, 5, 0);
+		gbc_TFFirstName.fill = GridBagConstraints.BOTH;
+		gbc_TFFirstName.gridx = 0;
+		gbc_TFFirstName.gridy = 1;
+		panelTF.add(TFFirstName, gbc_TFFirstName);
+		TFFirstName.setColumns(10);
+		
+		TFAdress = new JTextField();
+		GridBagConstraints gbc_TFAdress = new GridBagConstraints();
+		gbc_TFAdress.insets = new Insets(0, 0, 5, 0);
+		gbc_TFAdress.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFAdress.gridx = 0;
+		gbc_TFAdress.gridy = 2;
+		panelTF.add(TFAdress, gbc_TFAdress);
+		TFAdress.setColumns(10);
+		
+		TFPhone = new JTextField();
+		GridBagConstraints gbc_TFPhone = new GridBagConstraints();
+		gbc_TFPhone.insets = new Insets(0, 0, 5, 0);
+		gbc_TFPhone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFPhone.gridx = 0;
+		gbc_TFPhone.gridy = 3;
+		panelTF.add(TFPhone, gbc_TFPhone);
+		TFPhone.setColumns(10);
+		
+		TFStreet = new JTextField();
+		GridBagConstraints gbc_TFStreet = new GridBagConstraints();
+		gbc_TFStreet.insets = new Insets(0, 0, 5, 0);
+		gbc_TFStreet.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFStreet.gridx = 0;
+		gbc_TFStreet.gridy = 4;
+		panelTF.add(TFStreet, gbc_TFStreet);
+		TFStreet.setColumns(10);
+		gbc_TFStreet.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFStreet.gridx = 0;
+		gbc_TFStreet.gridy = 4;
+		gbc_TFStreet.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFStreet.gridx = 0;
+		gbc_TFStreet.gridy = 5;
+		
+		TFHouse = new JTextField();
+		GridBagConstraints gbc_TFHouse = new GridBagConstraints();
+		gbc_TFHouse.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFHouse.insets = new Insets(0, 0, 5, 0);
+		gbc_TFHouse.gridx = 0;
+		gbc_TFHouse.gridy = 5;
+		panelTF.add(TFHouse, gbc_TFHouse);
+		TFHouse.setColumns(10);
+		
+		TFCity = new JTextField();
+		GridBagConstraints gbc_TFCity = new GridBagConstraints();
+		gbc_TFCity.insets = new Insets(0, 0, 5, 0);
+		gbc_TFCity.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFCity.gridx = 0;
+		gbc_TFCity.gridy = 6;
+		panelTF.add(TFCity, gbc_TFCity);
+		TFCity.setColumns(10);
+		
+		TFPostCode = new JTextField();
+		GridBagConstraints gbc_TFPostCode = new GridBagConstraints();
+		gbc_TFPostCode.insets = new Insets(0, 0, 5, 0);
+		gbc_TFPostCode.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFPostCode.gridx = 0;
+		gbc_TFPostCode.gridy = 7;
+		panelTF.add(TFPostCode, gbc_TFPostCode);
+		TFPostCode.setColumns(10);
+		
+		TFPassword = new JTextField();
+		GridBagConstraints gbc_TFPassword = new GridBagConstraints();
+		gbc_TFPassword.insets = new Insets(0, 0, 5, 0);
+		gbc_TFPassword.fill = GridBagConstraints.BOTH;
+		gbc_TFPassword.gridx = 0;
+		gbc_TFPassword.gridy = 8;
+		panelTF.add(TFPassword, gbc_TFPassword);
+		TFPassword.setColumns(10);
+		
+		TFConfirmPw = new JTextField();
+		GridBagConstraints gbc_TFConfirmPw = new GridBagConstraints();
+		gbc_TFConfirmPw.insets = new Insets(0, 0, 5, 0);
+		gbc_TFConfirmPw.fill = GridBagConstraints.HORIZONTAL;
+		gbc_TFConfirmPw.gridx = 0;
+		gbc_TFConfirmPw.gridy = 9;
+		panelTF.add(TFConfirmPw, gbc_TFConfirmPw);
+		TFConfirmPw.setColumns(10);
+		
+		final JCheckBox chckbxMember = new JCheckBox("Become Member");
+		GridBagConstraints gbc_chckbxMember = new GridBagConstraints();
+		gbc_chckbxMember.anchor = GridBagConstraints.WEST;
+		gbc_chckbxMember.gridx = 0;
+		gbc_chckbxMember.gridy = 10;
+		panelTF.add(chckbxMember, gbc_chckbxMember);
+		
+		JPanel panelButton = new JPanel();
+		FlowLayout fl_panelButton = (FlowLayout) panelButton.getLayout();
+		fl_panelButton.setAlignment(FlowLayout.RIGHT);
+		contentPane.add(panelButton, BorderLayout.SOUTH);
+		
+		JButton btnOK = new JButton("OK");
+		btnOK.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnOK.addMouseListener(new MouseAdapter() {
 
-	private class OkButton extends AbstractAction {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		public OkButton() {
-			putValue(NAME, "OK");
-			putValue(SHORT_DESCRIPTION, "Commit description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			System.out.println(textFieldLastName.getText());
-			System.out.println(textFieldFirstName.getText());
-			System.out.println(textFieldMail.getText());
-			System.out.println(textFieldPhone.getText());
-			System.out.println(textFieldStreetName.getText());
-			System.out.println(textFieldNumHouse.getText());
-			System.out.println(textFieldCity.getText());
-			System.out.println(textFieldPostCode.getText());
+		
+			public void mouseClicked(MouseEvent arg0) {
+				if ( chckbxMember.isSelected())
+				{
+					System.out.println("Check");
+				}
+				else { 
+					System.out.println("pas Check");
+				}
+			}
+		});
+		panelButton.add(btnOK);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
 			
-		}
-	}
-	private class CancelButton extends AbstractAction {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		public CancelButton() {
-			putValue(NAME, "Cancel");
-			putValue(SHORT_DESCRIPTION, "Cancel inscription");
-		}
-		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
-			JOptionPane.showMessageDialog(null, "Inscription cancel!", "Inscription cancel!", JOptionPane.CANCEL_OPTION);
-			//test de rajout de commentaire
-		}
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		panelButton.add(btnCancel);
 	}
 }
