@@ -2,40 +2,29 @@ package UI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.GridBagLayout;
-
 import javax.swing.JLabel;
-
 import java.awt.GridBagConstraints;
-
 import javax.swing.JTextField;
-
 import java.awt.Insets;
-
 import javax.swing.SwingConstants;
-
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-//Test commit
 public class UserUI extends JFrame {
 
 	/**
-	 * 
+	 * Init Attribut
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
 	private JTextField TFLastName;
 	private JTextField TFFirstName;
 	private JTextField TFAdress;
@@ -83,6 +72,9 @@ public class UserUI extends JFrame {
 		JLabel lblTitle = new JLabel("Inscription");
 		panelTitle.add(lblTitle);
 		
+		/*
+		 * Panel for Label
+		 */
 		JPanel panelLabel = new JPanel();
 		contentPane.add(panelLabel, BorderLayout.WEST);
 		GridBagLayout gbl_panelLabel = new GridBagLayout();
@@ -92,6 +84,9 @@ public class UserUI extends JFrame {
 		gbl_panelLabel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelLabel.setLayout(gbl_panelLabel);
 		
+		/*
+		 * List Label
+		 */
 		JLabel lblLastName = new JLabel("Last Name : ");
 		GridBagConstraints gbc_lblLastName = new GridBagConstraints();
 		gbc_lblLastName.insets = new Insets(0, 5, 5, 0);
@@ -173,12 +168,16 @@ public class UserUI extends JFrame {
 		gbc_lblConfirmPw.gridy = 9;
 		panelLabel.add(lblConfirmPw, gbc_lblConfirmPw);
 		
+		// Label empty garder la mise en page lors de la réduction fenetre
 		JLabel label = new JLabel("");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.gridx = 0;
 		gbc_label.gridy = 10;
 		panelLabel.add(label, gbc_label);
 		
+		/*
+		 * Panel for TextField
+		 */
 		JPanel panelTF = new JPanel();
 		contentPane.add(panelTF, BorderLayout.CENTER);
 		GridBagLayout gbl_panelTF = new GridBagLayout();
@@ -188,6 +187,9 @@ public class UserUI extends JFrame {
 		gbl_panelTF.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelTF.setLayout(gbl_panelTF);
 		
+		/*
+		 * List TextFiel
+		 */
 		TFLastName = new JTextField();
 		GridBagConstraints gbc_TFLastName = new GridBagConstraints();
 		gbc_TFLastName.insets = new Insets(0, 0, 5, 0);
@@ -284,6 +286,9 @@ public class UserUI extends JFrame {
 		panelTF.add(TFConfirmPw, gbc_TFConfirmPw);
 		TFConfirmPw.setColumns(10);
 		
+		/*
+		 * CheckBox + Buttons
+		 */
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
 		GridBagConstraints gbc_chckbxMember = new GridBagConstraints();
 		gbc_chckbxMember.anchor = GridBagConstraints.WEST;
@@ -297,28 +302,28 @@ public class UserUI extends JFrame {
 		contentPane.add(panelButton, BorderLayout.SOUTH);
 		
 		JButton btnOK = new JButton("OK");
-		btnOK.setHorizontalAlignment(SwingConstants.RIGHT);
-		btnOK.addMouseListener(new MouseAdapter() {
-
+		btnOK.setHorizontalAlignment(SwingConstants.RIGHT);		
+		panelButton.add(btnOK);		
 		
-			public void mouseClicked(MouseEvent arg0) {
-				if ( chckbxMember.isSelected())
-				{
-					System.out.println("Check");
-				}
-				else { 
-					System.out.println("pas Check");
-				}
-			}
-		});
-		panelButton.add(btnOK);
+		JButton btnCancel = new JButton("Cancel");		
+		panelButton.add(btnCancel);
 		
-		JButton btnCancel = new JButton("Cancel");
+		/*
+		 * Action button
+		 */
+		
 		btnCancel.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent arg0) {
 			}
 		});
-		panelButton.add(btnCancel);
+		
+		btnOK.addMouseListener(new MouseAdapter() {		
+			public void mouseClicked(MouseEvent arg0) {
+				if ( chckbxMember.isSelected())
+				{System.out.println("Check");}
+				else { System.out.println("pas Check");}
+			}
+		});
 	}
 }
