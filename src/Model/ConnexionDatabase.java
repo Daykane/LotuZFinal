@@ -55,7 +55,7 @@ public class ConnexionDatabase {
 				}
 			}
 			
-			public static void Read() throws SQLException, ClassNotFoundException {
+			public static void Read() {
 
 				// Information d'accès à la base de données
 				String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -66,6 +66,7 @@ public class ConnexionDatabase {
 				Statement st =null;
 				ResultSet rs =null;
 
+				try {
 
 					// Etape 1 : Chargement du driver
 					Class.forName("com.mysql.jdbc.Driver");
@@ -96,7 +97,11 @@ public class ConnexionDatabase {
 						System.out.println("\nDonnées contenues dans la ligne "+row);
 						System.out.println("lastName : "+lastName+"\nfirstName : "+firstName+"\nmail : "+mail+"\ntel : "+tel+"\nstreetName : "+streetName+"\nnumHouse : "+numHouse+"\ncity : "+city+"\npostCode : "+ postCode +"\npassword : "+password);
 					}
-			
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 					
 	}
