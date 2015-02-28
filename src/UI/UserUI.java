@@ -1,19 +1,33 @@
 package UI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JTextField;
+
 import java.awt.Insets;
+
 import javax.swing.SwingConstants;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -35,7 +49,7 @@ public class UserUI extends JFrame {
 	private JTextField TFPostCode;
 	private JTextField TFPassword;
 	private JTextField TFConfirmPw;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -314,15 +328,27 @@ public class UserUI extends JFrame {
 		
 		btnCancel.addMouseListener(new MouseAdapter() {
 			
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent frame) {
+				JOptionPane.showMessageDialog(null, "Inscription cancel!", "Inscription cancel!", JOptionPane.CANCEL_OPTION);
 			}
 		});
 		
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
-				if ( chckbxMember.isSelected())
-				{System.out.println("Check");}
-				else { System.out.println("pas Check");}
+				this.verifyTF();
+			}
+
+			private void tFisemplty(JTextField textfield){
+				String text = textfield.getText();
+					if(text.equals("")){
+						Border border = BorderFactory.createLineBorder(Color.RED, 5);
+						textfield.setBorder(border);
+					}
+
+			}
+			private void verifyTF() {
+				this.tFisemplty(TFLastName);
+				
 			}
 		});
 	}
