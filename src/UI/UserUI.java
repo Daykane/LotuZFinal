@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -49,6 +48,8 @@ public class UserUI extends JFrame {
 	private JTextField TFPostCode;
 	private JTextField TFPassword;
 	private JTextField TFConfirmPw;	
+	private final JLabel jlblStatus = new JLabel("Error dans un champ");
+	
 	static int count = 0;
 	/**
 	 * Launch the application.
@@ -78,6 +79,7 @@ public class UserUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
 		
 		JPanel panelTitle = new JPanel();
 		FlowLayout fl_panelTitle = (FlowLayout) panelTitle.getLayout();
@@ -302,6 +304,7 @@ public class UserUI extends JFrame {
 		panelTF.add(TFConfirmPw, gbc_TFConfirmPw);
 		TFConfirmPw.setColumns(10);
 		
+		
 		/*
 		 * CheckBox + Buttons
 		 */
@@ -317,13 +320,24 @@ public class UserUI extends JFrame {
 		fl_panelButton.setAlignment(FlowLayout.RIGHT);
 		contentPane.add(panelButton, BorderLayout.SOUTH);
 		
+		
+		panelButton.add(jlblStatus, BorderLayout.SOUTH);
+        jlblStatus.setForeground(Color.RED);
+        jlblStatus.setHorizontalAlignment(SwingConstants.RIGHT);
+        
+
+		jlblStatus.setHorizontalAlignment(SwingConstants.RIGHT);		
+		panelButton.add(jlblStatus);
+		jlblStatus.setVisible(false);
+        
 		JButton btnOK = new JButton("OK");
 		btnOK.setHorizontalAlignment(SwingConstants.RIGHT);		
 		panelButton.add(btnOK);		
 		
+		
 		JButton btnCancel = new JButton("Cancel");		
 		panelButton.add(btnCancel);
-		
+						
 		/*
 		 * Action button
 		 */
@@ -331,34 +345,24 @@ public class UserUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent frame) {
-				JOptionPane.showMessageDialog(null, "Inscription cancel!", "Inscription cancel!", JOptionPane.CANCEL_OPTION);
+				jlblStatus.setVisible(false);
 			}
 		});
 		
 		// Action OK
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
-				if(this.verifyTF() & verifyNumeric() && this.verifyPwd()){
+				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					System.out.println("Inscription ok");
 				}
-			}
-
-			private boolean verifyNumeric() {
-				// TODO Auto-generated method stub
-				return verifyPhone() && verifyPostCode() && verifyHouseNumber();
-			}
-
-			private void tFisemplty(JTextField textfield){
-				String text = textfield.getText();
-				
-					if(text.equals("")){
-						Border border = BorderFactory.createLineBorder(Color.RED, 1);
-						textfield.setBorder(border);
-						count++;
-					}
-			}
+			}			
+			
+			/*
+			 * Control TextField
+			 */
 			
 			private boolean verifyTF() {
+				
 				this.tFisemplty(TFLastName);
 				this.tFisemplty(TFFirstName);
 				this.tFisemplty(TFAdress);
@@ -369,8 +373,8 @@ public class UserUI extends JFrame {
 				this.tFisemplty(TFPostCode);
 				this.tFisemplty(TFPassword);
 				this.tFisemplty(TFConfirmPw);
+				
 				if (count>0){
-					JOptionPane.showMessageDialog(null, "Champ incomplet!", "Error Sign up", JOptionPane.CANCEL_OPTION);
 					return false;
 				}
 				else {
@@ -378,9 +382,23 @@ public class UserUI extends JFrame {
 				}
 			}
 			
+			private boolean verifyNumeric() {
+				return verifyPhone() & verifyPostCode();
+			}
+			
+			private void tFisemplty(JTextField textfield){
+				RemoveBorder(textfield);
+				String text = textfield.getText();
+				
+					if(text.equals("")){
+						RedBorder(textfield);
+						count++;
+					}
+			}
+			
 			private boolean verifyPwd() {
 				if (!TFPassword.getText().equals( TFConfirmPw.getText())){
-					JOptionPane.showMessageDialog(null, "Password non identique", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					RedBorder(TFConfirmPw);
 					return false;
 				}
 				else{
@@ -390,7 +408,7 @@ public class UserUI extends JFrame {
 			
 			private boolean verifyPhone(){
 				if (!isNumeric(TFPhone.getText()) || TFPhone.getText().length()!=10 ){
-					JOptionPane.showMessageDialog(null, "Error phone number", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					RedBorder(TFPhone);
 					return false;
 				};
 				return true;
@@ -398,27 +416,33 @@ public class UserUI extends JFrame {
 			
 			private boolean verifyPostCode(){
 				if (!isNumeric(TFPostCode.getText()) ){
-					JOptionPane.showMessageDialog(null, "Error post code number", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					RedBorder(TFPostCode);
 					return false;
 				};
 				return true;
 			}
 			
-			private boolean verifyHouseNumber(){
-				if (!isNumeric(TFHouse.getText())){
-					JOptionPane.showMessageDialog(null, "Error House number number", "Error Sign up", JOptionPane.CANCEL_OPTION);
-					return false;
-				};				
-				return true;
+			
+			private void RedBorder(JTextField textfield){
+				jlblStatus.setVisible(true);
+				Border border = BorderFactory.createLineBorder(Color.RED, 2);
+				textfield.setBorder(border);
+			}
+			
+			private void RemoveBorder(JTextField textfield){
+				jlblStatus.setVisible(false);
+				Border border = BorderFactory.createLineBorder(Color.white, 2);
+				textfield.setBorder(border);
+				
 			}
 			
 			private boolean isNumeric(String str)  
 			{  
 			  try  
 			  {  
-			   double d = Double.parseDouble(str);  
+				  Integer.parseInt(str);  
 			  }  
-			  catch(NumberFormatException nfe)  
+			  catch(Exception e)  
 			  {  
 			    return false;  
 			  }  
