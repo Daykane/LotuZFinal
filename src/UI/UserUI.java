@@ -53,6 +53,7 @@ public class UserUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -333,11 +334,17 @@ public class UserUI extends JFrame {
 			}
 		});
 		
+		// Action OK
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
-				if(this.verifyTF() && this.verifyPwd()){
+				if(this.verifyTF() & verifyNumeric() && this.verifyPwd()){
 					System.out.println("Inscription ok");
 				}
+			}
+
+			private boolean verifyNumeric() {
+				// TODO Auto-generated method stub
+				return verifyPhone() && verifyPostCode() && verifyHouseNumber();
 			}
 
 			private void tFisemplty(JTextField textfield){
@@ -371,7 +378,7 @@ public class UserUI extends JFrame {
 			}
 			
 			private boolean verifyPwd() {
-				if (!TFPassword.getText().equals( TFConfirmPw.getText()) ){
+				if (!TFPassword.getText().equals( TFConfirmPw.getText())){
 					JOptionPane.showMessageDialog(null, "Password non identique", "Error Sign up", JOptionPane.CANCEL_OPTION);
 					return false;
 				}
@@ -379,6 +386,45 @@ public class UserUI extends JFrame {
 					return true;
 				}
 			}
+			
+			private boolean verifyPhone(){
+				if (!isNumeric(TFPhone.getText()) || TFPhone.getText().length()!=10 ){
+					JOptionPane.showMessageDialog(null, "Error phone number", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					return false;
+				};
+				return true;
+			}
+			
+			private boolean verifyPostCode(){
+				if (!isNumeric(TFPostCode.getText()) ){
+					JOptionPane.showMessageDialog(null, "Error post code number", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					return false;
+				};
+				return true;
+			}
+			
+			private boolean verifyHouseNumber(){
+				if (!isNumeric(TFHouse.getText())){
+					JOptionPane.showMessageDialog(null, "Error House number number", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					return false;
+				};				
+				return true;
+			}
+			
+			private boolean isNumeric(String str)  
+			{  
+			  try  
+			  {  
+			   double d = Double.parseDouble(str);  
+			  }  
+			  catch(NumberFormatException nfe)  
+			  {  
+			    return false;  
+			  }  
+			  return true;  
+			}
 		});
+		
+		
 	}
 }
