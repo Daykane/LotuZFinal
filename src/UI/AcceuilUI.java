@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AcceuilUI extends JFrame {
 
@@ -41,6 +44,25 @@ public class AcceuilUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		
+		JButton btnInscription = new JButton("Inscription");
+		btnInscription.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				UserUI userUI =  new UserUI();
+				userUI.setVisible(true);
+			}
+		});
+		panel.add(btnInscription);
+		
+		JButton btnAuthentification = new JButton("Authentification");
+		btnAuthentification.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		panel.add(btnAuthentification);
 	}
 
 }

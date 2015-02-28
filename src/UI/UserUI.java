@@ -66,6 +66,7 @@ public class UserUI extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
