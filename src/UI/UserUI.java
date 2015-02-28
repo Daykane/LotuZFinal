@@ -48,8 +48,8 @@ public class UserUI extends JFrame {
 	private JTextField TFCity;
 	private JTextField TFPostCode;
 	private JTextField TFPassword;
-	private JTextField TFConfirmPw;
-	
+	private JTextField TFConfirmPw;	
+	static int count = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -335,20 +335,49 @@ public class UserUI extends JFrame {
 		
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
-				this.verifyTF();
+				if(this.verifyTF() && this.verifyPwd()){
+					System.out.println("Inscription ok");
+				}
 			}
 
 			private void tFisemplty(JTextField textfield){
 				String text = textfield.getText();
-					if(text.equals("")){
-						Border border = BorderFactory.createLineBorder(Color.RED, 5);
-						textfield.setBorder(border);
-					}
-
-			}
-			private void verifyTF() {
-				this.tFisemplty(TFLastName);
 				
+					if(text.equals("")){
+						Border border = BorderFactory.createLineBorder(Color.RED, 1);
+						textfield.setBorder(border);
+						count++;
+					}
+			}
+			
+			private boolean verifyTF() {
+				this.tFisemplty(TFLastName);
+				this.tFisemplty(TFFirstName);
+				this.tFisemplty(TFAdress);
+				this.tFisemplty(TFPhone);
+				this.tFisemplty(TFStreet);
+				this.tFisemplty(TFHouse);
+				this.tFisemplty(TFCity);
+				this.tFisemplty(TFPostCode);
+				this.tFisemplty(TFPassword);
+				this.tFisemplty(TFConfirmPw);
+				if (count>0){
+					JOptionPane.showMessageDialog(null, "Champ incomplet!", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+			
+			private boolean verifyPwd() {
+				if (!TFPassword.getText().equals( TFConfirmPw.getText()) ){
+					JOptionPane.showMessageDialog(null, "Password non identique", "Error Sign up", JOptionPane.CANCEL_OPTION);
+					return false;
+				}
+				else{
+					return true;
+				}
 			}
 		});
 	}
