@@ -20,7 +20,7 @@ import java.awt.event.MouseEvent;
 public class UserUI extends JFrame {
 
 	/**
-	 * Init Attribute derde
+	 * Init Attribute derder
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
