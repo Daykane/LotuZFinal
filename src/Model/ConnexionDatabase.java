@@ -89,7 +89,7 @@ public class ConnexionDatabase {
 						String mail = rs.getString(3); 
 						String tel = rs.getString(4);
 						String streetName = rs.getString(5);
-						int numHouse = rs.getInt(6);
+						String numHouse = rs.getString(6);
 						String city = rs.getString(7);
 						int postCode = rs.getInt(8);
 						int password = rs.getInt(9);
