@@ -12,7 +12,7 @@ public class ConnexionDatabase {
 			Read();
 		}
 
-			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, int numHouse, String city, int postCode, int password) {
+			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password) {
 
 				// Information d'accès à la base de données
 				String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -91,8 +91,8 @@ public class ConnexionDatabase {
 						String streetName = rs.getString(5);
 						String numHouse = rs.getString(6);
 						String city = rs.getString(7);
-						int postCode = rs.getInt(8);
-						int password = rs.getInt(9);
+						String postCode = rs.getString(8);
+						String password = rs.getString(9);
 						int row = rs.getRow();
 						System.out.println("\nDonnées contenues dans la ligne "+row);
 						System.out.println("lastName : "+lastName+"\nfirstName : "+firstName+"\nmail : "+mail+"\ntel : "+tel+"\nstreetName : "+streetName+"\nnumHouse : "+numHouse+"\ncity : "+city+"\npostCode : "+ postCode +"\npassword : "+password);
@@ -107,6 +107,16 @@ public class ConnexionDatabase {
 			public void toto() {
 				System.out.println("connexionDatabase");
 				Read();				
+			}
+
+			public void Inscription(String text, String text2, String text3,
+					String text4, String text5, String text6, String text7,
+					String text8, String text9) {
+				Load(text,  text2,  text3,
+				 text4,  text5,  text6,  text7,
+				 text8,  text9);
+				// TODO Auto-generated method stub
+				
 			}
 					
 	}

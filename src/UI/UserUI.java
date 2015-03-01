@@ -359,6 +359,7 @@ public class UserUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					System.out.println("Inscription ok");
+					facadeUI.Inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
 				}
 			}			
 			
