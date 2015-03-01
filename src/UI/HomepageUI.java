@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AcceuilUI extends JFrame {
+public class HomepageUI extends JFrame {
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class AcceuilUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AcceuilUI frame = new AcceuilUI();
+					HomepageUI frame = new HomepageUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class AcceuilUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AcceuilUI() {
+	public HomepageUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,7 +51,7 @@ public class AcceuilUI extends JFrame {
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				UserUI userUI =  new UserUI();
+				UserUI userUI =  new UserUI();				
 				userUI.setVisible(true);
 			}
 		});
