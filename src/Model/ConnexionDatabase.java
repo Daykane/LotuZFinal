@@ -7,12 +7,13 @@ import java.sql.Statement;
 
 public class ConnexionDatabase {
 
+
 		public static void main(String[] args) throws ClassNotFoundException, SQLException {
-			//Load("Laboureur","Alexis","sonmail@gmail","0625102689","Rue du Village",52,"Montpellier",34000,1253);
-			Read();
+			Load("Laboureur","Alexis","sonmail@gmail","0625102689","Rue du Village","52","Montpellier","34000","1253");
+			//Read();
 		}
 
-			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password) {
+			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password) throws ClassNotFoundException, SQLException {
 
 				// Information d'accès à la base de données
 				String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -20,8 +21,6 @@ public class ConnexionDatabase {
 				String passwd = "rolldevelopment";
 				Connection cn =null;
 				Statement st =null;
-
-				try {
 
 					// Etape 1 : Chargement du driver
 					Class.forName("com.mysql.jdbc.Driver");
@@ -38,21 +37,9 @@ public class ConnexionDatabase {
 					st.executeUpdate(sql);
 
 					// Si récup données alors étapes 5 (parcours Resultset)
+					throw new SQLException();
+					//throw new ClassNotFoundException();
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				} finally {
-					try {
-					// Etape 6 : libérer ressources de la mémoire.
-						cn.close();
-						st.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
 			}
 			
 			public static void Read() {
@@ -104,14 +91,14 @@ public class ConnexionDatabase {
 				}
 			}
 
-			public void toto() {
+			/*public void toto() {
 				System.out.println("connexionDatabase");
 				Read();				
-			}
+			}*/
 
 			public void Inscription(String text, String text2, String text3,
 					String text4, String text5, String text6, String text7,
-					String text8, String text9) {
+					String text8, String text9) throws ClassNotFoundException, SQLException {
 				Load(text,  text2,  text3,
 				 text4,  text5,  text6,  text7,
 				 text8,  text9);
