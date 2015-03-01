@@ -58,19 +58,5 @@ public class User {
 		this.numHouse = numHouse;
 		this.postCode = postCode;
 		this.city = city;
-	}
-	
-	// Constructor without phone
-	public User(String lastname, String firstName, String mail, String streetName, int numHouse, int postCode,
-			String city) {
-		super();
-		this.lastname = lastname;
-		this.firstName = firstName;
-		this.mail = mail;
-		this.streetName = streetName;
-		this.numHouse = numHouse;
-		this.postCode = postCode;
-		this.city = city;
-	}
-	
+	}	
 }
