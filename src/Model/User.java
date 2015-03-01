@@ -73,6 +73,4 @@ public class User {
 		this.city = city;
 	}
 	
-
-	
 }

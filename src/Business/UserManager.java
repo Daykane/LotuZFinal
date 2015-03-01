@@ -1,5 +1,7 @@
 package Business;
 
-public class UserManager {
+import Model.User;
 
+public class UserManager {
+	User user;
 }
