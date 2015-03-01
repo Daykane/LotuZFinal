@@ -91,10 +91,6 @@ public class ConnexionDatabase {
 				}
 			}
 
-			/*public void toto() {
-				System.out.println("connexionDatabase");
-				Read();				
-			}*/
 
 			public void Inscription(String text, String text2, String text3,
 					String text4, String text5, String text6, String text7,

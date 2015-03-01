@@ -8,12 +8,6 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 public class UserManager {
 	FacadeData facadeData = new FacadeData();
 
-	public void toto() {
-		System.out.println("UserManager");
-		facadeData.toto();
-		
-	}
-
 	public void Inscription(String text, String text2, String text3,
 			String text4, String text5, String text6, String text7,
 			String text8, String text9) {

@@ -350,7 +350,6 @@ public class UserUI extends JFrame {
 			
 			public void mouseClicked(MouseEvent frame) {
 				System.out.println("totoUserUI");
-				facadeUI.toto();
 			}
 		});
 		
