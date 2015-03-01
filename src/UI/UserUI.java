@@ -27,10 +27,14 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
+import Business.FacadeUI;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class UserUI extends JFrame {
+	
+	FacadeUI facadeUI;
 
 	/**
 	 * Init Attribute derder
