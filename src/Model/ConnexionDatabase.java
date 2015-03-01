@@ -103,6 +103,11 @@ public class ConnexionDatabase {
 					e.printStackTrace();
 				}
 			}
+
+			public void toto() {
+				System.out.println("connexionDatabase");
+				Read();				
+			}
 					
 	}
 

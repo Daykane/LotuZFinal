@@ -34,7 +34,7 @@ import java.awt.event.MouseEvent;
 
 public class UserUI extends JFrame {
 	
-	FacadeUI facadeUI;
+	FacadeUI facadeUI = new FacadeUI();
 
 	/**
 	 * Init Attribute derder
@@ -343,13 +343,14 @@ public class UserUI extends JFrame {
 		panelButton.add(btnCancel);
 						
 		/*
-		 * Action button
+		 * Action Cancel
 		 */
 		
 		btnCancel.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent frame) {
-				jlblStatus.setVisible(false);
+				System.out.println("totoUserUI");
+				facadeUI.toto();
 			}
 		});
 		
