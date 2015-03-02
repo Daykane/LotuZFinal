@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -27,18 +28,21 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
-import Business.FacadeUI;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
+import Business.FacadeBL;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class UserUI extends JFrame {
 	
-	FacadeUI facadeUI = new FacadeUI();
-
+	
+	FacadeBL facadeBL = new FacadeBL();
 	/**
-	 * Init Attribute derder
-	 */
+	 * Init Attribute 
+	 **/
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
@@ -77,6 +81,7 @@ public class UserUI extends JFrame {
 	 * Create the frame.
 	 */
 	public UserUI() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 400);
 		contentPane = new JPanel();
@@ -356,10 +361,21 @@ public class UserUI extends JFrame {
 		// Action OK
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
-				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
+				//if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					System.out.println("Inscription ok");
-					facadeUI.Inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
-				}
+					try {
+						System.out.println("UI ok");
+						//facadeUI.Inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
+						facadeBL.Inscription("Laboureur","Alexis","sonmail@gmail","0625102689","Rue du Village","52","Montpellier","34000","1253");
+					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+						JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				//}
 			}			
 			
 			/*
