@@ -23,6 +23,7 @@ public class ConnexionDatabase {
 				Connection cn =null;
 				Statement st =null;
 
+				try {
 					// Etape 1 : Chargement du driver
 					Class.forName("com.mysql.jdbc.Driver");
 
@@ -38,9 +39,12 @@ public class ConnexionDatabase {
 					st.executeUpdate(sql);
 
 					// Si récup données alors étapes 5 (parcours Resultset)
-					throw new SQLException();
 					//throw new ClassNotFoundException();
-
+				} catch (SQLException e) {
+					throw e;
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			public static void Read() {

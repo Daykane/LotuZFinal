@@ -354,19 +354,28 @@ public class UserUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent frame) {
-				System.out.println("totoUserUI");
+				try {
+					facadeBL.Inscription("Laboureur","Alexis","sonmail2348@gmail","0625102689","Rue du Village","52","Montpellier","34000","1253");
+				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+					JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		
 		// Action OK
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
-				//if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
+				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					System.out.println("Inscription ok");
 					try {
 						System.out.println("UI ok");
-						//facadeUI.Inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
-						facadeBL.Inscription("Laboureur","Alexis","sonmail@gmail","0625102689","Rue du Village","52","Montpellier","34000","1253");
+						facadeBL.Inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
+						
 					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 						JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 					} catch (ClassNotFoundException e) {
@@ -375,7 +384,7 @@ public class UserUI extends JFrame {
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
-				//}
+				}
 			}			
 			
 			/*
