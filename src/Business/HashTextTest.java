@@ -10,8 +10,10 @@ public class HashTextTest {
      * @throws NoSuchAlgorithmException
      */
     public static void main(String[] args) throws NoSuchAlgorithmException {
-    	System.out.println("test string to sha1 ---->");
-        System.out.println(sha1("test string to sha1"));
+    	System.out.println("azerty");
+        System.out.println(sha1("azerty"));
+    	System.out.println("azerty");
+        System.out.println(sha1("azerty"));
     }
      
     static String sha1(String input) throws NoSuchAlgorithmException {

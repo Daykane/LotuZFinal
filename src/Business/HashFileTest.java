@@ -9,10 +9,10 @@ import java.security.NoSuchAlgorithmException;
  
 public class HashFileTest {
      
-    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
-        boolean result = verifyChecksum("/home/eclipse-jee-indigo-SR2-linux-gtk-x86_64.tar.gz", "177750b65a21a9043105fd0820b85b58cf148ae4");
-        System.out.println("Does the file's checksum matches the expected one? " + result);
-    }
+//    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
+//        boolean result = verifyChecksum("/home/eclipse-jee-indigo-SR2-linux-gtk-x86_64.tar.gz", "177750b65a21a9043105fd0820b85b58cf148ae4");
+//        System.out.println("Does the file's checksum matches the expected one? " + result);
+//    }
      
     /**
      * Verifies file's SHA1 checksum
