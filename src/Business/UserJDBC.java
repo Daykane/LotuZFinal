@@ -7,23 +7,28 @@ import java.sql.Statement;
 
 
 public class UserJDBC {
+	private String url;
+	private String login;
+	private String passwd;
+	private Connection cn;
+	private Statement st;
+	
+	public UserJDBC(String url, String login, String passwd, Connection cn){
+		this.url = url;
+		this.login = login;
+		this.passwd = passwd;
+		this.cn = cn;
+		this.st = null;
+	}
+	
+			
+			
+			public void load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password, Connection cn) throws ClassNotFoundException, SQLException {
 
-			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password) throws ClassNotFoundException, SQLException {
 
-				// Information d'accès à la base de données
-				String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-				String login = "ROLL";
-				String passwd = "rolldevelopment";
-				Connection cn =null;
-				Statement st =null;
 
-				try {
-					// Etape 1 : Chargement du driver
-					Class.forName("com.mysql.jdbc.Driver");
-
-					// Etape 2 : récupération de la connexion
-					cn = DriverManager.getConnection(url, login, passwd);
-
+				try {		
+					Statement st =null;
 					// Etape 3 : Création d'un statement
 					st = cn.createStatement();
 
@@ -36,16 +41,6 @@ public class UserJDBC {
 
 				} catch (SQLException e) {
 					throw e;
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						cn.close();
-						st.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					
 				}
 			}
 			
@@ -98,12 +93,6 @@ public class UserJDBC {
 				}
 			}
 
-
-			public void inscriptionData(String text, String text2, String text3,
-					String text4, String text5, String text6, String text7,
-					String text8, String text9) throws ClassNotFoundException, SQLException {
-				Load(text,  text2,  text3,  text4,  text5,  text6,  text7,  text8,  text9);
-			}
 					
 	}
 
