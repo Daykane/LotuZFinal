@@ -12,12 +12,10 @@ public class UserManager
 	public void Inscription(String text, String text2, String text3,
 			String text4, String text5, String text6, String text7,
 			String text8, String text9) throws ClassNotFoundException, SQLException {
-			System.out.println("Manager ok");
 			String passWordCrypt="";
 			try {
 				passWordCrypt = HashTextTest.sha1(text9);
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			facadedata.InscriptionData( text,  text2,  text3,

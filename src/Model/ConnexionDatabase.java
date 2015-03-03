@@ -8,12 +8,6 @@ import java.sql.Statement;
 
 public class ConnexionDatabase {
 
-
-		public static void main(String[] args) throws ClassNotFoundException, SQLException {
-			Load("Laboureur","Alexis","sonmail@gmail","0625102689","Rue du Village","52","Montpellier","34000","1253");
-			//Read();
-		}
-
 			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password) throws ClassNotFoundException, SQLException {
 
 				// Information d'accès à la base de données
@@ -39,7 +33,7 @@ public class ConnexionDatabase {
 					st.executeUpdate(sql);
 
 					// Si récup données alors étapes 5 (parcours Resultset)
-					//throw new ClassNotFoundException();
+
 				} catch (SQLException e) {
 					throw e;
 				} catch (ClassNotFoundException e) {
@@ -100,12 +94,7 @@ public class ConnexionDatabase {
 			public void InscriptionData(String text, String text2, String text3,
 					String text4, String text5, String text6, String text7,
 					String text8, String text9) throws ClassNotFoundException, SQLException {
-				System.out.println("Data ok");
-				Load(text,  text2,  text3,
-				 text4,  text5,  text6,  text7,
-				 text8,  text9);
-				// TODO Auto-generated method stub
-				
+				Load(text,  text2,  text3,  text4,  text5,  text6,  text7,  text8,  text9);
 			}
 					
 	}

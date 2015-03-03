@@ -1,4 +1,4 @@
-package Business;
+/*package Business;
 
 import static org.junit.Assert.*;
 
@@ -11,4 +11,4 @@ public class HashTextTestTest {
 		fail("Not yet implemented");
 	}
 
-}
+}*/

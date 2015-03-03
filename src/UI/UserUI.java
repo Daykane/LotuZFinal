@@ -28,7 +28,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+//import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import Business.FacadeBL;
 
@@ -359,7 +359,6 @@ public class UserUI extends JFrame {
 				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 					JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -371,19 +370,16 @@ public class UserUI extends JFrame {
 		btnOK.addMouseListener(new MouseAdapter() {		
 			public void mouseClicked(MouseEvent arg0) {
 				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
-					System.out.println("Inscription ok");
 					try {
-						System.out.println("UI ok");
 						facadeBL.Inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
-						
 					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 						JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
+					JOptionPane.showMessageDialog(null,"Inscription réussie","Inscription réussie",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}			
 			

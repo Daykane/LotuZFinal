@@ -1,4 +1,4 @@
-package Model;
+/*package Model;
 
 import static org.junit.Assert.*;
 
@@ -11,4 +11,4 @@ public class ConnexionDatabaseTest {
 		fail("Not yet implemented");
 	}
 
-}
+}*/
