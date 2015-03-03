@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class ConnexionDatabase {
+public class UserJDBC {
 
 			public static void Load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password) throws ClassNotFoundException, SQLException {
 
