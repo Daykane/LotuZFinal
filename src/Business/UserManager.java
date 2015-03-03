@@ -13,9 +13,9 @@ public class UserManager
 			String text4, String text5, String text6, String text7,
 			String text8, String text9) throws ClassNotFoundException, SQLException {
 			System.out.println("Manager ok");
-			String passWordCrypt=text9;
+			String passWordCrypt="";
 			try {
-				passWordCrypt = (String) HashTextTest.sha1(text9);
+				passWordCrypt = HashTextTest.sha1(text9);
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
