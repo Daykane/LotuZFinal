@@ -38,6 +38,14 @@ public class ConnexionDatabase {
 					throw e;
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
+				} finally {
+					try {
+						cn.close();
+						st.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					
 				}
 			}
 			
