@@ -2,8 +2,6 @@ package Business;
 
 import java.sql.SQLException;
 
-import Model.UserJDBC;
-
 
 public class FacadeData {
 
