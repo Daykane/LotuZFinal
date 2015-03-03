@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
@@ -29,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 //import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 
 import Business.FacadeBL;
 
@@ -54,8 +56,8 @@ public class UserUI extends JFrame {
 	private JTextField TFHouse;
 	private JTextField TFCity;
 	private JTextField TFPostCode;
-	private JTextField TFPassword;
-	private JTextField TFConfirmPw;	
+	private JPasswordField TFPassword;
+	private JPasswordField TFConfirmPw;	
 	private final JLabel jlblStatus = new JLabel("Error dans un champ");
 	
 	static int count = 0;
@@ -295,7 +297,7 @@ public class UserUI extends JFrame {
 		panelTF.add(TFPostCode, gbc_TFPostCode);
 		TFPostCode.setColumns(10);
 		
-		TFPassword = new JTextField();
+		TFPassword = new JPasswordField();
 		GridBagConstraints gbc_TFPassword = new GridBagConstraints();
 		gbc_TFPassword.insets = new Insets(0, 0, 5, 0);
 		gbc_TFPassword.fill = GridBagConstraints.BOTH;
@@ -304,7 +306,7 @@ public class UserUI extends JFrame {
 		panelTF.add(TFPassword, gbc_TFPassword);
 		TFPassword.setColumns(10);
 		
-		TFConfirmPw = new JTextField();
+		TFConfirmPw = new JPasswordField();
 		GridBagConstraints gbc_TFConfirmPw = new GridBagConstraints();
 		gbc_TFConfirmPw.insets = new Insets(0, 0, 5, 0);
 		gbc_TFConfirmPw.fill = GridBagConstraints.HORIZONTAL;
