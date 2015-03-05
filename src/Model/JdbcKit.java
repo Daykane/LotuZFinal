@@ -49,20 +49,17 @@ public class JdbcKit extends PersistKit{
 	
 	public void load(String lastName, String firstName, String mail,
 			String tel, String streetName, String numHouse, String city,
-			String postCode, String password){
+			String postCode, String password) throws ClassNotFoundException, SQLException {
 		//System.out.println("Début ouverture connexion");
 		this.openConnection(url, login, passwd, cn);
 		//System.out.println("Fin ouverture connexion");
 		try {
-			System.out.println("Début load");
 			userJdbc.load(lastName, firstName, mail, tel, streetName, numHouse, city, postCode, password,cn);
-			System.out.println("Fin load");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
+			throw e;
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		this.closeConnection(cn);
 	}
