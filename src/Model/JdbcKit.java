@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import Class.User;
+
 
 public class JdbcKit extends PersistKit{
 		
@@ -45,14 +47,13 @@ public class JdbcKit extends PersistKit{
 		
 	}
 	
-	public void load(String lastName, String firstName, String mail,
-			String tel, String streetName, String numHouse, String city,
-			String postCode, String password) throws ClassNotFoundException, SQLException {
-		//System.out.println("Début ouverture connexion");
+	public void load(Object object) throws ClassNotFoundException, SQLException {
 		this.openConnection(url, login, passwd, cn);
-		//System.out.println("Fin ouverture connexion");
 		try {
-			userJdbc.load(lastName, firstName, mail, tel, streetName, numHouse, city, postCode, password,cn);
+			if (object instanceof User){
+			userJdbc.load((User) object,cn);
+			}
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 		} catch (SQLException e) {

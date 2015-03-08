@@ -11,11 +11,13 @@ public class User {
 
 	private String lastName;
 	private String firstName;
-	private String streeName;
+	private String streetName;
 	private String numHouse;
 	private String city;
 	private String postCode;
 	private String mail;
+	private String password;
+	private String phone;
 	
 	
 	public User() {
@@ -31,16 +33,18 @@ public class User {
 	 * @param postCode
 	 * @param mail
 	 */
-	public User(String lastName, String firstName, String streeName,
-			String numHouse, String city, String postCode, String mail) {
+	public User(String lastName, String firstName, String streetName,
+			String numHouse, String city, String postCode, String mail,String password,String phone) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
-		this.streeName = streeName;
+		this.streetName = streetName;
 		this.numHouse = numHouse;
 		this.city = city;
 		this.postCode = postCode;
 		this.mail = mail;
+		this.password = password;
+		this.phone = phone;
 	}
 
 	/**
@@ -74,15 +78,15 @@ public class User {
 	/**
 	 * @return the streeName
 	 */
-	public String getStreeName() {
-		return streeName;
+	public String getStreetName() {
+		return streetName;
 	}
 
 	/**
 	 * @param streeName the streeName to set
 	 */
-	public void setStreeName(String streeName) {
-		this.streeName = streeName;
+	public void setStreetName(String streeName) {
+		this.streetName = streeName;
 	}
 
 	/**
@@ -139,6 +143,34 @@ public class User {
 	 */
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the phone
+	 */
+	public String getPhone() {
+		return phone;
+	}
+
+	/**
+	 * @param phone the phone to set
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 

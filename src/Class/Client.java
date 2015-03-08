@@ -38,8 +38,8 @@ public class Client extends Member{
 	 * @param mail
 	 */
 	public Client(String lastName, String firstName, String streeName,
-			String numHouse, String city, String postCode, String mail) {
-		super(lastName, firstName, streeName, numHouse, city, postCode, mail);
+			String numHouse, String city, String postCode, String mail,String password, String phone) {
+		super(lastName, firstName, streeName, numHouse, city, postCode, mail,password, phone);
 		// TODO Auto-generated constructor stub
 	}
 

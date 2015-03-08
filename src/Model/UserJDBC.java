@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Class.User;
+
 
 public class UserJDBC {
 	private String url;
@@ -23,7 +25,7 @@ public class UserJDBC {
 	
 			
 			
-			public void load(String lastName, String firstName, String mail, String tel, String streetName, String numHouse, String city, String postCode, String password, Connection cn) throws ClassNotFoundException, SQLException {
+			public void load(User user, Connection cn) throws ClassNotFoundException, SQLException {
 
 
 
@@ -32,7 +34,7 @@ public class UserJDBC {
 					// Etape 3 : Création d'un statement
 					st = cn.createStatement();
 
-					String sql = "Insert into User Values ('"+ lastName +"','"+ firstName +"','"+ mail +"','"+ tel +"','"+ streetName +"','"+ numHouse +"','"+ city +"','"+ postCode +"','"+ password +"')";
+					String sql = "Insert into User Values ('"+ user.getLastName() +"','"+ user.getFirstName() +"','"+ user.getMail() +"','"+ user.getPhone() +"','"+ user.getStreetName() +"','"+ user.getNumHouse() +"','"+ user.getCity() +"','"+ user.getPostCode() +"','"+ user.getPassword() +"')";
 
 					// Etape 4 : exécution requête
 					st.executeUpdate(sql);
