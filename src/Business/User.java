@@ -10,9 +10,10 @@ public class User {
 	private String mail;
 	private String phone;
 	private String streetName;
-	private int numHouse;
-	private int postCode;
-	private String city;	
+	private String numHouse;
+	private String postCode;
+	private String city;
+	// private String password;
 
 	/*
 	 * Getter / Setter
@@ -32,11 +33,11 @@ public class User {
 	public String getStreetName() {return streetName;}
 	public void setStreetName(String streetName) {this.streetName = streetName;}
 	
-	public int getNumHouse() {return numHouse;}
-	public void setNumHouse(int numHouse) {this.numHouse = numHouse;}
+	public String getNumHouse() {return numHouse;}
+	public void setNumHouse(String numHouse) {this.numHouse = numHouse;}
 	
-	public int getPostCode() {return postCode;}
-	public void setPostCode(int postCode) {this.postCode = postCode;}
+	public String getPostCode() {return postCode;}
+	public void setPostCode(String postCode) {this.postCode = postCode;}
 	
 	public String getCity() {return city;}
 	public void setCity(String city) {this.city = city;}
@@ -47,7 +48,7 @@ public class User {
 	
 	// Construtor complete
 	public User(String lastname, String firstName, String mail,
-			String phone, String streetName, int numHouse, int postCode,
+			String phone, String streetName, String numHouse, String postCode,
 			String city) {
 		super();
 		this.lastname = lastname;
