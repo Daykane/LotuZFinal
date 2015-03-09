@@ -47,7 +47,7 @@ public class JdbcKit extends PersistKit{
 		
 	}
 	
-	public void load(Object object) throws ClassNotFoundException, SQLException {
+	public void inscriptionData(Object object) throws ClassNotFoundException, SQLException {
 		this.openConnection(url, login, passwd, cn);
 		try {
 			if (object instanceof User){
@@ -61,5 +61,22 @@ public class JdbcKit extends PersistKit{
 			// TODO Auto-generated catch block
 		}
 		this.closeConnection(cn);
+	}
+	
+	public User login(String mail, String password) throws SQLException{
+		this.openConnection(url, login, passwd, cn);
+		User user;
+		try {
+
+			user = userJdbc.login(mail,password,cn);
+
+			
+		} catch (SQLException e) {
+			throw e;
+			// TODO Auto-generated catch block
+		}
+		this.closeConnection(cn);
+		return user;
+		
 	}
 }

@@ -23,4 +23,19 @@ public class UserManager
 			User user = facadeModel.createUser(lastName, firstName, adress, phone, street, houseNumber, city, postCode, passWordCrypt);
 			facadedata.inscriptionData(user);
 		}
+	
+	public void login(String mail,String password) throws SQLException{
+		String passWordCrypt="";
+		try {
+			passWordCrypt = HashTextTest.sha1(password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		User user = facadedata.login(mail,passWordCrypt);
+		if (user == null){
+			System.out.println("Inexistant");
+		}
+			
+
+	}
 }

@@ -33,8 +33,8 @@ public class User {
 	 * @param postCode
 	 * @param mail
 	 */
-	public User(String lastName, String firstName, String streetName,
-			String numHouse, String city, String postCode, String mail,String password,String phone) {
+	public User(String lastName, String firstName, String mail,
+			String phone, String streetName, String numHouse, String city,String postCode,String password) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;

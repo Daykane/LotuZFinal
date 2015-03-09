@@ -10,9 +10,12 @@ public class FacadeData {
 
 	JdbcKit JdbcKit = new JdbcKit();
 	
-	public void inscriptionData(User user) throws ClassNotFoundException, SQLException{
-		
-		JdbcKit.load(user);
+	public void inscriptionData(Object object) throws ClassNotFoundException, SQLException{		
+		JdbcKit.inscriptionData(object);
 	}
-
+	
+	public User login(String mail, String password) throws SQLException{
+		User user = JdbcKit.login(mail,password);
+		return user;
+	}
 }

@@ -8,7 +8,7 @@ import java.sql.Statement;
 import Class.User;
 
 
-public class UserJDBC {
+public class UserJDBC extends User{
 	private String url;
 	private String login;
 	private String passwd;
@@ -46,6 +46,41 @@ public class UserJDBC {
 				}
 			}
 			
+			public User login(String mail,String password,Connection cn) throws SQLException{
+				User user = null;
+				try {
+					
+					Statement st =null;
+					// Etape 3 : Création d'un statement
+					st = cn.createStatement();
+					System.out.println(password);
+					System.out.println(mail);
+					String sql = "Select * From LotuZ.User Where mail="+'"'+mail+'"'+"and password="+'"'+password+'"';
+					// Etape 4 : exécution requête
+					//st.executeUpdate(sql);
+					ResultSet result = st.executeQuery(sql);
+					while( result.next() ){						
+						String lastName = result.getString("lastName");
+						String firstName = result.getString("firstName");
+						//String mail = result.getString("mail");
+						String tel = result.getString("tel");
+						String streetName = result.getString("streetName");
+						String numHouse = result.getString("numHouse");
+						String city = result.getString("city");
+						String postCode = result.getString("postCode");
+						//String password = result.getString("password");
+						user = new User(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password);
+
+					}
+					
+					
+					// Si récup données alors étapes 5 (parcours Resultset)
+
+				} catch (SQLException e) {
+					throw e;
+				}
+				return user;
+			}
 			public static void Read() {
 
 				// Information d'accès à la base de données

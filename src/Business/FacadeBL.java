@@ -11,4 +11,8 @@ public class FacadeBL {
 			String postCode, String password) throws ClassNotFoundException, SQLException{
 		userManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
+	
+	public void login(String mail, String password) throws SQLException{
+		userManager.login(mail,password);
+	}
 }
