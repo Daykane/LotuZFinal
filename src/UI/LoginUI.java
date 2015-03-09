@@ -76,6 +76,7 @@ public class LoginUI extends JFrame {
 		contentPane.add(lblLogin);
 		
 		JButton btnOk = new JButton("OK");
+		/*
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -89,6 +90,7 @@ public class LoginUI extends JFrame {
 				
 			}
 		});
+		*/
 		btnOk.setBounds(93, 217, 89, 23);
 		contentPane.add(btnOk);
 		
