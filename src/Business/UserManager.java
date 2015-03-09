@@ -3,6 +3,7 @@ package Business;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import Model.JdbcKit;
 import Model.PersistKit;
 import UI.HomePageUser;
 import UI.HomepageUI;
@@ -12,9 +13,9 @@ import Class.User;
 public class UserManager
 {
 	HashTextTest crypt;
-	FacadeData facadedata = new FacadeData();
+	//FacadeData facadedata = new FacadeData();
 	FacadeModel facadeModel = new FacadeModel();
-	PersistKit persistKit;
+	PersistKit jdbcKit = new JdbcKit();
 	
 	public void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
@@ -26,10 +27,10 @@ public class UserManager
 				e.printStackTrace();
 			}
 			User user = facadeModel.createUser(lastName, firstName, adress, phone, street, houseNumber, city, postCode, passWordCrypt);
-			facadedata.inscriptionData(user);
+			jdbcKit.inscriptionData(user);
 		}
 	
-	/*
+	
 	public void login(String mail,String password) throws SQLException{
 		String passWordCrypt="";
 		try {
@@ -37,7 +38,7 @@ public class UserManager
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		User user = facadedata.login(mail,passWordCrypt);
+		User user = jdbcKit.login(mail,passWordCrypt);
 		if (user == null){
 			System.out.println("Inexistant");
 		}
@@ -48,5 +49,5 @@ public class UserManager
 			
 
 	}
-		*/
+		
 }

@@ -76,12 +76,10 @@ public class LoginUI extends JFrame {
 		contentPane.add(lblLogin);
 		
 		JButton btnOk = new JButton("OK");
-		/*
+		
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println(TfMail.getText());
-				System.out.println(Tfpassword.getText());
 				try {
 					facadeBL.login(TfMail.getText(),Tfpassword.getText());
 				} catch (SQLException e) {
@@ -90,7 +88,7 @@ public class LoginUI extends JFrame {
 				
 			}
 		});
-		*/
+
 		btnOk.setBounds(93, 217, 89, 23);
 		contentPane.add(btnOk);
 		
