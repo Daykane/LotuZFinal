@@ -6,10 +6,9 @@ public class FacadeBL {
 	
 	UserManager userManager = new UserManager();
 	
-	public void inscription(String text, String text2, String text3,
-			String text4, String text5, String text6, String text7,
-			String text8, String text9) throws ClassNotFoundException, SQLException{
-		userManager.inscription( text,  text2,  text3,
-			 text4,  text5,  text6,  text7,
-			 text8,  text9);}
+	public void inscription(String lastName, String firstName, String adress,
+			String phone, String street, String houseNumber, String city,
+			String postCode, String password) throws ClassNotFoundException, SQLException{
+		userManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
+}
