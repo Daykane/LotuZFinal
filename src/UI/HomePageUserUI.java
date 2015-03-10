@@ -7,10 +7,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
-public class HomePageUser extends JFrame {
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class HomePageUserUI extends JFrame {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -20,7 +28,7 @@ public class HomePageUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePageUser frame = new HomePageUser();
+					HomePageUserUI frame = new HomePageUserUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +40,7 @@ public class HomePageUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HomePageUser() {
+	public HomePageUserUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,12 +52,23 @@ public class HomePageUser extends JFrame {
 		lblAcceuil.setBounds(170, 11, 46, 14);
 		contentPane.add(lblAcceuil);
 		
-		JLabel lblBonjourUser = new JLabel("Bonjour User :");
-		lblBonjourUser.setBounds(74, 81, 79, 14);
-		contentPane.add(lblBonjourUser);
+		JLabel lblNewLabel = new JLabel("Bienvenu :");
+		lblNewLabel.setBounds(69, 49, 85, 14);
+		contentPane.add(lblNewLabel);
 		
-		JLabel lblName = new JLabel("New label");
-		lblName.setBounds(152, 81, 135, 14);
-		contentPane.add(lblName);
+		JLabel lblNewLabel_1 = new JLabel("<insert name>");
+		lblNewLabel_1.setBounds(201, 49, 95, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JButton btnGestionEvent = new JButton("Gestion Event");
+		btnGestionEvent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ActivityUI activityUI =  new ActivityUI();				
+				activityUI.setVisible(true);
+			}
+		});
+		btnGestionEvent.setBounds(36, 153, 99, 23);
+		contentPane.add(btnGestionEvent);
 	}
 }

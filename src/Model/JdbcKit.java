@@ -3,7 +3,9 @@ package Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
+import Class.Activity;
 import Class.User;
 
 
@@ -16,6 +18,7 @@ public class JdbcKit extends PersistKit{
 	Connection cn =null;
 	
 	UserJDBC userJdbc= new UserJDBC(url,login,passwd,cn);
+	ActivityJdbc activityJdbc = new ActivityJdbc();
 
 	public void openConnection(String url, String login, String passwd,
 			Connection cn) {
@@ -78,5 +81,11 @@ public class JdbcKit extends PersistKit{
 		this.closeConnection(cn);
 		return user;
 		
+	}
+
+	@Override
+	public  List<Activity> getActivities() {
+		List<Activity> ActivityList = activityJdbc.getActivities();
+		return ActivityList;
 	}
 }

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import Model.JdbcKit;
 import Model.PersistKit;
-import UI.HomePageUser;
+import UI.HomePageUserUI;
 import UI.HomepageUI;
 import Business.HashTextTest;
 import Class.User;
@@ -38,16 +38,18 @@ public class UserManager
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		User user = jdbcKit.login(mail,passWordCrypt);
-		if (user == null){
-			System.out.println("Inexistant");
+		Object object = jdbcKit.login(mail,passWordCrypt);
+		if (object == null){
+			System.out.println("Inexistant");			
 		}
-		else {
-			HomePageUser frame = new HomePageUser();
-			frame.setVisible(true);
+		else{
+			if( object instanceof User){
+					System.out.println("C'est un user qui vient de s'authentifier");
+					HomePageUserUI frame = new HomePageUserUI();
+					frame.setVisible(true);
+				}
+			}
 		}
-			
-
-	}
+	
 		
 }
