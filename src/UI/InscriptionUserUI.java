@@ -38,7 +38,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
-public class UserUI extends JFrame {
+public class InscriptionUserUI extends JFrame {
 	
 	
 	FacadeBL facadeBL = new FacadeBL();
@@ -69,7 +69,7 @@ public class UserUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserUI frame = new UserUI();
+					InscriptionUserUI frame = new InscriptionUserUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,7 +82,7 @@ public class UserUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserUI() {
+	public InscriptionUserUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 400);
