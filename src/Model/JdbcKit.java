@@ -10,18 +10,29 @@ import Class.User;
 
 
 public class JdbcKit extends PersistKit{
-		
+	/*	
 	// Information d'accès à la base de données
 	String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
 	String login = "ROLL";
 	String passwd = "rolldevelopment";
 	Connection cn =null;
+	*/
+	private String url;
+	private String login;
+	private String passwd;
+	private Connection cn;
 	
 	UserJDBC userJdbc= new UserJDBC(url,login,passwd,cn);
 	ActivityJdbc activityJdbc = new ActivityJdbc();
 
-	public void openConnection(String url, String login, String passwd,
-			Connection cn) {
+	public JdbcKit(String url, String login, String passwd){
+		this.url = url;
+		this.login=login;
+		this.passwd = passwd;
+	}
+	public JdbcKit() {
+	}
+	public void openConnection(String url, String login, String passwd) {
 		// Etape 1 : Chargement du driver
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
@@ -50,22 +61,6 @@ public class JdbcKit extends PersistKit{
 		
 	}
 	
-	public void inscriptionData(Object object) throws ClassNotFoundException, SQLException {
-		this.openConnection(url, login, passwd, cn);
-		try {
-			if (object instanceof User){
-			userJdbc.load((User) object,cn);
-			}
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-		} catch (SQLException e) {
-			throw e;
-			// TODO Auto-generated catch block
-		}
-		this.closeConnection(cn);
-	}
-	
 	public User login(String mail, String password) throws SQLException{
 		this.openConnection(url, login, passwd, cn);
 		User user;
@@ -88,4 +83,16 @@ public class JdbcKit extends PersistKit{
 		List<Activity> ActivityList = activityJdbc.getActivities();
 		return ActivityList;
 	}
+
+	@Override
+	public User createUser() {
+		return new UserJDBC(this.cn);
+	}
+	@Override
+	public void openConnection(String url, String login, String passwd,
+			Connection cn) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

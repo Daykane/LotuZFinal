@@ -6,8 +6,10 @@
 
 package Class;
 
+import java.sql.SQLException;
 
-public class User {
+
+public abstract class User {
 
 	private String lastName;
 	private String firstName;
@@ -173,6 +175,7 @@ public class User {
 		this.phone = phone;
 	}
 
+	public abstract void save() throws SQLException, ClassNotFoundException;
 
 
 }

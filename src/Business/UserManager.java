@@ -6,18 +6,15 @@ import java.sql.SQLException;
 import Model.JdbcKit;
 import Model.PersistKit;
 import UI.HomePageUserUI;
-import UI.HomepageUI;
 import Business.HashTextTest;
 import Class.User;
 
 public class UserManager
 {
 	HashTextTest crypt;
-	//FacadeData facadedata = new FacadeData();
-	FacadeModel facadeModel = new FacadeModel();
 	PersistKit jdbcKit = new JdbcKit();
 	
-	public void inscription(String lastName, String firstName, String adress,
+	public void inscription(String lastName, String firstName, String mail,
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException {
 			String passWordCrypt="";
@@ -26,8 +23,20 @@ public class UserManager
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}
-			User user = facadeModel.createUser(lastName, firstName, adress, phone, street, houseNumber, city, postCode, passWordCrypt);
-			jdbcKit.inscriptionData(user);
+			// Create empty userJdbc
+			User user = jdbcKit.createUser();
+			// set informations into the userJdbc
+			user.setCity(city);
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setMail(mail);
+			user.setNumHouse(houseNumber);
+			user.setPassword(passWordCrypt);
+			user.setPhone(phone);
+			user.setPostCode(postCode);
+			user.setStreetName(street);
+			// Save in database the user
+			user.save();
 		}
 	
 	

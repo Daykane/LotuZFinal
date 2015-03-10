@@ -25,16 +25,35 @@ public class UserJDBC extends User{
 	
 			
 			
-			public void load(User user, Connection cn) throws ClassNotFoundException, SQLException {
+			public UserJDBC(String lastName, String firstName, String mail, String tel,
+			String streetName, String numHouse, String city, String postCode,
+			String password) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+			public UserJDBC() {
+			}
+
+
+
+			public UserJDBC(Connection cn2) {
+				this.cn=cn2;			
+			}
+
+
+
+			public void save() throws ClassNotFoundException, SQLException {
 
 
 
 				try {		
 					Statement st =null;
 					// Etape 3 : Création d'un statement
-					st = cn.createStatement();
+					st = this.cn.createStatement();
 
-					String sql = "Insert into User Values ('"+ user.getLastName() +"','"+ user.getFirstName() +"','"+ user.getMail() +"','"+ user.getPhone() +"','"+ user.getStreetName() +"','"+ user.getNumHouse() +"','"+ user.getCity() +"','"+ user.getPostCode() +"','"+ user.getPassword() +"')";
+					String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"')";
 
 					// Etape 4 : exécution requête
 					st.executeUpdate(sql);
@@ -69,7 +88,7 @@ public class UserJDBC extends User{
 						String city = result.getString("city");
 						String postCode = result.getString("postCode");
 						//String password = result.getString("password");
-						user = new User(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password);
+						user = new UserJDBC(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password);
 
 					}
 					
@@ -129,6 +148,11 @@ public class UserJDBC extends User{
 					e.printStackTrace();
 				}
 			}
+
+
+
+			
+			
 
 					
 	}

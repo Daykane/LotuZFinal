@@ -32,4 +32,10 @@ public class Member extends User{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
