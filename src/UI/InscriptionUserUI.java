@@ -2,7 +2,6 @@ package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -40,6 +39,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
+/**
+ * @author Alexis
+ *
+ */
 public class InscriptionUserUI extends JFrame {
 	
 	
@@ -465,5 +468,17 @@ public class InscriptionUserUI extends JFrame {
 		});
 		
 		
+	}
+	/**
+	 * @return the facadeBL
+	 */
+	public FacadeBL getFacadeBL() {
+		return facadeBL;
+	}
+	/**
+	 * @param facadeBL the facadeBL to set
+	 */
+	public void setFacadeBL(FacadeBL facadeBL) {
+		this.facadeBL = facadeBL;
 	}
 }
