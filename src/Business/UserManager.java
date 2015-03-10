@@ -3,7 +3,6 @@ package Business;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-import Model.JdbcKit;
 import Model.PersistKit;
 import UI.HomePageUserUI;
 import Business.HashTextTest;
