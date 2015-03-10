@@ -52,8 +52,8 @@ public class HomepageUI extends JFrame {
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
-				inscriptionUserUI.setVisible(true);
+				//InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
+				//inscriptionUserUI.setVisible(true);
 				frame.setVisible(false);
 			}
 		});

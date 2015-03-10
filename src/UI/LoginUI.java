@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class LoginUI extends JFrame {
 	
-	FacadeBL facadeBL = new FacadeBL();
+	//FacadeBL facadeBL = new FacadeBL();
 
 
 	private JPanel contentPane;
@@ -76,18 +76,20 @@ public class LoginUI extends JFrame {
 		contentPane.add(lblLogin);
 		
 		JButton btnOk = new JButton("OK");
-		
+		/*
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override
+			
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					facadeBL.login(TfMail.getText(),Tfpassword.getText());
+					//facadeBL.login(TfMail.getText(),Tfpassword.getText());
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null,"Error Mail/Password","Mail ou password inexistant",JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
+		*/
 
 		btnOk.setBounds(93, 217, 89, 23);
 		contentPane.add(btnOk);

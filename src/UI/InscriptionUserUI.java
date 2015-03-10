@@ -32,7 +32,9 @@ import javax.swing.JCheckBox;
 //import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 
+
 import Business.FacadeBL;
+import Model.PersistKit;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,7 +43,8 @@ import java.sql.SQLException;
 public class InscriptionUserUI extends JFrame {
 	
 	
-	FacadeBL facadeBL = new FacadeBL();
+	
+	private FacadeBL facadeBL;
 	/**
 	 * Init Attribute 
 	 **/
@@ -62,27 +65,10 @@ public class InscriptionUserUI extends JFrame {
 	
 	static int count = 0;
 	/**
-	 * Launch the application.
-	 */
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InscriptionUserUI frame = new InscriptionUserUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-
-	/**
 	 * Create the frame.
 	 */
 	public InscriptionUserUI() {
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 400);
@@ -357,7 +343,7 @@ public class InscriptionUserUI extends JFrame {
 			
 			public void mouseClicked(MouseEvent frame) {
 				try {
-					facadeBL.inscription("Laboureur","Alexis","bobo","0625102689","Rue du Village","52","Montpellier","34000","1253");
+					FacadeBL.inscription("Laboureur","Alexis","testmail2","0625102689","Rue du Village","52","Montpellier","34000","1253");
 				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 					JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 				} catch (ClassNotFoundException e) {
@@ -373,7 +359,7 @@ public class InscriptionUserUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					try {
-						facadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
+						FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
 						JOptionPane.showMessageDialog(null,"Inscription réussie","Inscription réussie",JOptionPane.INFORMATION_MESSAGE);
 					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 						JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);

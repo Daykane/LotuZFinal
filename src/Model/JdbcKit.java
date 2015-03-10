@@ -22,16 +22,25 @@ public class JdbcKit extends PersistKit{
 	private String passwd;
 	private Connection cn;
 	
-	UserJDBC userJdbc= new UserJDBC(url,login,passwd,cn);
-	ActivityJdbc activityJdbc = new ActivityJdbc();
-
+	private UserJDBC userJdbc;
+	private ActivityJdbc activityJdbc;
+	
+	/*
+	public JdbcKit() {
+	}
+	*/
+	
 	public JdbcKit(String url, String login, String passwd){
+		
+		userJdbc= new UserJDBC(url,login,passwd,cn);
+		activityJdbc = new ActivityJdbc();
+		
 		this.url = url;
 		this.login=login;
 		this.passwd = passwd;
 	}
-	public JdbcKit() {
-	}
+	
+	
 	public void openConnection(String url, String login, String passwd) {
 		// Etape 1 : Chargement du driver
 				try {

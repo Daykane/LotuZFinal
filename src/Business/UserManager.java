@@ -12,7 +12,11 @@ import Class.User;
 public class UserManager
 {
 	HashTextTest crypt;
-	PersistKit jdbcKit = new JdbcKit();
+	PersistKit pkit;
+	
+	public UserManager(PersistKit kit){
+		this.pkit=kit;
+	}
 	
 	public void inscription(String lastName, String firstName, String mail,
 			String phone, String street, String houseNumber, String city,
@@ -24,7 +28,7 @@ public class UserManager
 				e.printStackTrace();
 			}
 			// Create empty userJdbc
-			User user = jdbcKit.createUser();
+			User user = pkit.createUser();
 			// set informations into the userJdbc
 			user.setCity(city);
 			user.setFirstName(firstName);
@@ -47,7 +51,7 @@ public class UserManager
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		Object object = jdbcKit.login(mail,passWordCrypt);
+		Object object = pkit.login(mail,passWordCrypt);
 		if (object == null){
 			System.out.println("Inexistant");			
 		}

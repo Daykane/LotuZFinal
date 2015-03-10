@@ -4,19 +4,24 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Class.Activity;
+import Model.PersistKit;
 
 public class FacadeBL {
 	
-	UserManager userManager = new UserManager();
-	ActivityManager activityManager = new ActivityManager();
+	private static UserManager userManager;
+	private static ActivityManager activityManager;
+	public static void init(PersistKit kit){		
+		userManager = new UserManager(kit);
+		activityManager = new ActivityManager(kit);
+	}
 	
-	public void inscription(String lastName, String firstName, String adress,
+	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException{
 		userManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
 	
-	public void login(String mail, String password) throws SQLException{
+	public static void login(String mail, String password) throws SQLException{
 		userManager.login(mail,password);
 	}
 

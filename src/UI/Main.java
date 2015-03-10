@@ -2,6 +2,7 @@ package UI;
 
 import java.sql.Connection;
 
+import Business.FacadeBL;
 import Model.JdbcKit;
 
 public class Main {
@@ -16,7 +17,7 @@ public class Main {
 		
 		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
 		jdbcKit.openConnection(url, login, passwd);
-		
+		FacadeBL.init(jdbcKit);
 		InscriptionUserUI frame =  new InscriptionUserUI();				
 		frame.setVisible(true);
 

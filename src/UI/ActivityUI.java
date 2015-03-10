@@ -21,7 +21,7 @@ public class ActivityUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	FacadeBL facadeBL = new FacadeBL();
+	//FacadeBL facadeBL = new FacadeBL();
 
 	private JPanel contentPane;
 
@@ -64,6 +64,7 @@ public class ActivityUI extends JFrame {
 
 
 	public List<Activity> getActivities() {
-		return facadeBL.getActivities();
+		//return facadeBL.getActivities();
+		return null;
 	}
 }
