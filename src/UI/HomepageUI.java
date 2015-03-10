@@ -17,6 +17,7 @@ public class HomepageUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	static HomepageUI frame;
 
 	/**
 	 * Launch the application.
@@ -25,7 +26,7 @@ public class HomepageUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomepageUI frame = new HomepageUI();
+					frame = new HomepageUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,8 +52,9 @@ public class HomepageUI extends JFrame {
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				UserUI userUI =  new UserUI();				
-				userUI.setVisible(true);
+				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
+				inscriptionUserUI.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		panel.add(btnInscription);
