@@ -1,5 +1,7 @@
 package Model;
 
-public class NotificationJDBC {
+import Class.Notification;
+
+public class NotificationJDBC extends Notification {
 
 }

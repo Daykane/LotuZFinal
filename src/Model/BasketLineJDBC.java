@@ -1,5 +1,7 @@
 package Model;
 
-public class BasketLineJDBC {
+import Class.BasketLine;
+
+public class BasketLineJDBC extends BasketLine {
 
 }

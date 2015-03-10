@@ -1,5 +1,7 @@
 package Model;
 
-public class ProductJDBC {
+import Class.Product;
+
+public class ProductJDBC extends Product {
 
 }
