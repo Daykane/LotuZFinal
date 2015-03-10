@@ -8,21 +8,29 @@ import java.sql.Statement;
 import Class.User;
 
 
+/**
+ * @author LotuZ
+ *
+ */
 public class UserJDBC extends User{
-	private String url;
-	private String login;
-	private String passwd;
+	//private String url;
+	//private String login;
+	//private String passwd;
 	private Connection cn;
-	private Statement st;
+	//private Statement st;
 	
-	public UserJDBC(String url, String login, String passwd, Connection cn){
+	public UserJDBC(Connection cn){
+		this.cn = cn;
+	}
+	
+	/*public UserJDBC(String url, String login, String passwd, Connection cn){
 		this.url = url;
 		this.login = login;
 		this.passwd = passwd;
 		this.cn = cn;
 		this.st = null;
 	}
-	
+	*/
 			
 			
 			public UserJDBC(String lastName, String firstName, String mail, String tel,
@@ -36,18 +44,7 @@ public class UserJDBC extends User{
 			public UserJDBC() {
 			}
 
-
-
-			public UserJDBC(Connection cn2) {
-				this.cn=cn2;			
-			}
-
-
-
 			public void save() throws ClassNotFoundException, SQLException {
-
-
-
 				try {		
 					Statement st =null;
 					// Etape 3 : Création d'un statement

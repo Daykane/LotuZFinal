@@ -10,6 +10,7 @@ public class FacadeBL {
 	
 	private static UserManager userManager;
 	private static ActivityManager activityManager;
+	
 	public static void init(PersistKit kit){		
 		userManager = new UserManager(kit);
 		activityManager = new ActivityManager(kit);

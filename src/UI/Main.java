@@ -1,7 +1,5 @@
 package UI;
 
-import java.sql.Connection;
-
 import Business.FacadeBL;
 import Model.JdbcKit;
 

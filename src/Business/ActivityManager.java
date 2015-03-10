@@ -17,8 +17,8 @@ public class ActivityManager {
 
 
 	public  List<Activity> getActivities() {
-		List<Activity> ActivityList = pkit.getActivities();
-		return ActivityList;
+		//List<Activity> ActivityList = pkit.getActivities();
+		return null;
 	}
 	 
 }

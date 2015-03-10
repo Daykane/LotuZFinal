@@ -9,9 +9,8 @@ import Class.User;
 
 public abstract class PersistKit {
 	
-	public abstract void openConnection(String url, String login, String passwd, Connection cn);
+	public abstract void openConnection(String url, String login, String passwd);
 	public abstract void closeConnection(Connection cn);
 	public abstract User login(String mail, String passWordCrypt) throws SQLException;
-	public abstract List<Activity> getActivities();
 	public abstract User createUser();
 	}

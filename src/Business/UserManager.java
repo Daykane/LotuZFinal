@@ -8,6 +8,11 @@ import UI.HomePageUserUI;
 import Business.HashTextTest;
 import Class.User;
 
+/**
+ * @author LotuZ
+ *
+ */
+
 public class UserManager
 {
 	HashTextTest crypt;
@@ -17,6 +22,19 @@ public class UserManager
 		this.pkit=kit;
 	}
 	
+	/**
+	 * @param lastName
+	 * @param firstName
+	 * @param mail
+	 * @param phone
+	 * @param street
+	 * @param houseNumber
+	 * @param city
+	 * @param postCode
+	 * @param password
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public void inscription(String lastName, String firstName, String mail,
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException {
@@ -43,6 +61,11 @@ public class UserManager
 		}
 	
 	
+	/**
+	 * @param mail
+	 * @param password
+	 * @throws SQLException
+	 */
 	public void login(String mail,String password) throws SQLException{
 		String passWordCrypt="";
 		try {
