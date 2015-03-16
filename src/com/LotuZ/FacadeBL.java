@@ -8,6 +8,7 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
+import com.LotuZ.login.UserNotFoundException;
 
 public class FacadeBL {
 	
@@ -27,8 +28,8 @@ public class FacadeBL {
 		inscriptionManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
 	
-	public static void login(String mail, String password) throws SQLException{
-		loginManager.login(mail,password);
+	public static void login(String mail, String password, String role) throws SQLException, UserNotFoundException{
+		loginManager.login(mail,password,role);
 	}
 
 	public  List<Activity> getActivities() {

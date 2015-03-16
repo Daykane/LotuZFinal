@@ -19,6 +19,7 @@ public class Main {
 		
 		// Init the FacadeBL with the kit
 		FacadeBL.init(jdbcKit);
+		//FacadeUser.init();
 		
 		//First UI to call
 		HomepageUI frame =  new HomepageUI();				

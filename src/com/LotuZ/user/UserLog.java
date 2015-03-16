@@ -39,7 +39,7 @@ public final class UserLog extends User{
 	}
 
 	@Override
-	public User load(String mail2, String passWordCrypt) {
+	public User load(String mail2, String passWordCrypt,String role) {
 		return null;		
 	}
 	

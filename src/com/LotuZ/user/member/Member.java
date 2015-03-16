@@ -44,7 +44,7 @@ public class Member extends User{
 	}
 
 	@Override
-	public User load(String mail2, String passWordCrypt) throws SQLException {
+	public User load(String mail2, String passWordCrypt,String role) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

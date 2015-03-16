@@ -21,9 +21,11 @@ public class LoginManager {
 	/**
 	 * @param mail
 	 * @param password
+	 * @param role 
 	 * @throws SQLException
+	 * @throws UserNotFoundException 
 	 */
-	public void login(String mail,String password) throws SQLException{
+	public void login(String mail,String password, String role) throws SQLException, UserNotFoundException{
 		String passWordCrypt="";
 		try {
 			passWordCrypt = HashTextTest.sha1(password);
@@ -32,13 +34,14 @@ public class LoginManager {
 		}
 		// Create empty userJdbc for read information
 			User user = pkit.createUser();
-			user = user.load(mail,passWordCrypt);
-			if(user.getLastName() != null){
+			user = user.load(mail,passWordCrypt,role);
+			if(user != null){
 				// Create singleton userJdbc for login
 				pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
 			}
-		
-	
+			else{
+				throw new UserNotFoundException(); 
+			}
 	}
 
 }
