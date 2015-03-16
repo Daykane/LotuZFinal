@@ -33,26 +33,13 @@ public class LoginManager {
 		// Create empty userJdbc for read information
 			User user = pkit.createUser();
 			user.load(mail,passWordCrypt);
-			//System.out.println(user.getLastName());
-			/*
-			for (Field u : user.getClass().getFields()) {
-				  u.setAccessible(true);
-				  try {
-					System.out.println("champ vide avant test");
-					if (u.get(user) == null) {
-					     System.out.println("champ vide");
-					  }
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
-				}
-				//*/
-		// Create empty singleton userJdbc for login
-		pkit.createUserLog();
-		//System.out.println("toto");
+			System.out.println(user.getLastName());
+			if(user.getLastName() != null){
+				// Create singleton userJdbc for login
+				pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
+			}
 		
+	
 	}
 }
 

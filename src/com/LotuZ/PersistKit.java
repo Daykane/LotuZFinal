@@ -14,5 +14,8 @@ public abstract class PersistKit {
 	public abstract void closeConnection(Connection cn);
 	//public abstract User login(String mail, String passWordCrypt) throws SQLException;
 	public abstract User createUser();
-	public abstract User createUserLog();
+	public abstract void createUserLog();
+	public abstract void createUserLog(String lastName, String firstName, String mail,
+			String phone, String streetName, String numHouse, String city,
+			String postCode, String password);
 	}

@@ -86,16 +86,21 @@ public class JdbcKit extends PersistKit{
 
 
 	@Override
-	public User createUserLog() {
-		// TODO Auto-generated method stub
-		return null;
+	public void createUserLog() {
+		UserLog.init();
 	}
 
 
 
+	@Override
+	public void createUserLog(String lastName, String firstName, String mail,
+			String phone, String streetName, String numHouse, String city,
+			String postCode, String password) {
+		UserLog.init(lastName, firstName, mail,
+				phone, streetName, numHouse, city,
+				postCode, password);
 
-	public static void main(String[] args) {
-		UserLog.init();
+		
 	}
 
 }
