@@ -60,6 +60,7 @@ public class UserManager
 			// Save in database the user
 			user.save();
 		}
+}
 	
 	
 

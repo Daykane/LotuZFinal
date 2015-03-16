@@ -52,8 +52,8 @@ public class HomepageUI extends JFrame {
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				//InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
-				//inscriptionUserUI.setVisible(true);
+				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
+				inscriptionUserUI.setVisible(true);
 				frame.setVisible(false);
 			}
 		});
@@ -62,6 +62,9 @@ public class HomepageUI extends JFrame {
 		JButton btnAuthentification = new JButton("Authentification");
 		btnAuthentification.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				LoginUI loginUI =  new LoginUI();				
+				loginUI.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		panel.add(btnAuthentification);

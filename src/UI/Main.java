@@ -20,7 +20,7 @@ public class Main {
 		FacadeBL.init(jdbcKit);
 		
 		//First UI to call
-		InscriptionUserUI frame =  new InscriptionUserUI();				
+		HomepageUI frame =  new HomepageUI();				
 		frame.setVisible(true);
 
 	}
