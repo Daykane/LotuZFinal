@@ -11,9 +11,13 @@ import javax.swing.JButton;
 import com.LotuZ.FacadeBL;
 
 
+import com.LotuZ.user.HomepageUI;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+
+import javax.swing.JCheckBox;
 
 public class LoginUI extends JFrame {
 	
@@ -27,6 +31,7 @@ public class LoginUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField TfMail;
 	private JTextField Tfpassword;
+	public static LoginUI frame;
 
 	/*
 	public static void main(String[] args) {
@@ -55,7 +60,7 @@ public class LoginUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblMail = new JLabel("Mail");
-		lblMail.setBounds(104, 66, 46, 14);
+		lblMail.setBounds(93, 66, 57, 14);
 		contentPane.add(lblMail);
 		
 		TfMail = new JTextField();
@@ -64,7 +69,7 @@ public class LoginUI extends JFrame {
 		TfMail.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(104, 111, 46, 14);
+		lblPassword.setBounds(93, 111, 57, 14);
 		contentPane.add(lblPassword);
 		
 		Tfpassword = new JTextField();
@@ -79,8 +84,7 @@ public class LoginUI extends JFrame {
 		JButton btnOk = new JButton("OK");
 		
 		btnOk.addMouseListener(new MouseAdapter() {
-			@Override
-			
+			@Override			
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					FacadeBL.login(TfMail.getText(),Tfpassword.getText());
@@ -96,7 +100,31 @@ public class LoginUI extends JFrame {
 		contentPane.add(btnOk);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				HomepageUI homepageUI = new HomepageUI();
+				HomepageUI.frame = homepageUI;
+				homepageUI.setVisible(true);
+			}
+		});
 		btnCancel.setBounds(241, 217, 89, 23);
 		contentPane.add(btnCancel);
+		
+		JCheckBox chckbxMember = new JCheckBox("Member");
+		chckbxMember.setBounds(23, 164, 97, 23);
+		contentPane.add(chckbxMember);
+		
+		JCheckBox chckbxSpeaker = new JCheckBox("Speaker");
+		chckbxSpeaker.setBounds(122, 164, 97, 23);
+		contentPane.add(chckbxSpeaker);
+		
+		JCheckBox chckbxRespo = new JCheckBox("Respo");
+		chckbxRespo.setBounds(222, 164, 86, 23);
+		contentPane.add(chckbxRespo);
+		
+		JCheckBox chckbxAdministrateur = new JCheckBox("Administrateur");
+		chckbxAdministrateur.setBounds(310, 164, 118, 23);
+		contentPane.add(chckbxAdministrateur);
 	}
 }

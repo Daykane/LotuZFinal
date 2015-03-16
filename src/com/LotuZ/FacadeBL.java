@@ -12,19 +12,19 @@ import com.LotuZ.login.LoginManager;
 public class FacadeBL {
 	
 	private static LoginManager loginManager;
-	private static InscriptionManager userManager;
+	private static InscriptionManager inscriptionManager;
 	private static ActivityManager activityManager;
 	
 	public static void init(PersistKit kit){
 		loginManager = new LoginManager(kit);
-		userManager = new InscriptionManager(kit);
+		inscriptionManager = new InscriptionManager(kit);
 		activityManager = new ActivityManager(kit);
 	}
 	
 	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException{
-		userManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
+		inscriptionManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
 	
 	public static void login(String mail, String password) throws SQLException{

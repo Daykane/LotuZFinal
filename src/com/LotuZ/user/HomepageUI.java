@@ -4,6 +4,7 @@ package com.LotuZ.user;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,13 +17,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class HomepageUI extends JFrame {
+	
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	static HomepageUI frame;
+	public static HomepageUI frame;
 
 	/**
 	 * Launch the application.
@@ -31,7 +33,7 @@ public class HomepageUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new HomepageUI();
+					frame = new HomepageUI();				
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,11 +55,12 @@ public class HomepageUI extends JFrame {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
-		
+
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
+				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();
+				InscriptionUserUI.frame = inscriptionUserUI;
 				inscriptionUserUI.setVisible(true);
 				//frame.setVisible(false);
 			}
@@ -67,9 +70,10 @@ public class HomepageUI extends JFrame {
 		JButton btnAuthentification = new JButton("Authentification");
 		btnAuthentification.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				LoginUI loginUI =  new LoginUI();				
+				LoginUI loginUI =  new LoginUI();	
+				LoginUI.frame = loginUI;
 				loginUI.setVisible(true);
-				//frame.setVisible(false);
+
 			}
 		});
 		panel.add(btnAuthentification);

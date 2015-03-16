@@ -37,12 +37,17 @@ import javax.swing.JCheckBox;
 
 
 
+
+
 import com.LotuZ.FacadeBL;
 
 
 
 
 
+
+
+import com.LotuZ.user.HomepageUI;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -57,6 +62,7 @@ public class InscriptionUserUI extends JFrame {
 	
 	
 	private FacadeBL facadeBL;
+	
 	/**
 	 * Init Attribute 
 	 **/
@@ -76,6 +82,8 @@ public class InscriptionUserUI extends JFrame {
 	private final JLabel jlblStatus = new JLabel("Error dans un champ");
 	
 	static int count = 0;
+	
+	public static InscriptionUserUI frame;
 	/**
 	 * Create the frame.
 	 */
@@ -356,6 +364,10 @@ public class InscriptionUserUI extends JFrame {
 			public void mouseClicked(MouseEvent frame) {
 				try {
 					FacadeBL.inscription("Laboureur","Alexis","testEncore","0625102689","Rue du Village","52","Montpellier","34000","1253");
+					HomepageUI homepageUI = new HomepageUI();
+					HomepageUI.frame = homepageUI;
+					homepageUI.setVisible(true);
+
 				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 					JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 				} catch (ClassNotFoundException e) {
