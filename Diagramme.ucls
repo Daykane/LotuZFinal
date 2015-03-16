@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="Business.FacadeBL" project="LotuZ" file="/LotuZ/src/Business/FacadeBL.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="103" width="172" x="384" y="-16"/>    
+    <position height="103" width="172" x="412" y="-36"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="Business.HashTextTest" project="LotuZ" 
     file="/LotuZ/src/Business/HashTextTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="69" width="101" x="798" y="-27"/>    
+    <position height="69" width="101" x="742" y="116"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Business.UserManager" project="LotuZ" file="/LotuZ/src/Business/UserManager.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="77" width="153" x="631" y="-22"/>    
+    <position height="77" width="153" x="685" y="-10"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,16 +30,16 @@
   </class>  
   <class id="4" language="java" name="Model.PersistKit" project="LotuZ" file="/LotuZ/src/Model/PersistKit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="743" y="183"/>    
+    <position height="-1" width="-1" x="600" y="175"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
   <class id="5" language="java" name="Model.JdbcKit" project="LotuZ" file="/LotuZ/src/Model/JdbcKit.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="143" width="144" x="422" y="284"/>    
+    <position height="143" width="144" x="335" y="188"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="Model.UserJDBC" project="LotuZ" file="/LotuZ/src/Model/UserJDBC.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="112" width="87" x="657" y="308"/>    
+    <position height="112" width="87" x="647" y="227"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="UI.InscriptionUserUI" project="LotuZ" file="/LotuZ/src/UI/InscriptionUserUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="91" width="179" x="144" y="-10"/>    
+    <position height="91" width="179" x="164" y="-29"/>    
     <display autosize="false" stereotype="false" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="Class.User" project="LotuZ" file="/LotuZ/src/Class/User.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="56" width="282" x="772" y="326"/>    
+    <position height="56" width="282" x="792" y="235"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
