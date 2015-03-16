@@ -22,8 +22,9 @@ public class Main {
 		//FacadeUser.init();
 		
 		//First UI to call
-		HomepageUI frame =  new HomepageUI();				
-		frame.setVisible(true);
+		HomepageUI homepageUI =  new HomepageUI();
+		HomepageUI.frame=homepageUI;
+		homepageUI.setVisible(true);
 
 	}
 

@@ -58,7 +58,7 @@ public class HomePageUserUI extends JFrame {
 		lblAcceuil.setBounds(170, 11, 46, 14);
 		contentPane.add(lblAcceuil);
 		
-		JLabel lblNewLabel = new JLabel("Bienvenu :");
+		JLabel lblNewLabel = new JLabel("Bienvenue :");
 		lblNewLabel.setBounds(69, 49, 85, 14);
 		contentPane.add(lblNewLabel);
 		

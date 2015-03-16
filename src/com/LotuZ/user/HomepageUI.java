@@ -2,7 +2,6 @@ package com.LotuZ.user;
 
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 
 import javax.swing.JFrame;
@@ -26,14 +25,15 @@ public class HomepageUI extends JFrame {
 	private JPanel contentPane;
 	public static HomepageUI frame;
 
+	/*
 	/**
 	 * Launch the application.
-	 */
+	//
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new HomepageUI();				
+					frame = new HomepageUI();					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,6 +41,7 @@ public class HomepageUI extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
@@ -62,7 +63,7 @@ public class HomepageUI extends JFrame {
 				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();
 				InscriptionUserUI.frame = inscriptionUserUI;
 				inscriptionUserUI.setVisible(true);
-				//frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		panel.add(btnInscription);
@@ -73,6 +74,7 @@ public class HomepageUI extends JFrame {
 				LoginUI loginUI =  new LoginUI();	
 				LoginUI.frame = loginUI;
 				loginUI.setVisible(true);
+				frame.dispose();
 
 			}
 		});

@@ -95,6 +95,7 @@ public class LoginUI extends JFrame {
 				HomepageUI homepageUI = new HomepageUI();
 				HomepageUI.frame = homepageUI;
 				homepageUI.setVisible(true);
+				frame.dispose();
 			}
 		});
 		btnCancel.setBounds(241, 217, 89, 23);
@@ -187,6 +188,7 @@ public class LoginUI extends JFrame {
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
 					HomePageUserUI frame =  new HomePageUserUI();				
 					frame.setVisible(true);
+					
 					}
 				} 
 				catch (UserNotFoundException e){
