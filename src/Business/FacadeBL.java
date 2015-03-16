@@ -8,10 +8,12 @@ import Model.PersistKit;
 
 public class FacadeBL {
 	
+	private static LoginManager loginManager;
 	private static UserManager userManager;
 	private static ActivityManager activityManager;
 	
-	public static void init(PersistKit kit){		
+	public static void init(PersistKit kit){
+		loginManager = new LoginManager(kit);
 		userManager = new UserManager(kit);
 		activityManager = new ActivityManager(kit);
 	}
@@ -23,7 +25,7 @@ public class FacadeBL {
 	}
 	
 	public static void login(String mail, String password) throws SQLException{
-		userManager.login(mail,password);
+		loginManager.login(mail,password);
 	}
 
 	public  List<Activity> getActivities() {

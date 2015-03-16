@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import Model.PersistKit;
+import Model.UserLog;
 import UI.HomePageUserUI;
 import Business.HashTextTest;
 import Class.User;
@@ -61,30 +62,5 @@ public class UserManager
 		}
 	
 	
-	/**
-	 * @param mail
-	 * @param password
-	 * @throws SQLException
-	 */
-	public void login(String mail,String password) throws SQLException{
-		String passWordCrypt="";
-		try {
-			passWordCrypt = HashTextTest.sha1(password);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		Object object = pkit.login(mail,passWordCrypt);
-		if (object == null){
-			System.out.println("Inexistant");			
-		}
-		else{
-			if( object instanceof User){
-					System.out.println("C'est un user qui vient de s'authentifier");
-					HomePageUserUI frame = new HomePageUserUI();
-					frame.setVisible(true);
-				}
-			}
-		}
-	
-		
-}
+
+
