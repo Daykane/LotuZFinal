@@ -1,7 +1,10 @@
 package com.LotuZ.product;
 
 public class Product {
-	private string product1;
-	private string product2;
+	private String product1;
+	private String product2;
 
+//public Product() {
+	
+//}
 }
