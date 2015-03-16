@@ -10,6 +10,7 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
+import com.LotuZ.user.UserLog;
 
 
 /**
@@ -61,7 +62,7 @@ public class JdbcKit extends PersistKit{
 			}
 		
 	}
-	
+	/*
 	public User login(String mail, String password) throws SQLException{
 		User user;
 		try {
@@ -75,10 +76,26 @@ public class JdbcKit extends PersistKit{
 		return user;
 		
 	}
-
+	*/
 	@Override
 	public User createUser() {
 		return new UserJDBC(this.cn);
+	}
+
+
+
+
+	@Override
+	public User createUserLog() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	public static void main(String[] args) {
+		UserLog.init();
 	}
 
 }

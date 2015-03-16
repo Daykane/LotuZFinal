@@ -26,6 +26,12 @@ public final class UserLog extends User{
 	public void save() throws SQLException, ClassNotFoundException {		
 	}
 
+	@Override
+	public User load(String mail2, String passWordCrypt) {
+		return null;		
+	}
+
+
 	
 	
 

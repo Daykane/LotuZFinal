@@ -39,16 +39,14 @@ public class UserJDBC extends User{
 			throw e;
 		}
 	}
-
-	public User login(String mail,String password,Connection cn) throws SQLException{
+	
+	public User load(String mail,String password) throws SQLException{
 		User user = null;
 		try {
 
 			Statement st =null;
 			// Etape 3 : Création d'un statement
-			st = cn.createStatement();
-			System.out.println(password);
-			System.out.println(mail);
+			st = this.cn.createStatement();
 			String sql = "Select * From LotuZ.User Where mail="+'"'+mail+'"'+"and password="+'"'+password+'"';
 			// Etape 4 : exécution requête
 			//st.executeUpdate(sql);

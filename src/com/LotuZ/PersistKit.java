@@ -12,6 +12,7 @@ public abstract class PersistKit {
 	
 	public abstract void openConnection(String url, String login, String passwd);
 	public abstract void closeConnection(Connection cn);
-	public abstract User login(String mail, String passWordCrypt) throws SQLException;
+	//public abstract User login(String mail, String passWordCrypt) throws SQLException;
 	public abstract User createUser();
+	public abstract User createUserLog();
 	}

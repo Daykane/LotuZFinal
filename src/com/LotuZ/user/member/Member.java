@@ -3,6 +3,8 @@
  */
 package com.LotuZ.user.member;
 
+import java.sql.SQLException;
+
 import com.LotuZ.user.User;
 
 
@@ -39,6 +41,12 @@ public class Member extends User{
 	public void save() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public User load(String mail2, String passWordCrypt) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -59,7 +59,7 @@ public class HomepageUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				InscriptionUserUI inscriptionUserUI =  new InscriptionUserUI();				
 				inscriptionUserUI.setVisible(true);
-				frame.setVisible(false);
+				//frame.setVisible(false);
 			}
 		});
 		panel.add(btnInscription);
@@ -69,7 +69,7 @@ public class HomepageUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				LoginUI loginUI =  new LoginUI();				
 				loginUI.setVisible(true);
-				frame.setVisible(false);
+				//frame.setVisible(false);
 			}
 		});
 		panel.add(btnAuthentification);
