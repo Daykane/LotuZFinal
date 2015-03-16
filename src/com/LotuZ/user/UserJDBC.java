@@ -22,6 +22,15 @@ public class UserJDBC extends User{
 	public UserJDBC(String lastName, String firstName, String mail, String tel,
 			String streetName, String numHouse, String city, String postCode,
 			String password) {
+		this.setLastName(lastName);
+		this.setFirstName(firstName);
+		this.setMail(mail);
+		this.setPhone(tel);
+		this.setStreetName(streetName);
+		this.setNumHouse(numHouse);
+		this.setCity(city);
+		this.setPostCode(postCode);
+		this.setPassword(password);
 	}
 
 	public void save() throws ClassNotFoundException, SQLException {
@@ -30,7 +39,7 @@ public class UserJDBC extends User{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"')";
+			String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"','"+ this.getMember() +"','"+ this.getActityLeader() +"')";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);

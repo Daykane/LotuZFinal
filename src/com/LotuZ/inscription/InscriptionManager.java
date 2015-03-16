@@ -1,4 +1,4 @@
-package com.LotuZ.user.user;
+package com.LotuZ.inscription;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -6,19 +6,18 @@ import java.sql.SQLException;
 import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashTextTest;
 import com.LotuZ.user.User;
-import com.LotuZ.user.UserLog;
 
 /**
  * @author LotuZ
  *
  */
 
-public class UserManager
+public class InscriptionManager
 {
 	HashTextTest crypt;
 	PersistKit pkit;
 	
-	public UserManager(PersistKit kit){
+	public InscriptionManager(PersistKit kit){
 		this.pkit=kit;
 	}
 	

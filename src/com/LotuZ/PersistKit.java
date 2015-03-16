@@ -2,10 +2,9 @@ package com.LotuZ;
 
 
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 
-import com.LotuZ.activity.Activity;
+
+
 import com.LotuZ.user.User;
 
 public abstract class PersistKit {

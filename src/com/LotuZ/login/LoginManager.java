@@ -1,13 +1,13 @@
 package com.LotuZ.login;
 
-import java.lang.reflect.Field;
+
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashTextTest;
 import com.LotuZ.user.User;
-import com.LotuZ.user.UserLog;
+
 
 public class LoginManager {
 
@@ -32,8 +32,7 @@ public class LoginManager {
 		}
 		// Create empty userJdbc for read information
 			User user = pkit.createUser();
-			user.load(mail,passWordCrypt);
-			System.out.println(user.getLastName());
+			user = user.load(mail,passWordCrypt);
 			if(user.getLastName() != null){
 				// Create singleton userJdbc for login
 				pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
@@ -41,6 +40,7 @@ public class LoginManager {
 		
 	
 	}
+
 }
 
 

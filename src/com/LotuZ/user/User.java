@@ -20,6 +20,8 @@ public abstract class User {
 	private String mail;
 	private String password;
 	private String phone;
+	private int member;
+	private int actityLeader;
 	
 	
 	public User() {
@@ -47,6 +49,9 @@ public abstract class User {
 		this.mail = mail;
 		this.password = password;
 		this.phone = phone;
+		this.member=0;
+		this.actityLeader =0;
+		
 	}
 
 	/**
@@ -173,6 +178,34 @@ public abstract class User {
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	/**
+	 * @return the member
+	 */
+	public int getMember() {
+		return member;
+	}
+
+	/**
+	 * @param member the member to set
+	 */
+	public void setMember(int member) {
+		this.member = member;
+	}
+
+	/**
+	 * @return the actityLeader
+	 */
+	public int getActityLeader() {
+		return actityLeader;
+	}
+
+	/**
+	 * @param actityLeader the actityLeader to set
+	 */
+	public void setActityLeader(int actityLeader) {
+		this.actityLeader = actityLeader;
 	}
 
 	public abstract void save() throws SQLException, ClassNotFoundException;

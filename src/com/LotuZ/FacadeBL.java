@@ -6,18 +6,18 @@ import java.util.List;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityManager;
+import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
-import com.LotuZ.user.user.UserManager;
 
 public class FacadeBL {
 	
 	private static LoginManager loginManager;
-	private static UserManager userManager;
+	private static InscriptionManager userManager;
 	private static ActivityManager activityManager;
 	
 	public static void init(PersistKit kit){
 		loginManager = new LoginManager(kit);
-		userManager = new UserManager(kit);
+		userManager = new InscriptionManager(kit);
 		activityManager = new ActivityManager(kit);
 	}
 	

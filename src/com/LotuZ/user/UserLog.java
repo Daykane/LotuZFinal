@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public final class UserLog extends User{
 
-	private static volatile UserLog instance = null;
+	private static volatile User user = null;
 	 
 	private UserLog() {
 		super();
@@ -18,13 +18,17 @@ public final class UserLog extends User{
 				phone, streetName, numHouse, city,
 				postCode, password);
 	}
+	
+	public static User getUserLog(){
+		return UserLog.user;
+	}
 
 	public final static void init() {
-         if (UserLog.instance == null) {
+         if (UserLog.user == null) {
 
             synchronized(UserLog.class) {
-              if (UserLog.instance == null) {
-            	  UserLog.instance = new UserLog();
+              if (UserLog.user == null) {
+            	  UserLog.user = new UserLog();
               }
             }
          }
@@ -43,11 +47,10 @@ public final class UserLog extends User{
 	public static void init(String lastName, String firstName, String mail,
 			String phone, String streetName, String numHouse, String city,
 			String postCode, String password) {
-		if (UserLog.instance == null) {
-
+		if (UserLog.user == null) {
             synchronized(UserLog.class) {
-              if (UserLog.instance == null) {
-            	  UserLog.instance = new UserLog(lastName, firstName, mail,
+              if (UserLog.user == null) {
+            	  UserLog.user = new UserLog(lastName, firstName, mail,
             				phone, streetName, numHouse, city,
             				postCode, password);
               }

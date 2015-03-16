@@ -35,8 +35,11 @@ import javax.swing.JCheckBox;
 
 
 
+
+
 import com.LotuZ.FacadeBL;
-import com.LotuZ.PersistKit;
+
+
 
 
 
@@ -365,6 +368,7 @@ public class InscriptionUserUI extends JFrame {
 		
 		// Action OK
 		btnOK.addMouseListener(new MouseAdapter() {		
+			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent arg0) {
 				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					try {
@@ -419,6 +423,7 @@ public class InscriptionUserUI extends JFrame {
 					}
 			}
 			
+			@SuppressWarnings("deprecation")
 			private boolean verifyPwd() {
 				if (!TFPassword.getText().equals( TFConfirmPw.getText())){
 					RedBorder(TFConfirmPw);

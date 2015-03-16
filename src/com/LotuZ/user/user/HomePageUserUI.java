@@ -1,6 +1,6 @@
 package com.LotuZ.user.user;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

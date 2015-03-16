@@ -1,8 +1,5 @@
 package com.LotuZ.login;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import com.LotuZ.FacadeBL;
+
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,9 +28,7 @@ public class LoginUI extends JFrame {
 	private JTextField TfMail;
 	private JTextField Tfpassword;
 
-	/**
-	 * Launch the application.
-	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,6 +41,7 @@ public class LoginUI extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
