@@ -31,8 +31,9 @@ public class ActivityJdbc extends Activity{
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			if ( this == null ){ System.out.println("activity est null avant le sql");}
-			String sql = "Insert into Activity Values ('"+ this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ "toto le respo" +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
+			System.out.println(this.getCreateDate());
+			System.out.println(this.getMajDate());
+			String sql = "Insert into Activity Values ('"+ "1" +"','" + this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ 1 +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
 			System.out.println(sql);
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);

@@ -19,8 +19,8 @@ public abstract class Activity {
 	private String longDescr;
 	private User respo;
 	private Vector<Event> event;
-	private Date createDate;
-	private Date majDate;
+	private String createDate;
+	private String majDate;
 
 	public Activity() {
 		super();
@@ -119,29 +119,29 @@ public abstract class Activity {
 	/**
 	 * @return the createDate
 	 */
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
 	/**
-	 * @param createDate the createDate to set
+	 * @param date the createDate to set
 	 */
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(String date) {
+		this.createDate = date;
 	}
 
 	/**
 	 * @return the majDate
 	 */
-	public Date getMajDate() {
+	public String getMajDate() {
 		return majDate;
 	}
 
 	/**
-	 * @param majDate the majDate to set
+	 * @param date the majDate to set
 	 */
-	public void setMajDate(Date majDate) {
-		this.majDate = majDate;
+	public void setMajDate(String date) {
+		this.majDate = date;
 	}
 
 	public abstract void save() throws SQLException, ClassNotFoundException;
