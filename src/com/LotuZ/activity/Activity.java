@@ -14,10 +14,11 @@ import com.LotuZ.user.User;
 
 public abstract class Activity {	
 	
+	private int IdActivity;
 	private String name;
 	private String shortDescr;
 	private String longDescr;
-	private User respo;
+	private int idRespo;
 	private Vector<Event> event;
 	private String createDate;
 	private String majDate;
@@ -42,6 +43,24 @@ public abstract class Activity {
 		this.name = name;
 		this.shortDescr = shortDescr;
 		this.longDescr = longDescr;
+	}
+
+
+
+	/**
+	 * @return the idActivity
+	 */
+	public int getIdActivity() {
+		return IdActivity;
+	}
+
+
+
+	/**
+	 * @param idActivity the idActivity to set
+	 */
+	public void setIdActivity(int idActivity) {
+		IdActivity = idActivity;
 	}
 
 
@@ -91,15 +110,15 @@ public abstract class Activity {
 	/**
 	 * @return the respo
 	 */
-	public User getRespo() {
-		return respo;
+	public int getIdRespo() {
+		return idRespo;
 	}
 
 	/**
 	 * @param respo the respo to set
 	 */
-	public void setRespo(User respo) {
-		this.respo = respo;
+	public void setIdRespo(int idRespo) {
+		this.idRespo = idRespo;
 	}
 
 	/**
@@ -146,5 +165,5 @@ public abstract class Activity {
 
 	public abstract void save() throws SQLException, ClassNotFoundException;
 
-	public abstract User load(String name) throws SQLException;
+	public abstract Activity load(String name) throws SQLException;
 }

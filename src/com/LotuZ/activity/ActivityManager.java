@@ -42,7 +42,7 @@ public class ActivityManager {
 			activity.setName(name);
 			activity.setShortDescr(shortDescr);
 			activity.setLongDescr(longDescr);
-			activity.setRespo(user);
+			//activity.setIdRespo(user.getId);
 			activity.setCreateDate(dateFormat.format(date));
 			activity.setMajDate(dateFormat.format(date));
 			// Save in database the user
