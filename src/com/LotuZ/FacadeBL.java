@@ -47,5 +47,11 @@ public class FacadeBL {
 	public static List<User> getActivityLeaders() throws SQLException, UserNotFoundException{
 		return ActivityLeaderManager.getActivityLeaders();
 	}
+
+	public static void createActivity(String name, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
+		activityManager.create(name, shortDescr, longDescr);
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

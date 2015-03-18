@@ -4,12 +4,18 @@ package com.LotuZ.activity;
 import java.awt.EventQueue;
 
 
-import java.util.List;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+
+import com.LotuZ.FacadeBL;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class ActivityCreateUI extends JFrame {
@@ -52,10 +58,26 @@ public class ActivityCreateUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblAfficherTableauDactivit = new JLabel("Afficher tableau d'activit\u00E9");
-		lblAfficherTableauDactivit.setBounds(27, 34, 143, 14);
-		contentPane.add(lblAfficherTableauDactivit);
+		JLabel lblCreateActivity = new JLabel("Create Activity");
+		lblCreateActivity.setBounds(137, 11, 143, 14);
+		contentPane.add(lblCreateActivity);
+		
+		JButton btnTestCreate = new JButton("test create");
+		btnTestCreate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					FacadeBL.createActivity("test Acti","short","loooooooooooooooooong");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnTestCreate.setBounds(99, 171, 132, 23);
+		contentPane.add(btnTestCreate);
 	}
-	
-
 }

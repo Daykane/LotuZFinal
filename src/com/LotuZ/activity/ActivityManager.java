@@ -1,16 +1,12 @@
 package com.LotuZ.activity;
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.event.Event;
-import com.LotuZ.hashText.HashTextTest;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 
