@@ -38,7 +38,7 @@ public class ActivityManager {
 			Date date = new Date();
 			System.out.println(dateFormat.format(date));
 
-			// Create empty userJdbc
+			// Create empty ActivityJdbc
 			Activity activity = pkit.createActivity();
 			// set informations into the userJdbc
 			activity.setName(name);
@@ -48,6 +48,8 @@ public class ActivityManager {
 			activity.setCreateDate(date);
 			activity.setMajDate(date);
 			// Save in database the user
+			if ( activity == null ){ System.out.println("activity est null");}
+			else{ System.out.println("activity est non null");}
 			activity.save();
 		}
 	

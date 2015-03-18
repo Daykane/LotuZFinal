@@ -50,7 +50,7 @@ public class FacadeBL {
 
 	public static void createActivity(String name, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
 		activityManager.create(name, shortDescr, longDescr);
-		// TODO Auto-generated method stub
+
 		
 	}
 	
