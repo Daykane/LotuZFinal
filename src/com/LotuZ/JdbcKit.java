@@ -10,6 +10,9 @@ import java.sql.SQLException;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.user.User;
@@ -138,6 +141,14 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public Activity createActivity() {
 		return new ActivityJdbc(this.cn);
+	}
+
+
+
+
+	@Override
+	public List<User> createListActivityLeader() {
+		return 	new ArrayList<User>();
 	}
 
 }

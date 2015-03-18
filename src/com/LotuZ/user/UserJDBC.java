@@ -36,6 +36,10 @@ public class UserJDBC extends User{
 		this.setActivityLeader(activityLeader);
 	}
 
+	public UserJDBC() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void save() throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;

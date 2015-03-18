@@ -1,5 +1,6 @@
 package com.LotuZ.user.activityLeader;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.LotuZ.PersistKit;
@@ -7,7 +8,7 @@ import com.LotuZ.user.User;
 
 public class ActivityLeaderManager {
 
-	PersistKit pkit;
+	private PersistKit pkit;
 	
 	public ActivityLeaderManager(PersistKit kit){
 		this.pkit=kit;
@@ -19,10 +20,11 @@ public class ActivityLeaderManager {
 		
 	}
 
-	public static List<User> getActivityLeaders() {
-		//ListUserJDBC users = pkit.createListUser();
-
-		return null;
+	public static List<User> getActivityLeaders() throws SQLException {
+		ListActivityLeaderJDBC users = null;
+		//ListActivityLeaderJDBC users = pkit.createListActivityLeader();
+		//users.load()
+		return users.load();
 	}
 
 }
