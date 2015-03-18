@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 
-public class ActivityUI extends JFrame {
+public class ActivityCreateUI extends JFrame {
 	
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class ActivityUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ActivityUI frame = new ActivityUI();
+					ActivityCreateUI frame = new ActivityCreateUI();
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -44,7 +44,7 @@ public class ActivityUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ActivityUI() {
+	public ActivityCreateUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -55,14 +55,7 @@ public class ActivityUI extends JFrame {
 		JLabel lblAfficherTableauDactivit = new JLabel("Afficher tableau d'activit\u00E9");
 		lblAfficherTableauDactivit.setBounds(27, 34, 143, 14);
 		contentPane.add(lblAfficherTableauDactivit);
-		
-		this.getActivities();
 	}
 	
 
-
-	public List<Activity> getActivities() {
-		//return facadeBL.getActivities();
-		return null;
-	}
 }

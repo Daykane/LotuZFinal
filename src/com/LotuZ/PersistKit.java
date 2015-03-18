@@ -5,6 +5,8 @@ import java.sql.Connection;
 
 
 
+
+import com.LotuZ.activity.Activity;
 import com.LotuZ.user.User;
 
 public abstract class PersistKit {
@@ -17,4 +19,5 @@ public abstract class PersistKit {
 	public abstract void createUserLog(String lastName, String firstName, String mail,
 			String phone, String streetName, String numHouse, String city,
 			String postCode, String password, int member, int activityLeader);
+	public abstract Activity createActivity();
 	}

@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import com.LotuZ.activity.ActivityUI;
+import com.LotuZ.activity.ActivityCreateUI;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 
@@ -70,7 +70,7 @@ public class HomePageUserUI extends JFrame {
 		btnGestionEvent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ActivityUI activityUI =  new ActivityUI();				
+				ActivityCreateUI activityUI =  new ActivityCreateUI();				
 				activityUI.setVisible(true);
 			}
 		});

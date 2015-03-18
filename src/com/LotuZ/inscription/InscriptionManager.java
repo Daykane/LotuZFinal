@@ -14,8 +14,7 @@ import com.LotuZ.user.User;
 
 public class InscriptionManager
 {
-	HashTextTest crypt;
-	PersistKit pkit;
+	private PersistKit pkit;
 	
 	public InscriptionManager(PersistKit kit){
 		this.pkit=kit;

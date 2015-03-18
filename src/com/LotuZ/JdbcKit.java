@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 
 
+
+import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
@@ -31,7 +33,7 @@ public class JdbcKit extends PersistKit{
 		
 		// Create concrete bjetc with the connection
 		setUserJdbc(new UserJDBC(this.cn));
-		setActivityJdbc(new ActivityJdbc());
+		setActivityJdbc(new ActivityJdbc(this.cn));
 		
 	}
 	
@@ -127,6 +129,14 @@ public class JdbcKit extends PersistKit{
 	 */
 	public void setActivityJdbc(ActivityJdbc activityJdbc) {
 		this.activityJdbc = activityJdbc;
+	}
+
+
+
+
+	@Override
+	public Activity createActivity() {
+		return new ActivityJdbc(this.cn);
 	}
 
 }

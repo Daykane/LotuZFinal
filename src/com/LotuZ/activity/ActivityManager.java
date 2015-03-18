@@ -1,22 +1,68 @@
 package com.LotuZ.activity;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.event.Event;
+import com.LotuZ.hashText.HashTextTest;
+import com.LotuZ.user.User;
+import com.LotuZ.user.UserLog;
 
 public class ActivityManager {
 	
-	PersistKit pkit;
+	private PersistKit pkit;
+	
+	/**
+	 * @return the pkit
+	 */
+	public PersistKit getPkit() {
+		return pkit;
+	}
+
+	/**
+	 * @param pkit the pkit to set
+	 */
+	public void setPkit(PersistKit pkit) {
+		this.pkit = pkit;
+	}
 	
 	public ActivityManager(PersistKit kit){
-		this.pkit=kit;
+		this.setPkit(kit);
 	}
 	
+	public void create(String name, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
+			User user = UserLog.getUserLog();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			System.out.println(dateFormat.format(date));
 
-
-	public  List<Activity> getActivities() {
-		//List<Activity> ActivityList = pkit.getActivities();
+			// Create empty userJdbc
+			Activity activity = pkit.createActivity();
+			// set informations into the userJdbc
+			activity.setName(name);
+			activity.setShortDescr(shortDescr);
+			activity.setLongDescr(longDescr);
+			activity.setRespo(user);
+			activity.setCreateDate(date);
+			activity.setMajDate(date);
+			// Save in database the user
+			activity.save();
+		}
+	
+	
+	public List<Activity> getActivities() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+
+	
 	 
 }

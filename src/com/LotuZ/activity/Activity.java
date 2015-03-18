@@ -5,35 +5,46 @@
  */
 package com.LotuZ.activity;
 
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.Vector;
 
 import com.LotuZ.event.Event;
+import com.LotuZ.user.User;
 
-public class Activity {	
+public abstract class Activity {	
 	
 	private String name;
 	private String shortDescr;
 	private String longDescr;
-	private Vector<Event> event;	
+	private User respo;
+	private Vector<Event> event;
+	private Date createDate;
+	private Date majDate;
 
 	public Activity() {
 		super();
 	}
 	
+
+
 	/**
 	 * @param name
 	 * @param shortDescr
 	 * @param longDescr
+	 * @param respo
 	 * @param event
+	 * @param createDate
+	 * @param majDate
 	 */
-	public Activity(String name, String shortDescr, String longDescr,
-			Vector<Event> event) {
+	public Activity(String name, String shortDescr, String longDescr) {
 		super();
 		this.name = name;
 		this.shortDescr = shortDescr;
 		this.longDescr = longDescr;
-		this.event = event;
 	}
+
+
 
 	/**
 	 * @return the name
@@ -78,6 +89,20 @@ public class Activity {
 	}
 
 	/**
+	 * @return the respo
+	 */
+	public User getRespo() {
+		return respo;
+	}
+
+	/**
+	 * @param respo the respo to set
+	 */
+	public void setRespo(User respo) {
+		this.respo = respo;
+	}
+
+	/**
 	 * @return the event
 	 */
 	public Vector<Event> getEvent() {
@@ -91,4 +116,35 @@ public class Activity {
 		this.event = event;
 	}
 
+	/**
+	 * @return the createDate
+	 */
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	/**
+	 * @param createDate the createDate to set
+	 */
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	/**
+	 * @return the majDate
+	 */
+	public Date getMajDate() {
+		return majDate;
+	}
+
+	/**
+	 * @param majDate the majDate to set
+	 */
+	public void setMajDate(Date majDate) {
+		this.majDate = majDate;
+	}
+
+	public abstract void save() throws SQLException, ClassNotFoundException;
+
+	public abstract User load(String name) throws SQLException;
 }
