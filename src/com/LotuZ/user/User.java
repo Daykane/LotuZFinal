@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 public abstract class User {
 
+	private int Id;
 	private String lastName;
 	private String firstName;
 	private String streetName;
@@ -54,6 +55,20 @@ public abstract class User {
 		this.member=member;
 		this.activityLeader =activityLeader;
 		
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return Id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		Id = id;
 	}
 
 	/**

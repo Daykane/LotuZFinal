@@ -82,13 +82,15 @@ public class LoginManagerTest extends TestCase{
 	@Test
 	public final void testLogin() throws SQLException {
 		//LoginManager lm = new LoginManager(pkit);
-		User user = new UserJDBC("lastName", "firstName", "mail","tel",
+		int id = 0;
+		User user = new UserJDBC(id,"lastName", "firstName", "mail","tel",
 				"streetName", "numHouse", "city", "postCode",
 				"password",0,0);
 		assertNotNull("L'instance est créée", user);
 		User userLog = new UserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword(),user.getMember(), user.getActivityLeader());
 		assertNotNull("L'instance est créée", userLog);
 		// Param Test
+		assertEquals("id",user.getId());
 		assertEquals("lastName",user.getLastName());
 		assertEquals("firstName",user.getFirstName());
 		assertEquals("mail",user.getMail());
