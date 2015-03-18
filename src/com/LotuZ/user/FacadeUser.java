@@ -11,8 +11,8 @@ public class FacadeUser {
 		FacadeBL.login(mail,password,"user");
 	}
 	
-	
-
-
+	public static void getActivityLeader(int idActivityLeader) throws SQLException, UserNotFoundException{
+		FacadeBL.getActivityLeader(idActivityLeader);
+	}
 
 }

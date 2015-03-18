@@ -9,12 +9,15 @@ import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.User;
+import com.LotuZ.user.activityLeader.ActivityLeaderManager;
 
 public class FacadeBL {
 	
 	private static LoginManager loginManager;
 	private static InscriptionManager inscriptionManager;
 	private static ActivityManager activityManager;
+	private static ActivityLeaderManager activityLeaderManager;
 	
 	public static void init(PersistKit kit){
 		loginManager = new LoginManager(kit);
@@ -35,6 +38,10 @@ public class FacadeBL {
 	public  List<Activity> getActivities() {
 		return activityManager.getActivities();
 		
+	}
+	
+	public static User getActivityLeader(int idActivityLeader) throws SQLException, UserNotFoundException{
+		return ActivityLeaderManager.getActivityLeader(idActivityLeader);
 	}
 	
 }
