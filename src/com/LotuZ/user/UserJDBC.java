@@ -21,7 +21,7 @@ public class UserJDBC extends User{
 	}			
 	public UserJDBC(String lastName, String firstName, String mail, String tel,
 			String streetName, String numHouse, String city, String postCode,
-			String password) {
+			String password, int member, int activityLeader) {
 		this.setLastName(lastName);
 		this.setFirstName(firstName);
 		this.setMail(mail);
@@ -31,6 +31,8 @@ public class UserJDBC extends User{
 		this.setCity(city);
 		this.setPostCode(postCode);
 		this.setPassword(password);
+		this.setMember(member);
+		this.setActivityLeader(activityLeader);
 	}
 
 	public void save() throws ClassNotFoundException, SQLException {
@@ -39,7 +41,7 @@ public class UserJDBC extends User{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"','"+ this.getMember() +"','"+ this.getActityLeader() +"')";
+			String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"','"+ this.getMember() +"','"+ this.getActivityLeader() +"')";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
@@ -74,7 +76,10 @@ public class UserJDBC extends User{
 				String city = result.getString("city");
 				String postCode = result.getString("postCode");
 				//String password = result.getString("password");
-				user = new UserJDBC(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password);
+				int member = result.getInt("member");
+				int activityLeader = result.getInt("activityLeader");
+				
+				user = new UserJDBC(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password,member,activityLeader);
 			}
 		} catch (SQLException e) {
 			throw e;

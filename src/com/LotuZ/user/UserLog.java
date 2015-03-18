@@ -13,10 +13,10 @@ public final class UserLog extends User{
 	 
 	public UserLog(String lastName, String firstName, String mail,
 			String phone, String streetName, String numHouse, String city,
-			String postCode, String password) {
+			String postCode, String password, int member, int activityLeader) {
 		super(lastName, firstName, mail,
 				phone, streetName, numHouse, city,
-				postCode, password);
+				postCode, password,member,activityLeader);
 	}
 	
 	public static User getUserLog(){
@@ -46,13 +46,13 @@ public final class UserLog extends User{
 
 	public static void init(String lastName, String firstName, String mail,
 			String phone, String streetName, String numHouse, String city,
-			String postCode, String password) {
+			String postCode, String password, int member, int activityLeader) {
 		if (UserLog.user == null) {
             synchronized(UserLog.class) {
               if (UserLog.user == null) {
             	  UserLog.user = new UserLog(lastName, firstName, mail,
             				phone, streetName, numHouse, city,
-            				postCode, password);
+            				postCode, password,member,activityLeader);
               }
             }
          }

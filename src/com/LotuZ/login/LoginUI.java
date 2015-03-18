@@ -10,6 +10,11 @@ import javax.swing.JButton;
 
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.HomepageUI;
+import com.LotuZ.user.User;
+import com.LotuZ.user.UserJDBC;
+import com.LotuZ.user.UserLog;
+import com.LotuZ.user.member.HomePageMemberUI;
+import com.LotuZ.user.member.Member;
 import com.LotuZ.user.user.HomePageUserUI;
 
 import java.awt.event.MouseAdapter;
@@ -101,95 +106,30 @@ public class LoginUI extends JFrame {
 		btnCancel.setBounds(241, 217, 89, 23);
 		contentPane.add(btnCancel);
 		
-		final JCheckBox chckbxMember = new JCheckBox("Member");
-		
-		chckbxMember.setBounds(23, 164, 97, 23);
-		contentPane.add(chckbxMember);
-		
-		final JCheckBox chckbxSpeaker = new JCheckBox("Speaker");
-		chckbxSpeaker.setBounds(122, 164, 97, 23);
+		final JCheckBox chckbxSpeaker = new JCheckBox("Connect as speaker");
+		chckbxSpeaker.setBounds(93, 163, 154, 23);
 		contentPane.add(chckbxSpeaker);
-		
-		final JCheckBox chckbxRespo = new JCheckBox("Respo");
-		chckbxRespo.setBounds(222, 164, 86, 23);
-		contentPane.add(chckbxRespo);
-		
-		final JCheckBox chckbxAdministrateur = new JCheckBox("Administrateur");
-		chckbxAdministrateur.setBounds(310, 164, 118, 23);
-		contentPane.add(chckbxAdministrateur);
-		
-		chckbxSpeaker.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(chckbxSpeaker.isSelected()){
-					chckbxMember.setSelected(false);
-					chckbxAdministrateur.setSelected(false);
-					chckbxRespo.setSelected(false);
-				}
-			}
-		});
-		
-		
-		
-		chckbxRespo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(chckbxRespo.isSelected()){
-					chckbxMember.setSelected(false);
-					chckbxAdministrateur.setSelected(false);
-					chckbxSpeaker.setSelected(false);
-				}
-			}
-		});
-		
-		
-		
-		chckbxAdministrateur.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(chckbxAdministrateur.isSelected()){
-					chckbxMember.setSelected(false);
-					chckbxRespo.setSelected(false);
-					chckbxSpeaker.setSelected(false);
-				}
-			}
-		});
-		
-		
-		
-		chckbxMember.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(chckbxMember.isSelected()){
-					chckbxAdministrateur.setSelected(false);
-					chckbxRespo.setSelected(false);
-					chckbxSpeaker.setSelected(false);
-				}
-			}
-		});
 		
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override			
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					if (chckbxAdministrateur.isSelected()){
-						
-					}
-					if (chckbxMember.isSelected()){
-						
-					}
 					if (chckbxSpeaker.isSelected()){
-						
-					}
-					if (chckbxRespo.isSelected()){
-						
+						// TODO
 					}
 					else{
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
-					HomePageUserUI frame =  new HomePageUserUI();				
-					frame.setVisible(true);
-					
+					User user = UserLog.getUserLog();
+					if (user.getMember() == 1){
+						HomePageMemberUI frame =  new HomePageMemberUI();				
+						frame.setVisible(true);
+						}
+					else {
+						HomePageUserUI frame =  new HomePageUserUI();				
+						frame.setVisible(true);
 					}
+					}
+					
 				} 
 				catch (UserNotFoundException e){
 					JOptionPane.showMessageDialog(null,"Error user not found","Error user not found",JOptionPane.ERROR_MESSAGE);

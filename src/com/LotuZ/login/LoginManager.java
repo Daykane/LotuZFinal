@@ -50,7 +50,7 @@ public class LoginManager {
 			user = user.load(mail,passWordCrypt,role);
 			if(user != null){
 				// Create singleton userJdbc for login
-				this.pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
+				this.pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword(),user.getMember(),user.getActivityLeader());
 			}
 			else{
 				throw new UserNotFoundException(); 

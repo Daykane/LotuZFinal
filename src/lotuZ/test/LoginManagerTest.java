@@ -84,9 +84,9 @@ public class LoginManagerTest extends TestCase{
 		//LoginManager lm = new LoginManager(pkit);
 		User user = new UserJDBC("lastName", "firstName", "mail","tel",
 				"streetName", "numHouse", "city", "postCode",
-				"password");
+				"password",0,0);
 		assertNotNull("L'instance est créée", user);
-		User userLog = new UserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
+		User userLog = new UserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword(),user.getMember(), user.getActivityLeader());
 		assertNotNull("L'instance est créée", userLog);
 		// Param Test
 		assertEquals("lastName",user.getLastName());
@@ -98,6 +98,8 @@ public class LoginManagerTest extends TestCase{
 		assertEquals("city",user.getCity());
 		assertEquals("postCode",user.getPostCode());
 		assertEquals("password",user.getPassword());
+		assertEquals(0,user.getMember());
+		assertEquals(0,user.getActivityLeader());
 	}
 
 

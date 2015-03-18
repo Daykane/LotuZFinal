@@ -12,7 +12,7 @@ import com.LotuZ.user.User;
  * @author Alexis
  *
  */
-public class Member extends User{
+public abstract class Member extends User{
 
 	/**
 	 * 
@@ -31,11 +31,13 @@ public class Member extends User{
 	 * @param postCode
 	 * @param mail
 	 */
+	/*
 	public Member(String lastName, String firstName, String streeName,
 			String numHouse, String city, String postCode, String mail,String password, String phone) {
-		super(lastName, firstName, streeName, numHouse, city, postCode, mail,password, phone);
+		super(lastName, firstName, streeName, numHouse, city, postCode, mail,password, phone, activityLeader, activityLeader);
 		// TODO Auto-generated constructor stub
 	}
+	*/
 
 	@Override
 	public void save() {
@@ -44,9 +46,6 @@ public class Member extends User{
 	}
 
 	@Override
-	public User load(String mail2, String passWordCrypt,String role) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract User load(String mail, String passWordCrypt,String role) throws SQLException;
 
 }

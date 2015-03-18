@@ -21,7 +21,7 @@ public abstract class User {
 	private String password;
 	private String phone;
 	private int member;
-	private int actityLeader;
+	private int activityLeader;
 	
 	
 	public User() {
@@ -36,9 +36,11 @@ public abstract class User {
 	 * @param city
 	 * @param postCode
 	 * @param mail
+	 * @param activityLeader 
+	 * @param member 
 	 */
 	public User(String lastName, String firstName, String mail,
-			String phone, String streetName, String numHouse, String city,String postCode,String password) {
+			String phone, String streetName, String numHouse, String city,String postCode,String password, int member, int activityLeader) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -50,7 +52,7 @@ public abstract class User {
 		this.password = password;
 		this.phone = phone;
 		this.member=0;
-		this.actityLeader =0;
+		this.activityLeader =0;
 		
 	}
 
@@ -197,20 +199,20 @@ public abstract class User {
 	/**
 	 * @return the actityLeader
 	 */
-	public int getActityLeader() {
-		return actityLeader;
+	public int getActivityLeader() {
+		return activityLeader;
 	}
 
 	/**
 	 * @param actityLeader the actityLeader to set
 	 */
-	public void setActityLeader(int actityLeader) {
-		this.actityLeader = actityLeader;
+	public void setActivityLeader(int activityLeader) {
+		this.activityLeader = activityLeader;
 	}
 
 	public abstract void save() throws SQLException, ClassNotFoundException;
 
-	public abstract User load(String mail2, String passWordCrypt, String role) throws SQLException;
+	public abstract User load(String mail, String passWordCrypt, String role) throws SQLException;
 
 
 }

@@ -16,5 +16,5 @@ public abstract class PersistKit {
 	public abstract void createUserLog();
 	public abstract void createUserLog(String lastName, String firstName, String mail,
 			String phone, String streetName, String numHouse, String city,
-			String postCode, String password);
+			String postCode, String password, int member, int activityLeader);
 	}
