@@ -11,8 +11,21 @@ import com.LotuZ.user.User;
 
 public class LoginManager {
 
-	HashTextTest crypt;
-	PersistKit pkit;
+	private PersistKit pkit;
+
+	/**
+	 * @return the pkit
+	 */
+	public PersistKit getPkit() {
+		return pkit;
+	}
+
+	/**
+	 * @param pkit the pkit to set
+	 */
+	public void setPkit(PersistKit pkit) {
+		this.pkit = pkit;
+	}
 
 	public LoginManager(PersistKit kit){
 		this.pkit=kit;
@@ -33,16 +46,17 @@ public class LoginManager {
 			e.printStackTrace();
 		}
 		// Create empty userJdbc for read information
-			User user = pkit.createUser();
+			User user = this.pkit.createUser();
 			user = user.load(mail,passWordCrypt,role);
 			if(user != null){
 				// Create singleton userJdbc for login
-				pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
+				this.pkit.createUserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword());
 			}
 			else{
 				throw new UserNotFoundException(); 
 			}
 	}
+
 
 }
 
