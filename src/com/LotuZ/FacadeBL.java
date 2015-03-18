@@ -44,4 +44,8 @@ public class FacadeBL {
 		return ActivityLeaderManager.getActivityLeader(idActivityLeader);
 	}
 	
+	public static List<User> getActivityLeaders() throws SQLException, UserNotFoundException{
+		return ActivityLeaderManager.getActivityLeaders();
+	}
+	
 }
