@@ -63,12 +63,9 @@ public class HomePageMemberUI extends JFrame {
 		lblBienvenue.setBounds(27, 79, 89, 14);
 		panel_1.add(lblBienvenue);
 		
-		JLabel lblLastname = new JLabel(user.getLastName() +" "+ user.getLastName());
-		lblLastname.setBounds(141, 79, 62, 14);
-		panel_1.add(lblLastname);
+		JLabel lblName = new JLabel(user.getLastName() +" "+ user.getLastName());
+		lblName.setBounds(141, 79, 62, 14);
+		panel_1.add(lblName);
 		
-		JLabel lblFirstname = new JLabel(user.getLastName() +" "+ user.getFirstName());
-		lblFirstname.setBounds(234, 79, 76, 14);
-		panel_1.add(lblFirstname);
 	}
 }

@@ -120,6 +120,7 @@ public class LoginUI extends JFrame {
 					else{
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
 					User user = UserLog.getUserLog();
+					System.out.println(user.getMember());
 					if (user.getMember() == 1){
 						HomePageMemberUI frame =  new HomePageMemberUI();				
 						frame.setVisible(true);

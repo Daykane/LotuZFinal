@@ -51,8 +51,8 @@ public abstract class User {
 		this.mail = mail;
 		this.password = password;
 		this.phone = phone;
-		this.member=0;
-		this.activityLeader =0;
+		this.member=member;
+		this.activityLeader =activityLeader;
 		
 	}
 
