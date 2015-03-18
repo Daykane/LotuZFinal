@@ -20,7 +20,6 @@ public class ActivityJdbc extends Activity{
 
 	public ActivityJdbc(Connection cn) {
 		this.cn = cn;
-		System.out.println("activity instancié");
 	}
 
 	@Override
@@ -31,10 +30,7 @@ public class ActivityJdbc extends Activity{
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			System.out.println(this.getCreateDate());
-			System.out.println(this.getMajDate());
-			String sql = "Insert into Activity Values ('"+ "1" +"','" + this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ 1 +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
-			System.out.println(sql);
+			String sql = "Insert into Activity Values ('"+ 1 +"','" + this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ 1 +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
 			

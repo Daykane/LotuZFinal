@@ -137,7 +137,6 @@ public class JdbcKit extends PersistKit{
 
 	@Override
 	public Activity createActivity() {
-		System.out.println("activity avant instanciation");
 		return new ActivityJdbc(this.cn);
 	}
 
