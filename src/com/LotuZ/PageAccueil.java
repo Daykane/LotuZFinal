@@ -1,6 +1,7 @@
-package interfaceDeBase;
+package com.LotuZ;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Window;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.User;
@@ -23,15 +25,19 @@ import java.awt.Font;
 import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
 import javax.swing.BoxLayout;
+
 import java.awt.GridLayout;
+
 import javax.swing.border.TitledBorder;
 
 
-public class PageAccueiltest extends JFrame {
+public class PageAccueil extends JFrame {
 
 	/**
 	 * 
@@ -42,7 +48,7 @@ public class PageAccueiltest extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-
+	/*
 	public static void main(String[] args) {
 		// Info Connection
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -59,7 +65,7 @@ public class PageAccueiltest extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PageAccueiltest frame = new PageAccueiltest();
+					PageAccueil frame = new PageAccueil();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -68,14 +74,14 @@ public class PageAccueiltest extends JFrame {
 			}
 		});
 	}
-
+	*/
 
 	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public PageAccueiltest() throws SQLException, UserNotFoundException {
+	public PageAccueil() throws SQLException, UserNotFoundException {
 		//FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 
@@ -167,6 +173,14 @@ public class PageAccueiltest extends JFrame {
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				if(UserLog.getUserLog() == null){
+					LoginUI loginUI =  new LoginUI();	
+					LoginUI.frame = loginUI;
+					loginUI.setVisible(true);
+				}
+				else{
+					System.out.println("Faire une déconnexion");
+				}
 				System.out.println("Connexion ou deconnexion si la personne n'est pas connecté ou l'est");
 			}
 			@Override
