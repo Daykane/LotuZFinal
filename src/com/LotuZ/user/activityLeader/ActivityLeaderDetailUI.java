@@ -2,43 +2,27 @@ package com.LotuZ.user.activityLeader;
 
 import interfaceDeBase.PageAccueiltest;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.sql.SQLException;
-
-
-public class ActivityLeaderUI extends JFrame{
+public class ActivityLeaderDetailUI extends JFrame{
 
 	private JFrame frame;
 	private static final long serialVersionUID = 1L;
@@ -51,7 +35,7 @@ public class ActivityLeaderUI extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ActivityLeaderUI frame = new ActivityLeaderUI();
+					ActivityLeaderDetailUI frame = new ActivityLeaderDetailUI();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -64,7 +48,7 @@ public class ActivityLeaderUI extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public ActivityLeaderUI() {
+	public ActivityLeaderDetailUI() {
 		initialize();
 	}
 
