@@ -110,7 +110,7 @@ public class PageAccueil extends JFrame {
 			lblConnexion.setText("déconnexion");
 		}
 		final String Connexion = lblConnexion.getText();
-		final JLabel lblBoutique = new JLabel("Boutique Access");
+		final JLabel lblBoutique = new JLabel("Boutique Access ");
 		panelOptions.add(lblBoutique);
 		final String Boutique = lblBoutique.getText();
 		lblBoutique.addMouseListener(new MouseAdapter() {

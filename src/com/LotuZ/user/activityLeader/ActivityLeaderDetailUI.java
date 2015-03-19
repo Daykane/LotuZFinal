@@ -21,12 +21,18 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
 
 public class ActivityLeaderDetailUI extends JFrame{
 
-	private JFrame frame;
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -143,6 +149,59 @@ public class ActivityLeaderDetailUI extends JFrame{
 			}
 		});
 		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(233, 60, 46, 14);
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(326, 57, 160, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(326, 100, 160, 20);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(233, 100, 73, 20);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(233, 140, 46, 14);
+		panel.add(lblNewLabel_2);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(326, 137, 160, 20);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(233, 220, 46, 14);
+		panel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		lblNewLabel_4.setBounds(233, 180, 46, 14);
+		panel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setBounds(233, 260, 46, 14);
+		panel.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("New label");
+		lblNewLabel_6.setBounds(233, 300, 46, 14);
+		panel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setBounds(233, 340, 46, 14);
+		panel.add(lblNewLabel_7);
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -158,5 +217,4 @@ public class ActivityLeaderDetailUI extends JFrame{
 			}
 		});
 	}
-
 }
