@@ -18,6 +18,26 @@ import com.LotuZ.user.UserJDBC;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.BorderLayout;
+
+import javax.swing.SwingConstants;
+
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
+
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+
+import java.awt.FlowLayout;
+
+import com.jgoodies.forms.layout.Sizes;
 
 
 public class ActivityCreateUI extends JFrame {
@@ -30,6 +50,8 @@ public class ActivityCreateUI extends JFrame {
 	//FacadeBL facadeBL = new FacadeBL();
 
 	private JPanel contentPane;
+	private JTextField tfName;
+	private JTextField tfShortDesc;
 
 
 	/**
@@ -67,35 +89,102 @@ public class ActivityCreateUI extends JFrame {
 	 */
 	public ActivityCreateUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 25));
+		
+		JLabel lblBandeauCommun = new JLabel("Bandeau commun");
+		panel.add(lblBandeauCommun);
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_top = new JPanel();
+		panel_1.add(panel_top, BorderLayout.NORTH);
 		
 		JLabel lblCreateActivity = new JLabel("Create Activity");
-		lblCreateActivity.setBounds(137, 11, 143, 14);
-		contentPane.add(lblCreateActivity);
+		panel_top.add(lblCreateActivity);
 		
-		JButton btnTestCreate = new JButton("test load");
-		btnTestCreate.addMouseListener(new MouseAdapter() {
-			@Override
+		JPanel panel_Center = new JPanel();
+		panel_1.add(panel_Center, BorderLayout.CENTER);
+		panel_Center.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.PREF_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("max(150dlu;min):grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("10dlu"),
+				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("10dlu"),
+				RowSpec.decode("max(3dlu;default)"),
+				RowSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),}));
+		
+		JLabel lblNewLabel = new JLabel("Name : ");
+		panel_Center.add(lblNewLabel, "1, 2, right, default");
+		
+		tfName = new JTextField();
+		panel_Center.add(tfName, "3, 2, fill, default");
+		tfName.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Short description : ");
+		panel_Center.add(lblNewLabel_1, "1, 4, right, default");
+		
+		tfShortDesc = new JTextField();
+		panel_Center.add(tfShortDesc, "3, 4, fill, default");
+		tfShortDesc.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Long description : ");
+		panel_Center.add(lblNewLabel_2, "1, 7, right, default");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel_Center.add(scrollPane, "3, 7, fill, fill");
+		
+		final JTextArea tfLongDesc = new JTextArea();
+		tfLongDesc.setTabSize(7);
+		scrollPane.setViewportView(tfLongDesc);
+		
+		JPanel panel_Bottom = new JPanel();
+		panel_1.add(panel_Bottom, BorderLayout.SOUTH);
+		panel_Bottom.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				Activity acti = null;
 				try {
-					//acti = FacadeBL.readActivity("test Acti");
-					acti = FacadeBL.readActivity(3);
-					
-					
-					FacadeBL.updateActivity(acti,"new name","new short desc","new loooong descr","new mail respo");
+					FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
+					//FacadeBL.createActivity("test", "pas trop long", "long");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(acti.getName());
 			}
 		});
-		btnTestCreate.setBounds(99, 171, 132, 23);
-		contentPane.add(btnTestCreate);
+		btnConfirm.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_Bottom.add(btnConfirm);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println("Retour à la page Acceuil respo");
+			}
+		});
+		btnCancel.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_Bottom.add(btnCancel);
 	}
 }
