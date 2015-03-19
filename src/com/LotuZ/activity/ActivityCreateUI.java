@@ -14,8 +14,6 @@ import javax.swing.JButton;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
-import com.LotuZ.user.UserJDBC;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
@@ -28,16 +26,10 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
-import javax.swing.JSpinner;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import java.awt.FlowLayout;
-
-import com.jgoodies.forms.layout.Sizes;
 
 
 public class ActivityCreateUI extends JFrame {
@@ -54,9 +46,7 @@ public class ActivityCreateUI extends JFrame {
 	private JTextField tfShortDesc;
 
 
-	/**
-	 * Launch the application.
-	 */
+	// TODO remove des qu'on a un lien pour y acceder !!!
 	public static void main(String[] args) {
 		// Info Connection
 				String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -95,12 +85,14 @@ public class ActivityCreateUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 25));
+		// TODO a changer de la
+		JPanel panelCommunAFaire = new JPanel();
+		contentPane.add(panelCommunAFaire, BorderLayout.NORTH);
+		panelCommunAFaire.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 25));
 		
 		JLabel lblBandeauCommun = new JLabel("Bandeau commun");
-		panel.add(lblBandeauCommun);
+		panelCommunAFaire.add(lblBandeauCommun);
+		// a de la
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
@@ -164,10 +156,12 @@ public class ActivityCreateUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
-					//FacadeBL.createActivity("test", "pas trop long", "long");
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (com.mysql.jdbc.MysqlDataTruncation e){
+					//TODO
+					System.out.println("Boite alert, text trop long");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

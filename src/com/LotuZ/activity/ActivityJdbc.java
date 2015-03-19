@@ -63,7 +63,6 @@ public class ActivityJdbc extends Activity{
 					+ " Values ('"+ this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ this.getIdRespo() +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-
 		} catch (SQLException e) {
 			throw e;
 		}
