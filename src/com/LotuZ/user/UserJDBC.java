@@ -19,10 +19,9 @@ public class UserJDBC extends User{
 	public UserJDBC(Connection cn){
 		this.cn = cn;
 	}			
-	public UserJDBC(int id,String lastName, String firstName, String mail, String tel,
+	public UserJDBC(String lastName, String firstName, String mail, String tel,
 			String streetName, String numHouse, String city, String postCode,
 			String password, int member, int activityLeader) {
-		this.setId(id);
 		this.setLastName(lastName);
 		this.setFirstName(firstName);
 		this.setMail(mail);
@@ -72,7 +71,6 @@ public class UserJDBC extends User{
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
 			while( result.next() ){	
-				//int id = result.getInt("idUser");
 				String lastName = result.getString("lastName");
 				String firstName = result.getString("firstName");
 				//String mail = result.getString("mail");
@@ -85,9 +83,8 @@ public class UserJDBC extends User{
 				int member = result.getInt("member");
 				int activityLeader = result.getInt("activityLeader");
 				
-				//user = new UserJDBC(id,lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password,member,activityLeader);
 
-				user = new UserJDBC(1,lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password,member,activityLeader);
+				user = new UserJDBC(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password,member,activityLeader);
 			}
 		} catch (SQLException e) {
 			throw e;
@@ -124,7 +121,6 @@ public class UserJDBC extends User{
 
 			// Si récup données alors étapes 5 (parcours Resultset)
 			while(rs.next()){	
-				//int id = rs.getInt(0);
 				String lastName = rs.getString(1);
 				String firstName = rs.getString(2);
 				String mail = rs.getString(3); 

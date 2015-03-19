@@ -42,7 +42,7 @@ public class ActivityManager {
 			activity.setName(name);
 			activity.setShortDescr(shortDescr);
 			activity.setLongDescr(longDescr);
-			//activity.setIdRespo(user.getId);
+			activity.setIdRespo(user.getMail());
 			activity.setCreateDate(dateFormat.format(date));
 			activity.setMajDate(dateFormat.format(date));
 			// Save in database the user
@@ -53,6 +53,19 @@ public class ActivityManager {
 	public List<Activity> getActivities() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Activity read(String name) throws SQLException {
+		Activity activity = pkit.createActivity();
+		Activity acti = activity.load(name);
+		return acti;
+		
+	}
+
+	public Activity read(int i) throws SQLException {
+		Activity activity = pkit.createActivity();
+		Activity acti = activity.load(i);
+		return acti;
 	}
 	
 	

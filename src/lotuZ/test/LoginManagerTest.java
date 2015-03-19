@@ -35,10 +35,6 @@ public class LoginManagerTest extends TestCase{
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("avant Class");
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";		
-		pkit = new JdbcKit(url,login,passwd);
 	}
 
 	/**
@@ -82,15 +78,13 @@ public class LoginManagerTest extends TestCase{
 	@Test
 	public final void testLogin() throws SQLException {
 		//LoginManager lm = new LoginManager(pkit);
-		int id = 0;
-		User user = new UserJDBC(id,"lastName", "firstName", "mail","tel",
+		User user = new UserJDBC("lastName", "firstName", "mail","tel",
 				"streetName", "numHouse", "city", "postCode",
 				"password",0,0);
-		assertNotNull("L'instance est créée", user);
+		assertNotNull("L'instance n'est pas créée", user);
 		User userLog = new UserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword(),user.getMember(), user.getActivityLeader());
-		assertNotNull("L'instance est créée", userLog);
+		assertNotNull("L'instance n'est pas créée", userLog);
 		// Param Test
-		assertEquals("id",user.getId());
 		assertEquals("lastName",user.getLastName());
 		assertEquals("firstName",user.getFirstName());
 		assertEquals("mail",user.getMail());

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.user.UserJDBC;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -46,6 +47,7 @@ public class ActivityCreateUI extends JFrame {
 				
 				// Init the FacadeBL with the kit
 				FacadeBL.init(jdbcKit);
+				jdbcKit.createUserLog("toto le respo","toto","mail","0626290616","ici","2bis","montp","123456","1",0,1);
 				
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -75,19 +77,19 @@ public class ActivityCreateUI extends JFrame {
 		lblCreateActivity.setBounds(137, 11, 143, 14);
 		contentPane.add(lblCreateActivity);
 		
-		JButton btnTestCreate = new JButton("test create");
+		JButton btnTestCreate = new JButton("test load");
 		btnTestCreate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				Activity acti = null;
 				try {
-					FacadeBL.createActivity("test Acti","short","loooooooooooooooooong");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//acti = FacadeBL.readActivity("test Acti");
+					acti = FacadeBL.readActivity(3);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(acti.getName());
 			}
 		});
 		btnTestCreate.setBounds(99, 171, 132, 23);

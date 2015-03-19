@@ -53,5 +53,16 @@ public class FacadeBL {
 
 		
 	}
+
+	public static Activity readActivity(String name) throws SQLException {
+		Activity acti = activityManager.read(name);
+		return acti;
+		
+	}
+
+	public static Activity readActivity(int i) throws SQLException {
+		Activity acti = activityManager.read(i);
+		return acti;
+	}
 	
 }

@@ -18,7 +18,7 @@ public abstract class Activity {
 	private String name;
 	private String shortDescr;
 	private String longDescr;
-	private int idRespo;
+	private String idRespo;
 	private Vector<Event> event;
 	private String createDate;
 	private String majDate;
@@ -110,14 +110,14 @@ public abstract class Activity {
 	/**
 	 * @return the respo
 	 */
-	public int getIdRespo() {
+	public String getIdRespo() {
 		return idRespo;
 	}
 
 	/**
 	 * @param respo the respo to set
 	 */
-	public void setIdRespo(int idRespo) {
+	public void setIdRespo(String idRespo) {
 		this.idRespo = idRespo;
 	}
 
@@ -166,4 +166,7 @@ public abstract class Activity {
 	public abstract void save() throws SQLException, ClassNotFoundException;
 
 	public abstract Activity load(String name) throws SQLException;
+
+	public abstract Activity load(int i) throws SQLException;
+	
 }

@@ -16,7 +16,7 @@ import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
 
 public class ActivityJdbc extends Activity{
-	
+
 	private Connection cn;
 
 
@@ -25,7 +25,7 @@ public class ActivityJdbc extends Activity{
 	}
 
 	public ActivityJdbc(int idActivity, String name, String longDescription,
-			String shortDescription, int activityLeader,
+			String shortDescription, String activityLeader,
 			String creationDate, String updateDate) {
 		this.setIdActivity(idActivity);
 		this.setName(name);
@@ -34,7 +34,7 @@ public class ActivityJdbc extends Activity{
 		this.setIdRespo(activityLeader);
 		this.setCreateDate(creationDate);
 		this.setMajDate(updateDate);
-		
+
 	}
 
 	@Override
@@ -45,10 +45,11 @@ public class ActivityJdbc extends Activity{
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "Insert into Activity Values ('"+ 1 +"','" + this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ 1 +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
+			String sql = "INSERT INTO Activity (`name`, `longDescription`, `shortDescription`, `activityLeader`, `creationDate`, `updateDate`)"
+					+ " Values ('"+ this.getName() +"','"+ this.getLongDescr() +"','"+ this.getShortDescr() +"','"+ this.getIdRespo() +"','"+ this.getCreateDate() +"','"+ this.getMajDate() +"')";
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-			
+
 		} catch (SQLException e) {
 			throw e;
 		}
@@ -66,23 +67,49 @@ public class ActivityJdbc extends Activity{
 			// Etape 4 : exécution requête
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
-			while( result.next() ){	
-				int idActivity = result.getInt("idActivity");
-				//String name = result.getString("name");
-				String longDescription = result.getString("longDescription");
-				String shortDescription = result.getString("shortDescription");
-				int activityLeader = result.getInt("activityLeader");
-				String creationDate = result.getString("creationDate");
-				String updateDate = result.getString("updateDate");
-				
-				
-				activity = new ActivityJdbc(idActivity,name,longDescription,shortDescription,activityLeader,creationDate,updateDate);
-			}
+			activity = getAndCreateActivity(result);
+
 		} catch (SQLException e) {
 			throw e;
 		}
 		return activity;
 	}
-	
 
+
+
+	@Override
+	public Activity load(int i) throws SQLException {
+		Activity activity = null;
+		try {
+
+			Statement st =null;
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
+			String sql = "Select * From LotuZ.Activity Where idActivity="+'"'+i+'"';
+			// Etape 4 : exécution requête
+			//st.executeUpdate(sql);
+			ResultSet result = st.executeQuery(sql);
+			activity = getAndCreateActivity(result);
+		} catch (SQLException e) {
+			throw e;
+		}
+		return activity;
+	}
+
+	private static Activity getAndCreateActivity(ResultSet result) throws SQLException {
+		Activity activity = null;
+		while( result.next() ){	
+			int idActivity = result.getInt("idActivity");
+			String name = result.getString("name");
+			String longDescription = result.getString("longDescription");
+			String shortDescription = result.getString("shortDescription");
+			String activityLeader = result.getString("activityLeader");
+			String creationDate = result.getString("creationDate");
+			String updateDate = result.getString("updateDate");
+
+
+			activity = new ActivityJdbc(idActivity,name,longDescription,shortDescription,activityLeader,creationDate,updateDate);
+		}
+		return activity;
+	}
 }
