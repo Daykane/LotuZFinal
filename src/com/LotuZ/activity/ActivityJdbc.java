@@ -20,6 +20,20 @@ public class ActivityJdbc extends Activity{
 	private Connection cn;
 
 
+	/**
+	 * @return the cn
+	 */
+	public Connection getCn() {
+		return cn;
+	}
+
+	/**
+	 * @param cn the cn to set
+	 */
+	public void setCn(Connection cn) {
+		this.cn = cn;
+	}
+
 	public ActivityJdbc(Connection cn) {
 		this.cn = cn;
 	}
@@ -79,7 +93,7 @@ public class ActivityJdbc extends Activity{
 
 	@Override
 	public Activity load(int i) throws SQLException {
-		Activity activity = null;
+		ActivityJdbc activity = null;
 		try {
 
 			Statement st =null;
@@ -89,7 +103,8 @@ public class ActivityJdbc extends Activity{
 			// Etape 4 : exécution requête
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
-			activity = getAndCreateActivity(result);
+			activity = (ActivityJdbc) getAndCreateActivity(result);
+			activity.setCn(this.cn);
 		} catch (SQLException e) {
 			throw e;
 		}
@@ -97,7 +112,7 @@ public class ActivityJdbc extends Activity{
 	}
 
 	private static Activity getAndCreateActivity(ResultSet result) throws SQLException {
-		Activity activity = null;
+		ActivityJdbc activity = null;
 		while( result.next() ){	
 			int idActivity = result.getInt("idActivity");
 			String name = result.getString("name");
@@ -117,21 +132,17 @@ public class ActivityJdbc extends Activity{
 	public Activity update() throws SQLException {
 		try {		
 			Statement st =null;
-			if (this.cn == null)
-			{
-				System.out.println("le this.cn est null");
-			}
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "UPDATE Activity SET `name`="+this.getName() +"',' longDescriptionWHERE'="+ this.getLongDescr() +"',' shortDescription'="+this.getShortDescr()
-					+"','activityLeader'="+this.getIdRespo()+"',updateDate'="+this.getMajDate()+"Where idActivity="+'"'+this.getIdActivity()+'"';
+			String sql = "UPDATE Activity SET `name`='"+this.getName() +"',`longDescription`='"+ this.getLongDescr() +"',`shortDescription`='"+this.getShortDescr()
+					+"',`activityLeader`='"+this.getIdRespo()+"',`updateDate`='"+this.getMajDate()+"' Where `idActivity`='"+this.getIdActivity()+"'";
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-
+			
 		} catch (SQLException e) {
 			throw e;
 		}
 		
-		return null;
+		return this;
 	}
 }

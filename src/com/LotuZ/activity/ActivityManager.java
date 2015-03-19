@@ -82,6 +82,10 @@ public class ActivityManager {
 		acti.setIdRespo(idRespo);
 		acti.setMajDate(dateFormat.format(date));
 		// Save in database the user
+		//if (this.cn == null)
+		//{
+		//	System.out.println("le this.cn est null");
+		//}
 		acti = acti.update();
 		return acti;
 		

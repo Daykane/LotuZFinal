@@ -85,6 +85,8 @@ public class ActivityCreateUI extends JFrame {
 				try {
 					//acti = FacadeBL.readActivity("test Acti");
 					acti = FacadeBL.readActivity(3);
+					
+					
 					FacadeBL.updateActivity(acti,"new name","new short desc","new loooong descr","new mail respo");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
