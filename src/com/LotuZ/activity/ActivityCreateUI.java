@@ -66,7 +66,6 @@ public class ActivityCreateUI extends JFrame {
 				try {
 					ActivityCreateUI frame = new ActivityCreateUI();
 					frame.setVisible(true);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,7 +78,7 @@ public class ActivityCreateUI extends JFrame {
 	 */
 	public ActivityCreateUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 360);
+		setBounds(100, 100, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

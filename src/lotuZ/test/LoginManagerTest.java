@@ -34,7 +34,7 @@ public class LoginManagerTest extends TestCase{
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.out.println("avant Class");
+		//System.out.println("avant Class");
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class LoginManagerTest extends TestCase{
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		System.out.println("après class");
+		//System.out.println("après class");
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class LoginManagerTest extends TestCase{
 	 */
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("avant test");
+		//System.out.println("avant test");
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class LoginManagerTest extends TestCase{
 	 */
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("après test");
+		//System.out.println("après test");
 	}
 
 
