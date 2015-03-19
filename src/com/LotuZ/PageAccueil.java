@@ -1,23 +1,17 @@
 package com.LotuZ;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Window;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 
@@ -26,11 +20,6 @@ import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import javax.swing.BoxLayout;
 
 import java.awt.GridLayout;
 
@@ -44,37 +33,6 @@ public class PageAccueil extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PageAccueil frame = new PageAccueil();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
 
 	/**
 	 * Create the frame.
@@ -100,7 +58,7 @@ public class PageAccueil extends JFrame {
 		panelBandeau.setLayout(new BorderLayout(0, 0));
 
 
-		JLabel lblTitle = new JLabel("NOM DE TA PAGE");
+		JLabel lblTitle = new JLabel("Accueil");
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		panelBandeau.add(lblTitle, BorderLayout.CENTER);
