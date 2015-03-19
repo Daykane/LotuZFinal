@@ -68,6 +68,7 @@ public class LoginManagerTest extends TestCase{
 	@Test
 	public final void testLoginManager() {
 		LoginManager lm = new LoginManager(pkit);
+		assertNotNull("L'instance n'est pas créée", lm);
 		assertSame(lm.getPkit(),pkit);
 	}
 
@@ -108,7 +109,8 @@ public class LoginManagerTest extends TestCase{
 		String passWordCrypt="";
 		String password = "test";
 		try {
-			passWordCrypt = HashTextTest.sha1(password);		
+			passWordCrypt = HashTextTest.sha1(password);
+			assertTrue("Le mot de passe n'est pas crypté", password!=passWordCrypt);
 			assertEquals(passWordCrypt,HashTextTest.sha1(password));
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
