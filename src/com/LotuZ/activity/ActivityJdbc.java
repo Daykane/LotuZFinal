@@ -112,4 +112,26 @@ public class ActivityJdbc extends Activity{
 		}
 		return activity;
 	}
+
+	@Override
+	public Activity update() throws SQLException {
+		try {		
+			Statement st =null;
+			if (this.cn == null)
+			{
+				System.out.println("le this.cn est null");
+			}
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
+			String sql = "UPDATE Activity SET `name`="+this.getName() +"',' longDescriptionWHERE'="+ this.getLongDescr() +"',' shortDescription'="+this.getShortDescr()
+					+"','activityLeader'="+this.getIdRespo()+"',updateDate'="+this.getMajDate()+"Where idActivity="+'"'+this.getIdActivity()+'"';
+			// Etape 4 : exécution requête
+			st.executeUpdate(sql);
+
+		} catch (SQLException e) {
+			throw e;
+		}
+		
+		return null;
+	}
 }

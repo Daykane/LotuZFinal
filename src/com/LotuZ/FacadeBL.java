@@ -64,5 +64,12 @@ public class FacadeBL {
 		Activity acti = activityManager.read(i);
 		return acti;
 	}
+
+	public static Activity updateActivity(Activity acti, String name, String shortDescr,
+			String longDescr, String idRespo) throws SQLException {	
+		Activity activity = activityManager.update(acti,name,shortDescr,longDescr,idRespo);
+		return activity;
+		
+	}
 	
 }

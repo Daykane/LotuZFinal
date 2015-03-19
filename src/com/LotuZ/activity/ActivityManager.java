@@ -67,6 +67,25 @@ public class ActivityManager {
 		Activity acti = activity.load(i);
 		return acti;
 	}
+
+	public Activity update(Activity acti, String name, String shortDescr, String longDescr,
+			String idRespo) throws SQLException {
+		//User user = UserLog.getUserLog();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		// Create empty ActivityJdbc
+		//Activity activity = pkit.createActivity();
+		// set informations into the userJdbc
+		acti.setName(name);
+		acti.setShortDescr(shortDescr);
+		acti.setLongDescr(longDescr);
+		acti.setIdRespo(idRespo);
+		acti.setMajDate(dateFormat.format(date));
+		// Save in database the user
+		acti = acti.update();
+		return acti;
+		
+	}
 	
 	
 
