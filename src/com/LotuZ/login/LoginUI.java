@@ -1,5 +1,7 @@
 package com.LotuZ.login;
 
+import interfaceDeBase.PageAccueiltest;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -107,7 +109,7 @@ public class LoginUI extends JFrame {
 					else{
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
 					User user = UserLog.getUserLog();
-					System.out.println(user.getMember());
+					
 					if (user.getMember() == 1){
 						HomePageMemberUI frame =  new HomePageMemberUI();				
 						frame.setVisible(true);
@@ -116,6 +118,9 @@ public class LoginUI extends JFrame {
 						HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);
 					}
+					
+					PageAccueiltest pageAcceuil = new PageAccueiltest();
+					pageAcceuil.setVisible(true);
 					}
 					
 				} 

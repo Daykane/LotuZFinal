@@ -1,7 +1,10 @@
 package com.LotuZ.user;
 
 
+import interfaceDeBase.PageAccueiltest;
+
 import java.awt.BorderLayout;
+
 
 
 import javax.swing.JFrame;
@@ -71,10 +74,13 @@ public class HomepageUI extends JFrame {
 		JButton btnAuthentification = new JButton("Authentification");
 		btnAuthentification.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				
 				LoginUI loginUI =  new LoginUI();	
 				LoginUI.frame = loginUI;
 				loginUI.setVisible(true);
 				frame.dispose();
+				
+				
 
 			}
 		});
