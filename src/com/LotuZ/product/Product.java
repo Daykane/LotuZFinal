@@ -1,20 +1,43 @@
 package com.LotuZ.product;
+
 import java.sql.Date;
+import java.sql.SQLException;
 
 import com.LotuZ.product.category.CategoryProduct;
 
 
 public abstract class Product {
 	
+	private int idProduct;
 	private String productName;
-	private CategoryProduct category;
+	private int category;
 	private int quantity ;
 	private int price;
 	private int reduction;
-	private Date creationDate;
-	private Date updateDate;
-	private String provider;
+	private String creationDate;
+	private String updateDate;
+	private int idProvider;
 	
+	public Product() {
+		super();
+	}
+
+		
+	/**
+	 * @param productName
+	 * @param quantity
+	 * @param price
+	 * @param reduction
+	 */
+	public Product(String productName, int quantity, int price, int reduction) {
+		super();
+		this.productName = productName;
+		this.quantity = quantity;
+		this.price = price;
+		this.reduction = reduction;
+	}
+
+
 	/**
 	 * @return the productName
 	 */
@@ -30,13 +53,13 @@ public abstract class Product {
 	/**
 	 * @return the category
 	 */
-	public CategoryProduct getCategory() {
+	public int getCategory() {
 		return category;
 	}
 	/**
 	 * @param category the category to set
 	 */
-	public void setCategory(CategoryProduct category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 	/**
@@ -78,40 +101,65 @@ public abstract class Product {
 	/**
 	 * @return the creationDate
 	 */
-	public Date getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
 	/**
 	 * @param creationDate the creationDate to set
 	 */
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 	/**
 	 * @return the updateDate
 	 */
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
 	/**
 	 * @param updateDate the updateDate to set
 	 */
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+
 	/**
-	 * @return the provider
+	 * @return the id
 	 */
-	public String getProvider() {
-		return provider;
+	public int getId() {
+		return idProduct;
 	}
 	/**
-	 * @param provider the provider to set
+	 * @param id the id to set
 	 */
-	public void setProvider(String provider) {
-		this.provider = provider;
+	public void setId(int id) {
+		this.idProduct = id;
+	}
+
+	/**
+	 * @return the idProvider
+	 */
+	public int getIdProvider() {
+		return idProvider;
+	}
+	/**
+	 * @param idProvider the idProvider to set
+	 */
+	public void setIdProvider(int idProvider) {
+		this.idProvider = idProvider;
 	}
 	
+	
+public abstract Product loadProduct(int id) throws SQLException;
+
+public abstract Product loadProduct(String productName) throws SQLException;
+
+public abstract void saveProduct() throws SQLException, ClassNotFoundException;
+
+public abstract Product updateProduct () throws SQLException;
+
+public abstract void deleteProduct (int id) throws SQLException;
+
 
 	
 }

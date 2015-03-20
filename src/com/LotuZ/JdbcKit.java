@@ -15,6 +15,8 @@ import java.util.List;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
+import com.LotuZ.product.Product;
+import com.LotuZ.product.ProductJDBC;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
@@ -155,6 +157,14 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public ActivityLeader createActivityLeader() {
 		return new ActivityLeaderJDBC(this.cn);
+	}
+
+
+
+
+	@Override
+	public Product createProduct() {
+		return new ProductJDBC(this.cn);
 	}
 
 }

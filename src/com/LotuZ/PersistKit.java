@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.LotuZ.activity.Activity;
+import com.LotuZ.product.Product;
 import com.LotuZ.user.User;
 import com.LotuZ.user.activityLeader.ActivityLeader;
 
@@ -23,4 +24,5 @@ public abstract class PersistKit {
 	public abstract Activity createActivity();
 	public abstract List<User> createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();
+	public abstract Product createProduct();
 	}
