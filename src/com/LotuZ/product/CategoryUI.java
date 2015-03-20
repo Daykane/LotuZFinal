@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -57,7 +59,7 @@ public class CategoryUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PageAccueiltest frame = new PageAccueiltest();
+					CategoryUI frame = new CategoryUI();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -74,9 +76,8 @@ public class CategoryUI extends JFrame {
 	 * @throws SQLException 
 	 */
 	public CategoryUI() throws SQLException, UserNotFoundException {
-		//FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
-
+		//Create Window
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);
@@ -85,30 +86,34 @@ public class CategoryUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+			//Set top banner
+		JPanel panelBanner = new JPanel();
+		panelBanner.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
+		contentPane.add(panelBanner, BorderLayout.NORTH);
+		panelBanner.setLayout(new BorderLayout(0, 0));
 
-		JPanel panelBandeau = new JPanel();
-		panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		contentPane.add(panelBandeau, BorderLayout.NORTH);
-		panelBandeau.setLayout(new BorderLayout(0, 0));
-
-
+				//Set top banner Title
 		JLabel lblTitle = new JLabel("CATEGORY MANAGEMENT");
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		panelBandeau.add(lblTitle, BorderLayout.CENTER);
+		panelBanner.add(lblTitle, BorderLayout.CENTER);
 
+				//Set top banner Logo
 		JLabel lblToto = new JLabel("LOGO");
 		lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblToto.setHorizontalAlignment(SwingConstants.LEFT);
-		//panel.add(lblToto, BorderLayout.WEST);
+//		panel.add(lblToto, BorderLayout.WEST);
 
-//		JLabel image = new JLabel(new ImageIcon("zen.jpg"));
-//		panelBandeau.add(image,BorderLayout.WEST);
 
+		JLabel image = new JLabel(new ImageIcon("zen.jpg"));
+		panelBanner.add(image,BorderLayout.WEST);
+
+				//Set top banner Options
 		JPanel panelOptions = new JPanel();
-		panelBandeau.add(panelOptions, BorderLayout.EAST);
+		panelBanner.add(panelOptions, BorderLayout.EAST);
 		panelOptions.setLayout(new GridLayout(3, 1, 0, 0));
 
+				//Set top banner option parameter initalisation
 		final JLabel lblnameUser = new JLabel("name");
 		panelOptions.add(lblnameUser);
 		if 	(user!=null){
@@ -176,6 +181,14 @@ public class CategoryUI extends JFrame {
 				lblConnexion.setText(Connexion);
 			}
 		});
+			//set 
+		JScrollPane scrollPpanelCategory = new JScrollPane();
+		scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
+		contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
+		scrollPpanelCategory.setLayout(new BorderLayout(100, 100));
+				//add  JScrollBar
+		JScrollBar scrollBarEast = new JScrollBar();
+		scrollPpanelCategory.add(scrollBarEast);
 	}
 
 
