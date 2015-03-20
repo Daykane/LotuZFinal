@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.LotuZ.JdbcKit;
 import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashTextTest;
 import com.LotuZ.login.LoginManager;

@@ -124,7 +124,7 @@ public class UserJDBCTest {
 	}
 
 	@Test
-	public final void testUserJDBCUser() {
+	public final void testUserJDBCWithAttributes() {
 		String lastName = "lastName";
 		String firstName = "firstName";
 		String streetName = "street";
@@ -136,9 +136,11 @@ public class UserJDBCTest {
 		String phone = "phone";
 		int member = 0;
 		int activityLeader = 0;
+		
 		UserJDBC user = new UserJDBC(lastName, firstName, mail, phone,
 				streetName, numHouse, city, postCode,
 				password, member, activityLeader);
+		
 		assertNotNull("UserJDBC avec tous les attributs non instancié",user);
 		// Param Test
 		assertEquals("lastName",user.getLastName());
