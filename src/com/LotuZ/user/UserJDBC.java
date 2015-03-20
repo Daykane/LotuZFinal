@@ -21,6 +21,10 @@ public class UserJDBC extends User{
 	public UserJDBC(String lastName, String firstName, String mail, String tel,
 			String streetName, String numHouse, String city, String postCode,
 			String password, int member, int activityLeader) {
+		super(lastName, firstName, mail, tel,
+			streetName, numHouse, city, postCode,
+			password, member, activityLeader);
+		/*
 		this.setLastName(lastName);
 		this.setFirstName(firstName);
 		this.setMail(mail);
@@ -32,6 +36,7 @@ public class UserJDBC extends User{
 		this.setPassword(password);
 		this.setMember(member);
 		this.setActivityLeader(activityLeader);
+		*/
 	}
 	
 	public UserJDBC() {

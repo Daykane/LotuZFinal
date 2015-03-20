@@ -79,7 +79,11 @@ public class LoginManagerTest extends TestCase{
 	@Test
 	public final void testLogin() throws SQLException {
 		//LoginManager lm = new LoginManager(pkit);
-		// faire un mock
+		// faire un mock pour UserJDBC
+		String mail = "mail";
+		String password = "password";
+		String role ="role";
+		
 		User user = new UserJDBC("lastName", "firstName", "mail","tel",
 				"streetName", "numHouse", "city", "postCode",
 				"password",0,0);
@@ -102,7 +106,7 @@ public class LoginManagerTest extends TestCase{
 	}
 
 
-	// existe pas dans 
+	// existe pas dans LoginManager
 	/**
 	 * Test method for {@link java.lang.Object#hashCode()}.
 	 */

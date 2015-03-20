@@ -124,7 +124,7 @@ public class UserJDBCTest {
 	}
 
 	@Test
-	public final void testUserJDBCStringStringStringStringStringStringStringStringStringIntInt() {
+	public final void testUserJDBCUser() {
 		String lastName = "lastName";
 		String firstName = "firstName";
 		String streetName = "street";
