@@ -42,10 +42,13 @@ public class FacadeBL {
 		
 	}
 	
-	public static ActivityLeader getActivityLeader(int idActivityLeader) throws SQLException, UserNotFoundException{
+	public static ActivityLeader getActivityLeader(String idActivityLeader) throws SQLException, UserNotFoundException{
 		return activityLeaderManager.getActivityLeader(idActivityLeader);
 	}
 	
+	public static ActivityLeader updateActivityLeader(ActivityLeader activityLeader) throws SQLException {	
+		return activityLeaderManager.modifyActivityLeader(activityLeader);	
+	}
 	/*public static List<User> getActivityLeaders() throws SQLException, UserNotFoundException{
 		return ActivityLeaderManager.getActivityLeaders();
 	}*/
@@ -70,7 +73,6 @@ public class FacadeBL {
 	public static Activity updateActivity(Activity acti, String name, String shortDescr,
 			String longDescr, String idRespo) throws SQLException {	
 		Activity activity = activityManager.update(acti,name,shortDescr,longDescr,idRespo);
-		return activity;
-		
+		return activity;	
 	}
 }

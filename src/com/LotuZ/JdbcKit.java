@@ -19,6 +19,7 @@ import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.ActivityLeader;
+import com.LotuZ.user.activityLeader.ActivityLeaderJDBC;
 
 
 /**
@@ -157,8 +158,7 @@ public class JdbcKit extends PersistKit{
 
 	@Override
 	public ActivityLeader createActivityLeader() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ActivityLeaderJDBC(this.cn);
 	}
 
 }

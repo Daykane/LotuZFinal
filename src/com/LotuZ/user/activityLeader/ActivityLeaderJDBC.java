@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-
 public class ActivityLeaderJDBC extends ActivityLeader{
 	
 	
@@ -33,33 +32,51 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 
 
 	@Override
-	public ActivityLeader load(int idActivityLeader) throws SQLException {
-		ActivityLeaderJDBC activityLeader = new ActivityLeaderJDBC();
+	public ActivityLeader load(String idActivityLeader) throws SQLException {
 		try {
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "Select * From LotuZ.User Where idActivity="+'"'+idActivityLeader+'"';
+			String sql = "Select * From LotuZ.User Where mail="+'"'+idActivityLeader+'"';
 			// Etape 4 : exécution requête
 
 			ResultSet result = st.executeQuery(sql);
 			while(result.next()){	
-				activityLeader.setLastName(result.getString("lastName"));
-				activityLeader.setFirstName(result.getString( "firstName" ));
-				activityLeader.setMail(result.getString( "firstName" ));
-				activityLeader.setTel(result.getString( "phone" ));
-				activityLeader.setStreetName(result.getString( "streetName" ));
-				activityLeader.setNumHouse(result.getString( "numHouse" ));
-				activityLeader.setCity(result.getString( "city" ));
-				activityLeader.setPostCode(result.getString( "postCode" ));
+				this.setLastName(result.getString("lastName"));
+				this.setFirstName(result.getString( "firstName" ));
+				this.setMail(result.getString( "Mail" ));
+				this.setTel(result.getString( "tel" ));
+				this.setStreetName(result.getString( "streetName" ));
+				this.setNumHouse(result.getString( "numHouse" ));
+				this.setCity(result.getString( "city" ));
+				this.setPostCode(result.getString( "postCode" ));
 			}
-			activityLeader.setCn(this.cn);
+			this.setCn(this.cn);
 		} catch (SQLException e) {
 			throw e;
 		}
-		return activityLeader;
+		return this;
 	}
+	
+	public ActivityLeader update() throws SQLException {
+	try {		
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
 
+		String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
+				+"',`tel`='"+this.getTel()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
+		// Etape 4 : exécution requête
+		st.executeUpdate(sql);
+		//String sqlCommit = "commit;";
+		// Etape 4 : exécution requête
+		//st.executeUpdate(sqlCommit);
+		
+	} catch (SQLException e) {
+		throw e;
+	}
+	return this;
+	}
 	/**
 	 * @param cn the cn to set
 	 */
@@ -67,26 +84,6 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 		this.cn = cn;
 	}
 
-/*
-	@Override
-	public Activity update() throws SQLException {
-		try {		
-			Statement st =null;
-			// Etape 3 : Création d'un statement
-			st = this.cn.createStatement();
-			String sql = "UPDATE Activity SET `name`='"+this.getName() +"',`longDescription`='"+ this.getLongDescr() +"',`shortDescription`='"+this.getShortDescr()
-					+"',`activityLeader`='"+this.getIdRespo()+"',`updateDate`='"+this.getMajDate()+"' Where `idActivity`='"+this.getIdActivity()+"'";
-			// Etape 4 : exécution requête
-			st.executeUpdate(sql);
-			
-		} catch (SQLException e) {
-			throw e;
-		}
-		
-		return this;
-	}
-
-*/
 
 }
 

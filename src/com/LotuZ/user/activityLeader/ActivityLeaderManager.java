@@ -15,12 +15,18 @@ public class ActivityLeaderManager {
 		this.pkit=kit;
 	}
 	
-	public ActivityLeader getActivityLeader(int idActivityLeader) throws SQLException {
+	public ActivityLeader getActivityLeader(String idActivityLeader) throws SQLException {
 		ActivityLeader activityLeader = pkit.createActivityLeader();
-		ActivityLeader acti = activityLeader.load(idActivityLeader);
-		return null;
-		
+		activityLeader.load(idActivityLeader);
+		return activityLeader;
 	}
+	
+	public ActivityLeader modifyActivityLeader(ActivityLeader activityLeader) throws SQLException {
+		activityLeader.update();
+		return activityLeader;
+	}
+	
+	
 	/*public static List<User> getActivityLeaders() throws SQLException {
 		ListActivityLeaderJDBC users = null;
 		//ListActivityLeaderJDBC users = pkit.createListActivityLeader();

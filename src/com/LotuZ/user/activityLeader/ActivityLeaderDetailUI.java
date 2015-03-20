@@ -13,61 +13,62 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import com.LotuZ.FacadeBL;
+import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 
 public class ActivityLeaderDetailUI extends JFrame{
 
-
+	private FacadeBL facadeBL;
+	
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField LastName;
+	private JTextField FirstName;
+	private JTextField AdressMail;
+	private JTextField StreetName;
+	private JTextField PhoneNumber;
+	private JTextField HouseNumber;
+	private JTextField City;
+	private JTextField PostCode;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ActivityLeaderDetailUI frame = new ActivityLeaderDetailUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
+	 * @throws UserNotFoundException 
+	 * @throws SQLException 
 	 */
-	public ActivityLeaderDetailUI() {
+	public ActivityLeaderDetailUI() throws SQLException, UserNotFoundException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws UserNotFoundException 
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException, UserNotFoundException {
+		
+		final ActivityLeader activityLeader = FacadeBL.getActivityLeader("bobo");
+		System.out.println("mail : "+activityLeader.getMail());
+		//activityLeader = FacadeBL.getActivityLeader("bobo");
+		
 		User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
@@ -166,16 +167,17 @@ public class ActivityLeaderDetailUI extends JFrame{
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(326, 57, 160, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		//textField.setText("Richard");
+		LastName = new JTextField();
+		LastName.setBounds(326, 57, 160, 20);
+		panel.add(LastName);
+		LastName.setColumns(10);
+		LastName.setText(activityLeader.getLastName());
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(326, 100, 160, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		FirstName = new JTextField();
+		FirstName.setBounds(326, 100, 160, 20);
+		panel.add(FirstName);
+		FirstName.setColumns(10);
+		FirstName.setText(activityLeader.getFirstName());
 		
 		JLabel lblNewLabel_1 = new JLabel("First Name");
 		lblNewLabel_1.setBounds(233, 100, 83, 20);
@@ -185,10 +187,11 @@ public class ActivityLeaderDetailUI extends JFrame{
 		lblNewLabel_2.setBounds(233, 140, 73, 14);
 		panel.add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(326, 137, 160, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		AdressMail = new JTextField();
+		AdressMail.setBounds(326, 137, 160, 20);
+		panel.add(AdressMail);
+		AdressMail.setColumns(10);
+		AdressMail.setText(activityLeader.getMail());
 		
 		JLabel lblNewLabel_3 = new JLabel("Phone Number");
 		lblNewLabel_3.setBounds(233, 220, 73, 14);
@@ -210,38 +213,63 @@ public class ActivityLeaderDetailUI extends JFrame{
 		lblNewLabel_7.setBounds(233, 340, 73, 14);
 		panel.add(lblNewLabel_7);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(326, 177, 160, 20);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		StreetName = new JTextField();
+		StreetName.setBounds(326, 177, 160, 20);
+		panel.add(StreetName);
+		StreetName.setColumns(10);
+		StreetName.setText(activityLeader.getStreetName());
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(326, 217, 160, 20);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		PhoneNumber = new JTextField();
+		PhoneNumber.setBounds(326, 217, 160, 20);
+		panel.add(PhoneNumber);
+		PhoneNumber.setColumns(10);
+		PhoneNumber.setText(activityLeader.getTel());
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(326, 257, 160, 20);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
+		HouseNumber = new JTextField();
+		HouseNumber.setBounds(326, 257, 160, 20);
+		panel.add(HouseNumber);
+		HouseNumber.setColumns(10);
+		HouseNumber.setText(activityLeader.getNumHouse());
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(326, 297, 160, 20);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
+		City = new JTextField();
+		City.setBounds(326, 297, 160, 20);
+		panel.add(City);
+		City.setColumns(10);
+		City.setText(activityLeader.getCity());
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(326, 337, 160, 20);
-		panel.add(textField_7);
-		textField_7.setColumns(10);
+		PostCode = new JTextField();
+		PostCode.setBounds(326, 337, 160, 20);
+		panel.add(PostCode);
+		PostCode.setColumns(10);
+		PostCode.setText(activityLeader.getPostCode());
 		
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.setBounds(190, 428, 89, 23);
+		btnEdit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					activityLeader.setLastName(LastName.getText());
+					activityLeader.setFirstName(FirstName.getText());
+					activityLeader.setMail(AdressMail.getText());
+					activityLeader.setStreetName(StreetName.getText());
+					activityLeader.setTel(PhoneNumber.getText());
+					activityLeader.setNumHouse(HouseNumber.getText());
+					activityLeader.setCity(City.getText());
+					activityLeader.setPostCode(PostCode.getText());
+					FacadeBL.updateActivityLeader(activityLeader);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null,"Edition effectuée","Edition effectuée",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		panel.add(btnEdit);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(427, 428, 89, 23);
 		panel.add(btnCancel);
+		
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
