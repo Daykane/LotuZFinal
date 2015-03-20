@@ -18,6 +18,7 @@ import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.ActivityLeader;
 
 
 /**
@@ -149,6 +150,15 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public List<User> createListActivityLeader() {
 		return 	new ArrayList<User>();
+	}
+
+
+
+
+	@Override
+	public ActivityLeader createActivityLeader() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -24,6 +24,7 @@ import com.LotuZ.user.UserLog;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
+import javax.swing.JButton;
 
 public class ActivityLeaderDetailUI extends JFrame{
 
@@ -33,6 +34,11 @@ public class ActivityLeaderDetailUI extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
 
 	/**
 	 * Launch the application.
@@ -79,7 +85,7 @@ public class ActivityLeaderDetailUI extends JFrame{
 		panelBandeau.setLayout(new BorderLayout(0, 0));
 
 
-		JLabel lblTitle = new JLabel("NOM DE TA PAGE");
+		JLabel lblTitle = new JLabel("Responsable d'Activité");
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		panelBandeau.add(lblTitle, BorderLayout.CENTER);
@@ -154,28 +160,29 @@ public class ActivityLeaderDetailUI extends JFrame{
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(233, 60, 46, 14);
+		JLabel lblNewLabel = new JLabel("Last Name");
+		lblNewLabel.setBounds(233, 60, 73, 14);
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setBounds(326, 57, 160, 20);
 		panel.add(textField);
 		textField.setColumns(10);
+		//textField.setText("Richard");
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(326, 100, 160, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(233, 100, 73, 20);
+		JLabel lblNewLabel_1 = new JLabel("First Name");
+		lblNewLabel_1.setBounds(233, 100, 83, 20);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(233, 140, 46, 14);
+		JLabel lblNewLabel_2 = new JLabel("Adress Mail");
+		lblNewLabel_2.setBounds(233, 140, 73, 14);
 		panel.add(lblNewLabel_2);
 		
 		textField_2 = new JTextField();
@@ -183,25 +190,58 @@ public class ActivityLeaderDetailUI extends JFrame{
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(233, 220, 46, 14);
+		JLabel lblNewLabel_3 = new JLabel("Phone Number");
+		lblNewLabel_3.setBounds(233, 220, 73, 14);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(233, 180, 46, 14);
+		JLabel lblNewLabel_4 = new JLabel("Street Name");
+		lblNewLabel_4.setBounds(233, 180, 73, 14);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(233, 260, 46, 14);
+		JLabel lblNewLabel_5 = new JLabel("House Number");
+		lblNewLabel_5.setBounds(233, 260, 73, 14);
 		panel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setBounds(233, 300, 46, 14);
+		JLabel lblNewLabel_6 = new JLabel("City");
+		lblNewLabel_6.setBounds(233, 300, 73, 14);
 		panel.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(233, 340, 46, 14);
+		JLabel lblNewLabel_7 = new JLabel("Post Code");
+		lblNewLabel_7.setBounds(233, 340, 73, 14);
 		panel.add(lblNewLabel_7);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(326, 177, 160, 20);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(326, 217, 160, 20);
+		panel.add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(326, 257, 160, 20);
+		panel.add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(326, 297, 160, 20);
+		panel.add(textField_6);
+		textField_6.setColumns(10);
+		
+		textField_7 = new JTextField();
+		textField_7.setBounds(326, 337, 160, 20);
+		panel.add(textField_7);
+		textField_7.setColumns(10);
+		
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.setBounds(190, 428, 89, 23);
+		panel.add(btnEdit);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBounds(427, 428, 89, 23);
+		panel.add(btnCancel);
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

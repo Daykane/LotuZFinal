@@ -10,6 +10,7 @@ import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
+import com.LotuZ.user.activityLeader.ActivityLeader;
 import com.LotuZ.user.activityLeader.ActivityLeaderManager;
 
 public class FacadeBL {
@@ -23,6 +24,7 @@ public class FacadeBL {
 		loginManager = new LoginManager(kit);
 		inscriptionManager = new InscriptionManager(kit);
 		activityManager = new ActivityManager(kit);
+		activityLeaderManager = new ActivityLeaderManager(kit);
 	}
 	
 	public static void inscription(String lastName, String firstName, String adress,
@@ -40,13 +42,13 @@ public class FacadeBL {
 		
 	}
 	
-	public static User getActivityLeader(int idActivityLeader) throws SQLException, UserNotFoundException{
-		return ActivityLeaderManager.getActivityLeader(idActivityLeader);
+	public static ActivityLeader getActivityLeader(int idActivityLeader) throws SQLException, UserNotFoundException{
+		return activityLeaderManager.getActivityLeader(idActivityLeader);
 	}
 	
-	public static List<User> getActivityLeaders() throws SQLException, UserNotFoundException{
+	/*public static List<User> getActivityLeaders() throws SQLException, UserNotFoundException{
 		return ActivityLeaderManager.getActivityLeaders();
-	}
+	}*/
 
 	public static void createActivity(String name, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
 		activityManager.create(name, shortDescr, longDescr);

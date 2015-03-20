@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.user.User;
+import com.LotuZ.user.activityLeader.ActivityLeader;
 
 public abstract class PersistKit {
 	
@@ -23,4 +24,5 @@ public abstract class PersistKit {
 			String postCode, String password, int member, int activityLeader);
 	public abstract Activity createActivity();
 	public abstract List<User> createListActivityLeader();
+	public abstract ActivityLeader createActivityLeader();
 	}
