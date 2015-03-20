@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.activity.Activity;
+
 
 
 public class ProductManager {
@@ -54,6 +54,31 @@ public class ProductManager {
 		product = product.loadProduct(idProduct);
 		return product;
 	}
+	
+	public Product readProduct(String productName) throws SQLException {
+		Product product = pkit.createProduct();
+		Product productread = product.loadProduct(productName);
+		return productread;
+		
+	}
+	
+	public Product updateProduct(Product product, String productName, int category, int quantity, int price, int reduction) throws SQLException {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		product.setProductName(productName);
+		product.setQuantity(quantity);
+		product.setPrice(price);
+		product.setReduction(reduction);
+		product.setUpdateDate(dateFormat.format(date));
+		product.setCategory(category);
 
+		product = product.updateProduct();
+		return product;
+		
+	}
+	
+	public void deleteProduct(Product product) throws SQLException {
+		product.deleteProduct();
+	}
 
 }

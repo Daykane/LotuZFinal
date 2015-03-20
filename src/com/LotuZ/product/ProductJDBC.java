@@ -122,9 +122,7 @@ private Connection cn;
 		
 
 
-
-	@Override
-	public void deleteProduct(int id) throws SQLException {
+	public void deleteProduct() throws SQLException {
 		try {		
 			Statement st =null;
 			// Etape 1 : Création d'un statement
