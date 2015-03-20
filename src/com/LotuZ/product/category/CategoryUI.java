@@ -10,10 +10,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -181,12 +183,40 @@ public class CategoryUI extends JFrame {
 				lblConnexion.setText(Connexion);
 			}
 		});
-			//set 
-		JScrollPane scrollPpanelCategory = new JScrollPane();
-		scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
+			//set category view 
+	    JRadioButton form[][] = new JRadioButton[24][1];
+	    String counts[] = { "", "0-1"};
+	    String categories[] = { "Household", "Office", "Extended Family",
+	        "Company (US)", "Company (World)", "Team", "Will",
+	        "Birthday Card List", "High School", "Country", "Continent",
+	        "Planet","Household", "Office", "Extended Family",
+	        "Company (US)", "Company (World)", "Team", "Will",
+	        "Birthday Card List", "High School", "Country", "Continent",
+	        "Planet" };
+		JPanel categoryPan = new JPanel();
+		categoryPan.setSize(600, 400);
+		categoryPan.setLayout(new GridLayout(25, 2, 10, 0));
+		for (int row = 0; row < 25; row++) {
+		      ButtonGroup bg = new ButtonGroup();
+		      for (int col = 0; col < 2; col++) {
+		        if (row == 0) {
+		        	categoryPan.add(new JLabel(counts[col]));
+		        } else {
+		          if (col == 0) {
+		        	  categoryPan.add(new JLabel(categories[row - 1]));
+		          } else {
+		            form[row - 1][col - 1] = new JRadioButton();
+		            bg.add(form[row - 1][col - 1]);
+		            categoryPan.add(form[row - 1][col - 1]);
+		          }
+		        }
+		      }
+		    }
+				//set ScrollPan
+		JScrollPane scrollPpanelCategory = new JScrollPane(categoryPan);
+//		scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
 		contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
-		scrollPpanelCategory.setLayout(new BorderLayout(100, 100));
-				//add  JScrollBar
+					//add  JScrollBar
 		JScrollBar scrollBarEast = new JScrollBar();
 		scrollPpanelCategory.add(scrollBarEast);
 	}
