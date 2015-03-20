@@ -76,7 +76,7 @@ public class PageAccueiltest extends JFrame {
 	 * @throws SQLException 
 	 */
 	public PageAccueiltest() throws SQLException, UserNotFoundException {
-		//FacadeUser.login("jack","jack");
+		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
@@ -109,7 +109,7 @@ public class PageAccueiltest extends JFrame {
 
 		JPanel panelOptions = new JPanel();
 		panelBandeau.add(panelOptions, BorderLayout.EAST);
-		panelOptions.setLayout(new GridLayout(3, 1, 0, 0));
+		panelOptions.setLayout(new GridLayout(0, 2, 0, 0));
 
 		final JLabel lblnameUser = new JLabel("name");
 		panelOptions.add(lblnameUser);
@@ -137,7 +137,7 @@ public class PageAccueiltest extends JFrame {
 		lblnameUser.setHorizontalAlignment(SwingConstants.LEFT);
 
 		final JLabel lblConnexion = new JLabel("connexion/deconnexion");
-		lblConnexion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblConnexion.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelOptions.add(lblConnexion);
 		if (user == null){
 			lblConnexion.setText("connexion");
@@ -164,6 +164,10 @@ public class PageAccueiltest extends JFrame {
 			}
 		});
 		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		JLabel lblIconeMail = new JLabel("icone mail");
+		lblIconeMail.setHorizontalAlignment(SwingConstants.RIGHT);
+		panelOptions.add(lblIconeMail);
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

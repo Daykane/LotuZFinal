@@ -11,12 +11,10 @@ public final class UserLog extends User{
 		super();
     }
 	 
-	public UserLog(String lastName, String firstName, String mail,
-			String phone, String streetName, String numHouse, String city,
-			String postCode, String password, int member, int activityLeader) {
-		super(lastName, firstName, mail,
-				phone, streetName, numHouse, city,
-				postCode, password,member,activityLeader);
+	public UserLog(User user) {
+		super(user.getLastName(), user.getFirstName(), user.getMail(),
+				user.getPhone(), user.getStreetName(), user.getNumHouse(), user.getCity(),
+				user.getPostCode(), user.getPassword(),user.getMember(),user.getActivityLeader());
 	}
 	
 	public static User getUserLog(){
@@ -44,20 +42,17 @@ public final class UserLog extends User{
 	}
 	
 
-	public static void init(String lastName, String firstName, String mail,
-			String phone, String streetName, String numHouse, String city,
-			String postCode, String password, int member, int activityLeader) {
+	public static void init(User user) {
 		if (UserLog.user == null) {
             synchronized(UserLog.class) {
               if (UserLog.user == null) {
-            	  UserLog.user = new UserLog(lastName, firstName, mail,
-            				phone, streetName, numHouse, city,
-            				postCode, password,member,activityLeader);
+            	  UserLog.user = new UserLog(user);
               }
             }
          }
-		
 	}
+         
+		
 
 
 	

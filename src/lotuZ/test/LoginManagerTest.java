@@ -79,11 +79,13 @@ public class LoginManagerTest extends TestCase{
 	@Test
 	public final void testLogin() throws SQLException {
 		//LoginManager lm = new LoginManager(pkit);
+		// faire un mock
 		User user = new UserJDBC("lastName", "firstName", "mail","tel",
 				"streetName", "numHouse", "city", "postCode",
 				"password",0,0);
 		assertNotNull("L'instance n'est pas créée", user);
-		User userLog = new UserLog(user.getLastName(),user.getFirstName(),user.getMail(),user.getPhone(),user.getStreetName(),user.getNumHouse(),user.getCity(),user.getPostCode(),user.getPassword(),user.getMember(), user.getActivityLeader());
+		// constructeur avec user en param
+		User userLog = new UserLog(user);
 		assertNotNull("L'instance n'est pas créée", userLog);
 		// Param Test
 		assertEquals("lastName",user.getLastName());
@@ -100,7 +102,7 @@ public class LoginManagerTest extends TestCase{
 	}
 
 
-
+	// existe pas dans 
 	/**
 	 * Test method for {@link java.lang.Object#hashCode()}.
 	 */

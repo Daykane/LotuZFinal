@@ -20,7 +20,7 @@ import com.LotuZ.user.UserJDBC;
 public class UserJDBCTest {
 
 	static Connection cn;
-
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// On fait la connection à la base de donnée
@@ -41,7 +41,6 @@ public class UserJDBCTest {
 			e.printStackTrace();
 		}
 		System.out.println("Ouverture de la connexion");
-		System.out.println("Inscription User en base");
 	}
 
 	@AfterClass
@@ -55,27 +54,16 @@ public class UserJDBCTest {
 
 	@Before
 	public void setUp() throws Exception {
+		save();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		delete();
 	}
 
 	@Test
 	public final void testSave() {
-		// Test l'enregistrement et la suppression ?? pas top
-		Statement st =null;
-		try {
-			st = cn.createStatement();
-		} catch (SQLException e) {
-			fail("Save : SQL exception create Statement");
-		}
-		String sql = "INSERT INTO `LotuZ`.`User` (`lastName`, `firstName`, `mail`, `tel`, `streetName`, `numHouse`, `city`, `postCode`, `password`, `member`, `activityLeader`) VALUES ('JunitLastName', 'JunitFirstName', 'JunitMail', 'JunitTel', 'JunitStreet', 'JunitNumHouse', 'JunitCity', 'JunitPostCode', 'JunitPassword', '0', '0')";
-		try {
-			st.executeUpdate(sql);
-		} catch (SQLException e) {
-			fail("Save : SQL exception execute requete inscription");
-		}
 	}
 
 
@@ -174,6 +162,9 @@ public class UserJDBCTest {
 
 	@Test
 	public final void testDelete(){
+	}
+
+	private void delete() {
 		Statement st =null;
 		try {
 			st = cn.createStatement();
@@ -186,6 +177,22 @@ public class UserJDBCTest {
 		} catch (SQLException e) {
 			fail("SQL exception execute requete suppression");
 		}
+	}
+	public static void save(){
+		// Test l'enregistrement et la suppression ?? pas top
+				Statement st =null;
+				try {
+					st = cn.createStatement();
+				} catch (SQLException e) {
+					fail("Save : SQL exception create Statement");
+				}
+				String sql = "INSERT INTO `LotuZ`.`User` (`lastName`, `firstName`, `mail`, `tel`, `streetName`, `numHouse`, `city`, `postCode`, `password`, `member`, `activityLeader`) VALUES ('JunitLastName', 'JunitFirstName', 'JunitMail', 'JunitTel', 'JunitStreet', 'JunitNumHouse', 'JunitCity', 'JunitPostCode', 'JunitPassword', '0', '0')";
+				try {
+					st.executeUpdate(sql);
+				} catch (SQLException e) {
+					fail("Save : SQL exception execute requete inscription");
+				}
+		
 	}
 
 }

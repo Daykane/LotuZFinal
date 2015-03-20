@@ -87,12 +87,8 @@ public class JdbcKit extends PersistKit{
 
 
 
-	public void createUserLog(String lastName, String firstName, String mail,
-			String phone, String streetName, String numHouse, String city,
-			String postCode, String password,int member, int activityLeader) {
-		UserLog.init(lastName, firstName, mail,
-				phone, streetName, numHouse, city,
-				postCode, password,member,activityLeader);
+	public void createUserLog(User user) {
+		UserLog.init(user);
 
 		
 	}

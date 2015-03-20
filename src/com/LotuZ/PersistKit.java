@@ -19,9 +19,7 @@ public abstract class PersistKit {
 	//public abstract User login(String mail, String passWordCrypt) throws SQLException;
 	public abstract User createUser();
 	public abstract void createUserLog();
-	public abstract void createUserLog(String lastName, String firstName, String mail,
-			String phone, String streetName, String numHouse, String city,
-			String postCode, String password, int member, int activityLeader);
+	public abstract void createUserLog(User user);
 	public abstract Activity createActivity();
 	public abstract List<User> createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();

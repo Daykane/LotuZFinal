@@ -64,8 +64,8 @@ public class ActivityManager {
 
 	public Activity read(int i) throws SQLException {
 		Activity activity = pkit.createActivity();
-		Activity acti = activity.load(i);
-		return acti;
+		activity = activity.load(i);
+		return activity;
 	}
 
 	public Activity update(Activity acti, String name, String shortDescr, String longDescr,

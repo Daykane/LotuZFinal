@@ -59,7 +59,7 @@ public class ActivityCreateUI extends JFrame {
 				
 				// Init the FacadeBL with the kit
 				FacadeBL.init(jdbcKit);
-				jdbcKit.createUserLog("toto le respo","toto","mail","0626290616","ici","2bis","montp","123456","1",0,1);
+				//jdbcKit.createUserLog("toto le respo","toto","mail","0626290616","ici","2bis","montp","123456","1",0,1);
 				
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
