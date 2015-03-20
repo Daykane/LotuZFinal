@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.hashText.HashTextTest;
+import com.LotuZ.hashText.HashText;
 import com.LotuZ.user.User;
 
 
@@ -41,7 +41,7 @@ public class LoginManager {
 	public void login(String mail,String password, String role) throws SQLException, UserNotFoundException{
 		String passWordCrypt="";
 		try {
-			passWordCrypt = HashTextTest.sha1(password);
+			passWordCrypt = HashText.sha1(password);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}

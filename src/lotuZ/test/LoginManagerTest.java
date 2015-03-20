@@ -12,8 +12,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.hashText.HashTextTest;
+import com.LotuZ.hashText.HashText;
 import com.LotuZ.login.LoginManager;
+import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
@@ -77,15 +78,18 @@ public class LoginManagerTest extends TestCase{
 	 */
 	@Test
 	public final void testLogin() throws SQLException {
-		//LoginManager lm = new LoginManager(pkit);
 		// faire un mock pour UserJDBC
+		LoginManager lm = new LoginManager(pkit);
+		assertNotNull("L'instance n'est pas créée", lm);
+		
 		String mail = "mail";
 		String password = "password";
 		String role ="role";
+			
 		
-		User user = new UserJDBC("lastName", "firstName", "mail","tel",
-				"streetName", "numHouse", "city", "postCode",
-				"password",0,0);
+		User user = createUser();
+		
+		
 		assertNotNull("L'instance n'est pas créée", user);
 		// constructeur avec user en param
 		User userLog = new UserLog(user);
@@ -105,6 +109,14 @@ public class LoginManagerTest extends TestCase{
 	}
 
 
+	protected User createUser() {
+		User user = pkit.createUser();
+		user = new UserJDBC("lastName", "firstName", "mail","tel",
+				"streetName", "numHouse", "city", "postCode",
+				"password",0,0);
+		return user;
+	}
+
 	// existe pas dans LoginManager
 	/**
 	 * Test method for {@link java.lang.Object#hashCode()}.
@@ -114,9 +126,9 @@ public class LoginManagerTest extends TestCase{
 		String passWordCrypt="";
 		String password = "test";
 		try {
-			passWordCrypt = HashTextTest.sha1(password);
+			passWordCrypt = HashText.sha1(password);
 			assertTrue("Le mot de passe n'est pas crypté", password!=passWordCrypt);
-			assertEquals(passWordCrypt,HashTextTest.sha1(password));
+			assertEquals(passWordCrypt,HashText.sha1(password));
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}

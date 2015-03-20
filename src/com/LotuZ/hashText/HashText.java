@@ -4,7 +4,7 @@ package com.LotuZ.hashText;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
  
-public class HashTextTest {
+public class HashText {
  
     public static String sha1(String input) throws NoSuchAlgorithmException {
         MessageDigest mDigest = MessageDigest.getInstance("SHA1");

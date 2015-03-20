@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.hashText.HashTextTest;
+import com.LotuZ.hashText.HashText;
 import com.LotuZ.user.User;
 
 /**
@@ -38,7 +38,7 @@ public class InscriptionManager
 			String postCode, String password) throws ClassNotFoundException, SQLException {
 			String passWordCrypt="";
 			try {
-				passWordCrypt = HashTextTest.sha1(password);
+				passWordCrypt = HashText.sha1(password);
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}
