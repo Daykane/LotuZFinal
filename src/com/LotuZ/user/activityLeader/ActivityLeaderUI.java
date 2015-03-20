@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -36,6 +37,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.sql.SQLException;
+
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import java.awt.CardLayout;
 
 
 public class ActivityLeaderUI extends JFrame{
@@ -159,6 +166,30 @@ public class ActivityLeaderUI extends JFrame{
 			}
 		});
 		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		
+		String[] ar = {"one", "two", "three"};
+
+		JList list = new JList(ar);
+		list.setBounds(51, 53, 366, 343);
+		panel.add(list);
+		
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.setBounds(492, 135, 89, 23);
+		panel.add(btnEdit);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBounds(492, 215, 89, 23);
+		panel.add(btnDelete);
+		
+		
+
+		
+		
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -174,5 +205,4 @@ public class ActivityLeaderUI extends JFrame{
 			}
 		});
 	}
-
 }
