@@ -14,7 +14,7 @@ public abstract class ActivityLeader {
 		// TODO Auto-generated constructor stub
 	}
 
-	private int idActivityLeader;
+
 	private String lastName;
 	private String firstName;
 	private String mail;
@@ -42,21 +42,6 @@ public abstract class ActivityLeader {
 
 
 
-	/**
-	 * @return the idActivity
-	 */
-	public int getIdActivityLeader() {
-		return idActivityLeader;
-	}
-
-
-
-	/**
-	 * @param idActivity the idActivity to set
-	 */
-	public void setIdActivity(int idActivityLeader) {
-		this.idActivityLeader = idActivityLeader;
-	}
 
 
 
@@ -154,15 +139,11 @@ public abstract class ActivityLeader {
 
 
 
-	public Activity update() throws SQLException {
-		return null;
-	}
+	public abstract ActivityLeader update() throws SQLException;
 
 
 
-	public ActivityLeader load(int idActivityLeader) throws SQLException {
-		return null;
-	}
+	public abstract ActivityLeader load(String idActivityLeader) throws SQLException;
 	
 	
 	

@@ -11,7 +11,7 @@ import com.LotuZ.user.User;
 
 public class FacadeActivityLeader {
 
-	public void getActivityLeader(int idActivityLeader) throws SQLException, UserNotFoundException{
+	public void getActivityLeader(String idActivityLeader) throws SQLException, UserNotFoundException{
 		FacadeBL.getActivityLeader(idActivityLeader);
 	}
 	
