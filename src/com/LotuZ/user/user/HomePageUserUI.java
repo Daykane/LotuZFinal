@@ -70,8 +70,8 @@ public class HomePageUserUI extends JFrame {
 		btnGestionEvent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ActivityCreateUI activityUI =  new ActivityCreateUI();				
-				activityUI.setVisible(true);
+				//ActivityCreateUI activityUI =  new ActivityCreateUI();				
+				//activityUI.setVisible(true);
 			}
 		});
 		btnGestionEvent.setBounds(36, 153, 99, 23);
