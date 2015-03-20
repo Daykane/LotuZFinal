@@ -1,6 +1,8 @@
 package com.LotuZ.product;
 import java.sql.Date;
 
+import com.LotuZ.product.category.CategoryProduct;
+
 
 public abstract class Product {
 	

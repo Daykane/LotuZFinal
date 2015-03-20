@@ -1,4 +1,4 @@
-package com.LotuZ.product;
+package com.LotuZ.product.category;
 
 import interfaceDeBase.PageAccueiltest;
 
