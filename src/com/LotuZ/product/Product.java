@@ -1,6 +1,5 @@
 package com.LotuZ.product;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 import com.LotuZ.product.category.CategoryProduct;
@@ -29,12 +28,13 @@ public abstract class Product {
 	 * @param price
 	 * @param reduction
 	 */
-	public Product(String productName, int quantity, int price, int reduction) {
+	public Product(String productName, int quantity, int price, int reduction, int category) {
 		super();
 		this.productName = productName;
 		this.quantity = quantity;
 		this.price = price;
 		this.reduction = reduction;
+		this.category = category;
 	}
 
 

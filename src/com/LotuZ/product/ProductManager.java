@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserLog;
+import com.LotuZ.activity.Activity;
+
 
 public class ProductManager {
 	
@@ -31,8 +31,7 @@ public class ProductManager {
 		this.setPkit(kit);
 	}
 	
-	public void createProduct(String productName, int quantity, int price, int reduction) throws ClassNotFoundException, SQLException {
-		User user = UserLog.getUserLog();
+	public void createProduct(String productName, int quantity, int price, int reduction, int category) throws ClassNotFoundException, SQLException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		// Create empty ProductJDBC
@@ -45,8 +44,15 @@ public class ProductManager {
 		product.setReduction(reduction);
 		product.setCreationDate(dateFormat.format(date));
 		product.setUpdateDate(dateFormat.format(date));
-		// Save in database the user
+		product.setCategory(category);
+		// Save in database 
 		product.saveProduct();
+	}
+	
+	public Product readProduct(int idProduct) throws SQLException {
+		Product product = pkit.createProduct();
+		product = product.loadProduct(idProduct);
+		return product;
 	}
 
 

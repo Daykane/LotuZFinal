@@ -129,7 +129,7 @@ private Connection cn;
 			Statement st =null;
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "DELETE product WHERE `idProduct`='"+this.getId() +"'";
+			String sql = "DELETE FROM product WHERE `idProduct`='"+this.getId() +"'";
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);	
 			
