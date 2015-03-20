@@ -203,7 +203,7 @@ public class InscriptionUserUI extends JFrame {
 		gbc_lblConfirmPw.gridy = 9;
 		panelLabel.add(lblConfirmPw, gbc_lblConfirmPw);
 		
-		// Label empty garder la mise en page lors de la réduction fenetre
+		// Label empty garder la mise en page lors de la rï¿½duction fenetre
 		JLabel label = new JLabel("");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.gridx = 0;
@@ -385,7 +385,7 @@ public class InscriptionUserUI extends JFrame {
 				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 					try {
 						FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
-						JOptionPane.showMessageDialog(null,"Inscription réussie","Inscription réussie",JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"Inscription rï¿½ussie","Inscription rï¿½ussie",JOptionPane.INFORMATION_MESSAGE);
 					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 						JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 					} catch (ClassNotFoundException e) {
