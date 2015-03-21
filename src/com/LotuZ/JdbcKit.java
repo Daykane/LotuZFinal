@@ -24,6 +24,10 @@ import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 import com.LotuZ.user.activityLeader.data.ActivityLeaderJDBC;
 import com.LotuZ.user.activityLeader.data.ListActivityLeaderJDBC;
+import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.contributor.bl.ListContributor;
+import com.LotuZ.user.contributor.data.ContributorJDBC;
+import com.LotuZ.user.contributor.data.ListContributorJDBC;
 
 
 /**
@@ -167,6 +171,22 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public Product createProduct() {
 		return new ProductJDBC(this.cn);
+	}
+
+
+
+
+	@Override
+	public ListContributor createListContributor() {
+		return new ListContributorJDBC(this.cn);
+	}
+
+
+
+
+	@Override
+	public Contributor createContributor() {
+		return new ContributorJDBC(this.cn);
 	}
 
 }

@@ -13,6 +13,9 @@ import com.LotuZ.user.User;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
+import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.contributor.bl.ContributorManager;
+import com.LotuZ.user.contributor.bl.ListContributor;
 
 public class FacadeBL {
 	
@@ -20,6 +23,7 @@ public class FacadeBL {
 	private static InscriptionManager inscriptionManager;
 	private static ActivityManager activityManager;
 	private static ActivityLeaderManager activityLeaderManager;
+	private static ContributorManager contributorManager;
 	
 	public static void init(PersistKit kit){
 		loginManager = new LoginManager(kit);
@@ -76,5 +80,17 @@ public class FacadeBL {
 			String longDescr, String idRespo) throws SQLException {	
 		Activity activity = activityManager.update(acti,name,shortDescr,longDescr,idRespo);
 		return activity;	
+	}
+	
+	public static Contributor getContributor(String idContributor) throws SQLException, UserNotFoundException{
+		return contributorManager.getContributor(idContributor);
+	}
+	
+	public static Contributor updateContributor(Contributor contributor) throws SQLException {	
+		return contributorManager.modifyContributor(contributor);	
+	}
+	
+	public static ListContributor getContributors() throws SQLException, UserNotFoundException{
+		return contributorManager.getContributors();
 	}
 }
