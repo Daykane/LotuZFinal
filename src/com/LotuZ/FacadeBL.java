@@ -38,9 +38,14 @@ public class FacadeBL {
 		inscriptionManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
 	
-	public static void login(String mail, String password, String role) throws SQLException, UserNotFoundException{
-		loginManager.login(mail,password,role);
+	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{
+		loginManager.loginUser(mail,password);
 	}
+	
+	public static void loginContri(String mail, String password) throws SQLException, UserNotFoundException{
+		loginManager.loginContri(mail,password);
+	}
+
 
 	public  List<Activity> getActivities() {
 		return activityManager.getActivities();

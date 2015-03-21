@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import com.LotuZ.FacadeBL;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.HomepageUI;
 import com.LotuZ.user.User;
@@ -105,9 +106,12 @@ public class LoginUI extends JFrame {
 				try {
 					if (chckbxSpeaker.isSelected()){
 						// TODO
+						 FacadeBL.loginContri(TfMail.getText(),Tfpassword.getText());
+						 
 					}
 					else{
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
+					}
 					User user = UserLog.getUserLog();
 					
 					if (user.getMember() == 1){
@@ -121,7 +125,7 @@ public class LoginUI extends JFrame {
 					
 					PageAccueiltest pageAcceuil = new PageAccueiltest();
 					pageAcceuil.setVisible(true);
-					}
+					
 					
 				} 
 				catch (UserNotFoundException e){

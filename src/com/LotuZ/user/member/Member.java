@@ -46,6 +46,6 @@ public abstract class Member extends User{
 	}
 
 	@Override
-	public abstract User load(String mail, String passWordCrypt,String role) throws SQLException;
+	public abstract User load(String mail) throws SQLException;
 
 }

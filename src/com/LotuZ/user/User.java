@@ -212,7 +212,7 @@ public abstract class User {
 
 	public abstract void save() throws SQLException, ClassNotFoundException;
 
-	public abstract User load(String mail, String passWordCrypt, String role) throws SQLException;
+	public abstract User load(String mail) throws SQLException;
 
 
 }

@@ -59,18 +59,14 @@ public class UserJDBC extends User{
 		}
 	}
 	
-	public User load(String mail,String password, String role) throws SQLException{
+	public User load(String mail) throws SQLException{
 		User user = null;
-		String table = null;
-		if (role == "user"){
-			table = "LotuZ.User";
-		}
 		try {
 
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "Select * From "+table+" Where mail="+'"'+mail+'"'+"and password="+'"'+password+'"';
+			String sql = "Select * From LotuZ.User Where mail="+'"'+mail+'"';
 			// Etape 4 : exécution requête
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
@@ -83,7 +79,7 @@ public class UserJDBC extends User{
 				String numHouse = result.getString("numHouse");
 				String city = result.getString("city");
 				String postCode = result.getString("postCode");
-				//String password = result.getString("password");
+				String password = result.getString("password");
 				int member = result.getInt("member");
 				int activityLeader = result.getInt("activityLeader");
 				
