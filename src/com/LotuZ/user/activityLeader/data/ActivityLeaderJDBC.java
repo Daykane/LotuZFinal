@@ -8,9 +8,24 @@ import java.sql.Statement;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 
+/**
+ * 
+ * @author Ludo
+ *
+ */
+
 public class ActivityLeaderJDBC extends ActivityLeader{
 	
-	
+	/**
+	 * @param lastName
+	 * @param firstName
+	 * @param mail
+	 * @param tel
+	 * @param streetName
+	 * @param numHouse
+	 * @param city
+	 * @param postCode
+	 */
 	public ActivityLeaderJDBC(String lastName, String firstName, String mail,
 			String tel, String streetName, String numHouse, String city,
 			String postCode) {
@@ -18,6 +33,9 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	}
 	
 	
+	/**
+	 *  Necessary for the connection of the database
+	 */
 	private Connection cn;
 
 	/**
@@ -28,21 +46,23 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	}	
 	
 
-	public ActivityLeaderJDBC() {
-		// TODO Auto-generated constructor stub
-	}
-
-
+	/**
+	 * Lecture d'un responsable d'activité en base à partir de son identifiant 
+	 */
 	@Override
 	public ActivityLeader load(String idActivityLeader) throws SQLException {
 		try {
 			Statement st =null;
-			// Etape 3 : Création d'un statement
+			// Création d'un statement
 			st = this.cn.createStatement();
+			
+			// Requête de sélection à partir de l'identifiant 
 			String sql = "Select * From LotuZ.User Where mail="+'"'+idActivityLeader+'"';
-			// Etape 4 : exécution requête
-
+			
+			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
+			
+			// Récupération des données 
 			while(result.next()){	
 				this.setLastName(result.getString("lastName"));
 				this.setFirstName(result.getString( "firstName" ));
@@ -53,37 +73,57 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 				this.setCity(result.getString( "city" ));
 				this.setPostCode(result.getString( "postCode" ));
 			}
-			this.setCn(this.cn);
+		
 		} catch (SQLException e) {
 			throw e;
 		}
 		return this;
 	}
 	
-	public ActivityLeader update() throws SQLException {
-	try {		
-		Statement st =null;
-		// Etape 3 : Création d'un statement
-		st = this.cn.createStatement();
 
-		String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-				+"',`tel`='"+this.getTel()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
-		// Etape 4 : exécution requête
-		st.executeUpdate(sql);
-		//String sqlCommit = "commit;";
-		// Etape 4 : exécution requête
-		//st.executeUpdate(sqlCommit);
-		
-	} catch (SQLException e) {
-		throw e;
-	}
-	return this;
-	}
 	/**
-	 * @param cn the cn to set
+	 * Modification d'un responsable d'activité en base à partir de son identifiant 
 	 */
-	public void setCn(Connection cn) {
-		this.cn = cn;
+	@Override
+	public ActivityLeader update() throws SQLException {
+		try {		
+			Statement st =null;
+			// Création d'un statement
+			st = this.cn.createStatement();
+		
+			// Requête de modification
+			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
+				+"',`tel`='"+this.getTel()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
+		
+			// Exécution requête
+			st.executeUpdate(sql);
+		
+			} catch (SQLException e) {
+				throw e;
+			}
+		return this;
+	}
+	
+
+	/**
+	 * Suppression d'un responsable d'activité en base à partir de son identifiant 
+	 */
+	@Override
+	public void delete(String idActivityLeader) throws SQLException {
+		try {	
+			Statement st =null;
+			// Création d'un statement
+			st = this.cn.createStatement();
+		
+			// Requête de modification
+			String sql = "Delete From User Where mail="+'"'+idActivityLeader+'"';
+			
+			// Exécution requête
+			st.executeUpdate(sql);
+		
+		} catch (SQLException e) {
+			throw e;
+		}
 	}
 
 

@@ -1,9 +1,6 @@
 package com.LotuZ.user.activityLeader.ui;
 
-import interfaceDeBase.PageAccueiltest;
-
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -20,17 +17,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 import javax.swing.JTextField;
-import javax.swing.BoxLayout;
-
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 
 public class ActivityLeaderDetailUI extends JFrame{
@@ -95,7 +87,7 @@ public class ActivityLeaderDetailUI extends JFrame{
 		JLabel lblToto = new JLabel("LOGO");
 		lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblToto.setHorizontalAlignment(SwingConstants.LEFT);
-		//panel.add(lblToto, BorderLayout.WEST);
+		
 
 		JLabel image = new JLabel(new ImageIcon("zen.jpg"));
 		panelBandeau.add(image,BorderLayout.WEST);

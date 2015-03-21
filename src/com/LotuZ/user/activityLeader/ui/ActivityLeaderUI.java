@@ -1,82 +1,43 @@
 package com.LotuZ.user.activityLeader.ui;
 
-import interfaceDeBase.PageAccueiltest;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
 import java.awt.GridLayout;
 
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.BoxLayout;
-
 import java.awt.FlowLayout;
-import java.awt.CardLayout;
-
-import javax.swing.border.LineBorder;
-
 import java.awt.Color;
-
-import javax.swing.ListSelectionModel;
 
 
 public class ActivityLeaderUI extends JFrame{
 
-	private JFrame frame;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ActivityLeaderUI frame = new ActivityLeaderUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -93,6 +54,8 @@ public class ActivityLeaderUI extends JFrame{
 	 * @throws SQLException 
 	 */
 	private void initialize() throws SQLException, UserNotFoundException {
+		
+		// Demande de l'identité de l'utilisateur logué 
 		User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
@@ -118,7 +81,7 @@ public class ActivityLeaderUI extends JFrame{
 		JLabel lblToto = new JLabel("LOGO");
 		lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblToto.setHorizontalAlignment(SwingConstants.LEFT);
-		//panel.add(lblToto, BorderLayout.WEST);
+
 
 		JLabel image = new JLabel(new ImageIcon("zen.jpg"));
 		panelBandeau.add(image,BorderLayout.WEST);
@@ -196,7 +159,7 @@ public class ActivityLeaderUI extends JFrame{
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 60));
 		
 		
-		JList list = new JList();
+		JList list = new JList(ar);
 		panel.add(list);
 		list.setPreferredSize(new Dimension(500, 300));
 
@@ -206,6 +169,7 @@ public class ActivityLeaderUI extends JFrame{
 		
 		JButton btnDelete = new JButton("Delete");
 		panel.add(btnDelete);
+		
 		
 			
 		
