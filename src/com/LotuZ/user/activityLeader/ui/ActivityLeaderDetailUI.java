@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
+import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
@@ -28,6 +29,8 @@ import javax.swing.JButton;
 public class ActivityLeaderDetailUI extends JFrame{
 
 	private FacadeBL facadeBL;
+	
+	public static ActivityLeaderDetailUI frame;
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -47,8 +50,8 @@ public class ActivityLeaderDetailUI extends JFrame{
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ActivityLeaderDetailUI() throws SQLException, UserNotFoundException {
-		initialize();
+	public ActivityLeaderDetailUI(String idActivityLeader) throws SQLException, UserNotFoundException {
+		initialize(idActivityLeader);
 	}
 
 	/**
@@ -56,11 +59,10 @@ public class ActivityLeaderDetailUI extends JFrame{
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	private void initialize() throws SQLException, UserNotFoundException {
+	private void initialize(String idActivityLeader) throws SQLException, UserNotFoundException {
 		
-		final ActivityLeader activityLeader = FacadeBL.getActivityLeader("bobo");
-		System.out.println("mail : "+activityLeader.getMail());
-		//activityLeader = FacadeBL.getActivityLeader("bobo");
+		final ActivityLeader activityLeader = FacadeBL.getActivityLeader(idActivityLeader);
+		
 		
 		User user = UserLog.getUserLog();
 
@@ -224,6 +226,7 @@ public class ActivityLeaderDetailUI extends JFrame{
 		HouseNumber.setColumns(10);
 		HouseNumber.setText(activityLeader.getNumHouse());
 		
+		System.out.println("mail : "+activityLeader.getMail());
 		City = new JTextField();
 		City.setBounds(326, 297, 160, 20);
 		panel.add(City);

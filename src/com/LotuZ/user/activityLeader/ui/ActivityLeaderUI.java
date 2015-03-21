@@ -11,11 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
+import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
@@ -26,9 +28,10 @@ import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Window;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-
 import java.awt.FlowLayout;
 import java.awt.Color;
 
@@ -36,7 +39,10 @@ import java.awt.Color;
 public class ActivityLeaderUI extends JFrame{
 
 	private static final long serialVersionUID = 1L;
+	public static ActivityLeaderUI frame;
 	private JPanel contentPane;
+	private JList list;
+
 
 
 	/**
@@ -45,6 +51,7 @@ public class ActivityLeaderUI extends JFrame{
 	 * @throws SQLException 
 	 */
 	public ActivityLeaderUI() throws SQLException, UserNotFoundException {
+		super();
 		initialize();
 	}
 
@@ -148,27 +155,74 @@ public class ActivityLeaderUI extends JFrame{
 		panel.setToolTipText("");
 		panel.setForeground(new Color(153, 204, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 60));	
 		
-		
-		final ListActivityLeader activityLeader = FacadeBL.getActivityLeaders();
-		List<User> listUser1 = activityLeader.getListActivityLeader();
-		User user1 = listUser1.get(0);
-		User user2 = listUser1.get(1);
-		User user3 = listUser1.get(2);
-		String[] ar = {user1.getFirstName(),user2.getFirstName(),user3.getPhone()};
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 60));
-		
-		
-		JList list = new JList(ar);
+
+		List<String> tabOfLeader = getList();
+		list = new JList(tabOfLeader.toArray());
 		panel.add(list);
 		list.setPreferredSize(new Dimension(500, 300));
 
 		
+		list.getSelectedValue();
+
 		JButton btnEdit = new JButton("Edit");
 		panel.add(btnEdit);
 		
+		btnEdit.addMouseListener(new MouseAdapter()  {
+			public void mouseClicked(MouseEvent arg0){
+				try {
+				int index = list.getSelectedIndex();
+				System.out.println("Index Selected: " + index);
+				String s = (String) list.getSelectedValue();
+				System.out.println("Value Selected: " + s);
+				String idActivityLeader = s;
+				ActivityLeaderDetailUI detailActivityLeaderUI = null;
+				detailActivityLeaderUI = new ActivityLeaderDetailUI(idActivityLeader);
+				ActivityLeaderDetailUI.frame = detailActivityLeaderUI;
+				ActivityLeaderDetailUI.frame.setAlwaysOnTop(true);
+				detailActivityLeaderUI.setVisible(true);
+				frame.dispose();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		});
+		
+		
+		
 		JButton btnDelete = new JButton("Delete");
 		panel.add(btnDelete);
+		
+		btnDelete.addMouseListener(new MouseAdapter()  {
+			public void mouseClicked(MouseEvent arg0){
+				try {
+				int index = list.getSelectedIndex();
+				System.out.println("Index Selected: " + index);
+				String s = (String) list.getSelectedValue();
+				System.out.println("Value Selected: " + s);
+				String idActivityLeader = s;
+				ActivityLeaderDetailUI detailActivityLeaderUI = null;
+				detailActivityLeaderUI = new ActivityLeaderDetailUI(idActivityLeader);
+				ActivityLeaderDetailUI.frame = detailActivityLeaderUI;
+				ActivityLeaderDetailUI.frame.setAlwaysOnTop(true);
+				detailActivityLeaderUI.setVisible(true);
+				frame.dispose();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		});
 		
 		
 			
@@ -187,5 +241,21 @@ public class ActivityLeaderUI extends JFrame{
 				lblConnexion.setText(Connexion);
 			}
 		});
+	}
+	
+	private List<String> getList() throws SQLException, UserNotFoundException {
+		
+		ListActivityLeader listActivityLeader = FacadeBL.getActivityLeaders();
+		List<User> listUser = listActivityLeader.getListActivityLeader();
+		List<String> tabOfLeader = new ArrayList<String>();
+		
+	    for(int i = 0; i < listUser.size(); i++)
+	    {
+	    	User user = listUser.get(0);
+	    	String nomPrenom = listUser.get(i).getFirstName()+" - "+listUser.get(i).getLastName();
+	    	tabOfLeader.add(i,nomPrenom);
+	    }
+
+	return tabOfLeader;
 	}
 }
