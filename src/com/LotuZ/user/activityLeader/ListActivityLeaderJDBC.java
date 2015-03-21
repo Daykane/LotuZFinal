@@ -18,16 +18,23 @@ import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 
 
-public class ListActivityLeaderJDBC extends User{
-	
-	private Connection cn;
+public class ListActivityLeaderJDBC extends ListActivityLeader {
 
-	public ListActivityLeaderJDBC(Connection cn) {
-		this.cn = cn;
+	private Connection cn;
+	
+	public ListActivityLeaderJDBC(List<User> listActivityLeader) {
+		super(listActivityLeader);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public ListActivityLeaderJDBC(Connection cn2) {
+		this.cn = cn2;
 	}
 
 	
-	public List<User> load() throws SQLException{
+	public ListActivityLeader load(){
 		
 		List<User> users = new ArrayList<User>();
 
@@ -43,9 +50,15 @@ public class ListActivityLeaderJDBC extends User{
 				users.add( map(result));
 			}
 		} catch (SQLException e) {
-			throw e;
+			try {
+				throw e;
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		return users;
+		ListActivityLeader listLeader = new ListActivityLeaderJDBC(users);
+		return listLeader;
 	}
 	
 	
@@ -56,7 +69,7 @@ public class ListActivityLeaderJDBC extends User{
 		user.setLastName(resultSet.getString( "lastName" ));
 		user.setFirstName(resultSet.getString( "firstName" ));
 		user.setMail(resultSet.getString( "mail" ));
-		user.setPhone(resultSet.getString( "phone" ));
+		user.setPhone(resultSet.getString( "Tel" ));
 		user.setStreetName(resultSet.getString( "streetName" ));
 		user.setNumHouse(resultSet.getString( "numHouse" ));
 		user.setCity(resultSet.getString( "city" ));
@@ -68,18 +81,5 @@ public class ListActivityLeaderJDBC extends User{
     }
 
 
-	@Override
-	public void save() throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public User load(String mail, String passWordCrypt, String role)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

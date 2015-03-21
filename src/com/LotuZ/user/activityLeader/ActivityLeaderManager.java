@@ -27,11 +27,11 @@ public class ActivityLeaderManager {
 	}
 	
 	
-	/*public static List<User> getActivityLeaders() throws SQLException {
-		ListActivityLeaderJDBC users = null;
-		//ListActivityLeaderJDBC users = pkit.createListActivityLeader();
+	public ListActivityLeader getActivityLeaders() throws SQLException {
+		//ListActivityLeaderJDBC users = null;
+		ListActivityLeader users = pkit.createListActivityLeader();
 		//users.load()
 		return users.load();
-	}*/
+	}
 
 }

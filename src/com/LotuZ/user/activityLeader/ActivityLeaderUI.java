@@ -37,10 +37,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.BoxLayout;
+
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
 
@@ -70,15 +72,19 @@ public class ActivityLeaderUI extends JFrame{
 
 	/**
 	 * Create the application.
+	 * @throws UserNotFoundException 
+	 * @throws SQLException 
 	 */
-	public ActivityLeaderUI() {
+	public ActivityLeaderUI() throws SQLException, UserNotFoundException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws UserNotFoundException 
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException, UserNotFoundException {
 		User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
@@ -172,8 +178,14 @@ public class ActivityLeaderUI extends JFrame{
 		panel.setLayout(null);
 		
 		
-		String[] ar = {"one", "two", "three"};
-
+		final ListActivityLeader activityLeader = FacadeBL.getActivityLeaders();
+		List<User> listUser1 = activityLeader.getListActivityLeader();
+		User user1 = listUser1.get(0);
+		User user2 = listUser1.get(1);
+		User user3 = listUser1.get(2);
+		String[] ar = {user1.getFirstName(),user2.getFirstName(),user3.getPhone()};
+		//String[] ar = {activityLeader.getFirstName(),activityLeader.getLastName(),activityLeader.getTel()};
+		
 		JList list = new JList(ar);
 		list.setBounds(51, 53, 366, 343);
 		panel.add(list);

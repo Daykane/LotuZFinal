@@ -12,6 +12,7 @@ import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.activityLeader.ActivityLeader;
 import com.LotuZ.user.activityLeader.ActivityLeaderManager;
+import com.LotuZ.user.activityLeader.ListActivityLeader;
 
 public class FacadeBL {
 	
@@ -49,9 +50,10 @@ public class FacadeBL {
 	public static ActivityLeader updateActivityLeader(ActivityLeader activityLeader) throws SQLException {	
 		return activityLeaderManager.modifyActivityLeader(activityLeader);	
 	}
-	/*public static List<User> getActivityLeaders() throws SQLException, UserNotFoundException{
-		return ActivityLeaderManager.getActivityLeaders();
-	}*/
+	
+	public static ListActivityLeader getActivityLeaders() throws SQLException, UserNotFoundException{
+		return activityLeaderManager.getActivityLeaders();
+	}
 
 	public static void createActivity(String name, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
 		activityManager.create(name, shortDescr, longDescr);
