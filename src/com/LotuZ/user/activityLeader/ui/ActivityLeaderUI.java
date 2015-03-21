@@ -1,60 +1,89 @@
-package com.LotuZ.user.activityLeader;
+package com.LotuZ.user.activityLeader.ui;
 
 import interfaceDeBase.PageAccueiltest;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
+import java.awt.GridLayout;
+
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.inscription.InscriptionUserUI;
+import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 
-import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
 import javax.swing.BoxLayout;
 
 import java.awt.FlowLayout;
+import java.awt.CardLayout;
 
-import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
-public class ActivityLeaderDetailUI extends JFrame{
+import java.awt.Color;
 
-	private FacadeBL facadeBL;
-	
-	
+import javax.swing.ListSelectionModel;
+
+
+public class ActivityLeaderUI extends JFrame{
+
+	private JFrame frame;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField LastName;
-	private JTextField FirstName;
-	private JTextField AdressMail;
-	private JTextField StreetName;
-	private JTextField PhoneNumber;
-	private JTextField HouseNumber;
-	private JTextField City;
-	private JTextField PostCode;
 
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ActivityLeaderUI frame = new ActivityLeaderUI();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ActivityLeaderDetailUI() throws SQLException, UserNotFoundException {
+	public ActivityLeaderUI() throws SQLException, UserNotFoundException {
 		initialize();
 	}
 
@@ -64,11 +93,6 @@ public class ActivityLeaderDetailUI extends JFrame{
 	 * @throws SQLException 
 	 */
 	private void initialize() throws SQLException, UserNotFoundException {
-		
-		final ActivityLeader activityLeader = FacadeBL.getActivityLeader("bobo");
-		System.out.println("mail : "+activityLeader.getMail());
-		//activityLeader = FacadeBL.getActivityLeader("bobo");
-		
 		User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
@@ -86,7 +110,7 @@ public class ActivityLeaderDetailUI extends JFrame{
 		panelBandeau.setLayout(new BorderLayout(0, 0));
 
 
-		JLabel lblTitle = new JLabel("Responsable d'Activité");
+		JLabel lblTitle = new JLabel("NOM DE TA PAGE");
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		panelBandeau.add(lblTitle, BorderLayout.CENTER);
@@ -158,117 +182,32 @@ public class ActivityLeaderDetailUI extends JFrame{
 		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JPanel panel = new JPanel();
+		panel.setToolTipText("");
+		panel.setForeground(new Color(153, 204, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Last Name");
-		lblNewLabel.setBounds(233, 60, 73, 14);
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		panel.add(lblNewLabel);
 		
-		LastName = new JTextField();
-		LastName.setBounds(326, 57, 160, 20);
-		panel.add(LastName);
-		LastName.setColumns(10);
-		LastName.setText(activityLeader.getLastName());
+		final ListActivityLeader activityLeader = FacadeBL.getActivityLeaders();
+		List<User> listUser1 = activityLeader.getListActivityLeader();
+		User user1 = listUser1.get(0);
+		User user2 = listUser1.get(1);
+		User user3 = listUser1.get(2);
+		String[] ar = {user1.getFirstName(),user2.getFirstName(),user3.getPhone()};
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 60));
 		
-		FirstName = new JTextField();
-		FirstName.setBounds(326, 100, 160, 20);
-		panel.add(FirstName);
-		FirstName.setColumns(10);
-		FirstName.setText(activityLeader.getFirstName());
 		
-		JLabel lblNewLabel_1 = new JLabel("First Name");
-		lblNewLabel_1.setBounds(233, 100, 83, 20);
-		panel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Adress Mail");
-		lblNewLabel_2.setBounds(233, 140, 73, 14);
-		panel.add(lblNewLabel_2);
-		
-		AdressMail = new JTextField();
-		AdressMail.setBounds(326, 137, 160, 20);
-		panel.add(AdressMail);
-		AdressMail.setColumns(10);
-		AdressMail.setText(activityLeader.getMail());
-		
-		JLabel lblNewLabel_3 = new JLabel("Phone Number");
-		lblNewLabel_3.setBounds(233, 220, 73, 14);
-		panel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Street Name");
-		lblNewLabel_4.setBounds(233, 180, 73, 14);
-		panel.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("House Number");
-		lblNewLabel_5.setBounds(233, 260, 73, 14);
-		panel.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("City");
-		lblNewLabel_6.setBounds(233, 300, 73, 14);
-		panel.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("Post Code");
-		lblNewLabel_7.setBounds(233, 340, 73, 14);
-		panel.add(lblNewLabel_7);
-		
-		StreetName = new JTextField();
-		StreetName.setBounds(326, 177, 160, 20);
-		panel.add(StreetName);
-		StreetName.setColumns(10);
-		StreetName.setText(activityLeader.getStreetName());
-		
-		PhoneNumber = new JTextField();
-		PhoneNumber.setBounds(326, 217, 160, 20);
-		panel.add(PhoneNumber);
-		PhoneNumber.setColumns(10);
-		PhoneNumber.setText(activityLeader.getTel());
-		
-		HouseNumber = new JTextField();
-		HouseNumber.setBounds(326, 257, 160, 20);
-		panel.add(HouseNumber);
-		HouseNumber.setColumns(10);
-		HouseNumber.setText(activityLeader.getNumHouse());
-		
-		City = new JTextField();
-		City.setBounds(326, 297, 160, 20);
-		panel.add(City);
-		City.setColumns(10);
-		City.setText(activityLeader.getCity());
-		
-		PostCode = new JTextField();
-		PostCode.setBounds(326, 337, 160, 20);
-		panel.add(PostCode);
-		PostCode.setColumns(10);
-		PostCode.setText(activityLeader.getPostCode());
+		JList list = new JList();
+		panel.add(list);
+		list.setPreferredSize(new Dimension(500, 300));
+
 		
 		JButton btnEdit = new JButton("Edit");
-		btnEdit.setBounds(190, 428, 89, 23);
-		btnEdit.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				try {
-					activityLeader.setLastName(LastName.getText());
-					activityLeader.setFirstName(FirstName.getText());
-					activityLeader.setMail(AdressMail.getText());
-					activityLeader.setStreetName(StreetName.getText());
-					activityLeader.setTel(PhoneNumber.getText());
-					activityLeader.setNumHouse(HouseNumber.getText());
-					activityLeader.setCity(City.getText());
-					activityLeader.setPostCode(PostCode.getText());
-					FacadeBL.updateActivityLeader(activityLeader);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				JOptionPane.showMessageDialog(null,"Edition effectuée","Edition effectuée",JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
 		panel.add(btnEdit);
 		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(427, 428, 89, 23);
-		panel.add(btnCancel);
+		JButton btnDelete = new JButton("Delete");
+		panel.add(btnDelete);
+		
+			
 		
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override

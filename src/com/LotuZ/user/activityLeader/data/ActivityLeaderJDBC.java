@@ -1,9 +1,11 @@
-package com.LotuZ.user.activityLeader;
+package com.LotuZ.user.activityLeader.data;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 
 public class ActivityLeaderJDBC extends ActivityLeader{

@@ -1,4 +1,4 @@
-package com.LotuZ.user.activityLeader;
+package com.LotuZ.user.activityLeader.bl;
 
 import java.sql.Connection;
 import java.util.List;

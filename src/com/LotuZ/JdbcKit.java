@@ -20,10 +20,10 @@ import com.LotuZ.product.ProductJDBC;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.activityLeader.ActivityLeader;
-import com.LotuZ.user.activityLeader.ActivityLeaderJDBC;
-import com.LotuZ.user.activityLeader.ListActivityLeader;
-import com.LotuZ.user.activityLeader.ListActivityLeaderJDBC;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
+import com.LotuZ.user.activityLeader.data.ActivityLeaderJDBC;
+import com.LotuZ.user.activityLeader.data.ListActivityLeaderJDBC;
 
 
 /**

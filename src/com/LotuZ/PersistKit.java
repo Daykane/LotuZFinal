@@ -11,8 +11,8 @@ import java.util.List;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.product.Product;
 import com.LotuZ.user.User;
-import com.LotuZ.user.activityLeader.ActivityLeader;
-import com.LotuZ.user.activityLeader.ListActivityLeader;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 
 public abstract class PersistKit {
 	

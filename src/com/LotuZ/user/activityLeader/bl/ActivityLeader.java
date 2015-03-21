@@ -1,4 +1,4 @@
-package com.LotuZ.user.activityLeader;
+package com.LotuZ.user.activityLeader.bl;
 
 import java.sql.SQLException;
 import java.util.Vector;

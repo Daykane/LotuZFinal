@@ -10,9 +10,9 @@ import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.User;
-import com.LotuZ.user.activityLeader.ActivityLeader;
-import com.LotuZ.user.activityLeader.ActivityLeaderManager;
-import com.LotuZ.user.activityLeader.ListActivityLeader;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
+import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 
 public class FacadeBL {
 	

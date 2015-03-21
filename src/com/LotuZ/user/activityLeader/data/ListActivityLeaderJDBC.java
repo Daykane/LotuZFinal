@@ -1,4 +1,4 @@
-package com.LotuZ.user.activityLeader;
+package com.LotuZ.user.activityLeader.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
+import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 
 
 public class ListActivityLeaderJDBC extends ListActivityLeader {
