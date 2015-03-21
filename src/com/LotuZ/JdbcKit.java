@@ -40,6 +40,7 @@ public class JdbcKit extends PersistKit{
 	
 	//List of ConcretObjectJdbc
 	private UserJDBC userJdbc;
+	private ContributorJDBC contribJdbc;
 	private ActivityJdbc activityJdbc;
 	
 	
@@ -187,6 +188,15 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public Contributor createContributor() {
 		return new ContributorJDBC(this.cn);
+	}
+
+
+
+
+	@Override
+	public void createContribLog(Contributor contrib) {
+		UserLog.init(contrib);
+		
 	}
 
 }

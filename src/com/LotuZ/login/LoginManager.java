@@ -64,13 +64,21 @@ public class LoginManager {
 		// TODO Auto-generated method stub
 		Contributor contrib = this.pkit.createContributor();
 		contrib = contrib.load(mail);
-		System.out.println("il c'est passé quelque chose");
-		if (contrib == null){
-			System.out.println("on a pas de contributor");
+
+		try {
+			password = HashText.sha1(password);
+			//passWordCrypt = HashText.sha1(user.getPassword());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
+		// Manque le password
+		if(contrib != null ){
+				// Create singleton userJdbc for login
+				this.pkit.createContribLog(contrib);
+			}
+			
 		else{
-			System.out.println(contrib.getLastName());
-			System.out.println("il n'est pas null");
+			//throw new UserNotFoundException(); 
 		}
 		
 

@@ -24,10 +24,12 @@ public abstract class PersistKit {
 	public abstract User createUser();
 	public abstract void createUserLog();
 	public abstract void createUserLog(User user);
+	public abstract Contributor createContributor();
+	public abstract void createContribLog(Contributor contrib);
 	public abstract Activity createActivity();
 	public abstract ListActivityLeader createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();
 	public abstract Product createProduct();
 	public abstract ListContributor createListContributor();
-	public abstract Contributor createContributor();
+
 	}
