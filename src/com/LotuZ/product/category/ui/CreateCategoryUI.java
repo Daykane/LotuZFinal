@@ -13,8 +13,10 @@ import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -250,9 +252,44 @@ public class CreateCategoryUI extends JFrame {
 		
 		//levelCategory
 		
+			//label
+		JLabel lblLevelCategory =new JLabel("Level : ");
+		GridBagConstraints gbc_lblLevelCategory = new GridBagConstraints();
+		gbc_lblLevelCategory.gridx = 0;
+		gbc_lblLevelCategory.gridy = 3;
+		categoryPan.add(lblLevelCategory, gbc_lblLevelCategory);
+		
+			//ComboBox
+		
+		Object[] elements = new Object[]{"Category", "Sous Category"};
+		GridBagConstraints gbc_cBoxLevelCategory = new GridBagConstraints();
+		gbc_cBoxLevelCategory.gridx = 1;
+		gbc_cBoxLevelCategory.gridy = 3;		
+		JComboBox cBoxLevelCategory = new JComboBox(elements);
+		
+		categoryPan.add(cBoxLevelCategory, gbc_cBoxLevelCategory);
+		
 		//fatherCategory
 		
+			//label
+		JLabel lblfatherCategory =new JLabel("Category : ");
+		GridBagConstraints gbc_lblfatherCategory= new GridBagConstraints();
+		gbc_lblfatherCategory.gridx = 0;
+		gbc_lblfatherCategory.gridy = 4;
+		categoryPan.add(lblfatherCategory, gbc_lblfatherCategory);
+		lblfatherCategory.setVisible(false);
 		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
+		
+			//Liste
+		String[] listCategory = {"one", "two", "three", "four"};
+		JList listFatherCategory = new JList(listCategory);
+		GridBagConstraints gbc_listFatherCategory= new GridBagConstraints();
+		gbc_listFatherCategory.gridx = 1;
+		gbc_listFatherCategory.gridy = 4;
+		lblfatherCategory.setVisible(false);
+		categoryPan.add(listFatherCategory, gbc_listFatherCategory);
+		
+		if ()
 		
 
 	}

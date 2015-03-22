@@ -61,29 +61,29 @@ public class CatgeoryJdbc extends CategoryProduct
 	/**
 	 * @param cn
 	 */
-	public CatgeoryJdbc(Connection cn)
-	{
-		this.cn = cn;
-	}
-	
-					//
-	save()
-	{
-		
-	}
-
-	read()
-	{
-		
-	}
-	
-	update()
-	{
-		
-	}
-	
-	delete()
-	{
-		
-	}
+//	public CatgeoryJdbc(Connection cn)
+//	{
+//		this.cn = cn;
+//	}
+//	
+//					//
+//	save()
+//	{
+//		
+//	}
+//
+//	read()
+//	{
+//		
+//	}
+//	
+//	update()
+//	{
+//		
+//	}
+//	
+//	delete()
+//	{
+//		
+//	}
 }
