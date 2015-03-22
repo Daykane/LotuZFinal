@@ -1,4 +1,4 @@
-package com.LotuZ.product.category;
+package com.LotuZ.product.category.ui;
 
 import interfaceDeBase.PageAccueiltest;
 
@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -83,6 +84,8 @@ public class CategoryUI extends JFrame {
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);
+		
+		//North
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -183,9 +186,9 @@ public class CategoryUI extends JFrame {
 				lblConnexion.setText(Connexion);
 			}
 		});
-			//set category view 
-	    JRadioButton form[][] = new JRadioButton[24][1];
-	    String counts[] = { "", "0-1"};
+			//Center
+	    JButton form[][] = new JButton[24][2];
+	    String counts[] = { "", "view","delete"};
 	    String categories[] = { "Household", "Office", "Extended Family",
 	        "Company (US)", "Company (World)", "Team", "Will",
 	        "Birthday Card List", "High School", "Country", "Continent",
@@ -195,17 +198,18 @@ public class CategoryUI extends JFrame {
 	        "Planet" };
 		JPanel categoryPan = new JPanel();
 		categoryPan.setSize(600, 400);
-		categoryPan.setLayout(new GridLayout(25, 2, 10, 0));
+		categoryPan.setLayout(new GridLayout(25, 3, 10, 0));
 		for (int row = 0; row < 25; row++) {
 		      ButtonGroup bg = new ButtonGroup();
-		      for (int col = 0; col < 2; col++) {
+		      for (int col = 0; col < 3; col++) {
 		        if (row == 0) {
 		        	categoryPan.add(new JLabel(counts[col]));
 		        } else {
 		          if (col == 0) {
 		        	  categoryPan.add(new JLabel(categories[row - 1]));
 		          } else {
-		            form[row - 1][col - 1] = new JRadioButton();
+		            form[row - 1][col - 1] = new JButton();
+		            
 		            bg.add(form[row - 1][col - 1]);
 		            categoryPan.add(form[row - 1][col - 1]);
 		          }
@@ -219,6 +223,8 @@ public class CategoryUI extends JFrame {
 					//add  JScrollBar
 		JScrollBar scrollBarEast = new JScrollBar();
 		scrollPpanelCategory.add(scrollBarEast);
+		
+			//South
 	}
 
 
