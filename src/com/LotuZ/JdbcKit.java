@@ -97,7 +97,7 @@ public class JdbcKit extends PersistKit{
 
 
 	public void createUserLog(User user) throws SQLException {
-		UserLog.init(user);
+		UserLog.init(user,this.cn);
 
 		
 	}

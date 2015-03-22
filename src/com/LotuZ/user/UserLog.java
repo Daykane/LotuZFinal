@@ -11,7 +11,7 @@ import com.LotuZ.user.contributor.bl.Contributor;
 public final class UserLog extends User{
 
 	private static volatile User user = null;
-	private boolean admin = false;
+	//private boolean admin = false;
 
 	private Connection cn;
 
@@ -22,11 +22,12 @@ public final class UserLog extends User{
 	}
 
 
-	public UserLog(User user) throws SQLException {
+	public UserLog(User user, Connection cn) throws SQLException {
 		super(user.getLastName(), user.getFirstName(), user.getMail(),
 				user.getPhone(), user.getStreetName(), user.getNumHouse(), user.getCity(),
 				user.getPostCode(), user.getPassword(),user.getIdContributor(),user.getIdMember());
-		this.admin = user.isAdmin();
+		//this.admin = user.isAdmin();
+		this.cn = cn;
 	}
 
 
@@ -38,7 +39,7 @@ public final class UserLog extends User{
 	 * @param admin the admin to set
 	 */
 	public void setAdmin(boolean admin) {
-		this.admin = admin;
+		//this.admin = admin;
 	}
 
 	/**
@@ -74,19 +75,18 @@ public final class UserLog extends User{
 	}
 
 
-	public static void init(User user) throws SQLException {
+	public static void init(User user, Connection cn) throws SQLException {
 		if (UserLog.user == null) {
 			synchronized(UserLog.class) {
 				if (UserLog.user == null) {
-					UserLog.user = new UserLog(user);
+					UserLog.user = new UserLog(user,cn);
 				}
 			}
 		}
 	}
-	/*
+	
 	@Override
 	public boolean isAdmin() throws SQLException {
-		System.out.println("dis moi que tu viens là !!!!!!!!!!");
 		boolean flag = false;
 		int answer = 0;
 		try{
@@ -94,12 +94,10 @@ public final class UserLog extends User{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 			String sql = "Select idAdmin From LotuZ.Member m,LotuZ.User u where m.idMember=u.idMember and u.mail='"+this.getMail()+"'";
-			System.out.println(sql);
 			ResultSet result = st.executeQuery(sql);
 			while( result.next() ){	
 				answer = result.getInt("idAdmin");			
 			}
-	
 		}
 		catch  (SQLException e) {
 			throw e;
@@ -109,12 +107,6 @@ public final class UserLog extends User{
 		}
 		return flag;
 	}
-	*/
-
-	public boolean isAdmin(){
-		return this.admin;
-	}
-
 }
 
 

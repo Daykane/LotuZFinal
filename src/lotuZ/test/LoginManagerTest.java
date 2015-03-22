@@ -71,11 +71,12 @@ public class LoginManagerTest extends TestCase{
 		assertNotNull("L'instance n'est pas créée", lm);
 		assertSame(lm.getPkit(),pkit);
 	}
-
+	
 	/**
 	 * Test method for {@link com.LotuZ.login.LoginManager#login(java.lang.String, java.lang.String, java.lang.String)}.
 	 * @throws SQLException 
 	 */
+	/*
 	@Test
 	public final void testLogin() throws SQLException {
 		// faire un mock pour UserJDBC
@@ -107,8 +108,7 @@ public class LoginManagerTest extends TestCase{
 		assertEquals(0,user.getIdContributor());
 		assertEquals(0,user.getIdMember());
 	}
-
-
+*/
 	protected User createUser() {
 		User user = pkit.createUser();
 		user = new UserJDBC("lastName", "firstName", "mail","tel",

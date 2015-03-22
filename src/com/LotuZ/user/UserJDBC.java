@@ -108,6 +108,7 @@ public class UserJDBC extends User{
 		}
 		return user;
 	}
+	
 	@Override
 	public boolean isAdmin() throws SQLException {
 		boolean flag = false;
@@ -120,8 +121,7 @@ public class UserJDBC extends User{
 			ResultSet result = st.executeQuery(sql);
 			while( result.next() ){	
 				answer = result.getInt("idAdmin");			
-			}
-	
+			}	
 		}
 		catch  (SQLException e) {
 			throw e;
