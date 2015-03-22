@@ -182,6 +182,7 @@ public class ActivityLeaderUI extends JFrame{
 				ActivityLeaderDetailUI.frame = detailActivityLeaderUI;
 				ActivityLeaderDetailUI.frame.setAlwaysOnTop(true);
 				detailActivityLeaderUI.setVisible(true);
+				frame.setVisible(true);
 				frame.dispose();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
