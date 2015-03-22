@@ -5,6 +5,8 @@ import interfaceDeBase.PageAccueiltest;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -190,8 +193,8 @@ public class CategoryUI extends JFrame {
 			}
 		});
 			//Center
-	    JButton form[][] = new JButton[24][2];
-	    String counts[] = { "", "view","delete"};
+	    JButton form[][] = new JButton[24][3];
+	    String counts[] = { "", "","",""};
 	    String categories[] = { "Household", "Office", "Extended Family",
 	        "Company (US)", "Company (World)", "Team", "Will",
 	        "Birthday Card List", "High School", "Country", "Continent",
@@ -199,29 +202,67 @@ public class CategoryUI extends JFrame {
 	        "Company (US)", "Company (World)", "Team", "Will",
 	        "Birthday Card List", "High School", "Country", "Continent",
 	        "Planet" };
+		
 		JPanel categoryPan = new JPanel();
-		categoryPan.setSize(600, 400);
-		categoryPan.setLayout(new GridLayout(25, 3, 10, 0));
+		categoryPan.setLayout(new GridBagLayout());
+		GridBagConstraints gbC = new GridBagConstraints();
+		
+		JButton btnAddCat =new JButton();
+		btnAddCat.setIcon(new ImageIcon("Icon_New.png"));
+		btnAddCat.setBorder(null);
+		gbC.fill = GridBagConstraints.HORIZONTAL;
+		gbC.gridx = 194;
+		gbC.gridy = 0;
+		categoryPan.add(btnAddCat, gbC);
 		for (int row = 0; row < 25; row++) {
 		      ButtonGroup bg = new ButtonGroup();
-		      for (int col = 0; col < 3; col++) {
+		      for (int col = 0; col < 4; col++) {
 		        if (row == 0) {
-		        	categoryPan.add(new JLabel(counts[col]));
+		    		gbC.fill = GridBagConstraints.HORIZONTAL;
+		    		gbC.gridx = col+1;
+		    		gbC.gridy = row+1;
+		        	categoryPan.add(new JLabel(counts[col]),gbC);
 		        } else {
 		          if (col == 0) {
-		        	  categoryPan.add(new JLabel(categories[row - 1]));
+		      		gbC.fill = GridBagConstraints.HORIZONTAL;
+		    		gbC.gridx = col+1;
+		    		gbC.gridy = row+1;
+		    		gbC.weightx =1;
+		        	categoryPan.add(new JLabel(categories[row - 1]),gbC);
 		          } else {
+			      		gbC.fill = GridBagConstraints.HORIZONTAL;
+			    		gbC.gridx = 190+col+1;
+			    		gbC.gridy = row+1;
+		        	  if (col == 1) 
+		        	  { 
+				    		gbC.weightx =0;
 		            form[row - 1][col - 1] = new JButton();
-		            try 
-		            {
-		                Image img = ImageIO.read(getClass().getResource("Eyeball-512.png"));
-		                form[row - 1][col - 1].setIcon(new ImageIcon(img));
-		              } 
-		            catch (IOException ex) 
-		            {
-		              }
+		            //Image img = ImageIO.read(getClass().getResource("Eyeball-512.bmp"));
+					form[row - 1][col - 1].setIcon(new ImageIcon("plus.png"));
+					form[row - 1][col - 1].setBorder(null);
 		            bg.add(form[row - 1][col - 1]);
-		            categoryPan.add(form[row - 1][col - 1]);
+		            categoryPan.add(form[row - 1][col - 1],gbC);
+		        	  }
+		        	  if (col == 2) 
+		        	  {
+				    		gbC.weightx =0;
+		            form[row - 1][col - 1] = new JButton();
+		            //Image img = ImageIO.read(getClass().getResource("Eyeball-512.bmp"));
+					form[row - 1][col - 1].setIcon(new ImageIcon("Eyeball-512.png"));
+					form[row - 1][col - 1].setBorder(null);
+		            bg.add(form[row - 1][col - 1]);
+		            categoryPan.add(form[row - 1][col - 1],gbC);
+		        	  }
+		            if (col == 3) 
+		            {
+			    		gbC.weightx =0;
+			            form[row - 1][col - 1] = new JButton();
+			            //Image img = ImageIO.read(getClass().getResource("Eyeball-512.bmp"));
+						form[row - 1][col - 1].setIcon(new ImageIcon("delete.png"));
+						form[row - 1][col - 1].setBorder(null);
+			            bg.add(form[row - 1][col - 1]);
+			            categoryPan.add(form[row - 1][col - 1],gbC);
+		            }
 		          }
 		        }
 		      }

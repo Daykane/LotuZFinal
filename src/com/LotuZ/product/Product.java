@@ -2,7 +2,7 @@ package com.LotuZ.product;
 
 import java.sql.SQLException;
 
-import com.LotuZ.product.category.CategoryProduct;
+import com.LotuZ.product.category.bl.CategoryProduct;
 
 
 public abstract class Product {
