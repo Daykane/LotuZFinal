@@ -3,15 +3,23 @@ package com.LotuZ.product.category.ui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -179,5 +187,177 @@ public class ViewCategoryUI extends JFrame {
 				lblConnexion.setText(Connexion);
 			}
 		});
+		
+		//Center
+		//Center North
+		//Set Center contentPane
+		JPanel contentPaneCenter = new JPanel();
+		contentPaneCenter.setToolTipText("");
+		contentPaneCenter.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPaneCenter.setLayout(new BorderLayout(0, 0));
+		contentPane.add(contentPaneCenter, BorderLayout.CENTER);
+		
+		//Set top banner in center pane
+		JPanel panelBannerCenter = new JPanel();
+		panelBannerCenter.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
+		contentPaneCenter.add(panelBannerCenter, BorderLayout.NORTH);
+		panelBannerCenter.setLayout(new BorderLayout(0, 0));
+		
+		//Set top banner Title
+		JLabel lblSbTitle = new JLabel("View Category");
+		lblSbTitle.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSbTitle.setVerticalAlignment(SwingConstants.CENTER);
+		lblSbTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		panelBannerCenter.add(lblSbTitle, BorderLayout.CENTER);
+		
+		//Center Center
+		JPanel categoryPan = new JPanel();
+		categoryPan.setLayout(new GridBagLayout());
+		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
+		
+			//Edit
+		
+		JButton btnEditCat =new JButton();
+		btnEditCat.setIcon(new ImageIcon("edit.png"));
+		btnEditCat.setBorder(null);
+		GridBagConstraints gbc_btnEditCat = new GridBagConstraints();
+		gbc_btnEditCat.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnEditCat.gridx = 3;
+		gbc_btnEditCat.gridy = 0;
+		categoryPan.add(btnEditCat, gbc_btnEditCat);
+		
+		//name
+		
+			//label
+		JLabel lblName =new JLabel("Name : ");
+		GridBagConstraints gbc_lblName = new GridBagConstraints();
+		gbc_lblName.gridx = 0;
+		gbc_lblName.gridy = 1;
+		categoryPan.add(lblName, gbc_lblName);
+
+			//textfield
+		JTextField txtFName = new JTextField();
+		GridBagConstraints gbc_txtFName = new GridBagConstraints();
+		gbc_txtFName.gridx = 2;
+		gbc_txtFName.gridy = 1;
+		txtFName.setColumns(15);
+		txtFName.setEditable(false);
+		categoryPan.add(txtFName, gbc_txtFName);
+
+		
+		
+		//description	
+		
+			//label
+		JLabel lblDescription =new JLabel("Description : ");
+		GridBagConstraints gbc_lbldescription = new GridBagConstraints();
+		gbc_lbldescription.gridx = 0;
+		gbc_lbldescription.gridy = 2;
+		categoryPan.add(lblDescription, gbc_lbldescription);
+	
+			//textfield
+		JTextField txtFDescription = new JTextField();
+		GridBagConstraints gbc_txtFDescription = new GridBagConstraints();
+		gbc_txtFDescription.gridx = 2;
+		gbc_txtFDescription.gridy = 2;
+		txtFDescription.setColumns(30);
+		txtFDescription.setEditable(false);
+		categoryPan.add(txtFDescription, gbc_txtFDescription);
+		
+		//levelCategory
+		
+			//label
+		JLabel lblLevelCategory =new JLabel("Level : ");
+		GridBagConstraints gbc_lblLevelCategory = new GridBagConstraints();
+		gbc_lblLevelCategory.gridx = 0;
+		gbc_lblLevelCategory.gridy = 3;
+		categoryPan.add(lblLevelCategory, gbc_lblLevelCategory);
+		
+		
+			//textfield
+		JTextField txtFLevelCategory = new JTextField("Sub Category");
+		GridBagConstraints gbc_txtFLevelCategory = new GridBagConstraints();
+		gbc_txtFLevelCategory.gridx = 2;
+		gbc_txtFLevelCategory.gridy = 3;
+		txtFLevelCategory.setColumns(15);
+		txtFLevelCategory.setEditable(false);
+		txtFLevelCategory.setSize(15, 15);
+		categoryPan.add(txtFLevelCategory, gbc_txtFLevelCategory);
+			
+		
+		//fatherCategory
+		
+			//label
+		final JLabel lblfatherCategory =new JLabel("Category : ");
+		GridBagConstraints gbc_lblfatherCategory= new GridBagConstraints();
+		gbc_lblfatherCategory.gridx = 0;
+		gbc_lblfatherCategory.gridy = 4;
+		categoryPan.add(lblfatherCategory, gbc_lblfatherCategory);
+		lblfatherCategory.setVisible(false);
+		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
+		
+			//textfield
+		JTextField txtFFatherCategory = new JTextField();
+		GridBagConstraints gbc_txtFFatherCategory = new GridBagConstraints();
+		gbc_txtFFatherCategory.gridx = 2;
+		gbc_txtFFatherCategory.gridy = 4;
+		txtFFatherCategory.setColumns(15);
+		txtFFatherCategory.setEditable(false);
+		txtFFatherCategory.setSize(15, 15);
+		txtFFatherCategory.setVisible(false);
+		categoryPan.add(txtFFatherCategory, gbc_txtFFatherCategory);
+		
+		//subCategory
+			
+			//label
+		final JLabel lblSubCategory =new JLabel("Sub Category : ");
+		GridBagConstraints gbc_lblSubCategory= new GridBagConstraints();
+		gbc_lblSubCategory.gridx = 0;
+		gbc_lblSubCategory.gridy = 4;
+		categoryPan.add(lblSubCategory, gbc_lblSubCategory);
+		lblSubCategory.setVisible(false);
+		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
+		
+			//Liste
+		String[] listSubCategory = {"one", "two", "three", "four"};
+		final JList jlistSubCategory = new JList(listSubCategory);
+		GridBagConstraints gbc_listSubCategory= new GridBagConstraints();
+		gbc_listSubCategory.gridx = 2;
+		gbc_listSubCategory.gridy = 4;
+		jlistSubCategory.setVisible(false);
+		categoryPan.add(jlistSubCategory, gbc_listSubCategory);
+		
+		if (txtFLevelCategory.getText().equals("Sub Category"))
+		{
+			System.out.println("Coucou");
+			txtFFatherCategory.setVisible(true);
+			lblfatherCategory.setVisible(true);
+		}
+		else if (txtFLevelCategory.getText().equals("Category"))
+		{
+			System.out.println("Kikoo");
+			jlistSubCategory.setVisible(true);
+			lblSubCategory.setVisible(true);
+		}
+			
+		//Center South
+		JPanel validationPan = new JPanel();
+		validationPan.setLayout(new GridBagLayout());
+		contentPaneCenter.add(validationPan, BorderLayout.SOUTH);
+			
+			//Cancel
+		JButton btnCancel =new JButton("Cancel");
+		GridBagConstraints gbc_btnCancel= new GridBagConstraints();
+		gbc_btnCancel.gridx = 0;
+		gbc_btnCancel.gridy = 5;
+		categoryPan.add(btnCancel, gbc_btnCancel);
+		
+			//Submit
+		JButton btnOk=new JButton("Ok");
+		GridBagConstraints gbc_btnOk= new GridBagConstraints();
+		gbc_btnOk.gridx = 2;
+		gbc_btnOk.gridy = 5;
+		categoryPan.add(btnOk, gbc_btnOk);
+
 	}
 }

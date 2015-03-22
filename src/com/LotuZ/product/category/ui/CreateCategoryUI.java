@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -212,6 +214,7 @@ public class CreateCategoryUI extends JFrame {
 		//Center Center
 		JPanel categoryPan = new JPanel();
 		categoryPan.setLayout(new GridBagLayout());
+		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
 		
 		//name
 		
@@ -261,18 +264,19 @@ public class CreateCategoryUI extends JFrame {
 		
 			//ComboBox
 		
-		Object[] elements = new Object[]{"Category", "Sous Category"};
+		Object[] elements = new Object[]{"Category", "Sub Category"};
 		GridBagConstraints gbc_cBoxLevelCategory = new GridBagConstraints();
-		gbc_cBoxLevelCategory.gridx = 1;
+		gbc_cBoxLevelCategory.gridx = 2;
 		gbc_cBoxLevelCategory.gridy = 3;		
-		JComboBox cBoxLevelCategory = new JComboBox(elements);
+		final JComboBox cBoxLevelCategory = new JComboBox(elements);
 		
 		categoryPan.add(cBoxLevelCategory, gbc_cBoxLevelCategory);
+			
 		
 		//fatherCategory
 		
 			//label
-		JLabel lblfatherCategory =new JLabel("Category : ");
+		final JLabel lblfatherCategory =new JLabel("Category : ");
 		GridBagConstraints gbc_lblfatherCategory= new GridBagConstraints();
 		gbc_lblfatherCategory.gridx = 0;
 		gbc_lblfatherCategory.gridy = 4;
@@ -282,15 +286,54 @@ public class CreateCategoryUI extends JFrame {
 		
 			//Liste
 		String[] listCategory = {"one", "two", "three", "four"};
-		JList listFatherCategory = new JList(listCategory);
+		final JList listFatherCategory = new JList(listCategory);
 		GridBagConstraints gbc_listFatherCategory= new GridBagConstraints();
-		gbc_listFatherCategory.gridx = 1;
+		gbc_listFatherCategory.gridx = 2;
 		gbc_listFatherCategory.gridy = 4;
-		lblfatherCategory.setVisible(false);
+		listFatherCategory.setVisible(false);
 		categoryPan.add(listFatherCategory, gbc_listFatherCategory);
+		System.out.println(cBoxLevelCategory.getSelectedItem());
 		
-		if ()
+				//ComboBox Listeners
+		ActionListener cBoxLevelCategoryListeners = new ActionListener ()
+		{
 		
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
+				{
+					lblfatherCategory.setVisible(true);
+					listFatherCategory.setVisible(true);
+				}
+				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
+				{
+					lblfatherCategory.setVisible(false);
+					listFatherCategory.setVisible(false);
+				}
+			}
+			
+		}
+		;
+		cBoxLevelCategory.addActionListener(cBoxLevelCategoryListeners);
+		
+		//Center South
+		JPanel validationPan = new JPanel();
+		validationPan.setLayout(new GridBagLayout());
+		contentPaneCenter.add(validationPan, BorderLayout.SOUTH);
+			
+			//Cancel
+		JButton btnCancel =new JButton("Cancel");
+		GridBagConstraints gbc_btnCancel= new GridBagConstraints();
+		gbc_btnCancel.gridx = 0;
+		gbc_btnCancel.gridy = 5;
+		categoryPan.add(btnCancel, gbc_btnCancel);
+		
+			//Submit
+		JButton btnSubmit=new JButton("Submit");
+		GridBagConstraints gbc_btnSubmit= new GridBagConstraints();
+		gbc_btnSubmit.gridx = 2;
+		gbc_btnSubmit.gridy = 5;
+		categoryPan.add(btnSubmit, gbc_btnSubmit);
 
 	}
 }
