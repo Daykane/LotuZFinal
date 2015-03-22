@@ -17,8 +17,8 @@ import com.LotuZ.user.HomepageUI;
 import com.LotuZ.user.User;
 import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.member.HomePageMemberUI;
-import com.LotuZ.user.member.Member;
+import com.LotuZ.user.member.bl.Member;
+import com.LotuZ.user.member.ui.HomePageMemberUI;
 import com.LotuZ.user.user.HomePageUserUI;
 
 import java.awt.event.MouseAdapter;

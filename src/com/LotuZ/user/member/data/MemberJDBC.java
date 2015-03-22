@@ -1,4 +1,4 @@
-package com.LotuZ.user.contributor.data;
+package com.LotuZ.user.member.data;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.member.bl.Member;
 
 
 /**
@@ -14,7 +15,7 @@ import com.LotuZ.user.contributor.bl.Contributor;
  *
  */
 
-public class ContributorJDBC extends Contributor{
+public class MemberJDBC extends Member{
 	
 	/**
 	 * @param lastName
@@ -26,7 +27,7 @@ public class ContributorJDBC extends Contributor{
 	 * @param city
 	 * @param postCode
 	 */
-	public ContributorJDBC(String lastName, String firstName, String mail,
+	public MemberJDBC(String lastName, String firstName, String mail,
 			String tel, String streetName, String numHouse, String city,
 			String postCode) {
 		super(lastName, firstName, mail, tel, streetName, numHouse, city, postCode);
@@ -41,7 +42,7 @@ public class ContributorJDBC extends Contributor{
 	/**
 	 * @param cn
 	 */
-	public ContributorJDBC(Connection cn){
+	public MemberJDBC(Connection cn){
 		this.cn = cn;
 	}	
 	
@@ -50,14 +51,14 @@ public class ContributorJDBC extends Contributor{
 	 * Lecture d'un responsable d'activité en base à partir de son identifiant 
 	 */
 	@Override
-	public Contributor load(String idContributor) throws SQLException {
+	public Member load(String idMember) throws SQLException {
 		try {
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User Where mail="+'"'+idContributor+'"';
+			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and u.mail="+'"'+idMember+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -67,7 +68,7 @@ public class ContributorJDBC extends Contributor{
 				this.setLastName(result.getString("lastName"));
 				this.setFirstName(result.getString( "firstName" ));
 				this.setMail(result.getString( "Mail" ));
-				this.setTel(result.getString( "tel" ));
+				this.setPhone(result.getString( "tel" ));
 				this.setStreetName(result.getString( "streetName" ));
 				this.setNumHouse(result.getString( "numHouse" ));
 				this.setCity(result.getString( "city" ));
@@ -85,7 +86,7 @@ public class ContributorJDBC extends Contributor{
 	 * Modification d'un responsable d'activité en base à partir de son identifiant 
 	 */
 	@Override
-	public Contributor update() throws SQLException {
+	public Member update() throws SQLException {
 		try {		
 			Statement st =null;
 			// Création d'un statement
@@ -93,7 +94,7 @@ public class ContributorJDBC extends Contributor{
 		
 			// Requête de modification
 			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-				+"',`tel`='"+this.getTel()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
+				+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
 		
 			// Exécution requête
 			st.executeUpdate(sql);
@@ -108,15 +109,15 @@ public class ContributorJDBC extends Contributor{
 	/**
 	 * Suppression d'un responsable d'activité en base à partir de son identifiant 
 	 */
-	@Override
-	public void delete(String idContributor) throws SQLException {
+
+	public void delete(String idMember) throws SQLException {
 		try {	
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 		
 			// Requête de modification
-			String sql = "Delete From User Where mail="+'"'+idContributor+'"';
+			String sql = "Delete From User Where mail="+'"'+idMember+'"';
 			
 			// Exécution requête
 			st.executeUpdate(sql);
@@ -126,6 +127,19 @@ public class ContributorJDBC extends Contributor{
 		}
 	}
 
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public boolean isAdmin() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 }

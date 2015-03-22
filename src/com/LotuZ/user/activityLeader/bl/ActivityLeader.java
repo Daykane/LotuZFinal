@@ -1,6 +1,7 @@
 package com.LotuZ.user.activityLeader.bl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 /**
@@ -25,8 +26,9 @@ public abstract class ActivityLeader {
 	private String numHouse;
 	private String city;
 	private String postCode;
-	private final boolean isActivityLeader = true;
-	private final boolean isMember = false;
+	private String password;
+	private List<String> namesActivity;
+
 
 
 	
@@ -210,16 +212,25 @@ public abstract class ActivityLeader {
 	public abstract void delete(String idActivityLeader) throws SQLException;
 
 
-	/**
-	 * @return bool activityLeader
-	 */
-	public boolean isActivityLeader() {
-		return isActivityLeader;
+	public List<String> getNamesActivity() {
+		return namesActivity;
 	}
 
 
-	public boolean isMember() {
-		return isMember;
+	public void setNamesActivity(List<String> namesActivity) {
+		this.namesActivity = namesActivity;
 	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	
 }

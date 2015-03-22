@@ -1,7 +1,10 @@
 package com.LotuZ.user.contributor.bl;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import com.LotuZ.user.User;
+import com.LotuZ.event.Event;
 
 /**
  * @author Ludo
@@ -25,9 +28,8 @@ public abstract class Contributor {
 	private String numHouse;
 	private String city;
 	private String postCode;
-	private final boolean isContributor = true;
-	private final boolean isMember = false;
-
+	private String password;
+	private List<Event> events;
 
 	
 
@@ -210,16 +212,26 @@ public abstract class Contributor {
 	public abstract void delete(String idContributor) throws SQLException;
 
 
-	/**
-	 * @return bool contributor
-	 */
-	public boolean isContributor() {
-		return isContributor;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public boolean isMember() {
-		return isMember;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+
+
 	
 }

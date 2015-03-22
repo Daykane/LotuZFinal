@@ -1,4 +1,4 @@
-package com.LotuZ.user.member;
+package com.LotuZ.user.member.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

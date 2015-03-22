@@ -56,8 +56,8 @@ public class ListActivityLeaderJDBC extends ListActivityLeader {
 			st = this.cn.createStatement();
 			
 			// Création de la requête de sélection
-			String sql = "Select * From LotuZ.User Where activityLeader = '1'";
-			
+			String sql = "Select * From LotuZ.User u ,LotuZ.Member m Where m.idLeader IS NOT NULL and u.idMember = m.idMember";
+
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
 			

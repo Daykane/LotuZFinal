@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.LotuZ.user.member;
+package com.LotuZ.user.member.bl;
 
 import java.sql.SQLException;
 
@@ -19,6 +19,11 @@ public abstract class Member extends User{
 	 */
 	public Member() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Member(String lastName, String firstName, String mail, String tel,
+			String streetName, String numHouse, String city, String postCode) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -47,5 +52,12 @@ public abstract class Member extends User{
 
 	@Override
 	public abstract User load(String mail) throws SQLException;
+
+	public abstract Member update() throws SQLException ;
+
+	public void delete(String idMember) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
