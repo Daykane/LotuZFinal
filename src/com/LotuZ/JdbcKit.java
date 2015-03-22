@@ -190,13 +190,4 @@ public class JdbcKit extends PersistKit{
 		return new ContributorJDBC(this.cn);
 	}
 
-
-
-
-	@Override
-	public void createContribLog(Contributor contrib) {
-		UserLog.init(contrib);
-		
-	}
-
 }

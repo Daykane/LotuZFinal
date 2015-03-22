@@ -59,32 +59,6 @@ public class LoginManager {
 				throw new UserNotFoundException(); 
 			}
 	}
-
-	public void loginContri(String mail, String password) throws SQLException {
-		// TODO Auto-generated method stub
-		Contributor contrib = this.pkit.createContributor();
-		contrib = contrib.load(mail);
-
-		try {
-			password = HashText.sha1(password);
-			//passWordCrypt = HashText.sha1(user.getPassword());
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		// Manque le password
-		if(contrib != null ){
-				// Create singleton userJdbc for login
-				this.pkit.createContribLog(contrib);
-			}
-			
-		else{
-			//throw new UserNotFoundException(); 
-		}
-		
-
-	}
-
-
 }
 
 

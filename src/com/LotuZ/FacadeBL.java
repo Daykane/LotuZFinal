@@ -40,12 +40,7 @@ public class FacadeBL {
 	
 	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{
 		loginManager.loginUser(mail,password);
-	}
-	
-	public static void loginContri(String mail, String password) throws SQLException, UserNotFoundException{
-		loginManager.loginContri(mail,password);
-	}
-
+	}	
 
 	public  List<Activity> getActivities() {
 		return activityManager.getActivities();

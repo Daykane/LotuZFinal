@@ -215,5 +215,7 @@ public abstract class User {
 
 	public abstract User load(String mail) throws SQLException;
 
+	public abstract boolean isAdmin();
+
 
 }

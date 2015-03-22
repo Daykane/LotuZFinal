@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import com.LotuZ.FacadeBL;
+import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.HomepageUI;
 import com.LotuZ.user.User;
@@ -27,7 +28,7 @@ import java.sql.SQLException;
 import javax.swing.JCheckBox;
 
 public class LoginUI extends JFrame {
-	
+
 
 
 
@@ -52,37 +53,37 @@ public class LoginUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblMail = new JLabel("Mail");
-		lblMail.setBounds(93, 66, 57, 14);
+		lblMail.setBounds(81, 66, 69, 14);
 		contentPane.add(lblMail);
-		
+
 		TfMail = new JTextField();
 		TfMail.setBounds(176, 63, 86, 20);
 		contentPane.add(TfMail);
 		TfMail.setColumns(10);
-		
+
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(93, 111, 57, 14);
+		lblPassword.setBounds(81, 111, 69, 14);
 		contentPane.add(lblPassword);
-		
+
 		Tfpassword = new JTextField();
 		Tfpassword.setBounds(176, 108, 86, 20);
 		contentPane.add(Tfpassword);
 		Tfpassword.setColumns(10);
-		
+
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(176, 34, 46, 14);
 		contentPane.add(lblLogin);
-		
+
 		JButton btnOk = new JButton("OK");
-		
-		
-		
-		
+
+
+
+
 		btnOk.setBounds(93, 217, 89, 23);
 		contentPane.add(btnOk);
-		
+
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -96,46 +97,56 @@ public class LoginUI extends JFrame {
 		btnCancel.setBounds(241, 217, 89, 23);
 		contentPane.add(btnCancel);
 		
-		final JCheckBox chckbxSpeaker = new JCheckBox("Connect as speaker");
-		chckbxSpeaker.setBounds(93, 163, 154, 23);
-		contentPane.add(chckbxSpeaker);
-		
+		JLabel lblInscription = new JLabel("Inscription");
+		lblInscription.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				InscriptionUserUI frame =  new InscriptionUserUI();				
+				frame.setVisible(true);
+			}
+		});
+		lblInscription.setBounds(143, 156, 69, 14);
+		contentPane.add(lblInscription);
+
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override			
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					if (chckbxSpeaker.isSelected()){
-						// TODO
-						 FacadeBL.loginContri(TfMail.getText(),Tfpassword.getText());
-						 
-					}
-					else{
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
-					}
+
 					User user = UserLog.getUserLog();
-					
-					if (user.getIdMember() == 0){
+
+					if (user.getIdMember() != 0){
+						System.out.println("C'est un membre");
 						HomePageMemberUI frame =  new HomePageMemberUI();				
 						frame.setVisible(true);
-						}
-					else {
+					}
+					else if(user.getIdContributor() != 0) {
+						System.out.println("C'est un contributor");
+						
+					}
+					else if(user.isAdmin()) {
+						System.out.println("C'est un contributor");
+						
+					}
+					else{
 						HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);
 					}
-					
-					
+
 					PageAccueiltest pageAcceuil = new PageAccueiltest();
 					pageAcceuil.setVisible(true);
-					
-					
+
+
 				} 
 				catch (UserNotFoundException e){
 					JOptionPane.showMessageDialog(null,"Error user not found","Error user not found",JOptionPane.ERROR_MESSAGE);
 				}
 				catch (SQLException e) {
-					JOptionPane.showMessageDialog(null,"Error Mail/Password","Mail ou password inexistant",JOptionPane.ERROR_MESSAGE);
+					//JOptionPane.showMessageDialog(null,"Error Mail/Password","Mail ou password inexistant",JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
 				}
-				
+
 			}
 		});		
 	}

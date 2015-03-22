@@ -363,13 +363,14 @@ public class InscriptionUserUI extends JFrame {
 			
 			public void mouseClicked(MouseEvent frame) {
 				try {
-					FacadeBL.inscription("Laboureur","Alexis","testEncore","0625102689","Rue du Village","52","Montpellier","34000","1253");
+					FacadeBL.inscription("Laboureur","Alexis","admin","0625102689","Rue du Village","52","Montpellier","34000","admin");
 					HomepageUI homepageUI = new HomepageUI();
 					HomepageUI.frame = homepageUI;
 					homepageUI.setVisible(true);
 
 				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
-					JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
+					//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (SQLException e) {
@@ -387,7 +388,8 @@ public class InscriptionUserUI extends JFrame {
 						FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
 						JOptionPane.showMessageDialog(null,"Inscription r�ussie","Inscription r�ussie",JOptionPane.INFORMATION_MESSAGE);
 					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
-						JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
+						e.printStackTrace();
+						//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
 					} catch (SQLException e) {
