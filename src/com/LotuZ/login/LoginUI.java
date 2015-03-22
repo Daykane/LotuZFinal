@@ -115,7 +115,11 @@ public class LoginUI extends JFrame {
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
 
 					User user = UserLog.getUserLog();
-
+					//TODO des println à enlever
+					System.out.println("le user log LastName : " + user.getLastName());
+					System.out.println("le user log FirstName : " + user.getFirstName());
+					System.out.println("le user log est admin : " + user.isAdmin());
+					
 					if (user.getIdMember() != 0){
 						System.out.println("C'est un membre");
 						HomePageMemberUI frame =  new HomePageMemberUI();				

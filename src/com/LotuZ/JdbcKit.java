@@ -91,12 +91,12 @@ public class JdbcKit extends PersistKit{
 
 	@Override
 	public void createUserLog() {
-		UserLog.init();
+		UserLog.init(this.cn);
 	}
 
 
 
-	public void createUserLog(User user) {
+	public void createUserLog(User user) throws SQLException {
 		UserLog.init(user);
 
 		

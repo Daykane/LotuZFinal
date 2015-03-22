@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.LotuZ.activity.Activity;
@@ -23,7 +24,7 @@ public abstract class PersistKit {
 	//public abstract User login(String mail, String passWordCrypt) throws SQLException;
 	public abstract User createUser();
 	public abstract void createUserLog();
-	public abstract void createUserLog(User user);
+	public abstract void createUserLog(User user) throws SQLException;
 	public abstract Activity createActivity();
 	public abstract ListActivityLeader createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();

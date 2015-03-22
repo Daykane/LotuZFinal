@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashText;
 import com.LotuZ.user.User;
+import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.contributor.bl.Contributor;
 
 
@@ -43,7 +44,6 @@ public class LoginManager {
 		// Create empty userJdbc for read information
 			User user = this.pkit.createUser();
 			user = user.load(mail);
-
 			try {
 				password = HashText.sha1(password);
 				//passWordCrypt = HashText.sha1(user.getPassword());
