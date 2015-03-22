@@ -110,7 +110,6 @@ public class UserJDBC extends User{
 	}
 	@Override
 	public boolean isAdmin() throws SQLException {
-		System.out.println("dis moi que tu viens là !!!!!!!!!!");
 		boolean flag = false;
 		int answer = 0;
 		try{
@@ -118,7 +117,6 @@ public class UserJDBC extends User{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 			String sql = "Select idAdmin From LotuZ.Member m,LotuZ.User u where m.idMember=u.idMember and u.mail='"+this.getMail()+"'";
-			System.out.println(sql);
 			ResultSet result = st.executeQuery(sql);
 			while( result.next() ){	
 				answer = result.getInt("idAdmin");			

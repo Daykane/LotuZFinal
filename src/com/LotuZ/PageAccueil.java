@@ -139,7 +139,7 @@ public class PageAccueil extends JFrame {
 				else{
 					System.out.println("Faire une déconnexion");
 				}
-				System.out.println("Connexion ou deconnexion si la personne n'est pas connecté ou l'est");
+				//System.out.println("Connexion ou deconnexion si la personne n'est pas connecté ou l'est");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {

@@ -26,6 +26,7 @@ public final class UserLog extends User{
 		super(user.getLastName(), user.getFirstName(), user.getMail(),
 				user.getPhone(), user.getStreetName(), user.getNumHouse(), user.getCity(),
 				user.getPostCode(), user.getPassword(),user.getIdContributor(),user.getIdMember());
+		this.admin = user.isAdmin();
 	}
 
 
@@ -82,7 +83,7 @@ public final class UserLog extends User{
 			}
 		}
 	}
-
+	/*
 	@Override
 	public boolean isAdmin() throws SQLException {
 		System.out.println("dis moi que tu viens là !!!!!!!!!!");
@@ -107,6 +108,11 @@ public final class UserLog extends User{
 			flag = true;
 		}
 		return flag;
+	}
+	*/
+
+	public boolean isAdmin(){
+		return this.admin;
 	}
 
 }
