@@ -94,8 +94,8 @@ public class ListActivityLeaderJDBC extends ListActivityLeader {
 		user.setCity(resultSet.getString( "city" ));
 		user.setPostCode(resultSet.getString( "postCode" ));
 		user.setPassword(resultSet.getString( "password" ));
-		user.setMember(resultSet.getInt( "member" ));
-		user.setActivityLeader(resultSet.getInt( "activityLeader" ));
+		user.setIdContributor(resultSet.getInt( "idContributor" ));
+		user.setIdMember(resultSet.getInt( "idMember" ));
         return user;
     }
 

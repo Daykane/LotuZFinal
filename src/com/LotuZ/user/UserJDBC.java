@@ -20,10 +20,10 @@ public class UserJDBC extends User{
 	}			
 	public UserJDBC(String lastName, String firstName, String mail, String tel,
 			String streetName, String numHouse, String city, String postCode,
-			String password, int member, int activityLeader) {
+			String password, int idContributor, int idMember) {
 		super(lastName, firstName, mail, tel,
 			streetName, numHouse, city, postCode,
-			password, member, activityLeader);
+			password, idContributor, idMember);
 		/*
 		this.setLastName(lastName);
 		this.setFirstName(firstName);
@@ -49,7 +49,7 @@ public class UserJDBC extends User{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"','"+ this.getMember() +"','"+ this.getActivityLeader() +"')";
+			String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"','"+ this.getIdContributor() +"','"+ this.getIdMember() +"')";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
@@ -80,7 +80,7 @@ public class UserJDBC extends User{
 				String city = result.getString("city");
 				String postCode = result.getString("postCode");
 				String password = result.getString("password");
-				int member = result.getInt("member");
+				int member = result.getInt("idMember");
 				int activityLeader = result.getInt("activityLeader");
 				
 

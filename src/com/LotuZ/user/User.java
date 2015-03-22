@@ -20,8 +20,8 @@ public abstract class User {
 	private String mail;
 	private String password;
 	private String phone;
-	private int member;
-	private int activityLeader;
+	private int idContributor;
+	private int idMember;
 	
 	
 	public User() {
@@ -40,7 +40,7 @@ public abstract class User {
 	 * @param member 
 	 */
 	public User(String lastName, String firstName, String mail,
-			String phone, String streetName, String numHouse, String city,String postCode,String password, int member, int activityLeader) {
+			String phone, String streetName, String numHouse, String city,String postCode,String password, int idContributor, int idMember) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -51,8 +51,8 @@ public abstract class User {
 		this.mail = mail;
 		this.password = password;
 		this.phone = phone;
-		this.member=member;
-		this.activityLeader =activityLeader;
+		this.idContributor=idContributor;
+		this.idMember =idMember;
 		
 	}
 
@@ -182,32 +182,33 @@ public abstract class User {
 		this.phone = phone;
 	}
 
+
 	/**
-	 * @return the member
+	 * @return the idContributor
 	 */
-	public int getMember() {
-		return member;
+	public int getIdContributor() {
+		return idContributor;
 	}
 
 	/**
-	 * @param member the member to set
+	 * @param idContributor the idContributor to set
 	 */
-	public void setMember(int member) {
-		this.member = member;
+	public void setIdContributor(int idContributor) {
+		this.idContributor = idContributor;
 	}
 
 	/**
-	 * @return the actityLeader
+	 * @return the idMember
 	 */
-	public int getActivityLeader() {
-		return activityLeader;
+	public int getIdMember() {
+		return idMember;
 	}
 
 	/**
-	 * @param actityLeader the actityLeader to set
+	 * @param idMember the idMember to set
 	 */
-	public void setActivityLeader(int activityLeader) {
-		this.activityLeader = activityLeader;
+	public void setIdMember(int idMember) {
+		this.idMember = idMember;
 	}
 
 	public abstract void save() throws SQLException, ClassNotFoundException;

@@ -104,8 +104,8 @@ public class LoginManagerTest extends TestCase{
 		assertEquals("city",user.getCity());
 		assertEquals("postCode",user.getPostCode());
 		assertEquals("password",user.getPassword());
-		assertEquals(0,user.getMember());
-		assertEquals(0,user.getActivityLeader());
+		assertEquals(0,user.getIdContributor());
+		assertEquals(0,user.getIdMember());
 	}
 
 

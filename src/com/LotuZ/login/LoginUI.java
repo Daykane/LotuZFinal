@@ -114,7 +114,7 @@ public class LoginUI extends JFrame {
 					}
 					User user = UserLog.getUserLog();
 					
-					if (user.getMember() == 1){
+					if (user.getIdMember() == 0){
 						HomePageMemberUI frame =  new HomePageMemberUI();				
 						frame.setVisible(true);
 						}
@@ -122,6 +122,7 @@ public class LoginUI extends JFrame {
 						HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);
 					}
+					
 					
 					PageAccueiltest pageAcceuil = new PageAccueiltest();
 					pageAcceuil.setVisible(true);

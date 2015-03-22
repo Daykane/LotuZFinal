@@ -17,7 +17,7 @@ public final class UserLog extends User{
 	public UserLog(User user) {
 		super(user.getLastName(), user.getFirstName(), user.getMail(),
 				user.getPhone(), user.getStreetName(), user.getNumHouse(), user.getCity(),
-				user.getPostCode(), user.getPassword(),user.getMember(),user.getActivityLeader());
+				user.getPostCode(), user.getPassword(),user.getIdContributor(),user.getIdMember());
 	}
 	
 	public UserLog(Contributor contrib) {
