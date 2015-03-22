@@ -6,10 +6,13 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -209,7 +212,14 @@ public class CategoryUI extends JFrame {
 		        	  categoryPan.add(new JLabel(categories[row - 1]));
 		          } else {
 		            form[row - 1][col - 1] = new JButton();
-		            
+		            try 
+		            {
+		                Image img = ImageIO.read(getClass().getResource("Eyeball-512.png"));
+		                form[row - 1][col - 1].setIcon(new ImageIcon(img));
+		              } 
+		            catch (IOException ex) 
+		            {
+		              }
 		            bg.add(form[row - 1][col - 1]);
 		            categoryPan.add(form[row - 1][col - 1]);
 		          }
