@@ -218,13 +218,13 @@ public class ActivityLeaderDetailUI extends JFrame{
 		PhoneNumber.setBounds(326, 217, 160, 20);
 		panel.add(PhoneNumber);
 		PhoneNumber.setColumns(10);
-		PhoneNumber.setText(activityLeader.getTel());
+		PhoneNumber.setText(activityLeader.getPhone());
 		
 		HouseNumber = new JTextField();
 		HouseNumber.setBounds(326, 257, 160, 20);
 		panel.add(HouseNumber);
 		HouseNumber.setColumns(10);
-		HouseNumber.setText(activityLeader.getNumHouse());
+		HouseNumber.setText(""+activityLeader.getCotisation());
 		
 		System.out.println("mail : "+activityLeader.getMail());
 		City = new JTextField();
@@ -248,7 +248,7 @@ public class ActivityLeaderDetailUI extends JFrame{
 					activityLeader.setFirstName(FirstName.getText());
 					activityLeader.setMail(AdressMail.getText());
 					activityLeader.setStreetName(StreetName.getText());
-					activityLeader.setTel(PhoneNumber.getText());
+					activityLeader.setPhone(PhoneNumber.getText());
 					activityLeader.setNumHouse(HouseNumber.getText());
 					activityLeader.setCity(City.getText());
 					activityLeader.setPostCode(PostCode.getText());

@@ -16,20 +16,9 @@ import com.LotuZ.user.contributor.bl.Contributor;
 
 public class ContributorJDBC extends Contributor{
 	
-	/**
-	 * @param lastName
-	 * @param firstName
-	 * @param mail
-	 * @param tel
-	 * @param streetName
-	 * @param numHouse
-	 * @param city
-	 * @param postCode
-	 */
-	public ContributorJDBC(String lastName, String firstName, String mail,
-			String tel, String streetName, String numHouse, String city,
-			String postCode) {
-		super(lastName, firstName, mail, tel, streetName, numHouse, city, postCode);
+
+	public ContributorJDBC() {
+		super();
 	}
 	
 	
@@ -67,7 +56,7 @@ public class ContributorJDBC extends Contributor{
 				this.setLastName(result.getString("lastName"));
 				this.setFirstName(result.getString( "firstName" ));
 				this.setMail(result.getString( "Mail" ));
-				this.setTel(result.getString( "tel" ));
+				this.setPhone(result.getString( "tel" ));
 				this.setStreetName(result.getString( "streetName" ));
 				this.setNumHouse(result.getString( "numHouse" ));
 				this.setCity(result.getString( "city" ));
@@ -93,7 +82,7 @@ public class ContributorJDBC extends Contributor{
 		
 			// Requête de modification
 			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-				+"',`tel`='"+this.getTel()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
+				+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
 		
 			// Exécution requête
 			st.executeUpdate(sql);
@@ -124,6 +113,20 @@ public class ContributorJDBC extends Contributor{
 		} catch (SQLException e) {
 			throw e;
 		}
+	}
+
+
+	@Override
+	public void save() throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public boolean isAdmin() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

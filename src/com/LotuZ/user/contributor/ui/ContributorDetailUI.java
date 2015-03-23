@@ -218,7 +218,7 @@ public class ContributorDetailUI extends JFrame{
 		PhoneNumber.setBounds(326, 217, 160, 20);
 		panel.add(PhoneNumber);
 		PhoneNumber.setColumns(10);
-		PhoneNumber.setText(contributor.getTel());
+		PhoneNumber.setText(contributor.getPhone());
 		
 		HouseNumber = new JTextField();
 		HouseNumber.setBounds(326, 257, 160, 20);
@@ -248,7 +248,7 @@ public class ContributorDetailUI extends JFrame{
 					contributor.setFirstName(FirstName.getText());
 					contributor.setMail(AdressMail.getText());
 					contributor.setStreetName(StreetName.getText());
-					contributor.setTel(PhoneNumber.getText());
+					contributor.setPhone(PhoneNumber.getText());
 					contributor.setNumHouse(HouseNumber.getText());
 					contributor.setCity(City.getText());
 					contributor.setPostCode(PostCode.getText());

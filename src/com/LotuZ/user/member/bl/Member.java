@@ -9,40 +9,31 @@ import com.LotuZ.user.User;
 
 
 /**
- * @author Alexis
+ * @author Alexis & Ludo
  *
  */
 public abstract class Member extends User{
+	
 
+	private Double cotisation;
+	private String dateCotisation;
+	private Integer idBoxLetter;
+	private Integer idAdmin;
+	private Integer idLeader;
+	
 	/**
 	 * 
 	 */
 	public Member() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.setCotisation(cotisation);
+		this.setDateCotisation(dateCotisation);
+		this.setIdBoxLetter(idBoxLetter);
+		this.setIdAdmin(idAdmin);
+		this.setIdLeader(idLeader);
 	}
 
-	public Member(String lastName, String firstName, String mail, String tel,
-			String streetName, String numHouse, String city, String postCode) {
-		// TODO Auto-generated constructor stub
-	}
 
-	/**
-	 * @param lastName
-	 * @param firstName
-	 * @param streeName
-	 * @param numHouse
-	 * @param city
-	 * @param postCode
-	 * @param mail
-	 */
-	/*
-	public Member(String lastName, String firstName, String streeName,
-			String numHouse, String city, String postCode, String mail,String password, String phone) {
-		super(lastName, firstName, streeName, numHouse, city, postCode, mail,password, phone, activityLeader, activityLeader);
-		// TODO Auto-generated constructor stub
-	}
-	*/
 
 	@Override
 	public void save() {
@@ -55,9 +46,46 @@ public abstract class Member extends User{
 
 	public abstract Member update() throws SQLException ;
 
-	public void delete(String idMember) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public abstract void delete(String idMember) throws SQLException ;
+
+	public Double getCotisation() {
+		return cotisation;
+	}
+
+	public void setCotisation(Double cotisation) {
+		this.cotisation = cotisation;
+	}
+
+	public Integer getIdBoxLetter() {
+		return idBoxLetter;
+	}
+
+	public void setIdBoxLetter(Integer idBoxLetter) {
+		this.idBoxLetter = idBoxLetter;
+	}
+
+	public String getDateCotisation() {
+		return dateCotisation;
+	}
+
+	public void setDateCotisation(String dateCotisation) {
+		this.dateCotisation = dateCotisation;
+	}
+
+	public Integer getIdAdmin() {
+		return idAdmin;
+	}
+
+	public void setIdAdmin(Integer idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
+	public Integer getIdLeader() {
+		return idLeader;
+	}
+
+	public void setIdLeader(Integer idLeader) {
+		this.idLeader = idLeader;
 	}
 
 }

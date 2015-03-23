@@ -15,23 +15,17 @@ import com.LotuZ.user.activityLeader.bl.ActivityLeader;
  */
 
 public class ActivityLeaderJDBC extends ActivityLeader{
+
 	
-	/**
-	 * @param lastName
-	 * @param firstName
-	 * @param mail
-	 * @param tel
-	 * @param streetName
-	 * @param numHouse
-	 * @param city
-	 * @param postCode
-	 */
-	public ActivityLeaderJDBC(String lastName, String firstName, String mail,
+	/*public ActivityLeaderJDBC(String lastName, String firstName, String mail,
 			String tel, String streetName, String numHouse, String city,
 			String postCode) {
 		super(lastName, firstName, mail, tel, streetName, numHouse, city, postCode);
-	}
+	}*/
 	
+	public ActivityLeaderJDBC() {
+		super();
+	}
 	
 	/**
 	 *  Necessary for the connection of the database
@@ -57,7 +51,7 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User Where mail="+'"'+idActivityLeader+'"';
+			String sql = "Select * From LotuZ.User u ,LotuZ.Member m Where m.idMember = u.idMember and mail="+'"'+idActivityLeader+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -67,11 +61,12 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 				this.setLastName(result.getString("lastName"));
 				this.setFirstName(result.getString( "firstName" ));
 				this.setMail(result.getString( "Mail" ));
-				this.setTel(result.getString( "tel" ));
+				this.setPhone(result.getString( "tel" ));
 				this.setStreetName(result.getString( "streetName" ));
 				this.setNumHouse(result.getString( "numHouse" ));
 				this.setCity(result.getString( "city" ));
 				this.setPostCode(result.getString( "postCode" ));
+				this.setCotisation(result.getDouble("montantCotisation"));
 			}
 		
 		} catch (SQLException e) {
@@ -93,7 +88,7 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 		
 			// Requête de modification
 			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-				+"',`tel`='"+this.getTel()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
+				+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
 		
 			// Exécution requête
 			st.executeUpdate(sql);
@@ -124,6 +119,13 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 		} catch (SQLException e) {
 			throw e;
 		}
+	}
+
+
+	@Override
+	public boolean isAdmin() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

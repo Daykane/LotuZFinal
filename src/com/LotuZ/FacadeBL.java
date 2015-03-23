@@ -30,6 +30,7 @@ public class FacadeBL {
 		inscriptionManager = new InscriptionManager(kit);
 		activityManager = new ActivityManager(kit);
 		activityLeaderManager = new ActivityLeaderManager(kit);
+		contributorManager = new ContributorManager(kit);
 	}
 	
 	public static void inscription(String lastName, String firstName, String adress,

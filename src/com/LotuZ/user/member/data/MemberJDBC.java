@@ -27,10 +27,8 @@ public class MemberJDBC extends Member{
 	 * @param city
 	 * @param postCode
 	 */
-	public MemberJDBC(String lastName, String firstName, String mail,
-			String tel, String streetName, String numHouse, String city,
-			String postCode) {
-		super(lastName, firstName, mail, tel, streetName, numHouse, city, postCode);
+	public MemberJDBC() {
+		super();
 	}
 	
 	
