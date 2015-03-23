@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import com.LotuZ.event.Event;
-import com.LotuZ.user.User;
+import com.LotuZ.user.user.bl.User;
 
 public abstract class Activity {	
 	

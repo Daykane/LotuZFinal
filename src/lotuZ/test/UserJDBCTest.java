@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.LotuZ.user.UserJDBC;
+import com.LotuZ.user.user.data.UserJDBC;
 
 
 public class UserJDBCTest {

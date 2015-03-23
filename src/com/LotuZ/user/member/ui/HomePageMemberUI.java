@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
 
 public class HomePageMemberUI extends JFrame {
 

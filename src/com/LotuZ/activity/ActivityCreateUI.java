@@ -19,8 +19,8 @@ import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

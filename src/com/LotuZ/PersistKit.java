@@ -11,11 +11,11 @@ import java.util.List;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.product.Product;
-import com.LotuZ.user.User;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.contributor.bl.ListContributor;
+import com.LotuZ.user.user.bl.User;
 
 public abstract class PersistKit {
 	

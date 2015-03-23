@@ -14,12 +14,12 @@ import com.LotuZ.FacadeBL;
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.HomepageUI;
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.ui.HomePageMemberUI;
-import com.LotuZ.user.user.HomePageUserUI;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
+import com.LotuZ.user.user.ui.HomePageUserUI;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -118,7 +118,7 @@ public class LoginUI extends JFrame {
 					//TODO des println à enlever
 					System.out.println("le user log LastName : " + user.getLastName());
 					System.out.println("le user log FirstName : " + user.getFirstName());
-					System.out.println("le user log est admin : " + user.isAdmin());
+					//System.out.println("le user log est admin : " + user.isAdmin());
 					
 					if (user.getIdMember() != 0){
 						System.out.println("C'est un membre");
@@ -129,10 +129,10 @@ public class LoginUI extends JFrame {
 						System.out.println("C'est un contributor");
 						
 					}
-					else if(user.isAdmin()) {
+					/*else if(user.isAdmin()) {
 						System.out.println("C'est un contributor");
 						
-					}
+					}*/
 					else{
 						HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);

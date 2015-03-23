@@ -19,9 +19,9 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;

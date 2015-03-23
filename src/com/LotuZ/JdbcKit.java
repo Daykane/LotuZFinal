@@ -17,8 +17,6 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.ProductJDBC;
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
@@ -28,6 +26,8 @@ import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.contributor.bl.ListContributor;
 import com.LotuZ.user.contributor.data.ContributorJDBC;
 import com.LotuZ.user.contributor.data.ListContributorJDBC;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 
 /**

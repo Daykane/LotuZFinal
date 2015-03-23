@@ -1,8 +1,11 @@
-package com.LotuZ.user;
+package com.LotuZ.user.user.data;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.LotuZ.user.member.bl.Member;
+import com.LotuZ.user.user.bl.User;
 
 
 /**
@@ -10,6 +13,7 @@ import java.sql.Statement;
  *
  */
 public class UserJDBC extends User{
+	
 	private Connection cn;
 
 	/**
@@ -39,19 +43,7 @@ public class UserJDBC extends User{
 		super(lastName, firstName, mail, tel,
 				streetName, numHouse, city, postCode,
 				password, idContributor, idMember);
-		/*
-		this.setLastName(lastName);
-		this.setFirstName(firstName);
-		this.setMail(mail);
-		this.setPhone(tel);
-		this.setStreetName(streetName);
-		this.setNumHouse(numHouse);
-		this.setCity(city);
-		this.setPostCode(postCode);
-		this.setPassword(password);
-		this.setMember(member);
-		this.setActivityLeader(activityLeader);
-		 */
+
 	}
 
 	public UserJDBC() {
@@ -75,41 +67,40 @@ public class UserJDBC extends User{
 		}
 	}
 
-	public UserJDBC load(String mail) throws SQLException{
-		UserJDBC user = null;
-		Connection cn = this.cn;
+	public User load(String mail) throws SQLException {
 		try {
-
 			Statement st =null;
-			// Etape 3 : Création d'un statement
-			st = cn.createStatement();
-			String sql = "Select * From LotuZ.User Where mail="+'"'+mail+'"';
-			// Etape 4 : exécution requête
-			//st.executeUpdate(sql);
+			// Création d'un statement
+			st = this.cn.createStatement();
+			
+			// Requête de sélection à partir de l'identifiant 
+			String sql = "Select * From LotuZ.User u Where u.mail="+'"'+mail+'"';
+			
+			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
-			while( result.next() ){	
-				String lastName = result.getString("lastName");
-				String firstName = result.getString("firstName");
-				//String mail = result.getString("mail");
-				String tel = result.getString("tel");
-				String streetName = result.getString("streetName");
-				String numHouse = result.getString("numHouse");
-				String city = result.getString("city");
-				String postCode = result.getString("postCode");
-				String password = result.getString("password");
-				int idContributor = result.getInt("idContributor");
-				int idMember = result.getInt("idMember");
-
-				user = new UserJDBC(lastName,firstName,mail,tel,streetName,numHouse,city,postCode,password,idContributor,idMember);
-				user.setCn(cn);
+			
+			// Récupération des données 
+			while(result.next()){	
+				this.setLastName(result.getString("lastName"));
+				this.setFirstName(result.getString( "firstName" ));
+				this.setMail(result.getString( "Mail" ));
+				this.setPhone(result.getString( "tel" ));
+				this.setStreetName(result.getString( "streetName" ));
+				this.setNumHouse(result.getString( "numHouse" ));
+				this.setCity(result.getString( "city" ));
+				this.setPostCode(result.getString( "postCode" ));
+				this.setPassword(result.getString("password"));
+				this.setIdContributor(result.getInt("idContributor"));
+				this.setIdMember(result.getInt("idMember"));
 			}
+		
 		} catch (SQLException e) {
 			throw e;
 		}
-		return user;
+		return this;
 	}
 	
-	@Override
+	/*@Override
 	public boolean isAdmin() throws SQLException {
 		boolean flag = false;
 		int answer = 0;
@@ -130,7 +121,7 @@ public class UserJDBC extends User{
 			flag = true;
 		}
 		return flag;
-	}
+	}*/
 }
 
 

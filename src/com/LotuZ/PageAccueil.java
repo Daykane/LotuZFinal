@@ -12,8 +12,8 @@ import javax.swing.SwingConstants;
 
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
 
 import java.awt.Font;
 import java.sql.SQLException;

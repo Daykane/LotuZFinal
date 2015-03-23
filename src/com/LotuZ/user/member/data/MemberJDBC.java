@@ -71,6 +71,7 @@ public class MemberJDBC extends Member{
 				this.setNumHouse(result.getString( "numHouse" ));
 				this.setCity(result.getString( "city" ));
 				this.setPostCode(result.getString( "postCode" ));
+				this.setPassword(result.getString("password"));
 			}
 		
 		} catch (SQLException e) {
@@ -133,11 +134,6 @@ public class MemberJDBC extends Member{
 	}
 
 
-	@Override
-	public boolean isAdmin() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

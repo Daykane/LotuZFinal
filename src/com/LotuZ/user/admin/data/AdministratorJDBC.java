@@ -1,11 +1,14 @@
-package com.LotuZ.user.contributor.data;
+package com.LotuZ.user.admin.data;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.LotuZ.user.contributor.bl.Contributor;
+
+
+import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.member.bl.Member;
 
 
 /**
@@ -14,10 +17,19 @@ import com.LotuZ.user.contributor.bl.Contributor;
  *
  */
 
-public class ContributorJDBC extends Contributor{
+public class AdministratorJDBC extends Administrator{
 	
-
-	public ContributorJDBC() {
+	/**
+	 * @param lastName
+	 * @param firstName
+	 * @param mail
+	 * @param tel
+	 * @param streetName
+	 * @param numHouse
+	 * @param city
+	 * @param postCode
+	 */
+	public AdministratorJDBC() {
 		super();
 	}
 	
@@ -30,23 +42,23 @@ public class ContributorJDBC extends Contributor{
 	/**
 	 * @param cn
 	 */
-	public ContributorJDBC(Connection cn){
+	public AdministratorJDBC(Connection cn){
 		this.cn = cn;
 	}	
 	
 
 	/**
-	 * Lecture d'un intervenant en base à partir de son identifiant 
+	 * Lecture d'un responsable d'activité en base à partir de son identifiant 
 	 */
 	@Override
-	public Contributor load(String idContributor) throws SQLException {
+	public Administrator load(String idMember) throws SQLException {
 		try {
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u,LotuZ.Contributor c Where u.idContributor = c.idContributor and mail="+'"'+idContributor+'"';
+			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and m.idAdmin IS NOT NULL and u.mail="+'"'+idMember+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -72,10 +84,10 @@ public class ContributorJDBC extends Contributor{
 	
 
 	/**
-	 * Modification d'un intervenant en base à partir de son identifiant 
+	 * Modification d'un responsable d'activité en base à partir de son identifiant 
 	 */
 	@Override
-	public Contributor update() throws SQLException {
+	public Administrator update() throws SQLException {
 		try {		
 			Statement st =null;
 			// Création d'un statement
@@ -96,17 +108,17 @@ public class ContributorJDBC extends Contributor{
 	
 
 	/**
-	 * Suppression d'un intervenant en base à partir de son identifiant 
+	 * Suppression d'un responsable d'activité en base à partir de son identifiant 
 	 */
-	@Override
-	public void delete(String idContributor) throws SQLException {
+
+	public void delete(String idMember) throws SQLException {
 		try {	
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 		
 			// Requête de modification
-			String sql = "Delete From User Where mail="+'"'+idContributor+'"';
+			String sql = "Delete From User Where mail="+'"'+idMember+'"';
 			
 			// Exécution requête
 			st.executeUpdate(sql);
@@ -118,7 +130,7 @@ public class ContributorJDBC extends Contributor{
 
 
 	@Override
-	public void save() throws SQLException, ClassNotFoundException {
+	public void save() {
 		// TODO Auto-generated method stub
 		
 	}

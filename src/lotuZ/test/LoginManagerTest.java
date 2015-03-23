@@ -15,9 +15,9 @@ import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashText;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 /**
  * @author Alexis

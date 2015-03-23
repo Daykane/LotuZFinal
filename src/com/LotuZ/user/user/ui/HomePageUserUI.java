@@ -1,4 +1,4 @@
-package com.LotuZ.user.user;
+package com.LotuZ.user.user.ui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import com.LotuZ.activity.ActivityCreateUI;
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
