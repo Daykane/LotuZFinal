@@ -1,11 +1,13 @@
-package com.LotuZ.user.member.data;
+package com.LotuZ.user.admin.data;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.LotuZ.user.contributor.bl.Contributor;
+
+
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.member.bl.Member;
 
 
@@ -15,7 +17,7 @@ import com.LotuZ.user.member.bl.Member;
  *
  */
 
-public class MemberJDBC extends Member{
+public class AdministratorJDBC extends Administrator{
 	
 	/**
 	 * @param lastName
@@ -27,7 +29,7 @@ public class MemberJDBC extends Member{
 	 * @param city
 	 * @param postCode
 	 */
-	public MemberJDBC() {
+	public AdministratorJDBC() {
 		super();
 	}
 	
@@ -40,7 +42,7 @@ public class MemberJDBC extends Member{
 	/**
 	 * @param cn
 	 */
-	public MemberJDBC(Connection cn){
+	public AdministratorJDBC(Connection cn){
 		this.cn = cn;
 	}	
 	
@@ -49,14 +51,14 @@ public class MemberJDBC extends Member{
 	 * Lecture d'un responsable d'activité en base à partir de son identifiant 
 	 */
 	@Override
-	public Member load(String idMember) throws SQLException {
+	public Administrator load(String idMember) throws SQLException {
 		try {
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and u.mail="+'"'+idMember+'"';
+			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and m.idAdmin IS NOT NULL and u.mail="+'"'+idMember+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -85,7 +87,7 @@ public class MemberJDBC extends Member{
 	 * Modification d'un responsable d'activité en base à partir de son identifiant 
 	 */
 	@Override
-	public Member update() throws SQLException {
+	public Administrator update() throws SQLException {
 		try {		
 			Statement st =null;
 			// Création d'un statement

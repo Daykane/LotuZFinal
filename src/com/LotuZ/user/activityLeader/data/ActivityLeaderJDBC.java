@@ -76,6 +76,7 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 				this.setCotisation(result.getDouble("montantCotisation"));
 				activities.add(result.getString("name"));
 				this.setNamesActivity(activities);
+				this.setPassword(result.getString("password"));
 			}
 		
 		} catch (SQLException e) {

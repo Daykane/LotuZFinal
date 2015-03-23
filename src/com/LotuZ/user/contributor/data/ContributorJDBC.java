@@ -36,7 +36,7 @@ public class ContributorJDBC extends Contributor{
 	
 
 	/**
-	 * Lecture d'un responsable d'activité en base à partir de son identifiant 
+	 * Lecture d'un intervenant en base à partir de son identifiant 
 	 */
 	@Override
 	public Contributor load(String idContributor) throws SQLException {
@@ -46,7 +46,7 @@ public class ContributorJDBC extends Contributor{
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User Where mail="+'"'+idContributor+'"';
+			String sql = "Select * From LotuZ.User u,LotuZ.Contributor c Where u.idContributor = c.idContributor and mail="+'"'+idContributor+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -61,6 +61,7 @@ public class ContributorJDBC extends Contributor{
 				this.setNumHouse(result.getString( "numHouse" ));
 				this.setCity(result.getString( "city" ));
 				this.setPostCode(result.getString( "postCode" ));
+				this.setPassword(result.getString("password"));
 			}
 		
 		} catch (SQLException e) {
@@ -71,7 +72,7 @@ public class ContributorJDBC extends Contributor{
 	
 
 	/**
-	 * Modification d'un responsable d'activité en base à partir de son identifiant 
+	 * Modification d'un intervenant en base à partir de son identifiant 
 	 */
 	@Override
 	public Contributor update() throws SQLException {
@@ -95,7 +96,7 @@ public class ContributorJDBC extends Contributor{
 	
 
 	/**
-	 * Suppression d'un responsable d'activité en base à partir de son identifiant 
+	 * Suppression d'un intervenant en base à partir de son identifiant 
 	 */
 	@Override
 	public void delete(String idContributor) throws SQLException {
