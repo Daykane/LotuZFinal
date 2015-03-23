@@ -47,6 +47,7 @@ public class ActivityUI extends JFrame {
 	private JTextField tfName;
 	private JTextField tfRespo;
 	private JTextField tfShortDescr;
+	static String editText = "Edit";
 
 	/**
 	 * Launch the application.
@@ -88,7 +89,7 @@ public class ActivityUI extends JFrame {
 		
 		// Déclaration du monde
 		FacadeUser.login("jack","jack");
-		final Activity activity = FacadeBL.readActivity(1);
+		final Activity activity = FacadeBL.readActivity(14);
 		User user = UserLog.getUserLog();
 		//
 		
@@ -270,6 +271,7 @@ public class ActivityUI extends JFrame {
 		JLabel lblRespo = new JLabel("Responsible : ");
 		panel.add(lblRespo, "4, 6, right, default");
 		
+		//TODO get le name et pas l'id du respo
 		tfRespo = new JTextField(activity.getIdRespo());
 		tfRespo.setEditable(false);
 		panel.add(tfRespo, "6, 6, fill, top");
@@ -306,37 +308,53 @@ public class ActivityUI extends JFrame {
 		JPanel panelButton = new JPanel();
 		panel_1.add(panelButton, BorderLayout.SOUTH);
 		
-		JButton btnEdit = new JButton("Edit");
+		final JButton btnEdit = new JButton(editText);
 		btnEdit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//if (user.getMail() == FacadeBL.readUser(activity.getIdRespo().getMail();)
-						// tous est editable
-				if(!tfName.isEditable()){
+				if (btnEdit.getText().equals("Edit")){
+					btnEdit.setText("Validate");
 					tfName.setEditable(true);
 					tfShortDescr.setEditable(true);
 					tfLongDescr.setEditable(true);
 				}
-			}
-		});
-		btnEdit.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelButton.add(btnEdit);
-		
-		JButton btnValidate = new JButton("Validate");
-		btnValidate.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try {
-					FacadeBL.updateActivity(activity, tfName.getText(), tfShortDescr.getText(), tfLongDescr.getText(), tfRespo.getText());
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				else if(btnEdit.getText().equals("Validate")){
+					btnEdit.setText("Edit");
+					try {
+						FacadeBL.updateActivity(activity, tfName.getText(), tfShortDescr.getText(), tfLongDescr.getText(), tfRespo.getText());
+						tfName.setEditable(false);
+						tfShortDescr.setEditable(false);
+						tfLongDescr.setEditable(false);
+						// TODO alert boite
+						System.out.println("Activity updaté");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		});
-		panelButton.add(btnValidate);
+		panelButton.add(btnEdit);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(btnEdit.getText().equals("Validate")){
+					tfName.setText(activity.getName());
+					tfShortDescr.setText(activity.getShortDescr());
+					tfLongDescr.setText(activity.getLongDescr());
+					tfName.setEditable(false);
+					tfShortDescr.setEditable(false);
+					tfLongDescr.setEditable(false);
+					btnEdit.setText("Edit");
+				}
+				else{
+					//TODO
+					System.out.println("Retour vers la page précédente");
+				}
+			}
+		});
 		panelButton.add(btnCancel);
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
