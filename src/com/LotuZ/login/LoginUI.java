@@ -118,7 +118,7 @@ public class LoginUI extends JFrame {
 					//TODO des println à enlever
 					System.out.println("le user log LastName : " + user.getLastName());
 					System.out.println("le user log FirstName : " + user.getFirstName());
-					System.out.println("le user log est admin : " + user.isAdmin());
+					//System.out.println("le user log est admin : " + user.isAdmin());
 					
 					if (user.getIdMember() != 0){
 						System.out.println("C'est un membre");
@@ -129,10 +129,10 @@ public class LoginUI extends JFrame {
 						System.out.println("C'est un contributor");
 						
 					}
-					else if(user.isAdmin()) {
+					/*else if(user.isAdmin()) {
 						System.out.println("C'est un contributor");
 						
-					}
+					}*/
 					else{
 						HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);
