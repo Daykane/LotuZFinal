@@ -20,23 +20,22 @@ public abstract class ActivityLeader extends Member{
 		super();
 	}
 
+	private List<String> namesActivity;
 
-	private List<Activity> namesActivity;
 
-
-	public ActivityLeader(List<Activity> namesActivity) {
+	public ActivityLeader(List<String> namesActivity) {
 		super();
 		this.setNamesActivity(namesActivity);
 	}
 
 
 	
-	public List<Activity> getNamesActivity() {
+	public List<String> getNamesActivity() {
 		return namesActivity;
 	}
 
 
-	public void setNamesActivity(List<Activity> namesActivity) {
+	public void setNamesActivity(List<String> namesActivity) {
 		this.namesActivity = namesActivity;
 	}
 	

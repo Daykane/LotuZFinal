@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -224,7 +225,8 @@ public class ActivityLeaderDetailUI extends JFrame{
 		HouseNumber.setBounds(326, 257, 160, 20);
 		panel.add(HouseNumber);
 		HouseNumber.setColumns(10);
-		HouseNumber.setText(""+activityLeader.getCotisation());
+		List<String> listActivities = activityLeader.getNamesActivity();
+		HouseNumber.setText(listActivities.get(0));
 		
 		System.out.println("mail : "+activityLeader.getMail());
 		City = new JTextField();

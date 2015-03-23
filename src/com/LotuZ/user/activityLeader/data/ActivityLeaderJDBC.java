@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.LotuZ.activity.Activity;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 
@@ -46,12 +49,16 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	@Override
 	public ActivityLeader load(String idActivityLeader) throws SQLException {
 		try {
+			/*Activity activity;
+			activity = new Activity();*/
+			List<String> activities = new ArrayList<String>();
+			
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u ,LotuZ.Member m Where m.idMember = u.idMember and mail="+'"'+idActivityLeader+'"';
+			String sql = "Select * From LotuZ.User u ,LotuZ.Member m, LotuZ.Activity a Where m.idMember = u.idMember and u.mail = a.activityLeader and mail="+'"'+idActivityLeader+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -67,6 +74,8 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 				this.setCity(result.getString( "city" ));
 				this.setPostCode(result.getString( "postCode" ));
 				this.setCotisation(result.getDouble("montantCotisation"));
+				activities.add(result.getString("name"));
+				this.setNamesActivity(activities);
 			}
 		
 		} catch (SQLException e) {
