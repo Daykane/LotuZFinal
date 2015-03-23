@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -255,14 +256,15 @@ public class ViewCategoryUI extends JFrame {
 		gbc_lbldescription.gridy = 2;
 		categoryPan.add(lblDescription, gbc_lbldescription);
 	
-			//textfield
-		JTextField txtFDescription = new JTextField();
-		GridBagConstraints gbc_txtFDescription = new GridBagConstraints();
-		gbc_txtFDescription.gridx = 2;
-		gbc_txtFDescription.gridy = 2;
-		txtFDescription.setColumns(30);
-		txtFDescription.setEditable(false);
-		categoryPan.add(txtFDescription, gbc_txtFDescription);
+			//JTextArea
+		JTextArea txtADescription = new JTextArea();
+		GridBagConstraints gbc_txtADescription = new GridBagConstraints();
+		gbc_txtADescription.gridx = 2;
+		gbc_txtADescription.gridy = 2;
+		txtADescription.setColumns(15);
+		txtADescription.setRows(4);
+		txtADescription.setEditable(false);
+		categoryPan.add(txtADescription, gbc_txtADescription);
 		
 		//levelCategory
 		
@@ -275,7 +277,7 @@ public class ViewCategoryUI extends JFrame {
 		
 		
 			//textfield
-		JTextField txtFLevelCategory = new JTextField("Sub Category");
+		JTextField txtFLevelCategory = new JTextField("");
 		GridBagConstraints gbc_txtFLevelCategory = new GridBagConstraints();
 		gbc_txtFLevelCategory.gridx = 2;
 		gbc_txtFLevelCategory.gridy = 3;

@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -244,14 +245,14 @@ public class CreateCategoryUI extends JFrame {
 		gbc_lbldescription.gridy = 2;
 		categoryPan.add(lblDescription, gbc_lbldescription);
 	
-			//textfield
-		JTextField txtFDescription = new JTextField();
-		GridBagConstraints gbc_txtFDescription = new GridBagConstraints();
-		gbc_txtFDescription.gridx = 2;
-		gbc_txtFDescription.gridy = 2;
-		txtFDescription.setColumns(30);
-		txtFDescription.setSize(15, 15);
-		categoryPan.add(txtFDescription, gbc_txtFDescription);
+			//JTextArea
+		JTextArea txtADescription = new JTextArea();
+		GridBagConstraints gbc_txtADescription = new GridBagConstraints();
+		gbc_txtADescription.gridx = 2;
+		gbc_txtADescription.gridy = 2;
+		txtADescription.setColumns(15);
+		txtADescription.setRows(4);
+		categoryPan.add(txtADescription, gbc_txtADescription);
 		
 		//levelCategory
 		
