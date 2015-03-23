@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashText;
-import com.LotuZ.user.User;
+import com.LotuZ.user.user.bl.User;
 
 /**
  * @author LotuZ

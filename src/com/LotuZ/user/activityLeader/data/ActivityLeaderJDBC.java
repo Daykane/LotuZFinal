@@ -132,11 +132,6 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	}
 
 
-	@Override
-	public boolean isAdmin() throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

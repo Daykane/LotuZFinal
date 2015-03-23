@@ -124,13 +124,6 @@ public class ContributorJDBC extends Contributor{
 	}
 
 
-	@Override
-	public boolean isAdmin() throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 
 }
 

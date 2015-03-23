@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
 
 public class ActivityManager {
 	

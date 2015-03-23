@@ -10,9 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.contributor.bl.ListContributor;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 
 /**

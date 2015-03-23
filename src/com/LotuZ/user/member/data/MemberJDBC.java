@@ -134,11 +134,6 @@ public class MemberJDBC extends Member{
 	}
 
 
-	@Override
-	public boolean isAdmin() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

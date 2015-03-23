@@ -30,8 +30,8 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.User;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
 
 public class EditCategoryUI extends JFrame
 {

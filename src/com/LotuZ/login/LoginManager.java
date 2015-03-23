@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
 import com.LotuZ.hashText.HashText;
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 
 public class LoginManager {

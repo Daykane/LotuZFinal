@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.user.bl.User;
 
 public final class UserLog extends User{
 
@@ -85,7 +86,7 @@ public final class UserLog extends User{
 		}
 	}
 	
-	@Override
+	/*@Override
 	public boolean isAdmin() throws SQLException {
 		boolean flag = false;
 		int answer = 0;
@@ -106,7 +107,7 @@ public final class UserLog extends User{
 			flag = true;
 		}
 		return flag;
-	}
+	}*/
 }
 
 

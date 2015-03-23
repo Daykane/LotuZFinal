@@ -11,9 +11,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.LotuZ.user.User;
-import com.LotuZ.user.UserJDBC;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 public class ActivityJdbc extends Activity{
 

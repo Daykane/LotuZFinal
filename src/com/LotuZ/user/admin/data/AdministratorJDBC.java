@@ -136,12 +136,6 @@ public class AdministratorJDBC extends Administrator{
 	}
 
 
-	@Override
-	public boolean isAdmin() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 }
 

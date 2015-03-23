@@ -5,7 +5,7 @@ package com.LotuZ.user.member.bl;
 
 import java.sql.SQLException;
 
-import com.LotuZ.user.User;
+import com.LotuZ.user.user.bl.User;
 
 
 /**

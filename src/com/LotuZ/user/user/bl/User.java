@@ -4,7 +4,7 @@
  *
  */
 
-package com.LotuZ.user;
+package com.LotuZ.user.user.bl;
 
 import java.sql.SQLException;
 
@@ -215,7 +215,6 @@ public abstract class User {
 
 	public abstract User load(String mail) throws SQLException;
 
-	public abstract boolean isAdmin() throws SQLException;
 
 
 }
