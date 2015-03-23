@@ -13,8 +13,10 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.product.Product;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.contributor.bl.ListContributor;
+import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 
 public abstract class PersistKit {
@@ -31,5 +33,7 @@ public abstract class PersistKit {
 	public abstract Product createProduct();
 	public abstract ListContributor createListContributor();
 	public abstract Contributor createContributor();
+	public abstract Administrator createAdministrator();
+	public abstract Member createMember();
 
 	}

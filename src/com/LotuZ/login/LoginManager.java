@@ -46,27 +46,14 @@ public class LoginManager {
 	public void loginUser(String mail,String password) throws SQLException, UserNotFoundException{
 		// Create empty userJdbc for read information
 			User user = this.pkit.createUser();
-			//Member member = this.pkit.createMember();
+			Member member = this.pkit.createMember();
 			ActivityLeader respo = this.pkit.createActivityLeader();
-			//Administrator admin = this.pkit.createAdministrator();
+			Administrator admin = this.pkit.createAdministrator();
 			Contributor contrib = this.pkit.createContributor();
 			
 			respo = respo.load(mail);
 			user = user.load(mail);
-			if ( user == null){
-				System.out.println("La personne n'existe pas");
-			}
-			else if (respo == null) {
-				System.out.println("ce n'est pas un respo");
-			}
-			else if (contrib == null) {
-				System.out.println("ce n'est pas un contrib");
-			}
-			else if (respo != null) {
-				System.out.println("c'est un respo");
-			}
-
-			
+			admin.load(mail);			
 			try {
 				password = HashText.sha1(password);
 				//passWordCrypt = HashText.sha1(user.getPassword());
