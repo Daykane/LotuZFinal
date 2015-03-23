@@ -1,34 +1,41 @@
 package com.LotuZ.user;
 
-
+/**
+ * @author Alexis
+ */
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 
 public final class UserLog extends User{
 
-	private static volatile User user = null;
+	private static User user;
+	private static Member member;
+	private static Administrator admin;
+	private static ActivityLeader respo;
+	private static Contributor contrib;
+	private static boolean dispo = true;
 	//private boolean admin = false;
 
-	private Connection cn;
+	//private Connection cn;
 
 
-	private UserLog(Connection cn) {
+	private UserLog() {
 		super();
-		this.cn = cn;
 	}
 
 
-	public UserLog(User user, Connection cn) throws SQLException {
+	public UserLog(User user) throws SQLException {
 		super(user.getLastName(), user.getFirstName(), user.getMail(),
 				user.getPhone(), user.getStreetName(), user.getNumHouse(), user.getCity(),
 				user.getPostCode(), user.getPassword(),user.getIdContributor(),user.getIdMember());
-		//this.admin = user.isAdmin();
-		this.cn = cn;
 	}
 
 
@@ -43,25 +50,14 @@ public final class UserLog extends User{
 		//this.admin = admin;
 	}
 
-	/**
-	 * @return the cn
-	 */
-	public Connection getCn() {
-		return cn;
-	}
 
-	/**
-	 * @param cn the cn to set
-	 */
-	public void setCn(Connection cn) {
-		this.cn = cn;
-	}
 
-	public final static void init(Connection cn) {
-		if (UserLog.user == null) {
+	public final static void init() {
+		if (UserLog.dispo ) {
 
 			synchronized(UserLog.class) {
-				UserLog.user = new UserLog(cn);
+				UserLog.user = new UserLog();
+				UserLog.dispo = false;
 			}
 		}
 	}
@@ -80,10 +76,37 @@ public final class UserLog extends User{
 		if (UserLog.user == null) {
 			synchronized(UserLog.class) {
 				if (UserLog.user == null) {
-					UserLog.user = new UserLog(user,cn);
+					UserLog.user = new UserLog(user);
 				}
 			}
 		}
+	}
+
+
+	public static void init(User user, Member member, ActivityLeader respo,
+			Administrator admin, Contributor contrib, Connection cn) throws SQLException {
+		if (UserLog.dispo) {
+			synchronized(UserLog.class) {
+				//TODO
+				if (admin != null) {
+					// prend un admin
+					UserLog.user = new UserLog(user);
+				}
+				else if (respo != null){
+					// prend un respo					
+				}
+				else if (contrib != null){
+					// prend un contributor				
+				}
+				else if(member != null){
+					// prend un member
+				}
+				else{
+					// 
+				}
+			}
+		}
+		
 	}
 	
 	/*@Override

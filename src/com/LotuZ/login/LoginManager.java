@@ -53,7 +53,10 @@ public class LoginManager {
 			
 			respo = respo.load(mail);
 			user = user.load(mail);
-			admin.load(mail);			
+			admin = admin.load(mail);
+			member = (Member) member.load(mail);
+			contrib = contrib.load(mail);
+			
 			try {
 				password = HashText.sha1(password);
 				//passWordCrypt = HashText.sha1(user.getPassword());
@@ -62,7 +65,7 @@ public class LoginManager {
 			}
 			if(user != null && password.equals(user.getPassword())  ){
 					// Create singleton userJdbc for login
-					this.pkit.createUserLog(user);
+					this.pkit.createUserLog(user,member,respo,admin,contrib);
 				}
 				
 			else{

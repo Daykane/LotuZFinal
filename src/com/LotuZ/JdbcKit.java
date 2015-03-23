@@ -95,10 +95,15 @@ public class JdbcKit extends PersistKit{
 
 	@Override
 	public void createUserLog() {
-		UserLog.init(this.cn);
+		UserLog.init();
 	}
 
-
+	@Override
+	public void createUserLog(User user, Member member, ActivityLeader respo,
+			Administrator admin, Contributor contrib) throws SQLException {
+		UserLog.init(user,member,respo,admin,contrib,this.cn);
+		
+	}
 
 	public void createUserLog(User user) throws SQLException {
 		UserLog.init(user,this.cn);
@@ -209,5 +214,10 @@ public class JdbcKit extends PersistKit{
 	public Member createMember() {
 		return new MemberJDBC(this.cn);
 	}
+
+
+
+
+	
 
 }

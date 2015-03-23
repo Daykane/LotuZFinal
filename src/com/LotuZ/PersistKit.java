@@ -26,7 +26,7 @@ public abstract class PersistKit {
 	//public abstract User login(String mail, String passWordCrypt) throws SQLException;
 	public abstract User createUser();
 	public abstract void createUserLog();
-	public abstract void createUserLog(User user) throws SQLException;
+	public abstract void createUserLog(User user, Member member, ActivityLeader respo, Administrator admin, Contributor contrib) throws SQLException;
 	public abstract Activity createActivity();
 	public abstract ListActivityLeader createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();
