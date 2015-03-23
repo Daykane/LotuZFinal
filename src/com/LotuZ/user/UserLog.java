@@ -93,16 +93,20 @@ public final class UserLog extends User{
 					UserLog.user = new UserLog(user);
 				}
 				else if (respo != null){
-					// prend un respo					
+					// prend un respo
+					UserLog.user = new UserLog(user);
 				}
 				else if (contrib != null){
-					// prend un contributor				
+					// prend un contributor	
+					UserLog.user = new UserLog(user);
 				}
 				else if(member != null){
 					// prend un member
+					UserLog.user = new UserLog(user);
 				}
 				else{
 					// 
+					UserLog.user = new UserLog(user);
 				}
 			}
 		}
