@@ -93,7 +93,8 @@ public class CategoryUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public CategoryUI() throws SQLException, UserNotFoundException {
+	public CategoryUI() throws SQLException, UserNotFoundException 
+	{
 		User user = UserLog.getUserLog();
 		//Create Window
 		setTitle("Zen Lounge");
@@ -206,7 +207,7 @@ public class CategoryUI extends JFrame {
 		categoryPan.setLayout(new GridBagLayout());
 
 		//JListe Category
-		ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getCategories().getListCategoryProduct();
+		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getCategories().getListCategoryProduct();
 		final ArrayList<String> categoriesNames = new ArrayList<String>();
 		for (int i=0;i<categories.size();i++)
 		{
@@ -295,6 +296,7 @@ public class CategoryUI extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			ViewCategoryUI.setLocationRelativeTo(null);
 			ViewCategoryUI.setVisible(true);
 			dispose();
 			
@@ -313,6 +315,8 @@ public class CategoryUI extends JFrame {
 			if (!jListCategories.getSelectedValue().equals(null))
 			{		
 				//Suppression de l'élement sélection de la liste des sous category
+				System.out.println(categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct());
+				FacadeBL.deleteCategory(categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct());
 				categoriesNames.remove(jListCategories.getSelectedValue());
 				jListCategories.setListData(categoriesNames.toArray());
 			}

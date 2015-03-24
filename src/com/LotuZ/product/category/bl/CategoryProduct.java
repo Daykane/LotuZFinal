@@ -202,7 +202,7 @@ public abstract class CategoryProduct
 
 		public abstract void save() throws SQLException;
 		public abstract void save(int id, String name, String decription,int level, int father) throws SQLException;
-		public abstract void delete(String idCategoryProduct) throws SQLException;
+		public abstract void delete(int idCategoryProduct) throws SQLException;
 		public abstract CategoryProduct load(int idCategoryProduct) throws SQLException;
 
 		

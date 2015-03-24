@@ -86,6 +86,7 @@ public class EditCategoryUI extends JFrame
 	 * @throws SQLException 
 	 */
 	public EditCategoryUI() throws SQLException, UserNotFoundException {
+		setLocationRelativeTo(null);
 		User user = UserLog.getUserLog();
 		//Create Window
 		setTitle("Zen Lounge");

@@ -66,6 +66,7 @@ public static  void updateCategory(int idCategory, String nameCategory, String d
 
 public static  void deleteCategory(int idCategory) 
 {
+	System.out.println("FBL");
 	categoryManager.deleteCategory(idCategory);
 }
 

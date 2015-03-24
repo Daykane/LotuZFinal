@@ -170,6 +170,11 @@ public class JdbcKit extends PersistKit{
 		
 	}
 	
+	public CategoryProduct createCategory() {
+
+		return new CatgeoryJdbc(this.cn);
+	}
+	
 	// *************************************Loïc*************************************
 
 
@@ -238,11 +243,6 @@ public class JdbcKit extends PersistKit{
 
 
 
-	@Override
-	public CategoryProduct createCategory() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 

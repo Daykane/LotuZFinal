@@ -69,8 +69,18 @@ public class CategoryManager
 		
 	}
 
-	public void deleteCategory(int idCategory) {
-		// TODO Auto-generated method stub
+	public void deleteCategory(int idCategory) 
+	{
+		System.out.println("man1");
+		CategoryProduct category = pkit.createCategory();
+		try {
+			System.out.println("man2");
+			category.delete(idCategory);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("man3");
 		
 	}
 

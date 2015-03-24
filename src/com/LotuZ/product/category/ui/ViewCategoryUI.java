@@ -81,6 +81,7 @@ public class ViewCategoryUI extends JFrame {
 	 * @throws SQLException 
 	 */
 	public ViewCategoryUI() throws SQLException, UserNotFoundException {
+		setLocationRelativeTo(null);
 		User user = UserLog.getUserLog();
 		//Create Window
 		setTitle("Zen Lounge");

@@ -143,10 +143,7 @@ public class CatgeoryJdbc extends CategoryProduct
 	
 	public void save(int id, String name, String description, int level, int father) throws SQLException 
 	{
-		try {
-
-			List<String> CategoryProduct = new ArrayList<String>();
-			
+		try {		
 			Statement st =null;
 			
 			// Cr�ation d'un statement
@@ -171,26 +168,23 @@ public class CatgeoryJdbc extends CategoryProduct
 	}
 
 	@Override
-	public void delete(String idCategoryProduct) throws SQLException 
+	public void delete(int idCategoryProduct) throws SQLException 
 	{
-		try {
-
-			List<String> CategoryProduct = new ArrayList<String>();
-			
+		System.out.println("cJDBC1");
+			System.out.println("cJDBC2");
 			Statement st =null;
 			
 			// Cr�ation d'un statement
 			st = this.cn.createStatement();
 			
 			// Requ�te d insertion � partir de l'identifiant 
-			String sql = "DELETE FROM Category WHERE idCategory ="+idCategoryProduct;		
+			//String sql = "Select * From LotuZ.Category where idCategory="+idCategoryProduct;
+			String sql = "Delete from LotuZ.Category where idCategory="+idCategoryProduct;		
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
-			}
-		 catch (SQLException e) 
-		{
-			throw e;
-		}
+			System.out.println("cJDBC3");
+			
 	}
 
 
