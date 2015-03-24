@@ -1,6 +1,7 @@
 package com.LotuZ.user.contributor.bl;
 
 import java.sql.SQLException;
+
 import com.LotuZ.PersistKit;
 
 
@@ -35,8 +36,9 @@ public class ContributorManager {
 	 * @param contributor
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public Contributor modifyContributor(Contributor contributor) throws SQLException {
+	public Contributor modifyContributor(Contributor contributor) throws SQLException, ClassNotFoundException {
 		contributor.update();
 		return contributor;
 	}
@@ -55,9 +57,10 @@ public class ContributorManager {
 	/**
 	 * @param idContributor
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public void deleteContributor(String idContributor) throws SQLException {
+	public void deleteContributor() throws SQLException, ClassNotFoundException {
 		Contributor contributor = pkit.createContributor();
-		contributor.delete(idContributor);
+		contributor.delete();
 	}
 }

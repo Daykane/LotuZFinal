@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 
 /**
@@ -38,15 +40,37 @@ public class ContributorJDBC extends Contributor{
 	/**
 	 * Lecture d'un intervenant en base à partir de son identifiant 
 	 */
-	@Override
-	public Contributor load(String idContributor) throws SQLException {
+	public void save() throws ClassNotFoundException, SQLException {
+		try {		
+			Statement st =null;
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
+
+			String sql = "INSERT INTO `LotuZ`.`Contributor` (`mailContributor`) VALUES ('"+ this.getLastName() +"')";
+			st.executeUpdate(sql);
+			
+			String sql2 = "SELECT idContributor FROM LotuZ.Contributor Where mail='"+ this.getMail() +"'";
+			ResultSet result = st.executeQuery(sql2);
+			int idContributor = result.getInt("idContributor");
+			
+			String sql3 = "INSERT INTO `LotuZ`.`User` (`idContributor`) VALUES ('"+ idContributor +"') Where mail='"+ this.getMail() +"'";
+			
+			// Etape 4 : exécution requête
+			st.executeUpdate(sql3);
+
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
+
+	public Contributor load(String mail) throws SQLException {
 		try {
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u,LotuZ.Contributor c Where u.idContributor = c.idContributor and mail="+'"'+idContributor+'"';
+			String sql = "Select * From LotuZ.User u Where u.mail="+mail+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -62,6 +86,8 @@ public class ContributorJDBC extends Contributor{
 				this.setCity(result.getString( "city" ));
 				this.setPostCode(result.getString( "postCode" ));
 				this.setPassword(result.getString("password"));
+				this.setIdContributor(result.getInt("idContributor"));
+				this.setIdMember(result.getInt("idMember"));
 			}
 		
 		} catch (SQLException e) {
@@ -70,59 +96,40 @@ public class ContributorJDBC extends Contributor{
 		return this;
 	}
 	
-
-	/**
-	 * Modification d'un intervenant en base à partir de son identifiant 
-	 */
-	@Override
-	public Contributor update() throws SQLException {
+	public void delete() throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
-			// Création d'un statement
+			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-		
-			// Requête de modification
-			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-				+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()+"' Where `mail`='"+this.getMail()+"'";
-		
-			// Exécution requête
-			st.executeUpdate(sql);
-		
-			} catch (SQLException e) {
-				throw e;
-			}
-		return this;
-	}
-	
-
-	/**
-	 * Suppression d'un intervenant en base à partir de son identifiant 
-	 */
-	@Override
-	public void delete(String idContributor) throws SQLException {
-		try {	
-			Statement st =null;
-			// Création d'un statement
-			st = this.cn.createStatement();
-		
-			// Requête de modification
-			String sql = "Delete From User Where mail="+'"'+idContributor+'"';
 			
-			// Exécution requête
+			String sql = "Delete u,c From LotuZ.User u JOIN LotuZ.Contributor m ON u.idContributor=m.idContributor Where mail='"+ this.getMail() +"'";
+
+			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-		
+
 		} catch (SQLException e) {
 			throw e;
 		}
 	}
+	
+	public void update() throws ClassNotFoundException, SQLException {
+		try {		
+			Statement st =null;
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
 
+			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
+					+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()
+					+"',`idMember`='"+this.getIdMember()+"',`idContributor`='"+this.getIdContributor()+"' Where `mail`='"+this.getMail()+"'";
+			
+					
+			// Etape 4 : exécution requête
+			st.executeUpdate(sql);
 
-	@Override
-	public void save() throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
+		} catch (SQLException e) {
+			throw e;
+		}
 	}
-
 
 
 }

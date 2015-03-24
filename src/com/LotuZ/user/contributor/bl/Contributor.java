@@ -44,26 +44,13 @@ public abstract class Contributor extends User{
 	
 
 	/**
-	 * @return contributor
-	 * @throws SQLException
-	 */
-	public abstract Contributor update() throws SQLException;
-
-
-
-	/**
 	 * @param idContributor
 	 * @return contributor
 	 * @throws SQLException
 	 */
 	public abstract Contributor load(String idContributor) throws SQLException;
 	
-	
-	/**
-	 * @param idContributor
-	 * @throws SQLException
-	 */
-	public abstract void delete(String idContributor) throws SQLException;
+
 
 
 	

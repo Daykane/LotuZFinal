@@ -214,6 +214,10 @@ public abstract class User {
 	public abstract void save() throws SQLException, ClassNotFoundException;
 
 	public abstract User load(String mail) throws SQLException;
+	
+	public abstract void update() throws ClassNotFoundException, SQLException;
+	
+	public abstract void delete() throws ClassNotFoundException, SQLException;
 
 
 

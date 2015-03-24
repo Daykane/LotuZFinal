@@ -52,7 +52,7 @@ public class FacadeBL {
 		return activityLeaderManager.getActivityLeader(idActivityLeader);
 	}
 	
-	public static ActivityLeader updateActivityLeader(ActivityLeader activityLeader) throws SQLException {	
+	public static ActivityLeader updateActivityLeader(ActivityLeader activityLeader) throws SQLException, ClassNotFoundException {	
 		return activityLeaderManager.modifyActivityLeader(activityLeader);	
 	}
 	
@@ -87,7 +87,7 @@ public class FacadeBL {
 		return contributorManager.getContributor(idContributor);
 	}
 	
-	public static Contributor updateContributor(Contributor contributor) throws SQLException {	
+	public static Contributor updateContributor(Contributor contributor) throws SQLException, ClassNotFoundException {	
 		return contributorManager.modifyContributor(contributor);	
 	}
 	

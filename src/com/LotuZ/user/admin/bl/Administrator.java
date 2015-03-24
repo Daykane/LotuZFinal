@@ -3,6 +3,7 @@ package com.LotuZ.user.admin.bl;
 
 import java.sql.SQLException;
 
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.member.bl.Member;
 
 
@@ -18,33 +19,15 @@ public abstract class Administrator extends Member{
 	public Administrator() {
 		super();
 	}
-
-
 	
 	/**
-	 * @return Administrator
+	 * @param idActivityLeader
+	 * @return activityLeader
 	 * @throws SQLException
 	 */
-	public abstract Administrator update() throws SQLException;
-
-
-
-	/**
-	 * @param idAdministrator
-	 * @return Administrator
-	 * @throws SQLException
-	 */
-	public abstract Administrator load(String idAdministrator) throws SQLException;
+	public abstract Administrator load(String idAdmin) throws SQLException;
 	
 	
-	/**
-	 * @param idAdministrator
-	 * @throws SQLException
-	 */
-	public abstract void delete(String idAdministrator) throws SQLException;
-
-
-
 
 
 	

@@ -40,12 +40,6 @@ public abstract class ActivityLeader extends Member{
 	}
 	
 	
-	/**
-	 * @return activityLeader
-	 * @throws SQLException
-	 */
-	public abstract ActivityLeader update() throws SQLException;
-
 
 
 	/**
@@ -56,12 +50,6 @@ public abstract class ActivityLeader extends Member{
 	public abstract ActivityLeader load(String idActivityLeader) throws SQLException;
 	
 	
-	/**
-	 * @param idActivityLeader
-	 * @throws SQLException
-	 */
-	public abstract void delete(String idActivityLeader) throws SQLException;
-
 
 
 

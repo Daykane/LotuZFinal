@@ -112,6 +112,20 @@ public final class UserLog extends User{
 		}
 		
 	}
+
+
+	@Override
+	public void update() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void delete() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	/*@Override
 	public boolean isAdmin() throws SQLException {

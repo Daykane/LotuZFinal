@@ -1,6 +1,7 @@
 package com.LotuZ.user.activityLeader.bl;
 
 import java.sql.SQLException;
+
 import com.LotuZ.PersistKit;
 
 
@@ -28,6 +29,10 @@ public class ActivityLeaderManager {
 	public ActivityLeader getActivityLeader(String idActivityLeader) throws SQLException {
 		ActivityLeader activityLeader = pkit.createActivityLeader();
 		activityLeader.load(idActivityLeader);
+		if (activityLeader == null)
+		{
+			System.out.println("FAUX");
+		}
 		return activityLeader;
 	}
 	
@@ -35,8 +40,9 @@ public class ActivityLeaderManager {
 	 * @param activityLeader
 	 * @return
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public ActivityLeader modifyActivityLeader(ActivityLeader activityLeader) throws SQLException {
+	public ActivityLeader modifyActivityLeader(ActivityLeader activityLeader) throws SQLException, ClassNotFoundException {
 		activityLeader.update();
 		return activityLeader;
 	}
@@ -55,9 +61,10 @@ public class ActivityLeaderManager {
 	/**
 	 * @param idActivityLeader
 	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 */
-	public void deleteActivityLeader(String idActivityLeader) throws SQLException {
+	public void deleteActivityLeader(String idActivityLeader) throws SQLException, ClassNotFoundException {
 		ActivityLeader activityLeader = pkit.createActivityLeader();
-		activityLeader.delete(idActivityLeader);
+		activityLeader.delete();
 	}
 }

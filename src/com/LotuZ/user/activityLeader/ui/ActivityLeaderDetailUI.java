@@ -225,8 +225,8 @@ public class ActivityLeaderDetailUI extends JFrame{
 		HouseNumber.setBounds(326, 257, 160, 20);
 		panel.add(HouseNumber);
 		HouseNumber.setColumns(10);
-		List<String> listActivities = activityLeader.getNamesActivity();
-		HouseNumber.setText(listActivities.get(0));
+		//List<String> listActivities = activityLeader.getNamesActivity();
+		HouseNumber.setText(activityLeader.getPhone());
 		
 		System.out.println("mail : "+activityLeader.getMail());
 		City = new JTextField();
@@ -256,6 +256,9 @@ public class ActivityLeaderDetailUI extends JFrame{
 					activityLeader.setPostCode(PostCode.getText());
 					FacadeBL.updateActivityLeader(activityLeader);
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

@@ -9,7 +9,7 @@ import com.LotuZ.user.user.bl.User;
 
 
 /**
- * @author LotuZ
+ * @author Ludo
  *
  */
 public class UserJDBC extends User{
@@ -56,9 +56,8 @@ public class UserJDBC extends User{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			//String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() +"','"+ 0 +"','"+ 0 +"')";
-			//String sql = "Insert into User Values ('"+ this.getLastName() +"','"+ this.getFirstName() +"','"+ this.getMail() +"','"+ this.getPhone() +"','"+ this.getStreetName() +"','"+ this.getNumHouse() +"','"+ this.getCity() +"','"+ this.getPostCode() +"','"+ this.getPassword() + "')";
 			String sql = "INSERT INTO `LotuZ`.`User` (`lastName`, `firstName`, `mail`, `tel`, `streetName`, `numHouse`, `city`, `postCode`, `password`) VALUES ('"+ this.getLastName() +"', '"+ this.getFirstName() +"', '"+ this.getMail() +"', '"+ this.getPhone() +"', '"+ this.getStreetName() +"', '"+ this.getNumHouse() +"', '"+ this.getCity() +"', '"+ this.getPostCode() +"', '"+ this.getPassword() +"')";
+			
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
 
@@ -74,7 +73,7 @@ public class UserJDBC extends User{
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u Where u.mail="+'"'+mail+'"';
+			String sql = "Select * From LotuZ.User u Where u.mail="+mail+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -100,28 +99,41 @@ public class UserJDBC extends User{
 		return this;
 	}
 	
-	/*@Override
-	public boolean isAdmin() throws SQLException {
-		boolean flag = false;
-		int answer = 0;
-		try{
+	public void delete() throws ClassNotFoundException, SQLException {
+		try {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "Select idAdmin From LotuZ.Member m,LotuZ.User u where m.idMember=u.idMember and u.mail='"+this.getMail()+"'";
-			ResultSet result = st.executeQuery(sql);
-			while( result.next() ){	
-				answer = result.getInt("idAdmin");			
-			}	
-		}
-		catch  (SQLException e) {
+
+			String sql = "Delete From LotuZ.User Where mail = '"+ this.getMail() +"'";
+	
+			// Etape 4 : exécution requête
+			st.executeUpdate(sql);
+
+		} catch (SQLException e) {
 			throw e;
 		}
-		if(answer == 1){
-			flag = true;
+	}
+	
+	public void update() throws ClassNotFoundException, SQLException {
+		try {		
+			Statement st =null;
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
+
+			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
+					+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()
+					+"',`idMember`='"+this.getIdMember()+"',`idContributor`='"+this.getIdContributor()+"' Where `mail`='"+this.getMail()+"'";
+			
+					
+			// Etape 4 : exécution requête
+			st.executeUpdate(sql);
+
+		} catch (SQLException e) {
+			throw e;
 		}
-		return flag;
-	}*/
+	}
+
 }
 
 

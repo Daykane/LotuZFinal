@@ -35,19 +35,6 @@ public abstract class Member extends User{
 
 
 
-	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public abstract User load(String mail) throws SQLException;
-
-	public abstract Member update() throws SQLException ;
-
-	public abstract void delete(String idMember) throws SQLException ;
-
 	public Double getCotisation() {
 		return cotisation;
 	}
@@ -87,5 +74,7 @@ public abstract class Member extends User{
 	public void setIdLeader(Integer idLeader) {
 		this.idLeader = idLeader;
 	}
+	
+	public abstract Member load(String idMember) throws SQLException;
 
 }

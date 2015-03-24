@@ -256,6 +256,9 @@ public class ContributorDetailUI extends JFrame{
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				JOptionPane.showMessageDialog(null,"Edition effectuée","Edition effectuée",JOptionPane.INFORMATION_MESSAGE);
 			}
