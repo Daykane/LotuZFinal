@@ -9,6 +9,9 @@ import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.bl.CategoryManager;
+import com.LotuZ.product.category.bl.CategoryProduct;
+import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
@@ -24,6 +27,9 @@ public class FacadeBL {
 	private static ActivityManager activityManager;
 	private static ActivityLeaderManager activityLeaderManager;
 	private static ContributorManager contributorManager;
+	private static CategoryManager categoryManager;
+	
+
 	
 	public static void init(PersistKit kit){
 		loginManager = new LoginManager(kit);
@@ -31,7 +37,16 @@ public class FacadeBL {
 		activityManager = new ActivityManager(kit);
 		activityLeaderManager = new ActivityLeaderManager(kit);
 		contributorManager = new ContributorManager(kit);
+		categoryManager = new CategoryManager(kit);
 	}
+	
+	// *************************************Loïc*************************************
+	
+	public  ListCategoryProduct getCategories() {
+		return categoryManager.getCategories();
+	}	
+	
+	// *************************************Loïc*************************************
 	
 	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
@@ -45,7 +60,6 @@ public class FacadeBL {
 
 	public  List<Activity> getActivities() {
 		return activityManager.getActivities();
-		
 	}
 	
 	public static ActivityLeader getActivityLeader(String idActivityLeader) throws SQLException, UserNotFoundException{

@@ -17,6 +17,8 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.ProductJDBC;
+import com.LotuZ.product.category.bl.ListCategoryProduct;
+import com.LotuZ.product.category.data.ListCategoryJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
@@ -46,6 +48,9 @@ public class JdbcKit extends PersistKit{
 	private UserJDBC userJdbc;
 	private ContributorJDBC contribJdbc;
 	private ActivityJdbc activityJdbc;
+	// *************************************Loïc*************************************
+	private ListCategoryJDBC listCategoryJDBC;
+	// *************************************Loïc*************************************
 	
 	
 	public JdbcKit(String url, String login, String passwd){
@@ -67,7 +72,7 @@ public class JdbcKit extends PersistKit{
 					e.printStackTrace();
 				}
 
-			// Etape 2 : r�cup�ration de la connexion
+			// Etape 2 : r�cup�ration de la connexion
 				try {
 					this.cn = DriverManager.getConnection(url, login, passwd);
 				} catch (SQLException e) {
@@ -151,6 +156,14 @@ public class JdbcKit extends PersistKit{
 		this.activityJdbc = activityJdbc;
 	}
 
+	// *************************************Loïc*************************************
+	public ListCategoryProduct createListCategory()
+	{
+		return new ListCategoryJDBC(this.cn);
+		
+	}
+	
+	// *************************************Loïc*************************************
 
 
 
