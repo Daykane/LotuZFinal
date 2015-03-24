@@ -40,5 +40,40 @@ public class CategoryManager
 		return categories;
 		
 	}
+	
+	public CategoryProduct getCategory(int idCategory) {
+		CategoryProduct category = pkit.createCategory();
+		try {
+			category = category.load(idCategory);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return category;
+	}
+
+	public void createCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+	{
+		CategoryProduct category = pkit.createCategory();
+		try {
+			category.save(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updateCategory(int idCategory, String nameCategory,
+			String descriptionCategory, int levelCategory, int fatherCategory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteCategory(int idCategory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

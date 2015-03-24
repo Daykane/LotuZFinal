@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.product.Product;
+import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
@@ -36,9 +37,10 @@ public abstract class PersistKit {
 	public abstract Contributor createContributor();
 	public abstract Administrator createAdministrator();
 	public abstract Member createMember();
-	// *************************************Loïc*************************************
-	public abstract ListCategoryProduct createListCategory();
-	
-	// *************************************Loïc*************************************
+	// *************************************Loic*************************************
+		public abstract ListCategoryProduct createListCategory();
+		public abstract CategoryProduct createCategory();
+		
+	// *************************************Loic*************************************
 
 	}

@@ -40,13 +40,36 @@ public class FacadeBL {
 		categoryManager = new CategoryManager(kit);
 	}
 	
-	// *************************************Loïc*************************************
+	// (^.^(*************************************Loic Start*************************************)^.^)
 	
-	public static  ListCategoryProduct getCategories() {
-		return categoryManager.getCategories();
-	}	
-	
-	// *************************************Loïc*************************************
+	//Category
+
+public static  ListCategoryProduct getCategories() 
+{
+	return categoryManager.getCategories();
+}
+
+public static  CategoryProduct getCategory(int idCategory) 
+{
+	return categoryManager.getCategory(idCategory);
+}
+
+public static  void createCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+{
+	categoryManager.createCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+}
+
+public static  void updateCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+{
+	categoryManager.updateCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+}
+
+public static  void deleteCategory(int idCategory) 
+{
+	categoryManager.deleteCategory(idCategory);
+}
+
+// )^.^)*************************************Loic End*************************************(^.^(
 	
 	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,

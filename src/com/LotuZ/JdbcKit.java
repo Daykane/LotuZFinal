@@ -17,7 +17,9 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.ProductJDBC;
+import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
+import com.LotuZ.product.category.data.CatgeoryJdbc;
 import com.LotuZ.product.category.data.ListCategoryJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
@@ -48,9 +50,12 @@ public class JdbcKit extends PersistKit{
 	private UserJDBC userJdbc;
 	private ContributorJDBC contribJdbc;
 	private ActivityJdbc activityJdbc;
-	// *************************************Loïc*************************************
+	// *************************************Loic*************************************
 	private ListCategoryJDBC listCategoryJDBC;
-	// *************************************Loïc*************************************
+	private CatgeoryJdbc categoryJDBC;
+	// *************************************Loic*************************************
+	
+
 	
 	
 	public JdbcKit(String url, String login, String passwd){
@@ -228,6 +233,15 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public Member createMember() {
 		return new MemberJDBC(this.cn);
+	}
+
+
+
+
+	@Override
+	public CategoryProduct createCategory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

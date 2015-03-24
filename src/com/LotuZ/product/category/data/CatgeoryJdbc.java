@@ -66,12 +66,17 @@ public class CatgeoryJdbc extends CategoryProduct
 	public CatgeoryJdbc() {
 		super();
 	}
+	
+	public CatgeoryJdbc(Connection cn) 
+	{
+		this.cn = cn;
+	}
 
 	/**
 	 * @param cn
 	 */
 	
-	public CategoryProduct load(String idCategoryProduct) throws SQLException
+	public CategoryProduct load(int idCategoryProduct) throws SQLException
 	{
 		try {
 
@@ -105,13 +110,22 @@ public class CatgeoryJdbc extends CategoryProduct
 	}
 
 	@Override
-	public CategoryProduct save() throws SQLException {
+	public void save() throws SQLException 
+	{
+	}
+	
+	public void save(int id, String name, String decription, int level, int father) throws SQLException 
+	{
+	}
+
+	@Override
+	public CategoryProduct delete(String idCategoryProduct) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CategoryProduct delete(String idCategoryProduct) throws SQLException {
+	public CategoryProduct load(String idCategoryProduct) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
