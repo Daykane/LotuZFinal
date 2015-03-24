@@ -9,18 +9,23 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
@@ -193,80 +198,135 @@ public class CategoryUI extends JFrame {
 			}
 		});
 			//Center
-	    JButton form[][] = new JButton[24][3];
-	    String counts[] = { "", "","",""};
-	    String categories[] = { "Household", "Office", "Extended Family",
-	        "Company (US)", "Company (World)", "Team", "Will",
-	        "Birthday Card List", "High School", "Country", "Continent",
-	        "Planet","Household", "Office", "Extended Family",
-	        "Company (US)", "Company (World)", "Team", "Will",
-	        "Birthday Card List", "High School", "Country", "Continent",
-	        "Planet" };
-		
 		JPanel categoryPan = new JPanel();
 		categoryPan.setLayout(new GridBagLayout());
-		GridBagConstraints gbC = new GridBagConstraints();
+
+		//JListe Category
+		final ArrayList<String> categories = new ArrayList<String>();
+		categories.add("Cat1");
+		categories.add("---SCat1");
+		categories.add("---SCat2");
+		categories.add("---SCat3");
+		categories.add("Cat2");
+		categories.add("---SCat1");
+		categories.add("---SCat2");
+		categories.add("---SCat3");
+		final JList jListCategories = new JList(categories.toArray());
 		
-		JButton btnAddCat =new JButton();
-		btnAddCat.setIcon(new ImageIcon("Icon_New.png"));
-		btnAddCat.setBorder(null);
-		gbC.fill = GridBagConstraints.HORIZONTAL;
-		gbC.gridx = 194;
-		gbC.gridy = 0;
-		categoryPan.add(btnAddCat, gbC);
-		for (int row = 0; row < 25; row++) {
-		      ButtonGroup bg = new ButtonGroup();
-		      for (int col = 0; col < 4; col++) {
-		        if (row == 0) {
-		    		gbC.fill = GridBagConstraints.HORIZONTAL;
-		    		gbC.gridx = col+1;
-		    		gbC.gridy = row+1;
-		        	categoryPan.add(new JLabel(counts[col]),gbC);
-		        } else {
-		          if (col == 0) {
-		      		gbC.fill = GridBagConstraints.HORIZONTAL;
-		    		gbC.gridx = col+1;
-		    		gbC.gridy = row+1;
-		    		gbC.weightx =1;
-		        	categoryPan.add(new JLabel(categories[row - 1]),gbC);
-		          } else {
-			      		gbC.fill = GridBagConstraints.HORIZONTAL;
-			    		gbC.gridx = 190+col+1;
-			    		gbC.gridy = row+1;
-		        	  if (col == 1) 
-		        	  { 
-				    		gbC.weightx =0;
-		            form[row - 1][col - 1] = new JButton();
-		            //Image img = ImageIO.read(getClass().getResource("Eyeball-512.bmp"));
-					form[row - 1][col - 1].setIcon(new ImageIcon("plus.png"));
-					form[row - 1][col - 1].setBorder(null);
-		            bg.add(form[row - 1][col - 1]);
-		            categoryPan.add(form[row - 1][col - 1],gbC);
-		        	  }
-		        	  if (col == 2) 
-		        	  {
-				    		gbC.weightx =0;
-		            form[row - 1][col - 1] = new JButton();
-		            //Image img = ImageIO.read(getClass().getResource("Eyeball-512.bmp"));
-					form[row - 1][col - 1].setIcon(new ImageIcon("Eyeball-512.png"));
-					form[row - 1][col - 1].setBorder(null);
-		            bg.add(form[row - 1][col - 1]);
-		            categoryPan.add(form[row - 1][col - 1],gbC);
-		        	  }
-		            if (col == 3) 
-		            {
-			    		gbC.weightx =0;
-			            form[row - 1][col - 1] = new JButton();
-			            //Image img = ImageIO.read(getClass().getResource("Eyeball-512.bmp"));
-						form[row - 1][col - 1].setIcon(new ImageIcon("delete.png"));
-						form[row - 1][col - 1].setBorder(null);
-			            bg.add(form[row - 1][col - 1]);
-			            categoryPan.add(form[row - 1][col - 1],gbC);
-		            }
-		          }
-		        }
-		      }
-		    }
+		GridBagConstraints gbc_jListCategories= new GridBagConstraints();
+		gbc_jListCategories.gridx = 0;
+		gbc_jListCategories.gridy = 1;		
+		jListCategories.setVisible(true);
+		categoryPan.add(jListCategories, gbc_jListCategories);
+		
+			//Button Add
+		
+		JButton btnAddCat = new JButton("Add");
+		GridBagConstraints gbc_btnAddCat= new GridBagConstraints();
+		gbc_btnAddCat.gridx = 1;
+		gbc_btnAddCat.gridy = 1;		
+		btnAddCat.setVisible(true);
+		categoryPan.add(btnAddCat, gbc_btnAddCat);
+		
+			//Button View
+		
+		JButton btnViewCat = new JButton("View");
+		GridBagConstraints gbc_btnViewCat= new GridBagConstraints();
+		gbc_btnViewCat.gridx = 1;
+		gbc_btnViewCat.gridy = 2;		
+		btnViewCat.setVisible(true);
+		categoryPan.add(btnViewCat, gbc_btnViewCat);
+		
+			//Button Remove
+		
+		final JButton btnRemoveCat = new JButton("Remove");
+		GridBagConstraints gbc_btnRemoveCat= new GridBagConstraints();
+		gbc_btnRemoveCat.gridx = 1;
+		gbc_btnRemoveCat.gridy = 3;		
+		btnRemoveCat.setVisible(true);
+		categoryPan.add(btnRemoveCat, gbc_btnRemoveCat);
+		
+		//Listeners
+		
+			//btnAddCatListeners
+		
+	ActionListener btnAddCatListeners = new ActionListener() 
+	{
+		
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Coucou");
+			CreateCategoryUI add = null;
+			try {
+				add = new CreateCategoryUI();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (UserNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			add.setVisible(true);
+			dispose();
+			
+			
+		}
+	};
+	
+		btnAddCat.addActionListener(btnAddCatListeners);
+		
+			//btnViewCatListeners
+		
+	ActionListener btnAddViewListeners = new ActionListener() 
+	{
+		
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Coucou");
+			ViewCategoryUI ViewCategoryUI = null;
+			try {
+				ViewCategoryUI = new ViewCategoryUI();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (UserNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			ViewCategoryUI.setVisible(true);
+			dispose();
+			
+			
+		}
+	};
+	btnViewCat.addActionListener(btnAddViewListeners);
+	
+		//btnRemoveCatListeners
+		
+	ActionListener btnRemoveCatListeners = new ActionListener() 
+	{
+	
+		public void actionPerformed(ActionEvent e) 
+		{
+			if (!jListCategories.getSelectedValue().equals(null))
+			{		
+				//Suppression de l'élement sélection de la liste des sous category
+				categories.remove(jListCategories.getSelectedValue());
+				jListCategories.setListData(categories.toArray());
+			}
+			if (categories.isEmpty())
+			{
+				btnRemoveCat.setVisible(false);			
+			}
+		}
+	};
+	btnRemoveCat.addActionListener(btnRemoveCatListeners);
+		
+		
+		
+
+		
+
 				//set ScrollPan
 		JScrollPane scrollPpanelCategory = new JScrollPane(categoryPan);
 //		scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));

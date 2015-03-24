@@ -360,6 +360,58 @@ public class ViewCategoryUI extends JFrame {
 		gbc_btnOk.gridx = 2;
 		gbc_btnOk.gridy = 5;
 		categoryPan.add(btnOk, gbc_btnOk);
+		
+		//btnCancelListeners
+		
+		ActionListener btnCancelListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("Coucou");
+				CategoryUI CategoryUI = null;
+				try {
+					CategoryUI = new CategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CategoryUI.setVisible(true);
+				dispose();
+				
+				
+			}
+		};
+		btnCancel.addActionListener(btnCancelListeners);
+		
+		//btnEditListeners
+		
+		ActionListener btnEditListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("Coucou");
+				EditCategoryUI EditCategoryUI = null;
+				try {
+					EditCategoryUI = new EditCategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				EditCategoryUI.setVisible(true);
+				dispose();
+				
+				
+			}
+		};
+		btnEditCat.addActionListener(btnEditListeners);
 
 	}
 }

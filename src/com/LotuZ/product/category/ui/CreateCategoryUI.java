@@ -295,6 +295,27 @@ public class CreateCategoryUI extends JFrame {
 		categoryPan.add(listFatherCategory, gbc_listFatherCategory);
 		System.out.println(cBoxLevelCategory.getSelectedItem());
 		
+		//Center South
+		JPanel validationPan = new JPanel();
+		validationPan.setLayout(new GridBagLayout());
+		contentPaneCenter.add(validationPan, BorderLayout.SOUTH);
+			
+			//Cancel
+		JButton btnCancel =new JButton("Cancel");
+		GridBagConstraints gbc_btnCancel= new GridBagConstraints();
+		gbc_btnCancel.gridx = 0;
+		gbc_btnCancel.gridy = 5;
+		categoryPan.add(btnCancel, gbc_btnCancel);
+		
+			//Submit
+		JButton btnSubmit=new JButton("Submit");
+		GridBagConstraints gbc_btnSubmit= new GridBagConstraints();
+		gbc_btnSubmit.gridx = 2;
+		gbc_btnSubmit.gridy = 5;
+		categoryPan.add(btnSubmit, gbc_btnSubmit);
+		
+		//Listeners
+		
 				//ComboBox Listeners
 		ActionListener cBoxLevelCategoryListeners = new ActionListener ()
 		{
@@ -317,24 +338,33 @@ public class CreateCategoryUI extends JFrame {
 		;
 		cBoxLevelCategory.addActionListener(cBoxLevelCategoryListeners);
 		
-		//Center South
-		JPanel validationPan = new JPanel();
-		validationPan.setLayout(new GridBagLayout());
-		contentPaneCenter.add(validationPan, BorderLayout.SOUTH);
+			//btnCancelListeners
 			
-			//Cancel
-		JButton btnCancel =new JButton("Cancel");
-		GridBagConstraints gbc_btnCancel= new GridBagConstraints();
-		gbc_btnCancel.gridx = 0;
-		gbc_btnCancel.gridy = 5;
-		categoryPan.add(btnCancel, gbc_btnCancel);
+		ActionListener btnCancelListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("Coucou");
+				CategoryUI CategoryUI = null;
+				try {
+					CategoryUI = new CategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CategoryUI.setVisible(true);
+				dispose();
+				
+				
+			}
+		};
+		btnCancel.addActionListener(btnCancelListeners);
 		
-			//Submit
-		JButton btnSubmit=new JButton("Submit");
-		GridBagConstraints gbc_btnSubmit= new GridBagConstraints();
-		gbc_btnSubmit.gridx = 2;
-		gbc_btnSubmit.gridy = 5;
-		categoryPan.add(btnSubmit, gbc_btnSubmit);
+
 
 	}
 }

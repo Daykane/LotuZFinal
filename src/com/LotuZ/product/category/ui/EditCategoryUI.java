@@ -423,9 +423,7 @@ public class EditCategoryUI extends JFrame
 				{
 					btnRemoveSubCat.setVisible(false);
 					
-				}
-
-				
+				}	
 				
 			}
 		};
@@ -472,6 +470,32 @@ public class EditCategoryUI extends JFrame
 		gbc_btnSubmit.gridx = 2;
 		gbc_btnSubmit.gridy = 6;
 		categoryPan.add(btnSubmit, gbc_btnSubmit);
+		
+			//btnCancelListeners
+			
+		ActionListener btnCancelListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("Coucou");
+				CategoryUI CategoryUI = null;
+				try {
+					CategoryUI = new CategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CategoryUI.setVisible(true);
+				dispose();
+				
+				
+			}
+		};
+		btnCancel.addActionListener(btnCancelListeners);
 
 	}
 
