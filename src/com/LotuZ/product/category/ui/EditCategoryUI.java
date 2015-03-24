@@ -340,17 +340,19 @@ public class EditCategoryUI extends JFrame
 		categoryPan.add(btnRemoveSubCat, gbc_btnRemoveSubCat);
 		
 			//JComboBoxSubCat
-		Object[] categories = new Object[]{ "Household", "Office", "Extended Family",
-		        "Company (US)", "Company (World)", "Team", "Will",
-		        "Birthday Card List", "High School", "Country", "Continent",
-		        "Planet","Household", "Office", "Extended Family",
-		        "Company (US)", "Company (World)", "Team", "Will",
-		        "Birthday Card List", "High School", "Country", "Continent",
-		        "Planet" };
+		final ArrayList<String> categories = new ArrayList<String>();
+		categories.add("Household");
+		categories.add("Office");
+		categories.add("Extended Family");
+		categories.add("Company (US)");
+		categories.add("Company (World)");
+		categories.add("Team");
+		categories.add("Will");
+		categories.add("Birthday Card List");
 		GridBagConstraints gbc_cBoxAddSubCat = new GridBagConstraints();
 		gbc_cBoxAddSubCat.gridx = 2;
 		gbc_cBoxAddSubCat.gridy = 5;		
-		final JComboBox cBoxSubCat = new JComboBox(categories);
+		final JComboBox cBoxSubCat = new JComboBox(categories.toArray());
 		cBoxSubCat.setVisible(false);
 		categoryPan.add(cBoxSubCat, gbc_cBoxAddSubCat);
 		
@@ -407,10 +409,23 @@ public class EditCategoryUI extends JFrame
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				System.out.println(listSubCategory2.size());
-				listSubCategory2.remove(jlistSubCategory.getSelectedValue());
-				System.out.println(listSubCategory2.size());
-				jlistSubCategory.setListData(listSubCategory2.toArray());
+				if (!jlistSubCategory.getSelectedValue().equals(null))
+				{
+					//Ajout de l'élement sélectionné à la liste des sous category possible
+					//categories.add((String) jlistSubCategory.getSelectedValue());
+					cBoxSubCat.addItem((String) jlistSubCategory.getSelectedValue());
+					
+					//Suppression de l'élement sélection de la liste des sous category
+					listSubCategory2.remove(jlistSubCategory.getSelectedValue());
+					jlistSubCategory.setListData(listSubCategory2.toArray());
+				}
+				if (listSubCategory2.isEmpty())
+				{
+					btnRemoveSubCat.setVisible(false);
+					
+				}
+
+				
 				
 			}
 		};
@@ -422,6 +437,17 @@ public class EditCategoryUI extends JFrame
 			
 			public void actionPerformed(ActionEvent e) 
 			{
+				
+				//Ajout de l'élement sélectionné à la liste des sous category possible
+				//categories.add((String) jlistSubCategory.getSelectedValue());
+				listSubCategory2.add((String) cBoxSubCat.getSelectedItem());
+				jlistSubCategory.setListData(listSubCategory2.toArray());
+				
+				//Suppression de l'élement sélection de la liste des sous category
+				System.out.println(cBoxSubCat.getSelectedIndex());
+				cBoxSubCat.removeItem((String) cBoxSubCat.getSelectedItem());
+				//cBoxSubCat.revalidate();
+				btnRemoveSubCat.setVisible(true);
 						
 				
 			}
