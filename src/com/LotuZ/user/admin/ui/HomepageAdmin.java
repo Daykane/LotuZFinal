@@ -14,9 +14,12 @@ import javax.swing.SwingConstants;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.ui.ActivityLeaderDetailUI;
+import com.LotuZ.user.activityLeader.ui.ActivityLeaderUI;
 import com.LotuZ.user.user.bl.User;
 
 import java.awt.Font;
@@ -43,6 +46,7 @@ public class HomepageAdmin extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JFrame ActivityLeaderUI;
 
 	/**
 	 * Launch the application.
@@ -83,6 +87,10 @@ public class HomepageAdmin extends JFrame {
 	public HomepageAdmin() throws SQLException, UserNotFoundException {
 		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
+		
+		ActivityLeaderUI gestionRespo;
+		gestionRespo = new ActivityLeaderUI();
+		//ActivityLeaderUI.frame = gestionRespo;
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -186,6 +194,16 @@ public class HomepageAdmin extends JFrame {
 		
 		JButton btnGestionDesResponsables = new JButton("Gestion des Responsables d'Activit\u00E9s");
 		panel.add(btnGestionDesResponsables);
+		
+		
+		btnGestionDesResponsables.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+					//gestionRespo.setVisible(true);
+					setVisible(false);
+			}
+		});
+		
+		
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

@@ -66,7 +66,7 @@ public class ActivityLeaderUI extends JFrame{
 		User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
@@ -182,8 +182,8 @@ public class ActivityLeaderUI extends JFrame{
 				ActivityLeaderDetailUI.frame = detailActivityLeaderUI;
 				ActivityLeaderDetailUI.frame.setAlwaysOnTop(true);
 				detailActivityLeaderUI.setVisible(true);
-				frame.setVisible(true);
-				frame.dispose();
+				//frame.setVisible(true);
+				//frame.dispose();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -213,7 +213,7 @@ public class ActivityLeaderUI extends JFrame{
 				ActivityLeaderDetailUI.frame = detailActivityLeaderUI;
 				ActivityLeaderDetailUI.frame.setAlwaysOnTop(true);
 				detailActivityLeaderUI.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
