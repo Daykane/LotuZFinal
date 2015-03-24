@@ -39,6 +39,8 @@ import javax.swing.JCheckBox;
 
 
 
+
+
 import com.LotuZ.FacadeBL;
 
 
@@ -52,6 +54,8 @@ import com.LotuZ.user.HomepageUI;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Alexis
@@ -362,20 +366,10 @@ public class InscriptionUserUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent frame) {
-				try {
-					FacadeBL.inscription("Laboureur","Alexis","admin","0625102689","Rue du Village","52","Montpellier","34000","admin");
-					HomepageUI homepageUI = new HomepageUI();
-					HomepageUI.frame = homepageUI;
-					homepageUI.setVisible(true);
-
-				} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
-					e.printStackTrace();
-					//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				//FacadeBL.inscription("Laboureur","Alexis","admin","0625102689","Rue du Village","52","Montpellier","34000","admin");
+				HomepageUI homepageUI = new HomepageUI();
+				HomepageUI.frame = homepageUI;
+				homepageUI.setVisible(true); 
 			}
 		});
 		
@@ -383,9 +377,27 @@ public class InscriptionUserUI extends JFrame {
 		btnOK.addMouseListener(new MouseAdapter() {		
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent arg0) {
+				
 				if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
+					
 					try {
+						
+						
+						
 						FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
+						if (chckbxMember.isSelected()){
+							//TODO faire lien vers page payement
+							Date today;
+							String output;
+							SimpleDateFormat formatter;
+
+							formatter = new SimpleDateFormat("yyyy-MM-dd");
+							today = new Date();
+							output = formatter.format(today);
+							Double cotisation = 10.10;
+							System.out.println(output);
+							//FacadeBL.inscriptionMember(cotisation,TFAdress.getText());
+						}
 						JOptionPane.showMessageDialog(null,"Inscription r�ussie","Inscription r�ussie",JOptionPane.INFORMATION_MESSAGE);
 					} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 						e.printStackTrace();
