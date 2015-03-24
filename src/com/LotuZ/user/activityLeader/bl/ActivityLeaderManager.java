@@ -36,16 +36,7 @@ public class ActivityLeaderManager {
 		return activityLeader;
 	}
 	
-	/**
-	 * @param activityLeader
-	 * @return
-	 * @throws SQLException
-	 * @throws ClassNotFoundException 
-	 */
-	public ActivityLeader modifyActivityLeader(ActivityLeader activityLeader) throws SQLException, ClassNotFoundException {
-		activityLeader.update();
-		return activityLeader;
-	}
+
 	
 	
 	/**

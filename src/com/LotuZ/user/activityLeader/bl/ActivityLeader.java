@@ -13,7 +13,7 @@ import com.LotuZ.user.member.bl.Member;
  */
 
 
-public abstract class ActivityLeader extends Member{
+public abstract class ActivityLeader {
 	
 
 	public ActivityLeader() {
@@ -21,6 +21,7 @@ public abstract class ActivityLeader extends Member{
 	}
 
 	private List<String> namesActivity;
+	private String idLeader;
 
 
 	public ActivityLeader(List<String> namesActivity) {
@@ -48,7 +49,22 @@ public abstract class ActivityLeader extends Member{
 	 * @throws SQLException
 	 */
 	public abstract ActivityLeader load(String idActivityLeader) throws SQLException;
-	
+
+
+
+	public String getIdLeader() {
+		return idLeader;
+	}
+
+
+
+	public void setIdLeader(String idLeader) {
+		this.idLeader = idLeader;
+	}
+
+
+
+	public abstract void delete() throws ClassNotFoundException, SQLException ;
 	
 
 

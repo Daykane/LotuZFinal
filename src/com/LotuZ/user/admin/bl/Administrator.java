@@ -13,7 +13,7 @@ import com.LotuZ.user.member.bl.Member;
  */
 
 
-public abstract class Administrator extends Member{
+public abstract class Administrator {
 	
 
 	public Administrator() {

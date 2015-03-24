@@ -140,7 +140,7 @@ public class LoginUI extends JFrame {
 					}
 					if ( respo != null){
 						System.out.println("C'est un respo");
-						System.out.println("respo : " + respo.getIdBoxLetter() );
+						//System.out.println("respo : " + respo.getIdBoxLetter() );
 					}
 					if (contrib != null){
 						System.out.println("C'est un contrib");

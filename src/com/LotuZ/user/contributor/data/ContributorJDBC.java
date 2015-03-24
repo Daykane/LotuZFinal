@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.activityLeader.data.ActivityLeaderJDBC;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.user.data.UserJDBC;
@@ -40,61 +44,55 @@ public class ContributorJDBC extends Contributor{
 	/**
 	 * Lecture d'un intervenant en base à partir de son identifiant 
 	 */
-	public void save() throws ClassNotFoundException, SQLException {
+	public void save(String mailContributor) throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "INSERT INTO `LotuZ`.`Contributor` (`mailContributor`) VALUES ('"+ this.getLastName() +"')";
-			st.executeUpdate(sql);
-			
-			String sql2 = "SELECT idContributor FROM LotuZ.Contributor Where mail='"+ this.getMail() +"'";
-			ResultSet result = st.executeQuery(sql2);
-			int idContributor = result.getInt("idContributor");
-			
-			String sql3 = "INSERT INTO `LotuZ`.`User` (`idContributor`) VALUES ('"+ idContributor +"') Where mail='"+ this.getMail() +"'";
-			
+			String sql = "INSERT INTO `LotuZ`.`Contributor` (`mailContributor` ) VALUES ('"+ mailContributor +"')'";
+			String sql2 = "SELECT idContributor FROM LotuZ.Contributor Where mailContributor='"+ mailContributor +"'";
+
 			// Etape 4 : exécution requête
+			st.executeUpdate(sql);
+			int result = st.executeUpdate(sql2);
+			
+			String sql3 = "INSERT INTO `LotuZ`.`User` (`idContributor` ) VALUES ('"+ result +"')'";
 			st.executeUpdate(sql3);
 
+
 		} catch (SQLException e) {
 			throw e;
 		}
 	}
 
-	public Contributor load(String idmail) throws SQLException {
-		try {
-			Statement st =null;
-			// Création d'un statement
-			st = this.cn.createStatement();
-			
-			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User  Where mail='"+idmail+"'";
-			
-			// Exécution de la requête
-			ResultSet result = st.executeQuery(sql);
-			
-			// Récupération des données 
-			while(result.next()){	
-				this.setLastName(result.getString("lastName"));
-				this.setFirstName(result.getString( "firstName" ));
-				this.setMail(result.getString( "Mail" ));
-				this.setPhone(result.getString( "tel" ));
-				this.setStreetName(result.getString( "streetName" ));
-				this.setNumHouse(result.getString( "numHouse" ));
-				this.setCity(result.getString( "city" ));
-				this.setPostCode(result.getString( "postCode" ));
-				this.setPassword(result.getString("password"));
-				this.setIdContributor(result.getInt("idContributor"));
-				this.setIdMember(result.getInt("idMember"));
-			}
+	public Contributor load(String mailContributor) throws SQLException {
+
+		Contributor contributor = null;
+		Statement st =null;
 		
-		} catch (SQLException e) {
-			throw e;
+		// Création d'un statement
+		st = this.cn.createStatement();
+		
+		// Requête de sélection à partir de l'identifiant 
+		String sql = "Select * From LotuZ.Contributor Where idContributor is not null and mailContributor="+'"'+mailContributor+'"';
+		
+		// Exécution de la requête
+		ResultSet result = st.executeQuery(sql);
+		
+		if(!result.first())
+		{
+			return contributor;
 		}
-		return this;
-	}
+		else 
+		{
+			// Récupération des données 
+			contributor = new ContributorJDBC();
+			contributor.setIdContributor(result.getString("idContributor"));
+
+			return contributor;
+		}
+}
 	
 	public void delete() throws ClassNotFoundException, SQLException {
 		try {		
@@ -102,34 +100,21 @@ public class ContributorJDBC extends Contributor{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 			
-			String sql = "Delete u,c From LotuZ.User u JOIN LotuZ.Contributor m ON u.idContributor=m.idContributor Where mail='"+ this.getMail() +"'";
+			String sql = "UPDATE LotuZ.User SET (`idContributor`) = null Where idContributor='"+ this.getIdContributor() +"'";
+
+			String sql2 = "Delete From LotuZ.Contributor Where idContributor='"+ this.getIdContributor() +"'";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
+			st.executeUpdate(sql2);
+
 
 		} catch (SQLException e) {
 			throw e;
 		}
 	}
 	
-	public void update() throws ClassNotFoundException, SQLException {
-		try {		
-			Statement st =null;
-			// Etape 3 : Création d'un statement
-			st = this.cn.createStatement();
 
-			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-					+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()
-					+"',`idMember`='"+this.getIdMember()+"',`idContributor`='"+this.getIdContributor()+"' Where `mail`='"+this.getMail()+"'";
-			
-					
-			// Etape 4 : exécution requête
-			st.executeUpdate(sql);
-
-		} catch (SQLException e) {
-			throw e;
-		}
-	}
 
 
 }

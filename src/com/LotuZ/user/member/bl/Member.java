@@ -12,9 +12,9 @@ import com.LotuZ.user.user.bl.User;
  * @author Alexis & Ludo
  *
  */
-public abstract class Member extends User{
+public abstract class Member {
 	
-
+	private Integer idMember;
 	private Double cotisation;
 	private String dateCotisation;
 	private Integer idBoxLetter;
@@ -25,13 +25,13 @@ public abstract class Member extends User{
 	 * 
 	 */
 	public Member() {
-		super();
 		this.setCotisation(cotisation);
 		this.setDateCotisation(dateCotisation);
 		this.setIdBoxLetter(idBoxLetter);
 		this.setIdAdmin(idAdmin);
 		this.setIdLeader(idLeader);
 	}
+	
 
 
 
@@ -76,5 +76,19 @@ public abstract class Member extends User{
 	}
 	
 	public abstract Member load(String idMember) throws SQLException;
+
+
+
+
+	public int getIdMember() {
+		return idMember;
+	}
+
+
+
+
+	public void setIdMember(Integer idMember) {
+		this.idMember = idMember;
+	}
 
 }

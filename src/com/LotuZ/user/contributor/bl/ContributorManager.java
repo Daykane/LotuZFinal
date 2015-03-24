@@ -32,16 +32,7 @@ public class ContributorManager {
 		return contributor;
 	}
 	
-	/**
-	 * @param contributor
-	 * @return
-	 * @throws SQLException
-	 * @throws ClassNotFoundException 
-	 */
-	public Contributor modifyContributor(Contributor contributor) throws SQLException, ClassNotFoundException {
-		contributor.update();
-		return contributor;
-	}
+	
 	
 	
 	/**

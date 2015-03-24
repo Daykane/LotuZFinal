@@ -90,9 +90,7 @@ public static  void deleteCategory(int idCategory)
 		return activityLeaderManager.getActivityLeader(idActivityLeader);
 	}
 	
-	public static ActivityLeader updateActivityLeader(ActivityLeader activityLeader) throws SQLException, ClassNotFoundException {	
-		return activityLeaderManager.modifyActivityLeader(activityLeader);	
-	}
+
 	
 	public static ListActivityLeader getActivityLeaders() throws SQLException, UserNotFoundException{
 		return activityLeaderManager.getActivityLeaders();
@@ -125,9 +123,7 @@ public static  void deleteCategory(int idCategory)
 		return contributorManager.getContributor(idContributor);
 	}
 	
-	public static Contributor updateContributor(Contributor contributor) throws SQLException, ClassNotFoundException {	
-		return contributorManager.modifyContributor(contributor);	
-	}
+
 	
 	public static ListContributor getContributors() throws SQLException, UserNotFoundException{
 		return contributorManager.getContributors();

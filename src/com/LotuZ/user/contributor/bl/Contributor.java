@@ -12,7 +12,7 @@ import com.LotuZ.event.Event;
  */
 
 
-public abstract class Contributor extends User{
+public abstract class Contributor{
 	
 
 	public Contributor() {
@@ -21,6 +21,7 @@ public abstract class Contributor extends User{
 
 
 	private List<Event> events;
+	private String idContributor;
 
 	
 	public Contributor(List<Event> events ) {
@@ -49,6 +50,25 @@ public abstract class Contributor extends User{
 	 * @throws SQLException
 	 */
 	public abstract Contributor load(String idContributor) throws SQLException;
+
+
+
+
+	public String getIdContributor() {
+		return idContributor;
+	}
+
+
+
+
+	public void setIdContributor(String idContributor) {
+		this.idContributor = idContributor;
+	}
+
+
+
+
+	public abstract void delete() throws ClassNotFoundException, SQLException;
 	
 
 
