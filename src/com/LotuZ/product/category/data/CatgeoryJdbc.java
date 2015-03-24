@@ -1,6 +1,11 @@
 package com.LotuZ.product.category.data;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.LotuZ.product.category.bl.CategoryProduct;
 
@@ -61,29 +66,50 @@ public class CatgeoryJdbc extends CategoryProduct
 	/**
 	 * @param cn
 	 */
-//	public CatgeoryJdbc(Connection cn)
-//	{
-//		this.cn = cn;
-//	}
-//	
-//					//
-//	save()
-//	{
-//		
-//	}
-//
-//	read()
-//	{
-//		
-//	}
-//	
-//	update()
-//	{
-//		
-//	}
-//	
-//	delete()
-//	{
-//		
-//	}
+	
+	public CategoryProduct load(String idCategoryProduct) throws SQLException
+	{
+		try {
+
+			List<String> CategoryProduct = new ArrayList<String>();
+			
+			Statement st =null;
+			
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Requ�te de s�lection � partir de l'identifiant 
+			String sql = "Select * From LotuZ.Category";
+			
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			
+			// R�cup�ration des donn�es 
+			while(result.next()){	
+				this.setIdCategoryProduct(result.getInt("idCategory"));
+				this.setNameCategory(result.getString("nameCategory"));
+				this.setDecriptionCategory(result.getString("descriptionCategory"));
+				this.setLevelCategory(result.getInt("levelCategory"));
+				this.setFactherCategory(result.getInt("fatherCategory"));
+			}
+		
+		} catch (SQLException e) {
+			throw e;
+		}
+		return this;
+		
+	}
+
+	@Override
+	public CategoryProduct save() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CategoryProduct delete(String idCategoryProduct) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
