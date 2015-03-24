@@ -63,6 +63,10 @@ public class CatgeoryJdbc extends CategoryProduct
 		super(id, name, decription, level, father);
 	}
 	
+	public CatgeoryJdbc() {
+		super();
+	}
+
 	/**
 	 * @param cn
 	 */
@@ -79,7 +83,7 @@ public class CatgeoryJdbc extends CategoryProduct
 			st = this.cn.createStatement();
 			
 			// Requ�te de s�lection � partir de l'identifiant 
-			String sql = "Select * From LotuZ.Category";
+			String sql = "Select * From LotuZ.Category where idCategory="+idCategoryProduct;
 			
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);

@@ -196,6 +196,10 @@ public abstract class CategoryProduct
 			this.factherCategory = father;
 		}
 		
+		public CategoryProduct() {
+			// TODO Auto-generated constructor stub
+		}
+
 		public abstract CategoryProduct load(String idCategoryProduct) throws SQLException;
 		public abstract CategoryProduct save() throws SQLException;
 		public abstract CategoryProduct delete(String idCategoryProduct) throws SQLException;
