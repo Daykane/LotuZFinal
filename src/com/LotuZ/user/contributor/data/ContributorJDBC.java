@@ -63,14 +63,14 @@ public class ContributorJDBC extends Contributor{
 		}
 	}
 
-	public Contributor load(String mail) throws SQLException {
+	public Contributor load(String idmail) throws SQLException {
 		try {
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u Where u.mail="+mail+'"';
+			String sql = "Select * From LotuZ.User  Where mail='"+idmail+"'";
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
