@@ -32,17 +32,37 @@ public final class UserLog extends User{
 	}
 
 
-	public UserLog(User user) throws SQLException {
+	public UserLog(User user, Member member, ActivityLeader respo, Administrator admin, Contributor contrib) throws SQLException {
 		super(user.getLastName(), user.getFirstName(), user.getMail(),
 				user.getPhone(), user.getStreetName(), user.getNumHouse(), user.getCity(),
 				user.getPostCode(), user.getPassword(),user.getIdContributor(),user.getIdMember());
+		UserLog.member = member;
+		UserLog.respo = respo;
+		UserLog.admin = admin;
+		UserLog.contrib = contrib;
+		
 	}
 
 
 	public static User getUserLog(){
 		return UserLog.user;
 	}
+	
+	public static Member getMemberLog(){
+		return UserLog.member;
+	}
+	
+	public static Administrator getAdminLog(){
+		return UserLog.admin;
+	}
+	
+	public static ActivityLeader getRespoLog(){
+		return UserLog.respo;
+	}
 
+	public static Contributor getContribLog(){
+		return UserLog.contrib;
+	}
 	/**
 	 * @param admin the admin to set
 	 */
@@ -51,7 +71,7 @@ public final class UserLog extends User{
 	}
 
 
-
+	/*
 	public final static void init() {
 		if (UserLog.dispo ) {
 
@@ -61,6 +81,7 @@ public final class UserLog extends User{
 			}
 		}
 	}
+	*/
 
 	@Override
 	public void save() throws SQLException, ClassNotFoundException {		
@@ -71,7 +92,7 @@ public final class UserLog extends User{
 		return null;		
 	}
 
-
+	/*
 	public static void init(User user, Connection cn) throws SQLException {
 		if (UserLog.user == null) {
 			synchronized(UserLog.class) {
@@ -81,6 +102,7 @@ public final class UserLog extends User{
 			}
 		}
 	}
+	*/
 
 
 	public static void init(User user, Member member, ActivityLeader respo,
@@ -88,26 +110,9 @@ public final class UserLog extends User{
 		if (UserLog.dispo) {
 			synchronized(UserLog.class) {
 				//TODO
-				if (admin != null) {
-					// prend un admin
-					UserLog.user = new UserLog(user);
-				}
-				else if (respo != null){
-					// prend un respo
-					UserLog.user = new UserLog(user);
-				}
-				else if (contrib != null){
-					// prend un contributor	
-					UserLog.user = new UserLog(user);
-				}
-				else if(member != null){
-					// prend un member
-					UserLog.user = new UserLog(user);
-				}
-				else{
-					// 
-					UserLog.user = new UserLog(user);
-				}
+					UserLog.user = new UserLog(user,member,respo,admin,contrib);
+					UserLog.dispo = false;
+				
 			}
 		}
 		

@@ -15,6 +15,9 @@ import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.HomepageUI;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.ui.HomePageMemberUI;
 import com.LotuZ.user.user.bl.User;
@@ -115,20 +118,32 @@ public class LoginUI extends JFrame {
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
 
 					User user = UserLog.getUserLog();
+					Member member = UserLog.getMemberLog();
+					Administrator admin = UserLog.getAdminLog();
+					ActivityLeader respo = UserLog.getRespoLog();
+					Contributor contrib = UserLog.getContribLog();
 
 					//TODO des println à enlever
 					System.out.println("le user log LastName : " + user.getLastName());
 					System.out.println("le user log FirstName : " + user.getFirstName());
 					//System.out.println("le user log est admin : " + user.isAdmin());
 					
-					if (user.getIdMember() != 0){
-						//System.out.println("C'est un membre");
-						HomePageMemberUI frame =  new HomePageMemberUI();				
-						frame.setVisible(true);
+					if(user != null){
+						System.out.println("C'est un user");
 					}
-					else if(user.getIdContributor() != 0) {
-						System.out.println("C'est un contributor");
-						
+					if ( member != null){
+						System.out.println("C'est un membre");
+						System.out.println("Sa boite au lettre est : " + member.getIdBoxLetter());
+					}
+					if ( admin != null){
+						System.out.println("C'est un admin");
+					}
+					if ( respo != null){
+						System.out.println("C'est un respo");
+						System.out.println("respo : " + respo.getIdBoxLetter() );
+					}
+					if (contrib != null){
+						System.out.println("C'est un contrib");
 					}
 					/*else if(user.isAdmin()) {
 						System.out.println("C'est un contributor");

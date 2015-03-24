@@ -97,11 +97,12 @@ public class JdbcKit extends PersistKit{
 
 
 
-
+	/*
 	@Override
 	public void createUserLog() {
 		UserLog.init();
 	}
+	*/
 
 	@Override
 	public void createUserLog(User user, Member member, ActivityLeader respo,
@@ -109,12 +110,13 @@ public class JdbcKit extends PersistKit{
 		UserLog.init(user,member,respo,admin,contrib,this.cn);
 		
 	}
-
+	/*
 	public void createUserLog(User user) throws SQLException {
 		UserLog.init(user,this.cn);
 
 		
 	}
+	*/
 
 
 
