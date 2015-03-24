@@ -200,11 +200,10 @@ public abstract class CategoryProduct
 			// TODO Auto-generated constructor stub
 		}
 
-		public abstract CategoryProduct load(String idCategoryProduct) throws SQLException;
 		public abstract void save() throws SQLException;
 		public abstract void save(int id, String name, String decription,int level, int father) throws SQLException;
-		public abstract CategoryProduct delete(String idCategoryProduct) throws SQLException;
-		public abstract CategoryProduct load(int idCategory) throws SQLException;
+		public abstract void delete(String idCategoryProduct) throws SQLException;
+		public abstract CategoryProduct load(int idCategoryProduct) throws SQLException;
 
 		
 

@@ -78,7 +78,8 @@ public class CatgeoryJdbc extends CategoryProduct
 	
 	public CategoryProduct load(int idCategoryProduct) throws SQLException
 	{
-		try {
+		try 
+		{
 
 			List<String> CategoryProduct = new ArrayList<String>();
 			
@@ -101,8 +102,9 @@ public class CatgeoryJdbc extends CategoryProduct
 				this.setLevelCategory(result.getInt("levelCategory"));
 				this.setFactherCategory(result.getInt("fatherCategory"));
 			}
-		
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			throw e;
 		}
 		return this;
@@ -112,22 +114,84 @@ public class CatgeoryJdbc extends CategoryProduct
 	@Override
 	public void save() throws SQLException 
 	{
+		try {
+
+			List<String> CategoryProduct = new ArrayList<String>();
+			
+			Statement st =null;
+			
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Requ�te d insertion � partir de l'identifiant 
+			String sql = "INSERT INTO LotuZ.Category VALUES "
+					+ "("
+					+this.getIdCategoryProduct()+","
+					+this.getNameCategory()+","
+					+this.getDecriptionCategory()+","
+					+this.getLevelCategory()+","
+					+this.getFactherCategory()+")";
+			
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			}
+		 catch (SQLException e) 
+		{
+			throw e;
+		}
 	}
 	
-	public void save(int id, String name, String decription, int level, int father) throws SQLException 
+	public void save(int id, String name, String description, int level, int father) throws SQLException 
 	{
+		try {
+
+			List<String> CategoryProduct = new ArrayList<String>();
+			
+			Statement st =null;
+			
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Requ�te d insertion � partir de l'identifiant 
+			String sql = "INSERT INTO LotuZ.Category VALUES "
+					+ "("
+					+id+","
+					+name+","
+					+description+","
+					+level+","
+					+father+")";
+			
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			}
+		 catch (SQLException e) 
+		{
+			throw e;
+		}
 	}
 
 	@Override
-	public CategoryProduct delete(String idCategoryProduct) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(String idCategoryProduct) throws SQLException 
+	{
+		try {
+
+			List<String> CategoryProduct = new ArrayList<String>();
+			
+			Statement st =null;
+			
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Requ�te d insertion � partir de l'identifiant 
+			String sql = "DELETE FROM Category WHERE idCategory ="+idCategoryProduct;		
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			}
+		 catch (SQLException e) 
+		{
+			throw e;
+		}
 	}
 
-	@Override
-	public CategoryProduct load(String idCategoryProduct) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
