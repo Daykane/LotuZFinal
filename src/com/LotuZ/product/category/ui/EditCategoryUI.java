@@ -7,11 +7,15 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,6 +27,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -41,6 +46,8 @@ public class EditCategoryUI extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	String[] listSubCategory;
+	
 
 	/**
 	 * Launch the application.
@@ -210,7 +217,7 @@ public class EditCategoryUI extends JFrame
 		panelBannerCenter.add(lblSbTitle, BorderLayout.CENTER);
 		
 		//Center Center
-		JPanel categoryPan = new JPanel();
+		final JPanel categoryPan = new JPanel();
 		categoryPan.setLayout(new GridBagLayout());
 		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
 		
@@ -312,9 +319,13 @@ public class EditCategoryUI extends JFrame
 		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
 		
 			//Liste
-		String[] listSubCategory = {"one", "two", "three", "four"};
-		final JList jlistSubCategory = new JList(listSubCategory);
-		GridBagConstraints gbc_listSubCategory= new GridBagConstraints();
+		final ArrayList<String> listSubCategory2 = new ArrayList<String>();
+		listSubCategory2.add("one");
+		listSubCategory2.add("two");
+		listSubCategory2.add("three");
+		listSubCategory2.add("four");
+		final JList jlistSubCategory = new JList(listSubCategory2.toArray());
+		final GridBagConstraints gbc_listSubCategory= new GridBagConstraints();
 		gbc_listSubCategory.gridx = 2;
 		gbc_listSubCategory.gridy = 4;
 		jlistSubCategory.setVisible(false);
@@ -375,7 +386,7 @@ public class EditCategoryUI extends JFrame
 				}
 				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
 				{
-					System.out.println("Coucou Loïc");
+
 					//FatherCat Invisible
 					lblfatherCategory.setVisible(false);
 					cBoxFCat.setVisible(false);
@@ -391,8 +402,32 @@ public class EditCategoryUI extends JFrame
 		cBoxLevelCategory.addActionListener(cBoxLevelCategoryListeners);
 		
 				//Remove subCategory Listeners
+		ActionListener btnRemoveSubCategoryListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e) 
+			{
+				System.out.println(listSubCategory2.size());
+				listSubCategory2.remove(jlistSubCategory.getSelectedValue());
+				System.out.println(listSubCategory2.size());
+				jlistSubCategory.setListData(listSubCategory2.toArray());
+				
+			}
+		};
+		btnRemoveSubCat.addActionListener(btnRemoveSubCategoryListeners);
 		
 				//Add subCategory Listeners
+		ActionListener btnAddSubCategoryListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e) 
+			{
+						
+				
+			}
+		};
+		btnAddSubCat.addActionListener(btnAddSubCategoryListeners);
+		
 		//Center South
 		JPanel validationPan = new JPanel();
 		validationPan.setLayout(new GridBagLayout());
