@@ -109,8 +109,8 @@ public class AdministratorJDBC extends Administrator{
 			// Requête de modification
 			String sql = "UPDATE LotuZ.User u, LotuZ.Member m SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
 					+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()
-					+"',`idMember`='"+this.getIdMember()+"',`idContributor`='"+this.getIdContributor()+"',`cotisation`='"+this.getCotisation()+"',`dateCotisation`='"+this.getDateCotisation()
-					+"',`idBoxLetter`='"+this.getIdBoxLetter()+"',`idAdmin`='"+this.getIdAdmin()+"',`idLeader`='"+this.getIdLeader()+"' Where u.idMember = m.idMember and `mail`='"+this.getMail()+"'";
+					+"',`cotisation`='"+this.getCotisation()+"',`dateCotisation`='"+this.getDateCotisation()
+					+"',`idAdmin`='"+this.getIdAdmin()+"',`idLeader`='"+this.getIdLeader()+"' Where u.idMember = m.idMember and `mail`='"+this.getMail()+"'";
 			
 			// Exécution requête
 			st.executeUpdate(sql);
