@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -37,6 +38,8 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.bl.CategoryProduct;
+import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
@@ -47,6 +50,7 @@ import com.LotuZ.user.user.bl.User;
 
 public class CategoryUI extends JFrame {
 
+	private FacadeBL facadeBL;
 	/**
 	 * 
 	 */
@@ -202,16 +206,15 @@ public class CategoryUI extends JFrame {
 		categoryPan.setLayout(new GridBagLayout());
 
 		//JListe Category
-		final ArrayList<String> categories = new ArrayList<String>();
-		categories.add("Cat1");
-		categories.add("---SCat1");
-		categories.add("---SCat2");
-		categories.add("---SCat3");
-		categories.add("Cat2");
-		categories.add("---SCat1");
-		categories.add("---SCat2");
-		categories.add("---SCat3");
-		final JList jListCategories = new JList(categories.toArray());
+		ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getCategories().getListCategoryProduct();
+		final ArrayList<String> categoriesNames = new ArrayList<String>();
+		for (int i=0;i<categories.size();i++)
+		{
+			categoriesNames.add(categories.get(i).getNameCategory());
+		}
+		
+		
+		final JList jListCategories = new JList(categoriesNames.toArray());
 		
 		GridBagConstraints gbc_jListCategories= new GridBagConstraints();
 		gbc_jListCategories.gridx = 0;
@@ -255,7 +258,6 @@ public class CategoryUI extends JFrame {
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("Coucou");
 			CreateCategoryUI add = null;
 			try {
 				add = new CreateCategoryUI();
@@ -311,10 +313,10 @@ public class CategoryUI extends JFrame {
 			if (!jListCategories.getSelectedValue().equals(null))
 			{		
 				//Suppression de l'élement sélection de la liste des sous category
-				categories.remove(jListCategories.getSelectedValue());
-				jListCategories.setListData(categories.toArray());
+				categoriesNames.remove(jListCategories.getSelectedValue());
+				jListCategories.setListData(categoriesNames.toArray());
 			}
-			if (categories.isEmpty())
+			if (categoriesNames.isEmpty())
 			{
 				btnRemoveCat.setVisible(false);			
 			}

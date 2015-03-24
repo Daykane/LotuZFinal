@@ -42,7 +42,7 @@ public class FacadeBL {
 	
 	// *************************************Loïc*************************************
 	
-	public  ListCategoryProduct getCategories() {
+	public static  ListCategoryProduct getCategories() {
 		return categoryManager.getCategories();
 	}	
 	
