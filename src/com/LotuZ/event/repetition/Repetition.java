@@ -1,6 +1,7 @@
 package com.LotuZ.event.repetition;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.LotuZ.user.user.bl.User;
 
@@ -23,6 +24,12 @@ public abstract class Repetition {
 	public Repetition(String name) {
 		super();
 		this.name = name;
+	}	
+	
+	public Repetition(String name,int id) {
+		super();
+		this.name = name;
+		this.idRepetition = id;
 	}	
 	
 	/**
@@ -58,8 +65,15 @@ public abstract class Repetition {
 
 	public abstract Repetition load(int id) throws SQLException;
 	
+	public abstract Repetition load(String name) throws SQLException;
+	
 	public abstract void update() throws ClassNotFoundException, SQLException;
 	
 	public abstract void delete() throws ClassNotFoundException, SQLException;
+
+
+	public abstract List<Repetition> loadAll() throws SQLException;
+
+	
 
 }
