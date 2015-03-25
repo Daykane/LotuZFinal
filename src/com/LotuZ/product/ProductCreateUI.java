@@ -197,9 +197,6 @@ public class ProductCreateUI extends JFrame {
 
 		JLabel lblNameProduct = new JLabel("Name Product:");
 		lblNameProduct.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
 		});
 		lblNameProduct.setBounds(112, 85, 128, 14);
 		panelCenter.add(lblNameProduct);
@@ -228,11 +225,11 @@ public class ProductCreateUI extends JFrame {
 		panelCenter.add(TFQuantity);
 
 		JLabel lblCategory = new JLabel("Category:");
-		lblCategory.setBounds(112, 260, 129, 14);
+		lblCategory.setBounds(112, 316, 129, 14);
 		panelCenter.add(lblCategory);
 
 		JLabel lblRduction = new JLabel("Reduction: (number)");
-		lblRduction.setBounds(112, 316, 128, 14);
+		lblRduction.setBounds(112, 260, 128, 14);
 		panelCenter.add(lblRduction);
 
 		TFCategory = new JTextField();
@@ -254,6 +251,9 @@ public class ProductCreateUI extends JFrame {
 				{
 					try
 					{
+						System.out.println("ok");
+						//FacadeBL.product(user.getIdMember,TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()));
+
 						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()));
 						System.out.println("ok");
 						JOptionPane.showMessageDialog(null,"Product added","Product added",JOptionPane.INFORMATION_MESSAGE);
@@ -332,7 +332,7 @@ public class ProductCreateUI extends JFrame {
 
 			private boolean verifyReduction(){
 				if (!isNumeric(TFReduction.getText())){
-					RedBorder(TFPrice);
+					RedBorder(TFReduction);
 					return false;
 				};
 				return true;

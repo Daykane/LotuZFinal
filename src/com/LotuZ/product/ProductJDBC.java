@@ -94,8 +94,11 @@ private Connection cn;
 			Statement st =null;
 			// Etape 1 : Creation d'un statement
 			st = this.cn.createStatement();
-			String sql = "Insert into Product Values ('"+ this.getProductName() +"','"+ this.getCategory() +"','"+ this.getQuantity()+"','"+ this.getPrice() +"','"+ this.getReduction() + "','"+ this.getCreationDate() +"','"+ this.getUpdateDate() + this.getId() + this.getIdProvider() +"')";
+			
+			//String sql = "Insert into Product (`name`, `quantity`, `prix`, `reduction`,`creationDate`, `updateDate`, `category`) VALUES ('"+ this.getProductName() +"','"+ this.getQuantity() +"','"+ this.getPrice()+"','"+ this.getReduction() +"','"+ this.getCreationDate() + "','"+ this.getUpdateDate() +"','"+ this.getCategory()  +"','"+ this.getIdProvider() +"')";
+			String sql = "Insert into Product (`name`, `quantity`, `prix`, `reduction`,`creationDate`, `updateDate`, `category`) VALUES ('"+ this.getProductName() +"','"+ this.getQuantity() +"','"+ this.getPrice()+"','"+ this.getReduction() +"','"+ this.getCreationDate() + "','"+ this.getUpdateDate() +"','"+ this.getCategory() +"')";
 			// Etape 2 : exécution requête
+			System.out.println(sql);
 			st.executeUpdate(sql);
 			
 		} catch (SQLException e) {

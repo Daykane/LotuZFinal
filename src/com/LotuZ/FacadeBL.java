@@ -40,6 +40,7 @@ public class FacadeBL {
 		contributorManager = new ContributorManager(kit);
 		categoryManager = new CategoryManager(kit);
 		setProductManager(new ProductManager(kit));
+		
 	}
 	
 	// (^.^(*************************************Loic Start*************************************)^.^)
@@ -86,6 +87,13 @@ public static  void deleteCategory(int idCategory)
 			String postCode, String password) throws ClassNotFoundException, SQLException{
 		inscriptionManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
+	
+	/*
+	public static void product(int idMember,String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException{
+		productManager.createProduct(idMember,productName, price, quantity, category, reduction );
+	}
+
+	 */
 	
 	public static void product(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException{
 		productManager.createProduct(productName, price, quantity, category, reduction );
