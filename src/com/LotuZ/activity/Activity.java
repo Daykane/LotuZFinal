@@ -170,7 +170,7 @@ public abstract class Activity {
 
 	public abstract Activity load(int i) throws SQLException;
 
-	public abstract Activity update() throws SQLException;
+	public abstract void update() throws SQLException;
 
 	public abstract List<Activity> loadAll() throws SQLException;
 	

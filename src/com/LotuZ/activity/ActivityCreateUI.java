@@ -93,7 +93,7 @@ public class ActivityCreateUI extends JFrame {
 	 */
 	public ActivityCreateUI() throws SQLException, UserNotFoundException {
 		FacadeUser.login("jack","jack");
-		User user = UserLog.getUserLog();
+		final User user = UserLog.getUserLog();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 600);
@@ -266,14 +266,15 @@ public class ActivityCreateUI extends JFrame {
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				List<Activity> lAct;
 				try {
 					//FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
+					Activity act = FacadeActivity.getActivity(14);
+					act.setName(tfName.getText());
+					FacadeActivity.updateActivity(act,tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText(),user.getMail());
 					
-					lAct = FacadeActivity.getAllActivities();
-					for( Activity a  : lAct){
-						System.out.println(a.getName());
-					}
+
+					act = FacadeActivity.getActivity(14);
+					System.out.println(act.getName());
 					
 				} catch (com.mysql.jdbc.MysqlDataTruncation e){
 					//TODO

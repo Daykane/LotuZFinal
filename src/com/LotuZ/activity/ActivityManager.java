@@ -70,7 +70,7 @@ public class ActivityManager {
 		return activity;
 	}
 
-	public Activity update(Activity acti, String name, String shortDescr, String longDescr,
+	public void update(Activity acti, String name, String shortDescr, String longDescr,
 			String idRespo) throws SQLException {
 		//User user = UserLog.getUserLog();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,8 +88,7 @@ public class ActivityManager {
 		//{
 		//	System.out.println("le this.cn est null");
 		//}
-		acti = acti.update();
-		return acti;
+		acti.update();
 		
 	}
 	

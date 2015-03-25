@@ -22,4 +22,8 @@ public class FacadeActivity {
 		return activityManager.getActivities();
 	}
 
+	public static void updateActivity(Activity act, String name, String shortDescr, String LongDescr, String idRespo) throws SQLException{
+		activityManager.update(act, name, shortDescr, LongDescr, idRespo);
+	}
+
 }

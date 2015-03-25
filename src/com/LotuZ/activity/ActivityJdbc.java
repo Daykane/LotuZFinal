@@ -162,8 +162,7 @@ public class ActivityJdbc extends Activity{
 	}
 
 	@Override
-	public Activity update() throws SQLException {
-		try {		
+	public void update() throws SQLException {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
@@ -172,11 +171,6 @@ public class ActivityJdbc extends Activity{
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
 			
-		} catch (SQLException e) {
-			throw e;
-		}
-		
-		return this;
 	}
 
 	

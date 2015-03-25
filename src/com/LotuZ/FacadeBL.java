@@ -126,10 +126,9 @@ public static  void deleteCategory(int idCategory)
 		return acti;
 	}
 
-	public static Activity updateActivity(Activity acti, String name, String shortDescr,
+	public static void updateActivity(Activity acti, String name, String shortDescr,
 			String longDescr, String idRespo) throws SQLException {	
-		Activity activity = activityManager.update(acti,name,shortDescr,longDescr,idRespo);
-		return activity;	
+			activityManager.update(acti,name,shortDescr,longDescr,idRespo);	
 	}
 	
 	public static Contributor getContributor(String idContributor) throws SQLException, UserNotFoundException{
