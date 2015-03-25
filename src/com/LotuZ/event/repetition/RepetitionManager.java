@@ -10,6 +10,11 @@ public class RepetitionManager {
 		this.pkit=kit;
 	}
 
+	public void createRepetition(String name) {
+		Repetition rep = this.pkit.createRepetition();
+		
+	}
+
 
 
 }

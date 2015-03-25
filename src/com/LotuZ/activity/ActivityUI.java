@@ -97,7 +97,7 @@ public class ActivityUI extends JFrame {
 		
 		// Déclaration du monde
 		FacadeUser.login("jack","jack");
-		final Activity activity = FacadeBL.readActivity(14);
+		final Activity activity = FacadeBL.readActivity(15);
 		User user = UserLog.getUserLog();
 		//
 		

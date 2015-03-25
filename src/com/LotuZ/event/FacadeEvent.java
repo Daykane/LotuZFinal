@@ -18,4 +18,9 @@ public class FacadeEvent {
 		repetitionManager = new RepetitionManager(kit);
 	}
 
+	public static void createRepetition(String name) {
+		repetitionManager.createRepetition(name);
+		
+	}
+
 }
