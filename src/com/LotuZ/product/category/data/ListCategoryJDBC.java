@@ -41,7 +41,8 @@ public class ListCategoryJDBC extends ListCategoryProduct
 
 	
 
-	public ListCategoryProduct load() throws SQLException{
+	public ListCategoryProduct load() throws SQLException
+	{
 		
 		// On d�clare une liste d'utilisateurs 
 		List<CategoryProduct> categorieS = new ArrayList<CategoryProduct>();
@@ -53,6 +54,35 @@ public class ListCategoryJDBC extends ListCategoryProduct
 			
 			// Cr�ation de la requ�te de s�lection
 			String sql = "Select * From LotuZ.Category";
+
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			
+			// R�cup�ration des donn�es 
+			while( result.next() ){	
+				// Cr�ation et ajout d'un utilisateurs dans la liste 
+				categorieS.add( map(result));
+			}
+		} catch (SQLException e) {
+				throw e;
+		}
+		ListCategoryProduct categories = new ListCategoryJDBC(categorieS);
+		return categories;
+	}
+	
+	public ListCategoryProduct load(int levelCategory) throws SQLException
+	{
+		
+		// On d�clare une liste d'utilisateurs 
+		List<CategoryProduct> categorieS = new ArrayList<CategoryProduct>();
+
+		try {
+			Statement st =null;
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Cr�ation de la requ�te de s�lection
+			String sql = "Select * From LotuZ.Category Where levelCategory="+levelCategory;
 
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);

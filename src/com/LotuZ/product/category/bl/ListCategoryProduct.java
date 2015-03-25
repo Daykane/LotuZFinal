@@ -57,4 +57,7 @@ public abstract class ListCategoryProduct {
 	 * @throws SQLException 
 	 */
 	public abstract ListCategoryProduct load() throws SQLException;
+
+
+	public abstract ListCategoryProduct load(int levelCategory) throws SQLException;
 }

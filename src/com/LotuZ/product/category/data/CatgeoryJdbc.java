@@ -110,6 +110,8 @@ public class CatgeoryJdbc extends CategoryProduct
 		return this;
 		
 	}
+	
+	
 
 	@Override
 	public void save() throws SQLException 
@@ -153,13 +155,13 @@ public class CatgeoryJdbc extends CategoryProduct
 			String sql = "INSERT INTO LotuZ.Category VALUES "
 					+ "("
 					+id+","
-					+name+","
-					+description+","
+					+'"'+name+'"'+","
+					+'"'+description+'"'+","
 					+level+","
 					+father+")";
-			
 			// Ex�cution de la requ�te
-			ResultSet result = st.executeQuery(sql);
+			System.out.println(sql);
+			int result = st.executeUpdate(sql);
 			}
 		 catch (SQLException e) 
 		{

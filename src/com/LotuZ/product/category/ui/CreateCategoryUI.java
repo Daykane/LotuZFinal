@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
@@ -39,11 +41,13 @@ import com.LotuZ.user.user.bl.User;
 
 public class CreateCategoryUI extends JFrame {
 
+	private FacadeBL facadeBL;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private static int idCategorie=1000;
 
 	/**
 	 * Launch the application.
@@ -228,7 +232,7 @@ public class CreateCategoryUI extends JFrame {
 		categoryPan.add(lblName, gbc_lblName);
 
 			//textfield
-		JTextField txtFName = new JTextField();
+		final JTextField txtFName = new JTextField();
 		GridBagConstraints gbc_txtFName = new GridBagConstraints();
 		gbc_txtFName.gridx = 2;
 		gbc_txtFName.gridy = 1;
@@ -247,7 +251,7 @@ public class CreateCategoryUI extends JFrame {
 		categoryPan.add(lblDescription, gbc_lbldescription);
 	
 			//JTextArea
-		JTextArea txtADescription = new JTextArea();
+		final JTextArea txtADescription = new JTextArea();
 		GridBagConstraints gbc_txtADescription = new GridBagConstraints();
 		gbc_txtADescription.gridx = 2;
 		gbc_txtADescription.gridy = 2;
@@ -287,8 +291,14 @@ public class CreateCategoryUI extends JFrame {
 		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
 		
 			//Liste
-		String[] listCategory = {"one", "two", "three", "four"};
-		final JList listFatherCategory = new JList(listCategory);
+		
+		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getCategories().getListCategoryProduct();
+		final ArrayList<String> categoriesNames = new ArrayList<String>();
+		for (int i=0;i<categories.size();i++)
+		{
+			categoriesNames.add(categories.get(i).getNameCategory());
+		}
+		final JList listFatherCategory = new JList(categoriesNames.toArray());
 		GridBagConstraints gbc_listFatherCategory= new GridBagConstraints();
 		gbc_listFatherCategory.gridx = 2;
 		gbc_listFatherCategory.gridy = 4;
@@ -346,7 +356,6 @@ public class CreateCategoryUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println("Coucou");
 				CategoryUI CategoryUI = null;
 				try {
 					CategoryUI = new CategoryUI();
@@ -365,7 +374,53 @@ public class CreateCategoryUI extends JFrame {
 		};
 		btnCancel.addActionListener(btnCancelListeners);
 		
+			//btnSubmitListeners
+			
+		ActionListener btnSubmitListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				setIdCategorie(900);
+				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
+				{				
+					facadeBL.createCategory(getIdCategorie(), txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
+					setIdCategorie(getIdCategorie() -1);
+				}
+				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
+				{
+					facadeBL.createCategory(getIdCategorie(), txtFName.getText(), txtADescription.getText(), 0, -1);
+					setIdCategorie(getIdCategorie() -1);
+				}
+				CategoryUI CategoryUI = null;
+				try {
+					CategoryUI = new CategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CategoryUI.setVisible(true);
+				CategoryUI.setLocationRelativeTo(null);
+				dispose();
+				
+				
+			}
+		};
+		btnSubmit.addActionListener(btnSubmitListeners);
 
 
+	}
+
+
+	public static int getIdCategorie() {
+		return idCategorie;
+	}
+
+
+	public static void setIdCategorie(int idCategorie) {
+		CreateCategoryUI.idCategorie = idCategorie;
 	}
 }

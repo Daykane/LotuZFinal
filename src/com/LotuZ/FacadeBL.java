@@ -44,10 +44,17 @@ public class FacadeBL {
 	
 	//Category
 
-public static  ListCategoryProduct getCategories() 
-{
-	return categoryManager.getCategories();
-}
+	public static  ListCategoryProduct getAllCategories() 
+	{
+		return categoryManager.getAllCategories();
+	}
+	
+	public static  ListCategoryProduct getCategories() 
+	{
+		return categoryManager.getCategories();
+	}
+
+
 
 public static  CategoryProduct getCategory(int idCategory) 
 {

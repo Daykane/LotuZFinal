@@ -28,7 +28,7 @@ public class CategoryManager
 		this.setPkit(kit);
 	}
 	
-	public ListCategoryProduct getCategories()
+	public ListCategoryProduct getAllCategories()
 	{
 		ListCategoryProduct categories = pkit.createListCategory();
 		try {
@@ -37,8 +37,20 @@ public class CategoryManager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return categories;
-		
+		return categories;	
+	}
+	
+	public ListCategoryProduct getCategories()
+	{
+		int levelCategory =0; // 
+		ListCategoryProduct categories = pkit.createListCategory();
+		try {
+			categories = categories.load(levelCategory);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return categories;	
 	}
 	
 	public CategoryProduct getCategory(int idCategory) {

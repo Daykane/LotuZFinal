@@ -207,7 +207,7 @@ public class CategoryUI extends JFrame {
 		categoryPan.setLayout(new GridBagLayout());
 
 		//JListe Category
-		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getCategories().getListCategoryProduct();
+		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getAllCategories().getListCategoryProduct();
 		final ArrayList<String> categoriesNames = new ArrayList<String>();
 		for (int i=0;i<categories.size();i++)
 		{
