@@ -50,8 +50,7 @@ public class UserJDBC extends User{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void save() throws ClassNotFoundException, SQLException {
-		try {		
+	public void save() throws ClassNotFoundException, SQLException {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
@@ -60,10 +59,6 @@ public class UserJDBC extends User{
 			
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-
-		} catch (SQLException e) {
-			throw e;
-		}
 	}
 
 	public User load(String idmail) throws SQLException {
@@ -99,8 +94,7 @@ public class UserJDBC extends User{
 		return this;
 	}
 	
-	public void delete() throws ClassNotFoundException, SQLException {
-		try {		
+	public void delete() throws ClassNotFoundException, SQLException {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
@@ -110,9 +104,6 @@ public class UserJDBC extends User{
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
 
-		} catch (SQLException e) {
-			throw e;
-		}
 	}
 	
 	public void update() throws ClassNotFoundException, SQLException {

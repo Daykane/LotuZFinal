@@ -5,11 +5,13 @@ package com.LotuZ.event;
 
 import java.sql.Date;
 
+import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.room.Room;
 
 public class Event {
 	
 	
+	private int idEvent;
 	private String name;
 	private String description;
 	private int nbParticipant;
@@ -47,6 +49,20 @@ public class Event {
 		this.repetition = repetition;
 		this.price = price;
 	}
+	/**
+	 * @return the idEvent
+	 */
+	public int getIdEvent() {
+		return idEvent;
+	}
+
+	/**
+	 * @param idEvent the idEvent to set
+	 */
+	public void setIdEvent(int idEvent) {
+		this.idEvent = idEvent;
+	}
+
 	/**
 	 * @return the name
 	 */
