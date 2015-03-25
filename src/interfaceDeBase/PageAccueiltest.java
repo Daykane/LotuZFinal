@@ -82,6 +82,7 @@ public class PageAccueiltest extends JFrame {
 	public PageAccueiltest() throws SQLException, UserNotFoundException {
 		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
+		Bandeau bandeau = new Bandeau();
 		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
@@ -93,9 +94,10 @@ public class PageAccueiltest extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		JPanel panelBandeau = new JPanel();
-		panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		contentPane.add(panelBandeau, BorderLayout.NORTH);
+		//JPanel panelBandeau = new JPanel();
+		//panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
+		contentPane.add(bandeau.createBandeau(user, "Ma page"), BorderLayout.NORTH);
+		/*
 		panelBandeau.setLayout(new BorderLayout(0, 0));
 
 
@@ -187,6 +189,7 @@ public class PageAccueiltest extends JFrame {
 				lblConnexion.setText(Connexion);
 			}
 		});
+		*/
 	}
 
 }
