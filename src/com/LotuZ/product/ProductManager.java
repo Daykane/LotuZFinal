@@ -31,7 +31,7 @@ public class ProductManager {
 		this.setPkit(kit);
 	}
 	
-	public void createProduct(String productName, int quantity, int price, int reduction, int category) throws ClassNotFoundException, SQLException {
+	public void createProduct(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		// Create empty ProductJDBC

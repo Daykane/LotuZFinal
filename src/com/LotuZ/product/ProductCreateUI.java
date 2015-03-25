@@ -1,6 +1,9 @@
 package com.LotuZ.product;
 
+
+
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -9,19 +12,24 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.activity.ActivityCreateUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
@@ -31,42 +39,44 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import java.awt.GridBagLayout;
+import javax.swing.JScrollBar;
 
-import javax.swing.JTextField;
-
-import java.awt.GridBagConstraints;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProductCreateUI extends JFrame {
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	//FacadeBL facadeBL = new FacadeBL();
-
 	private JPanel contentPane;
-	private JTextField tfName;
-	private JTextField tfShortDesc;
+	private JTextField TFProductName;
+	private JTextField TFPrice;
+	private JTextField TFQuantity;
+	private JTextField TFCategory;
+	private JTextField TFReduction;
+	private final JLabel jlblStatus = new JLabel("Error dans un champ");
 
+	static int count = 0;
 
+	/**
+	 * Launch the application.
+	 */
 
 	public static void main(String[] args) {
 		// Info Connection
-				String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-				String login = "ROLL";
-				String passwd = "rolldevelopment";
-				
-				// Choose the kit
-				JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-				jdbcKit.openConnection(url, login, passwd);
-				
-				// Init the FacadeBL with the kit
-				FacadeBL.init(jdbcKit);
-				
-				
+		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
+		String login = "ROLL";
+		String passwd = "rolldevelopment";
+
+		// Choose the kit
+		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
+		jdbcKit.openConnection(url, login, passwd);
+
+		// Init the FacadeBL with the kit
+		FacadeBL.init(jdbcKit);
+		//FacadeUser.init();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -80,6 +90,7 @@ public class ProductCreateUI extends JFrame {
 		});
 	}
 
+
 	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
@@ -88,14 +99,8 @@ public class ProductCreateUI extends JFrame {
 	public ProductCreateUI() throws SQLException, UserNotFoundException {
 		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 750, 600);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
+		System.out.println("Mail page acceuil test : " + user.getMail());
+
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);
@@ -111,7 +116,7 @@ public class ProductCreateUI extends JFrame {
 		panelBandeau.setLayout(new BorderLayout(0, 0));
 
 
-		JLabel lblTitle = new JLabel("NOM DE TA PAGE");
+		JLabel lblTitle = new JLabel("CREATE A PRODUCT");
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		panelBandeau.add(lblTitle, BorderLayout.CENTER);
@@ -181,10 +186,189 @@ public class ProductCreateUI extends JFrame {
 			}
 		});
 		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
-		
+
 		JLabel lblIconeMail = new JLabel("icone mail");
 		lblIconeMail.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelOptions.add(lblIconeMail);
+
+		JPanel panelCenter = new JPanel();
+		contentPane.add(panelCenter, BorderLayout.CENTER);
+		panelCenter.setLayout(null);
+
+		JLabel lblNameProduct = new JLabel("Name Product:");
+		lblNameProduct.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lblNameProduct.setBounds(112, 85, 128, 14);
+		panelCenter.add(lblNameProduct);
+
+		TFProductName = new JTextField();
+		TFProductName.setBounds(271, 79, 165, 27);
+		panelCenter.add(TFProductName);
+		TFProductName.setColumns(10);
+
+		JLabel lblPrice = new JLabel("Price: (number)");
+		lblPrice.setBounds(112, 141, 128, 14);
+		panelCenter.add(lblPrice);
+
+		TFPrice = new JTextField();
+		TFPrice.setColumns(10);
+		TFPrice.setBounds(271, 135, 165, 27);
+		panelCenter.add(TFPrice);
+
+		JLabel lblQuantity = new JLabel("Quantity: (number)");
+		lblQuantity.setBounds(112, 203, 128, 14);
+		panelCenter.add(lblQuantity);
+
+		TFQuantity = new JTextField();
+		TFQuantity.setColumns(10);
+		TFQuantity.setBounds(271, 197, 165, 27);
+		panelCenter.add(TFQuantity);
+
+		JLabel lblCategory = new JLabel("Category:");
+		lblCategory.setBounds(112, 260, 129, 14);
+		panelCenter.add(lblCategory);
+
+		JLabel lblRduction = new JLabel("Reduction: (number)");
+		lblRduction.setBounds(112, 316, 128, 14);
+		panelCenter.add(lblRduction);
+
+		TFCategory = new JTextField();
+		TFCategory.setColumns(10);
+		TFCategory.setBounds(271, 310, 165, 27);
+		panelCenter.add(TFCategory);
+
+		TFReduction = new JTextField();
+		TFReduction.setColumns(10);
+		TFReduction.setBounds(271, 254, 165, 27);
+		panelCenter.add(TFReduction);
+
+		JButton btnOk = new JButton("OK");
+		btnOk.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				if( this.verifyTF() & this.verifyPrice() & this.verifyQuantity() & this.verifyReduction() )
+				{
+					try
+					{
+						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()));
+						System.out.println("ok");
+						JOptionPane.showMessageDialog(null,"Product added","Product added",JOptionPane.INFORMATION_MESSAGE);
+					}
+
+
+					catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e1) 
+					{
+						e1.printStackTrace();
+					} 
+					catch (ClassNotFoundException e1) 
+					{
+						e1.printStackTrace();
+					} catch (SQLException e1) 
+					{
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			private boolean verifyTF() {
+
+				this.TFisempty(TFProductName);
+				this.TFisempty(TFPrice);
+				this.TFisempty(TFQuantity);
+				this.TFisempty(TFCategory);
+				this.TFisempty(TFReduction);
+
+				if (count>0){
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+
+			private void TFisempty(JTextField textfield){
+				RemoveBorder(textfield);
+				String text = textfield.getText();
+
+					if(text.equals("")){
+						RedBorder(textfield);
+						count++;
+					}
+			}
+
+
+			private void RedBorder(JTextField textfield){
+				jlblStatus.setVisible(true);
+				Border border = BorderFactory.createLineBorder(Color.RED, 2);
+				textfield.setBorder(border);
+			}
+
+			private void RemoveBorder(JTextField textfield){
+				jlblStatus.setVisible(false);
+				Border border = BorderFactory.createLineBorder(Color.white, 2);
+				textfield.setBorder(border);
+
+			}
+
+			private boolean verifyPrice(){
+				if (!isNumeric(TFPrice.getText())){
+					RedBorder(TFPrice);
+					return false;
+				};
+				return true;
+			}
+
+			private boolean verifyQuantity(){
+				if (!isNumeric(TFQuantity.getText())){
+					RedBorder(TFQuantity);
+					return false;
+				};
+				return true;
+			}
+
+			private boolean verifyReduction(){
+				if (!isNumeric(TFReduction.getText())){
+					RedBorder(TFPrice);
+					return false;
+				};
+				return true;
+			}
+
+			private boolean isNumeric(String str)  
+			{  
+			  try  
+			  {  
+				  Integer.parseInt(str);  
+			  }  
+			  catch(Exception e)  
+			  {  
+			    return false;  
+			  }  
+			  return true;  
+			}	
+			
+});
+		btnOk.setBounds(131, 451, 89, 23);
+		panelCenter.add(btnOk);
+
+		JButton btnCancel = new JButton("CANCEL");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				System.out.println("cancel");
+			}
+		});
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCancel.setBounds(252, 451, 89, 23);
+		panelCenter.add(btnCancel);
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -197,95 +381,11 @@ public class ProductCreateUI extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				lblConnexion.setText(Connexion);
-			}
-		});
-		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel_top = new JPanel();
-		panel_1.add(panel_top, BorderLayout.NORTH);
-		
-		JLabel lblCreateProduct = new JLabel("Create Product");
-		panel_top.add(lblCreateProduct);
-		
-		JPanel panel_Center = new JPanel();
-		panel_1.add(panel_Center, BorderLayout.CENTER);
-		panel_Center.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.PREF_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(150dlu;min):grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				RowSpec.decode("10dlu"),
-				FormFactory.DEFAULT_ROWSPEC,
-				RowSpec.decode("10dlu"),
-				RowSpec.decode("max(3dlu;default)"),
-				RowSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
-		
-		JLabel lblNewLabel = new JLabel("Product Name : ");
-		panel_Center.add(lblNewLabel, "1, 2, right, default");
-		
-		tfName = new JTextField();
-		panel_Center.add(tfName, "3, 2, fill, default");
-		tfName.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("Prix : ");
-		panel_Center.add(lblNewLabel_1, "1, 4, right, default");
-		
-		tfShortDesc = new JTextField();
-		panel_Center.add(tfShortDesc, "3, 4, fill, default");
-		tfShortDesc.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("Long description : ");
-		panel_Center.add(lblNewLabel_2, "1, 7, right, default");
-		
-		JScrollPane scrollPane = new JScrollPane();
-		panel_Center.add(scrollPane, "3, 7, fill, fill");
-		
-		final JTextArea tfLongDesc = new JTextArea();
-		tfLongDesc.setTabSize(7);
-		scrollPane.setViewportView(tfLongDesc);
-		
-		JPanel panel_Bottom = new JPanel();
-		panel_1.add(panel_Bottom, BorderLayout.SOUTH);
-		panel_Bottom.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JButton btnConfirm = new JButton("Confirm");
-		btnConfirm.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				try {
-					FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (com.mysql.jdbc.MysqlDataTruncation e){
-					//TODO
-					System.out.println("Boite alert, text trop long");
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		btnConfirm.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_Bottom.add(btnConfirm);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Retour à la page Acceuil respo");
-			}
-		});
-		btnCancel.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_Bottom.add(btnCancel);
-	}
 
+			}
+
+		});
+
+
+	}
 }

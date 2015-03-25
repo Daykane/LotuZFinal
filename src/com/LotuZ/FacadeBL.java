@@ -9,6 +9,7 @@ import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.ProductManager;
 import com.LotuZ.product.category.bl.CategoryManager;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
@@ -28,7 +29,7 @@ public class FacadeBL {
 	private static ActivityLeaderManager activityLeaderManager;
 	private static ContributorManager contributorManager;
 	private static CategoryManager categoryManager;
-	
+	private static ProductManager productManager;
 
 	
 	public static void init(PersistKit kit){
@@ -38,6 +39,7 @@ public class FacadeBL {
 		activityLeaderManager = new ActivityLeaderManager(kit);
 		contributorManager = new ContributorManager(kit);
 		categoryManager = new CategoryManager(kit);
+		setProductManager(new ProductManager(kit));
 	}
 	
 	// (^.^(*************************************Loic Start*************************************)^.^)
@@ -83,6 +85,10 @@ public static  void deleteCategory(int idCategory)
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException{
 		inscriptionManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
+	}
+	
+	public static void product(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException{
+		productManager.createProduct(productName, price, quantity, category, reduction );
 	}
 	
 	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{
@@ -134,5 +140,19 @@ public static  void deleteCategory(int idCategory)
 	
 	public static ListContributor getContributors() throws SQLException, UserNotFoundException{
 		return contributorManager.getContributors();
+	}
+
+	/**
+	 * @return the productManager
+	 */
+	public static ProductManager getProductManager() {
+		return productManager;
+	}
+
+	/**
+	 * @param productManager the productManager to set
+	 */
+	public static void setProductManager(ProductManager productManager) {
+		FacadeBL.productManager = productManager;
 	}
 }
