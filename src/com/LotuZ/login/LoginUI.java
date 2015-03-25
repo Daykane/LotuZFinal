@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import com.LotuZ.FacadeBL;
+import com.LotuZ.PageAccueil;
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.HomepageUI;
@@ -153,8 +154,8 @@ public class LoginUI extends JFrame {
 						HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);
 					}
-
-					PageAccueiltest pageAcceuil = new PageAccueiltest();
+					System.out.println("Mail : " +user.getMail());
+					PageAccueil pageAcceuil = new PageAccueil();
 					pageAcceuil.setVisible(true);
 
 
