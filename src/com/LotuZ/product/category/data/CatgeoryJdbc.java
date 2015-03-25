@@ -179,10 +179,10 @@ public class CatgeoryJdbc extends CategoryProduct
 			
 			// Requ�te d insertion � partir de l'identifiant 
 			//String sql = "Select * From LotuZ.Category where idCategory="+idCategoryProduct;
-			String sql = "Delete from LotuZ.Category where idCategory="+idCategoryProduct;		
+			String sql = "Delete From LotuZ.Category where idCategory="+idCategoryProduct;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
 			System.out.println(sql);
 			// Ex�cution de la requ�te
-			ResultSet result = st.executeQuery(sql);
+			int result = st.executeUpdate(sql);
 			System.out.println("cJDBC3");
 			
 	}
