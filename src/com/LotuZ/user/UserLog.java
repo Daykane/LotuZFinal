@@ -40,22 +40,22 @@ public final class UserLog extends User{
 		UserLog.respo = respo;
 		UserLog.admin = admin;
 		UserLog.contrib = contrib;
-		
+
 	}
 
 
 	public static User getUserLog(){
 		return UserLog.user;
 	}
-	
+
 	public static Member getMemberLog(){
 		return UserLog.member;
 	}
-	
+
 	public static Administrator getAdminLog(){
 		return UserLog.admin;
 	}
-	
+
 	public static ActivityLeader getRespoLog(){
 		return UserLog.respo;
 	}
@@ -81,7 +81,7 @@ public final class UserLog extends User{
 			}
 		}
 	}
-	*/
+	 */
 
 	@Override
 	public void save() throws SQLException, ClassNotFoundException {		
@@ -102,7 +102,7 @@ public final class UserLog extends User{
 			}
 		}
 	}
-	*/
+	 */
 
 
 	public static void init(User user, Member member, ActivityLeader respo,
@@ -110,28 +110,33 @@ public final class UserLog extends User{
 		if (UserLog.dispo) {
 			synchronized(UserLog.class) {
 				//TODO
-					UserLog.user = new UserLog(user,member,respo,admin,contrib);
-					UserLog.dispo = false;
-				
+				UserLog.user = new UserLog(user,member,respo,admin,contrib);
+				UserLog.dispo = false;
+
 			}
 		}
-		
+		else{
+			//TODO
+			System.out.println("deja logger");
+		}
 	}
+
+
 
 
 	@Override
 	public void update() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void delete() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/*@Override
 	public boolean isAdmin() throws SQLException {
 		boolean flag = false;

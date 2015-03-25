@@ -82,6 +82,7 @@ public class PageAccueiltest extends JFrame {
 	public PageAccueiltest() throws SQLException, UserNotFoundException {
 		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
+		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
