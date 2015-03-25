@@ -95,7 +95,7 @@ public static  void deleteCategory(int idCategory)
 		loginManager.loginUser(mail,password);
 	}	
 
-	public  List<Activity> getActivities() {
+	public  List<Activity> getActivities() throws SQLException {
 		return activityManager.getActivities();
 	}
 	

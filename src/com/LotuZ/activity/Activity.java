@@ -7,6 +7,7 @@ package com.LotuZ.activity;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import com.LotuZ.event.Event;
@@ -19,7 +20,7 @@ public abstract class Activity {
 	private String shortDescr;
 	private String longDescr;
 	private String idRespo;
-	private Vector<Event> event;
+	private List<Integer> event;
 	private String createDate;
 	private String majDate;
 
@@ -124,14 +125,14 @@ public abstract class Activity {
 	/**
 	 * @return the event
 	 */
-	public Vector<Event> getEvent() {
+	public List<Integer> getEvent() {
 		return event;
 	}
 
 	/**
 	 * @param event the event to set
 	 */
-	public void setEvent(Vector<Event> event) {
+	public void setEvent(List<Integer> event) {
 		this.event = event;
 	}
 
@@ -169,8 +170,8 @@ public abstract class Activity {
 
 	public abstract Activity load(int i) throws SQLException;
 
-
-
 	public abstract Activity update() throws SQLException;
+
+	public abstract List<Activity> loadAll() throws SQLException;
 	
 }

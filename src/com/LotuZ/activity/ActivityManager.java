@@ -50,9 +50,11 @@ public class ActivityManager {
 		}
 	
 	
-	public List<Activity> getActivities() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Activity> getActivities() throws SQLException {
+		List<Activity> lAct;
+		Activity activity = pkit.createActivity();
+		lAct = activity.loadAll();
+		return lAct;
 	}
 
 	public Activity read(String name) throws SQLException {

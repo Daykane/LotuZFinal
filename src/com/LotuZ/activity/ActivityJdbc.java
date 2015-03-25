@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
@@ -77,10 +79,14 @@ public class ActivityJdbc extends Activity{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 			String sql = "Select * From LotuZ.Activity Where name="+'"'+name+'"';
+			
 			// Etape 4 : exécution requête
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
-			activity = getAndCreateActivity(result);
+			int i = result.getInt("idActivity");
+			this.load(i);
+			//activity = getAndCreateActivity(result);
+			//Aller chercher les event qui ont pour IdActivity le name
 
 		} catch (SQLException e) {
 			throw e;
@@ -103,11 +109,39 @@ public class ActivityJdbc extends Activity{
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
 			activity = (ActivityJdbc) getAndCreateActivity(result);
-			activity.setCn(this.cn);
+			//activity.setCn(this.cn);
 		} catch (SQLException e) {
 			throw e;
 		}
 		return activity;
+	}
+	
+	@Override
+	public List<Activity> loadAll() throws SQLException {
+		List<Activity> activities = new ArrayList();
+
+			Statement st =null;
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
+			String sql = "Select * From LotuZ.Activity";
+			// Etape 4 : exécution requête
+			//st.executeUpdate(sql);
+			ResultSet result = st.executeQuery(sql);
+			while( result.next() ){	
+				ActivityJdbc activity = null;
+				int idActivity = result.getInt("idActivity");
+				String name = result.getString("name");
+				String longDescription = result.getString("longDescription");
+				String shortDescription = result.getString("shortDescription");
+				String activityLeader = result.getString("activityLeader");
+				String creationDate = result.getString("creationDate");
+				String updateDate = result.getString("updateDate");
+
+
+				activity = new ActivityJdbc(idActivity,name,longDescription,shortDescription,activityLeader,creationDate,updateDate);
+				activities.add(activity);
+			}
+		return activities;
 	}
 
 	private static Activity getAndCreateActivity(ResultSet result) throws SQLException {
@@ -144,4 +178,6 @@ public class ActivityJdbc extends Activity{
 		
 		return this;
 	}
+
+	
 }

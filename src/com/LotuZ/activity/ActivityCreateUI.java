@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -68,6 +70,7 @@ public class ActivityCreateUI extends JFrame {
 				
 				// Init the FacadeBL with the kit
 				FacadeBL.init(jdbcKit);
+				FacadeActivity.init(jdbcKit);
 				//jdbcKit.createUserLog("toto le respo","toto","mail","0626290616","ici","2bis","montp","123456","1",0,1);
 				
 		EventQueue.invokeLater(new Runnable() {
@@ -263,11 +266,15 @@ public class ActivityCreateUI extends JFrame {
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
+				List<Activity> lAct;
 				try {
-					FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
+					
+					lAct = FacadeActivity.getAllActivities();
+					for( Activity a  : lAct){
+						System.out.println(a.getName());
+					}
+					
 				} catch (com.mysql.jdbc.MysqlDataTruncation e){
 					//TODO
 					System.out.println("Boite alert, text trop long");
