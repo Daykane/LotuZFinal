@@ -54,8 +54,7 @@ public class LoginManager {
 			respo = respo.load(mail);
 			user = user.load(mail);
 			admin = admin.load(mail);
-			member = member.load(mail);
-			System.out.println("attention : "+member.getIdMember());
+			member = (Member) member.load(mail);
 			contrib = contrib.load(mail);
 			
 			try {

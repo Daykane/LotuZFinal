@@ -57,16 +57,17 @@ public class MemberJDBC extends Member{
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
-			
+			System.out.println(mailMember+"Retour null MembreJDBC");
+
 			// Requête de sélection à partir de l'identifiant 
 			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and u.idMember is not null and u.mail="+'"'+mailMember+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
 			
-			if(!result.first())
+			if(result.first() == false)
 			{
-				System.out.println("Retour null");
+				System.out.println("Retour null MembreJDBC");
 				return member;
 			}
 			else 
@@ -81,7 +82,7 @@ public class MemberJDBC extends Member{
 					member.setIdLeader(result.getInt("idLeader"));
 					member.setIdMember(result.getInt("idMember"));
 				}
-				System.out.println(member.getIdMember()+"Retour pas null");
+			System.out.println("Retour non null MembreJDBC");
 			return member;
 			}
 	}
