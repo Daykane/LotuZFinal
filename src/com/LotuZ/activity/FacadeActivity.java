@@ -26,4 +26,9 @@ public class FacadeActivity {
 		activityManager.update(act, name, shortDescr, LongDescr, idRespo);
 	}
 
+	public static void deleteActivity(Activity act) throws SQLException {
+		activityManager.deleteActivity(act);
+		
+	}
+
 }

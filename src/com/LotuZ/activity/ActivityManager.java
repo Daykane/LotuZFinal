@@ -76,19 +76,28 @@ public class ActivityManager {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		// Create empty ActivityJdbc
-		//Activity activity = pkit.createActivity();
+		Activity activity = pkit.createActivity();
+		
 		// set informations into the userJdbc
-		acti.setName(name);
-		acti.setShortDescr(shortDescr);
-		acti.setLongDescr(longDescr);
-		acti.setIdRespo(idRespo);
-		acti.setMajDate(dateFormat.format(date));
+		activity.setIdActivity(acti.getIdActivity());
+		activity.setName(name);
+		activity.setShortDescr(shortDescr);
+		activity.setLongDescr(longDescr);
+		activity.setIdRespo(idRespo);
+		activity.setMajDate(dateFormat.format(date));
 		// Save in database the user
 		//if (this.cn == null)
 		//{
 		//	System.out.println("le this.cn est null");
 		//}
-		acti.update();
+		activity.update();
+		
+	}
+
+	public void deleteActivity(Activity act) throws SQLException {
+		Activity activity = pkit.createActivity();
+		activity.setIdActivity(act.getIdActivity());		
+		activity.delete();
 		
 	}
 	

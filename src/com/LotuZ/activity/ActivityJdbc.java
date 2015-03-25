@@ -173,5 +173,18 @@ public class ActivityJdbc extends Activity{
 			
 	}
 
+	@Override
+	public void delete() throws SQLException {
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
+
+		String sql = "Delete From LotuZ.Activity Where idActivity = '"+ this.getIdActivity() +"'";
+
+		// Etape 4 : exécution requête
+		st.executeUpdate(sql);
+
+	}
+
 	
 }

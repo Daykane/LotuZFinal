@@ -269,12 +269,11 @@ public class ActivityCreateUI extends JFrame {
 				try {
 					//FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
 					Activity act = FacadeActivity.getActivity(14);
-					act.setName(tfName.getText());
-					FacadeActivity.updateActivity(act,tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText(),user.getMail());
+					FacadeActivity.deleteActivity(act);
 					
 
-					act = FacadeActivity.getActivity(14);
-					System.out.println(act.getName());
+					//act = FacadeActivity.getActivity(14);
+					//System.out.println(act.getName());
 					
 				} catch (com.mysql.jdbc.MysqlDataTruncation e){
 					//TODO

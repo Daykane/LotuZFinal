@@ -173,5 +173,9 @@ public abstract class Activity {
 	public abstract void update() throws SQLException;
 
 	public abstract List<Activity> loadAll() throws SQLException;
+
+
+
+	public abstract void delete() throws SQLException;
 	
 }
