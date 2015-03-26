@@ -18,9 +18,10 @@ public class Event {
 	private Date date;
 	private String heureDeb;
 	private String heureFin;
-	private Repetition repetition;
+	private int repetition;
 	private double price;
-	private Room room;
+	private int room;
+	private String idContributor;
 	
 	public Event() {
 		super();
@@ -37,7 +38,7 @@ public class Event {
 	 * @param price
 	 */
 	public Event(String name, String description, int nbParticipant, Date date,
-			String heureDeb, String heureFin, Repetition repetition,
+			String heureDeb, String heureFin, int repetition,
 			double price) {
 		super();
 		this.name = name;
@@ -106,10 +107,10 @@ public class Event {
 		return date;
 	}
 	/**
-	 * @param date the date to set
+	 * @param date2 the date to set
 	 */
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate( java.util.Date date) {
+		this.date = (Date) date;
 	}
 	/**
 	 * @return the heureDeb
@@ -138,14 +139,14 @@ public class Event {
 	/**
 	 * @return the repetition
 	 */
-	public Repetition getRepetition() {
+	public int getRepetition() {
 		return repetition;
 	}
 	/**
-	 * @param repetition the repetition to set
+	 * @param idRepetition the repetition to set
 	 */
-	public void setRepetition(Repetition repetition) {
-		this.repetition = repetition;
+	public void setRepetition(int idRepetition) {
+		this.repetition = idRepetition;
 	}
 	/**
 	 * @return the price
@@ -163,16 +164,23 @@ public class Event {
 	/**
 	 * @return the room
 	 */
-	public Room getRoom() {
+	public int getRoom() {
 		return room;
 	}
 
 	/**
-	 * @param room the room to set
+	 * @param idRoom the room to set
 	 */
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setRoom(int idRoom) {
+		this.room = idRoom;
 	}
+
+	public void setIdContributor(String idContrib) {
+		this.idContributor = idContrib;
+		
+	}
+
+	
 	
 
 }

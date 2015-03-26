@@ -1,6 +1,7 @@
 package com.LotuZ.event;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import com.LotuZ.PersistKit;
@@ -45,6 +46,15 @@ public class FacadeEvent {
 
 	public static List<Repetition> getAllRepetition() throws SQLException {
 		return repetitionManager.getAllRepetion();
+	}
+
+	public static void createEvent(String name, int nbParticipant,
+			int price, String startingTime, String finishingTime, Date date,
+			int idRepetition, int idActivity, String idContrib, int idRoom) {
+		eventManager.createEvent(name, nbParticipant,price,
+			startingTime, finishingTime, date,
+			idRepetition, idActivity, idContrib, idRoom);
+		
 	}
 
 }
