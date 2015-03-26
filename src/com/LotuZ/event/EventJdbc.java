@@ -146,6 +146,7 @@ public class EventJdbc extends Event{
 		while( result.next() ){	
 			//`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)
 			Event event = new EventJdbc();
+			int id = result.getInt("idEvent");
 			String name = result.getString("name");
 			event.setIdEvent(result.getInt("idEvent"));
 			event.setName( result.getString("name"));

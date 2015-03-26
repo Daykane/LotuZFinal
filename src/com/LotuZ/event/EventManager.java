@@ -84,9 +84,8 @@ public class EventManager {
 
 	public void deleteEvent(int idEvent) throws SQLException {
 		Event event = pkit.createEvent();
-		event.setIdEvent(idEvent);
+		event = FacadeEvent.getEvent(idEvent);
 		event.delete();
-		
 	}
 
 	public List<Event> getEventsActivity(int idActivity) throws SQLException {

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.LotuZ.EventInscription.EventInscription;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.repetition.Repetition;
@@ -38,6 +39,7 @@ public abstract class PersistKit {
 	public abstract ListActivityLeader createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();
 	public abstract Product createProduct();
+	public abstract EventInscription createEventInscription();
 	public abstract ListContributor createListContributor();
 	public abstract Contributor createContributor();
 	public abstract Administrator createAdministrator();
@@ -45,6 +47,7 @@ public abstract class PersistKit {
 	// *************************************Loic*************************************
 	public abstract ListCategoryProduct createListCategory();
 	public abstract CategoryProduct createCategory();
+	
 	
 	// *************************************Loic*************************************
 

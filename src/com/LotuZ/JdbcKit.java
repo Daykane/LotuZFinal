@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.LotuZ.EventInscription.EventInscription;
+import com.LotuZ.EventInscription.EventInscriptionJdbc;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.event.Event;
@@ -258,6 +260,14 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public Event createEvent() {
 		return new EventJdbc(this.cn);
+	}
+
+
+
+
+	@Override
+	public EventInscription createEventInscription() {
+		return new EventInscriptionJdbc(this.cn);
 	}
 
 
