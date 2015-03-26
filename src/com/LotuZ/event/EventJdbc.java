@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.event.repetition.RepetitionJdbc;
@@ -86,7 +88,7 @@ public class EventJdbc extends Event{
 		// Récupération des données 
 		while(result.next()){
 			event = new EventJdbc();
-			//`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)"
+			event.setIdEvent(idEvent);
 			event.setName(result.getString("name"));
 			event.setNbParticipant(result.getInt("nbParticipant"));
 			event.setHeureDeb(result.getString("startingTime"));
@@ -101,6 +103,58 @@ public class EventJdbc extends Event{
 			
 		}
 		return event;
+	}
+
+	@Override
+	public void update() throws SQLException {
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
+		//`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)
+		String sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
+				+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`contributor`='"+this.getIdContributor()+"',`room`='"+this.getRoom()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
+		// Etape 4 : exécution requête
+		System.out.println("Dans le Jdbc :" + this.getName());
+		System.out.println("Dans le Jdbc :" + this.getIdEvent());
+		st.executeUpdate(sql);
+		
+	}
+
+	@Override
+	public void delete() throws SQLException {
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
+
+		String sql = "Delete From LotuZ.Event Where idEvent = '"+ this.getIdEvent() +"'";
+
+		// Etape 4 : exécution requête
+		st.executeUpdate(sql);
+		
+	}
+
+	@Override
+	public List<Event> loadAll(int idActivity) throws SQLException {		
+		List<Event> events = new ArrayList();
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
+		String sql = "Select * From LotuZ.Event e,LotuZ.Activity a where e.activity = a.idActivity and a.idActivity ='"+idActivity+"'";
+		// Etape 4 : exécution requête
+		//st.executeUpdate(sql);
+		ResultSet result = st.executeQuery(sql);
+		while( result.next() ){	
+			// TODO
+			System.out.println("a finir si ça marche");
+			Event event = null;
+			String name = result.getString("name");
+			//int id = result.getInt("idRepetition");
+			event = new EventJdbc();
+			event.setName(name);
+
+			events.add(event);
+		}
+		return events;
 	}
 
 }

@@ -5,6 +5,7 @@ package com.LotuZ.event;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.room.Room;
@@ -208,7 +209,12 @@ public abstract class Event {
 	public abstract void save() throws SQLException;
 
 	public abstract Event load(int idEvent) throws SQLException;
-	
+
+	public abstract void update() throws SQLException;
+
+	public abstract void delete() throws SQLException;
+
+	public abstract List<Event> loadAll(int idActivity) throws SQLException;
 	
 
 }

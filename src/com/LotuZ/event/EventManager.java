@@ -2,8 +2,10 @@ package com.LotuZ.event;
 
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.List;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.event.repetition.Repetition;
 
 
 public class EventManager {
@@ -58,6 +60,40 @@ public class EventManager {
 		event.setPrice(price);
 		return event;
 		
+	}
+
+	public void updateEvent(Event oldEvent, Event newEvent) throws SQLException {
+		Event event = pkit.createEvent();
+		event.setIdEvent(oldEvent.getIdEvent());
+		event.setDate(newEvent.getDate());
+		event.setName(newEvent.getName());
+		event.setHeureDeb(newEvent.getHeureFin());
+		event.setHeureFin(newEvent.getHeureFin());
+		event.setRoom(newEvent.getRoom());
+		event.setRepetition(newEvent.getRepetition());
+		event.setIdContributor(newEvent.getIdContributor());
+		event.setIdActivity(newEvent.getIdActivity());
+		event.setNbParticipant(newEvent.getNbParticipant());
+		event.setDescription(newEvent.getDescription());
+		event.setPrice(newEvent.getPrice());
+		System.out.println("Dans le manager " + event.getName());
+		System.out.println("Dans le manager " + oldEvent.getIdEvent());
+		System.out.println("Dans le manager " + event.getIdEvent());
+		event.update();
+	}
+
+	public void deleteEvent(int idEvent) throws SQLException {
+		Event event = pkit.createEvent();
+		event.setIdEvent(idEvent);
+		event.delete();
+		
+	}
+
+	public List<Event> getEventsActivity(int idActivity) throws SQLException {
+		List<Event> lEvent;
+		Event event = pkit.createEvent();
+		lEvent = event.loadAll(idActivity);
+		return lEvent;
 	}
 
 }

@@ -70,9 +70,18 @@ public class FacadeEvent {
 				idRepetition, idActivity, idContrib, idRoom);
 	}
 
-	public static void updateEvent(Event oldEvent, Event newEvent) {
-		// TODO Auto-generated method stub
+	public static void updateEvent(Event oldEvent, Event newEvent) throws SQLException {
+		eventManager.updateEvent(oldEvent,newEvent);
 		
+	}
+
+	public static void deleteEvent(int idEvent) throws SQLException {
+		eventManager.deleteEvent(idEvent);
+		
+	}
+
+	public static List<Event> getEventsActivity(int idActivity) throws SQLException {
+		return eventManager.getEventsActivity(idActivity);
 	}
 
 }
