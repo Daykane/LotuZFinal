@@ -28,7 +28,7 @@ private Connection cn;
 		this.cn = cn;
 	}
 	
-	public ProductJDBC(int id, String productName, int category, int quantity, int price, int reduction, String creationDate, String updateDate, int idProvider) {
+	public ProductJDBC(int id, String productName, int category, int quantity, int price, int reduction, String creationDate, String updateDate) {
 		this.setId(id);
 		this.setProductName(productName);
 		this.setCategory(category);
@@ -37,7 +37,7 @@ private Connection cn;
 		this.setReduction(reduction);
 		this.setCreationDate(creationDate);
 		this.setUpdateDate(updateDate);
-		this.setIdProvider(idProvider);
+		//this.setIdProvider(idProvider);
 	}
 	
 	public ProductJDBC(String productName, int quantity, int price, int reduction) {
@@ -48,14 +48,14 @@ private Connection cn;
 	}
 
 	@Override
-	public Product loadProduct(int id) throws SQLException {
+	public Product loadProduct(int idP) throws SQLException {
 		Product product = null;
 		try {
 
 			Statement st =null;
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "Select * From LotuZ.Product Where idProduct='"+id+"'";
+			String sql = "Select * From LotuZ.Product Where idProduct='"+idP+"'";
 			System.out.println(sql);
 			// Etape 2 : exécution requête
 			//st.executeUpdate(sql);
@@ -67,7 +67,6 @@ private Connection cn;
 		}
 		return product;
 	}
-	
 	@Override
 	public Product loadProduct(String productName) throws SQLException {
 		Product product = null;
@@ -143,17 +142,17 @@ private Connection cn;
 	private static Product getAndCreateProduct(ResultSet result) throws SQLException {
 		ProductJDBC product = null;
 		while( result.next() ){	
-			int id = result.getInt("id");
-			String productName = result.getString("productName");
+			int id = result.getInt("idProduct");
+			String productName = result.getString("name");
 			int category = result.getInt("category");
 			int quantity = result.getInt("quantity");
-			int price = result.getInt("price");
+			int price = result.getInt("prix");
 			int reduction = result.getInt("reduction");
 			String creationDate = result.getString("creationDate");
 			String updateDate = result.getString("updateDate");
-			int idProvider = result.getInt("ipProvider");
+			//int idProvider = result.getInt("ipProvider");
 
-			product = new ProductJDBC(id,productName,category,quantity,price,reduction,creationDate,updateDate, idProvider);
+			product = new ProductJDBC(id,productName,category,quantity,price,reduction,creationDate,updateDate);
 		}
 		return product;
 	}	

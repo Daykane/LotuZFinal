@@ -120,6 +120,7 @@ public class FacadeBL {
 		return product;
 	}
 	
+	
 	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{
 		loginManager.loginUser(mail,password);
 	}	

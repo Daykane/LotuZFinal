@@ -41,6 +41,7 @@ import java.awt.GridLayout;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 
 public class ProductUI extends JFrame{
@@ -50,6 +51,11 @@ public class ProductUI extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfNameProduct;
+	private JTextField tfPrice;
+	private JTextField tfQuantity;
+	private JTextField tfReduction;
+	private JLabel lblCategoryid;
+	private JTextField tfCategory;
 
 	/**
 	 * Launch the application.
@@ -91,7 +97,7 @@ public class ProductUI extends JFrame{
 		
 		
 		FacadeUser.login("jack","jack");
-		final Product product = FacadeBL.loadProduct(158);
+		final Product product = FacadeBL.loadProduct(18564);
 		User user1 = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
 
@@ -113,10 +119,112 @@ public class ProductUI extends JFrame{
 		lblNewLabel.setBounds(144, 84, 90, 14);
 		panel.add(lblNewLabel);
 		
-		tfNameProduct = new JTextField(product.getId());
-		tfNameProduct.setBounds(225, 82, 86, 20);
+		tfNameProduct = new JTextField(product.getProductName());
+		//tfNameProduct.setText(product.getProductName());
+		tfNameProduct.setBounds(243, 81, 86, 20);
 		panel.add(tfNameProduct);
 		tfNameProduct.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Price (\u20AC):");
+		lblNewLabel_1.setBounds(144, 121, 52, 14);
+		panel.add(lblNewLabel_1);
+		
+		tfPrice = new JTextField(Integer.toString(product.getPrice()));
+		tfPrice.setColumns(10);
+		tfPrice.setBounds(243, 118, 86, 20);
+		panel.add(tfPrice);
+		
+		JLabel lblQuantity = new JLabel("Quantity:");
+		lblQuantity.setBounds(144, 162, 52, 14);
+		panel.add(lblQuantity);
+		
+		tfQuantity = new JTextField(Integer.toString(product.getQuantity()));
+		tfQuantity.setColumns(10);
+		tfQuantity.setBounds(243, 159, 86, 20);
+		panel.add(tfQuantity);
+		
+		JLabel lblReduction = new JLabel("Reduction (%):");
+		lblReduction.setBounds(144, 204, 86, 14);
+		panel.add(lblReduction);
+		
+		tfReduction = new JTextField(Integer.toString(product.getReduction()));
+		tfReduction.setColumns(10);
+		tfReduction.setBounds(243, 201, 86, 20);
+		panel.add(tfReduction);
+		
+		lblCategoryid = new JLabel("Category(id):");
+		lblCategoryid.setBounds(144, 244, 86, 14);
+		panel.add(lblCategoryid);
+		
+		tfCategory = new JTextField(Integer.toString(product.getCategory()));
+		tfCategory.setColumns(10);
+		tfCategory.setBounds(240, 241, 86, 20);
+		panel.add(tfCategory);
+		
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				if (btnEdit.getText().equals("Edit")){
+					btnEdit.setText("Validate");
+					tfNameProduct.setEditable(true);
+					tfPrice.setEditable(true);
+					tfQuantity.setEditable(true);
+					tfReduction.setEditable(true);
+					tfCategory.setEditable(true);
+				}
+				else if(btnEdit.getText().equals("Validate")){
+					btnEdit.setText("Edit");
+					try {
+						FacadeBL.(activity, tfName.getText(), tfShortDescr.getText(), tfLongDescr.getText(), tfRespo.getText());
+						tfName.setEditable(false);
+						tfShortDescr.setEditable(false);
+						tfLongDescr.setEditable(false);
+						// TODO alert boite
+						System.out.println("Activity updaté");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+				
+				
+				
+			}
+		});
+		btnEdit.setBounds(155, 361, 89, 23);
+		panel.add(btnEdit);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		btnCancel.setBounds(291, 361, 89, 23);
+		panel.add(btnCancel);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(390, 84, 46, 14);
+		panel.add(label);
+		
+		JLabel lblNewLabel_2 = new JLabel("Created:");
+		lblNewLabel_2.setBounds(390, 61, 60, 14);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblUpdated = new JLabel("Updated:");
+		lblUpdated.setBounds(390, 96, 60, 14);
+		panel.add(lblUpdated);
+
+		JLabel lblNewLabel_4 = new JLabel(product.getCreationDate());
+		lblNewLabel_4.setBounds(460, 61, 90, 14);
+		panel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel(product.getUpdateDate());
+		lblNewLabel_5.setBounds(460, 96, 96, 14);
+		panel.add(lblNewLabel_5);
 
 	}
 }
