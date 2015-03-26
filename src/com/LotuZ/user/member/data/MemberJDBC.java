@@ -66,7 +66,6 @@ public class MemberJDBC extends Member{
 			
 			if(result.first() == false)
 			{
-				System.out.println("Retour null MembreJDBC");
 				return member;
 			}
 			else 
@@ -134,20 +133,20 @@ public class MemberJDBC extends Member{
 	}
 
 
-	public void delete() throws ClassNotFoundException, SQLException {
+	public void delete(Member member) throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 			
-			String sql = "UPDATE LotuZ.User SET (`idMember`) = null Where idMember='"+ this.getIdMember() +"'";
+			String sql = "UPDATE LotuZ.User SET `idMember` = null Where idMember='"+ member.getIdMember() +"'";
 
-			String sql2 = "Delete From LotuZ.Member Where mail='"+ this.getIdMember() +"'";
+			String sql2 = "Delete From LotuZ.Member Where idMember='"+ member.getIdMember() +"'";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
 			st.executeUpdate(sql2);
-
+			System.out.println("Delete MembreJDBC : "+member.getIdMember());
 
 		} catch (SQLException e) {
 			throw e;

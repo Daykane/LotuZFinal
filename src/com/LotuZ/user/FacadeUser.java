@@ -58,6 +58,14 @@ public class FacadeUser {
 		userManager.updateUser(user);
 	}
 	
+	public static void deleteMember(Member member) throws SQLException, UserNotFoundException, ClassNotFoundException{
+		memberManager.deleteMember(member);
+	}
+	
+	public static void deleteUser(User user) throws SQLException, UserNotFoundException, ClassNotFoundException{
+		userManager.deleteUser(user);
+	}
+	
 
 
 }

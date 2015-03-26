@@ -95,12 +95,13 @@ public class UserJDBC extends User{
 		return this;
 	}
 	
-	public void delete() throws ClassNotFoundException, SQLException {		
+	public void delete(User user) throws ClassNotFoundException, SQLException {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "Delete From LotuZ.User Where mail = '"+ this.getMail() +"'";
+			String sql = "Delete From LotuZ.User Where mail = '"+ user.getMail() +"'";
+			System.out.println("Delete User" +user);
 	
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
