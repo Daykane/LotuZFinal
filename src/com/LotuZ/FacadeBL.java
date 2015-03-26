@@ -47,6 +47,11 @@ public class FacadeBL {
 	// (^.^(*************************************Loic Start*************************************)^.^)
 	
 	//Category
+	
+	public static int generateId() 
+	{
+		return categoryManager.generateId();
+	}
 
 	public static  ListCategoryProduct getAllCategories() 
 	{
@@ -178,5 +183,6 @@ public class FacadeBL {
 	public static void setProductManager(ProductManager productManager) {
 		FacadeBL.productManager = productManager;
 	}
+
 
 }

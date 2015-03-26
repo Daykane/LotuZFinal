@@ -320,6 +320,19 @@ public class CategoryUI extends JFrame {
 				System.out.println(jListCategories.getSelectedIndex()+"-----"+jListCategories.getSelectedValue());
 				System.out.println(categoriesNames.get(jListCategories.getSelectedIndex())+"-----"+jListCategories.getSelectedValue());
 				FacadeBL.deleteCategory(categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct());
+				for(int i=0;i<categories.size();i++)
+				{
+					if (categories.get(i).getFactherCategory() == categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct())
+					{
+						CategoryProduct subCatOfRemoveCatToUpdate = FacadeBL.getCategory(categories.get(i).getIdCategoryProduct());
+						try {
+							subCatOfRemoveCatToUpdate.update(categories.get(i).getIdCategoryProduct(), categories.get(i).getNameCategory(), categories.get(i).getDecriptionCategory(), categories.get(i).getLevelCategory(), 0); //0 --> pere inconnu
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
 				categories.remove(jListCategories.getSelectedIndex());
 				categoriesNames.remove(jListCategories.getSelectedValue());
 				jListCategories.setListData(categoriesNames.toArray());

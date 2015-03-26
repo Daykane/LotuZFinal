@@ -120,6 +120,18 @@ public class CategoryManager
 		
 	}
 
+	public int generateId() {
+		int idCatGen = 0;
+		CategoryProduct category = pkit.createCategory();
+		try {
+			idCatGen = category.generateId();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return idCatGen;
+	}
+
 
 
 

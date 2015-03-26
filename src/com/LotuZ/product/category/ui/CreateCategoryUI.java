@@ -349,21 +349,19 @@ public class CreateCategoryUI extends JFrame {
 			
 		ActionListener btnSubmitListeners = new ActionListener() 
 		{
-			CategoryProduct cat;
 			public void actionPerformed(ActionEvent e)
 			{
 				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
 				{				
-					try {
-						facadeBL.createCategory(cat.generateId(), txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					int idCatGen = facadeBL.generateId();
+					facadeBL.createCategory(idCatGen, txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
 				}
 				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
 				{
-					facadeBL.createCategory(1, txtFName.getText(), txtADescription.getText(), 0, -1);
+					System.out.println("Coucou");
+					int idCatGen = facadeBL.generateId();
+					System.out.println("Kikoo");
+					facadeBL.createCategory(idCatGen, txtFName.getText(), txtADescription.getText(), 0, -1);
 				}
 				CategoryUI CategoryUI = null;
 				try {

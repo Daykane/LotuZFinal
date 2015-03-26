@@ -81,9 +81,7 @@ public class CatgeoryJdbc extends CategoryProduct
 	{
 		int idGenerated=0;
 		try 
-		{
-
-			
+		{		
 			
 			Statement st =null;
 			
@@ -91,30 +89,31 @@ public class CatgeoryJdbc extends CategoryProduct
 			st = this.cn.createStatement();
 			
 			// Requ�te de s�lection � partir de l'identifiant 
-			String sql = "Select generatedId From LotuZ.generateIdCategory";
+			String sql = "Select generatedIdCategory From LotuZ.generateIdCategory";
 			
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
 			// R�cup�ration des donn�es 
 			System.out.println(idGenerated);
+			System.out.println(sql);
+			
 			while(result.next())
 			{	
-				this.setIdCategoryProduct(result.getInt("idCategory"));
-				idGenerated = result.getInt("generateIdCategory");
+				System.out.println("generatedIdCategory");
+				idGenerated = result.getInt("generatedIdCategory");
+				System.out.println(idGenerated); 
 			}
 			System.out.println(idGenerated);
 			idGenerated++;
 			System.out.println(idGenerated);
 			// Requ�te de s�lection � partir de l'identifiant 
-			String sql1 = "Update LotuZ.generateIdCategory Set generateIdCategory="+idGenerated+" Where idgenerateIdCategory="+0;
+			String sql1 = "Update LotuZ.generateIdCategory Set generatedIdCategory="+idGenerated+" Where idgenerateIdCategory="+0;
 			System.out.println("cJDBC3");
 			// Ex�cution de la requ�te
 			st.executeUpdate(sql1);
 			System.out.println("cJDBC4");
-			
-			
-			
+					
 		} 
 		catch (SQLException e) 
 		{
