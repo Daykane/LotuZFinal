@@ -50,10 +50,28 @@ public class FacadeEvent {
 
 	public static void createEvent(String name, int nbParticipant,
 			int price, String startingTime, String finishingTime, Date date,
-			String description, int idRepetition, int idActivity, String idContrib, int idRoom) throws SQLException {
+			String description, int idRepetition, int idActivity, int idContrib, int idRoom) throws SQLException {
 		eventManager.createEvent(name, nbParticipant,price,
 			startingTime, finishingTime, date,description,
 			idRepetition, idActivity, idContrib, idRoom);
+		
+	}
+
+	public static Event getEvent(int idEvent) throws SQLException {
+		return eventManager.getEvent(idEvent);
+	}
+
+	public static  Event instanceEvent(String name, int nbParticipant,
+			int price, String startingTime, String finishingTime, Date date,
+			String description, int idRepetition, int idActivity,
+			int idContrib, int idRoom) {
+		return eventManager.instanceEvent(name, nbParticipant,price,
+				startingTime, finishingTime, date,description,
+				idRepetition, idActivity, idContrib, idRoom);
+	}
+
+	public static void updateEvent(Event oldEvent, Event newEvent) {
+		// TODO Auto-generated method stub
 		
 	}
 

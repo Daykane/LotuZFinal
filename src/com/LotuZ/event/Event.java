@@ -22,7 +22,7 @@ public abstract class Event {
 	private int repetition;
 	private double price;
 	private int room;
-	private String idContributor;
+	private int idContributor;
 	private int idActivity;
 	
 	public Event() {
@@ -182,11 +182,11 @@ public abstract class Event {
 	/**
 	 * @return the idContributor
 	 */
-	public String getIdContributor() {
+	public int getIdContributor() {
 		return idContributor;
 	}
 
-	public void setIdContributor(String idContrib) {
+	public void setIdContributor(int idContrib) {
 		this.idContributor = idContrib;
 		
 	}
@@ -207,6 +207,7 @@ public abstract class Event {
 
 	public abstract void save() throws SQLException;
 
+	public abstract Event load(int idEvent) throws SQLException;
 	
 	
 
