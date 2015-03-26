@@ -53,6 +53,30 @@ public class CategoryManager
 		return categories;	
 	}
 	
+	public ListCategoryProduct getSubCategories() 
+	{
+		ListCategoryProduct categories = pkit.createListCategory();
+		try {
+			categories = categories.loadSubCategories();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return categories;
+	}
+	
+	public ListCategoryProduct getSubCategories(int idFatherCategoryProduct) 
+	{
+		ListCategoryProduct categories = pkit.createListCategory();
+		try {
+			categories = categories.loadSubCategories(idFatherCategoryProduct);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return categories;
+	}
+	
 	public CategoryProduct getCategory(int idCategory) {
 		CategoryProduct category = pkit.createCategory();
 		try {
@@ -95,6 +119,7 @@ public class CategoryManager
 		System.out.println("man3");
 		
 	}
+
 
 
 

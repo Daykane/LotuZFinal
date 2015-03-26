@@ -111,9 +111,25 @@ public class CatgeoryJdbc extends CategoryProduct
 		
 	}
 	
+	public void update(int id, String name, String description, int level, int father) throws SQLException
+	{		
+			System.out.println("cJDBC1");
+			
+			Statement st =null;
+			System.out.println("cJDBC1'");
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			System.out.println("cJDBC2");
+			
+			// Requ�te de s�lection � partir de l'identifiant 
+			String sql = "Update Category Set nameCategory='"+name+"', descriptionCategory='"+description+"',levelCategory="+level+",fatherCategory="+father+" Where idCategory="+id;
+			System.out.println("cJDBC3");
+			// Ex�cution de la requ�te
+			st.executeUpdate(sql);
+			System.out.println("cJDBC4");
+		
+	}
 	
-
-	@Override
 	public void save() throws SQLException 
 	{
 		try {

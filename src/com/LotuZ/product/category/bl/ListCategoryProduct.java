@@ -60,4 +60,10 @@ public abstract class ListCategoryProduct {
 
 
 	public abstract ListCategoryProduct load(int levelCategory) throws SQLException;
+
+
+	public abstract ListCategoryProduct loadSubCategories(int idFatherCategoryProduct) throws SQLException;
+	
+	public abstract ListCategoryProduct loadSubCategories() throws SQLException;	
+
 }

@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -47,37 +48,6 @@ public class CreateCategoryUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private static int idCategorie=1000;
-
-	/**
-	 * Launch the application.
-	 */
-
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateCategoryUI frame = new CreateCategoryUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 
 	/**
@@ -381,16 +351,13 @@ public class CreateCategoryUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				setIdCategorie(900);
 				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
 				{				
-					facadeBL.createCategory(getIdCategorie(), txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
-					setIdCategorie(getIdCategorie() -1);
+					facadeBL.createCategory(1, txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
 				}
 				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
 				{
-					facadeBL.createCategory(getIdCategorie(), txtFName.getText(), txtADescription.getText(), 0, -1);
-					setIdCategorie(getIdCategorie() -1);
+					facadeBL.createCategory(1, txtFName.getText(), txtADescription.getText(), 0, -1);
 				}
 				CategoryUI CategoryUI = null;
 				try {
@@ -414,13 +381,4 @@ public class CreateCategoryUI extends JFrame {
 
 	}
 
-
-	public static int getIdCategorie() {
-		return idCategorie;
-	}
-
-
-	public static void setIdCategorie(int idCategorie) {
-		CreateCategoryUI.idCategorie = idCategorie;
-	}
 }

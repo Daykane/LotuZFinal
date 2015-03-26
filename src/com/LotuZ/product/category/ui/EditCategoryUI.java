@@ -35,6 +35,7 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
@@ -46,38 +47,14 @@ public class EditCategoryUI extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	String[] listSubCategory;
+	private FacadeBL facadeBl;
+	CategoryProduct categorySelected;
 	
 
 	/**
 	 * Launch the application.
 	 */
 
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EditCategoryUI frame = new EditCategoryUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 
 	/**
@@ -85,7 +62,9 @@ public class EditCategoryUI extends JFrame
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public EditCategoryUI() throws SQLException, UserNotFoundException {
+	public EditCategoryUI(CategoryProduct categorySel) throws SQLException, UserNotFoundException 
+	{
+		categorySelected = FacadeBL.getCategory(categorySel.getIdCategoryProduct());
 		setLocationRelativeTo(null);
 		User user = UserLog.getUserLog();
 		//Create Window
@@ -234,7 +213,7 @@ public class EditCategoryUI extends JFrame
 		categoryPan.add(lblName, gbc_lblName);
 
 			//textfield
-		JTextField txtFName = new JTextField();
+		final JTextField txtFName = new JTextField(categorySelected.getNameCategory());
 		txtFName.setVisible(true);
 		GridBagConstraints gbc_txtFName = new GridBagConstraints();
 		gbc_txtFName.gridx = 2;
@@ -257,7 +236,7 @@ public class EditCategoryUI extends JFrame
 		categoryPan.add(lblDescription, gbc_lbldescription);
 	
 			//textfield
-		JTextArea txtADescription = new JTextArea();
+		final JTextArea txtADescription = new JTextArea(categorySelected.getDecriptionCategory());
 		txtADescription.setVisible(true);
 		GridBagConstraints gbc_txtADescription = new GridBagConstraints();
 		gbc_txtADescription.gridx = 2;
@@ -285,6 +264,7 @@ public class EditCategoryUI extends JFrame
 		gbc_cBoxLevelCategory.gridy = 3;		
 		final JComboBox cBoxLevelCategory = new JComboBox(elements);
 		cBoxLevelCategory.setVisible(true);
+		cBoxLevelCategory.setSelectedItem(categorySelected.getLevelCategory());
 		categoryPan.add(cBoxLevelCategory, gbc_cBoxLevelCategory);
 			
 		
@@ -300,11 +280,17 @@ public class EditCategoryUI extends JFrame
 		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
 		
 			//JComboBoxFCat
-		Object[] Fcategories = new Object[]{ "Toto","Tata","Titi","Tutu"};
+		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getCategories().getListCategoryProduct();
+		categories.remove(categorySelected); //Suppression de la categorie selectionne dans la liste des categoris a afficher
+		final ArrayList<String> categoriesNames = new ArrayList<String>();
+		for (int i=0;i<categories.size();i++)
+		{
+			categoriesNames.add(categories.get(i).getNameCategory());
+		}
 		GridBagConstraints gbc_cBoxChooseFCat = new GridBagConstraints();
 		gbc_cBoxChooseFCat.gridx = 2;
 		gbc_cBoxChooseFCat.gridy = 4;		
-		final JComboBox cBoxFCat = new JComboBox(Fcategories);
+		final JComboBox cBoxFCat = new JComboBox(categoriesNames.toArray());
 		cBoxFCat.setVisible(false);
 		categoryPan.add(cBoxFCat, gbc_cBoxChooseFCat);
 		
@@ -320,17 +306,18 @@ public class EditCategoryUI extends JFrame
 		contentPaneCenter.add(categoryPan, BorderLayout.CENTER);
 		
 			//Liste
-		final ArrayList<String> listSubCategory2 = new ArrayList<String>();
-		listSubCategory2.add("one");
-		listSubCategory2.add("two");
-		listSubCategory2.add("three");
-		listSubCategory2.add("four");
-		final JList jlistSubCategory = new JList(listSubCategory2.toArray());
+		final ArrayList<CategoryProduct> subCategoriesOfSelCat = (ArrayList<CategoryProduct>) FacadeBL.getSubCategories(categorySelected.getIdCategoryProduct()).getListCategoryProduct();
+		final ArrayList<String> subCategoriesOfSelCatNames = new ArrayList<String>();
+		for (int i=0;i<subCategoriesOfSelCat.size();i++)
+		{
+			subCategoriesOfSelCatNames.add(subCategoriesOfSelCat.get(i).getNameCategory());
+		}
+		final JList jlistSubCategoryOfSelCat = new JList(subCategoriesOfSelCatNames.toArray());
 		final GridBagConstraints gbc_listSubCategory= new GridBagConstraints();
 		gbc_listSubCategory.gridx = 2;
 		gbc_listSubCategory.gridy = 4;
-		jlistSubCategory.setVisible(false);
-		categoryPan.add(jlistSubCategory, gbc_listSubCategory);
+		jlistSubCategoryOfSelCat.setVisible(false);
+		categoryPan.add(jlistSubCategoryOfSelCat, gbc_listSubCategory);
 		
 			//ButtonRemoveSubCat
 		final JButton btnRemoveSubCat = new JButton("Remove");
@@ -341,19 +328,27 @@ public class EditCategoryUI extends JFrame
 		categoryPan.add(btnRemoveSubCat, gbc_btnRemoveSubCat);
 		
 			//JComboBoxSubCat
-		final ArrayList<String> categories = new ArrayList<String>();
-		categories.add("Household");
-		categories.add("Office");
-		categories.add("Extended Family");
-		categories.add("Company (US)");
-		categories.add("Company (World)");
-		categories.add("Team");
-		categories.add("Will");
-		categories.add("Birthday Card List");
+		final ArrayList<CategoryProduct> subCategories = (ArrayList<CategoryProduct>) FacadeBL.getSubCategories().getListCategoryProduct();
+		for (int i=0;i<subCategoriesOfSelCat.size();i++)
+		{
+			for (int j=0; j<subCategories.size();j++)
+			{
+				if (subCategories.get(j).getIdCategoryProduct() == subCategoriesOfSelCat.get(i).getIdCategoryProduct())
+				{
+					subCategories.remove(subCategories.get(j));
+				}
+			}
+
+		}
+		final ArrayList<String> subCategoriesNames = new ArrayList<String>();
+		for (int i=0;i<subCategories.size();i++)
+		{
+			subCategoriesNames.add(subCategories.get(i).getNameCategory());
+		}
 		GridBagConstraints gbc_cBoxAddSubCat = new GridBagConstraints();
 		gbc_cBoxAddSubCat.gridx = 2;
 		gbc_cBoxAddSubCat.gridy = 5;		
-		final JComboBox cBoxSubCat = new JComboBox(categories.toArray());
+		final JComboBox cBoxSubCat = new JComboBox(subCategoriesNames.toArray());
 		cBoxSubCat.setVisible(false);
 		categoryPan.add(cBoxSubCat, gbc_cBoxAddSubCat);
 		
@@ -364,6 +359,44 @@ public class EditCategoryUI extends JFrame
 		gbc_btnAddSubCat.gridy = 5;
 		btnAddSubCat.setVisible(false);
 		categoryPan.add(btnAddSubCat, gbc_btnAddSubCat);
+		
+		if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
+		{
+			//FatherCat Visible
+			lblfatherCategory.setVisible(true);
+			cBoxFCat.setVisible(true);
+			
+			//SubCat Invisible
+			lblSubCategory.setVisible(false);
+			jlistSubCategoryOfSelCat.setVisible(false);
+			btnRemoveSubCat.setVisible(false);
+			cBoxSubCat.setVisible(false);
+			btnAddSubCat.setVisible(false);
+			
+		}
+		if (cBoxLevelCategory.getSelectedItem().equals("Category"))
+		{
+
+			//FatherCat Invisible
+			lblfatherCategory.setVisible(false);
+			cBoxFCat.setVisible(false);
+			//SubCat Visible
+			lblSubCategory.setVisible(true);
+			jlistSubCategoryOfSelCat.setVisible(true);
+			btnRemoveSubCat.setVisible(true);
+			cBoxSubCat.setVisible(true);
+			btnAddSubCat.setVisible(true);
+		}
+		if (subCategories.isEmpty())
+		{
+			btnAddSubCat.setVisible(false);
+			cBoxSubCat.setVisible(false);
+		}
+		if (subCategoriesOfSelCat.isEmpty())
+		{
+			jlistSubCategoryOfSelCat.setVisible(false);
+			btnRemoveSubCat.setVisible(false);
+		}
 		
 		//Listeners
 		
@@ -381,7 +414,7 @@ public class EditCategoryUI extends JFrame
 					
 					//SubCat Invisible
 					lblSubCategory.setVisible(false);
-					jlistSubCategory.setVisible(false);
+					jlistSubCategoryOfSelCat.setVisible(false);
 					btnRemoveSubCat.setVisible(false);
 					cBoxSubCat.setVisible(false);
 					btnAddSubCat.setVisible(false);
@@ -395,7 +428,7 @@ public class EditCategoryUI extends JFrame
 					cBoxFCat.setVisible(false);
 					//SubCat Visible
 					lblSubCategory.setVisible(true);
-					jlistSubCategory.setVisible(true);
+					jlistSubCategoryOfSelCat.setVisible(true);
 					btnRemoveSubCat.setVisible(true);
 					cBoxSubCat.setVisible(true);
 					btnAddSubCat.setVisible(true);
@@ -410,20 +443,27 @@ public class EditCategoryUI extends JFrame
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (!jlistSubCategory.getSelectedValue().equals(null))
+				if (!jlistSubCategoryOfSelCat.getSelectedValue().equals(null))
 				{
 					//Ajout de l'élement sélectionné à la liste des sous category possible
 					//categories.add((String) jlistSubCategory.getSelectedValue());
-					cBoxSubCat.addItem((String) jlistSubCategory.getSelectedValue());
+					cBoxSubCat.addItem((String) jlistSubCategoryOfSelCat.getSelectedValue());
+					subCategories.add(subCategoriesOfSelCat.get(jlistSubCategoryOfSelCat.getSelectedIndex()));
+					subCategoriesNames.add((String) jlistSubCategoryOfSelCat.getSelectedValue());
 					
 					//Suppression de l'élement sélection de la liste des sous category
-					listSubCategory2.remove(jlistSubCategory.getSelectedValue());
-					jlistSubCategory.setListData(listSubCategory2.toArray());
-				}
-				if (listSubCategory2.isEmpty())
-				{
-					btnRemoveSubCat.setVisible(false);
+					subCategoriesOfSelCatNames.remove(jlistSubCategoryOfSelCat.getSelectedValue());
+					subCategoriesOfSelCat.remove(subCategoriesOfSelCat.get(jlistSubCategoryOfSelCat.getSelectedIndex()));
+					jlistSubCategoryOfSelCat.setListData(subCategoriesOfSelCatNames.toArray());
 					
+					//Visibilite des boutons
+					btnAddSubCat.setVisible(true);
+					cBoxSubCat.setVisible(true);
+				}
+				if (subCategoriesOfSelCat.isEmpty())
+				{
+					jlistSubCategoryOfSelCat.setVisible(false);
+					btnRemoveSubCat.setVisible(false);		
 				}	
 				
 			}
@@ -436,17 +476,27 @@ public class EditCategoryUI extends JFrame
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				
+				if(cBoxSubCat.getSelectedItem().equals(null))
+				{
 				//Ajout de l'élement sélectionné à la liste des sous category possible
-				//categories.add((String) jlistSubCategory.getSelectedValue());
-				listSubCategory2.add((String) cBoxSubCat.getSelectedItem());
-				jlistSubCategory.setListData(listSubCategory2.toArray());
+				subCategoriesOfSelCatNames.add((String) cBoxSubCat.getSelectedItem()); //Ajout à la liste des noms des sous categories associe a la category
+				subCategoriesOfSelCat.add(subCategories.get(cBoxSubCat.getSelectedIndex())); //Ajout à la liste des sous categories associe a la category
+				jlistSubCategoryOfSelCat.setListData(subCategoriesOfSelCatNames.toArray());
 				
 				//Suppression de l'élement sélection de la liste des sous category
-				System.out.println(cBoxSubCat.getSelectedIndex());
+				subCategories.remove(subCategories.get(cBoxSubCat.getSelectedIndex())); // Mise a jour de la liste des sous categories
+				subCategoriesNames.remove(subCategories.get(cBoxSubCat.getSelectedIndex())); // Mise a jour de la liste des noms des sous categories
 				cBoxSubCat.removeItem((String) cBoxSubCat.getSelectedItem());
 				//cBoxSubCat.revalidate();
+				//Visibilite des boutton
+				jlistSubCategoryOfSelCat.setVisible(true);
 				btnRemoveSubCat.setVisible(true);
+				}
+				if(subCategories.isEmpty())
+				{
+					cBoxSubCat.setVisible(false);
+					btnAddSubCat.setVisible(false);	
+				}
 						
 				
 			}
@@ -472,8 +522,8 @@ public class EditCategoryUI extends JFrame
 		gbc_btnSubmit.gridy = 6;
 		categoryPan.add(btnSubmit, gbc_btnSubmit);
 		
-			//btnCancelListeners
-			
+		//btnCancelListeners
+		
 		ActionListener btnCancelListeners = new ActionListener() 
 		{
 			
@@ -497,6 +547,83 @@ public class EditCategoryUI extends JFrame
 			}
 		};
 		btnCancel.addActionListener(btnCancelListeners);
+		
+		//btnSubmitListeners
+		
+		ActionListener btnSubmitListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				//Mise a jour des données
+				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
+				{
+					try 
+					{
+						CategoryProduct CaSelToUpdate = FacadeBL.getCategory((categorySelected.getIdCategoryProduct()));
+						System.out.println(categorySelected.getIdCategoryProduct());
+						System.out.println(txtFName.getText());
+						System.out.println(txtADescription.getText());
+						System.out.println(categorySelected);
+						CaSelToUpdate.update((categorySelected.getIdCategoryProduct()), txtFName.getText(), txtADescription.getText(), 0, -1);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					for (int i=0; i<subCategoriesOfSelCat.size();i++)
+					{
+						CategoryProduct subCatOfSelCatToUpdate = FacadeBL.getCategory(subCategoriesOfSelCat.get(i).getIdCategoryProduct());
+						try {
+							subCatOfSelCatToUpdate.update(subCategoriesOfSelCat.get(i).getIdCategoryProduct(), subCategoriesOfSelCat.get(i).getNameCategory(), subCategoriesOfSelCat.get(i).getDecriptionCategory(), 1, categorySelected.getIdCategoryProduct());
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					for (int i=0; i<subCategories.size();i++)
+					{
+						CategoryProduct subCatToUpdate = FacadeBL.getCategory(subCategories.get(i).getIdCategoryProduct());
+						if (subCategories.get(i).getFactherCategory() == categorySelected.getIdCategoryProduct())
+						{
+							try {
+								subCatToUpdate.update(subCategories.get(i).getIdCategoryProduct(), subCategories.get(i).getNameCategory(), subCategories.get(i).getDecriptionCategory(), 1, 0);
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					}
+				}
+				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
+				{
+					CategoryProduct CaSelToUpdate = FacadeBL.getCategory(categorySelected.getIdCategoryProduct());
+					try {
+						CaSelToUpdate.update((categorySelected.getIdCategoryProduct()), txtFName.getText(), txtADescription.getText(), 1, categories.get(cBoxFCat.getSelectedIndex()).getIdCategoryProduct());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				//Retour à la page CategoryUI
+				CategoryUI CategoryUI = null;
+				try {
+					CategoryUI = new CategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CategoryUI.setVisible(true);
+				CategoryUI.setLocationRelativeTo(null);
+				dispose();
+				
+				
+			}
+		};
+		btnSubmit.addActionListener(btnSubmitListeners);
 
 	}
 

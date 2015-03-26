@@ -98,6 +98,58 @@ public class ListCategoryJDBC extends ListCategoryProduct
 		ListCategoryProduct categories = new ListCategoryJDBC(categorieS);
 		return categories;
 	}
+
+	public ListCategoryProduct loadSubCategories() throws SQLException
+	{
+		// On d�clare une liste d'utilisateurs 
+		List<CategoryProduct> subCategorieS = new ArrayList<CategoryProduct>();
+
+			Statement st =null;
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Cr�ation de la requ�te de s�lection
+			String sql = "Select * From LotuZ.Category Where levelCategory="+1;
+
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			
+			// R�cup�ration des donn�es 
+			while( result.next() ){	
+				// Cr�ation et ajout d'un utilisateurs dans la liste 
+				subCategorieS.add( map(result));
+			}
+		
+		ListCategoryProduct subCategories = new ListCategoryJDBC(subCategorieS);
+		return subCategories;
+		
+	}
+	
+	public ListCategoryProduct loadSubCategories(int idFatherCategoryProduct) throws SQLException
+	{
+		// On d�clare une liste d'utilisateurs 
+		List<CategoryProduct> subCategorieS = new ArrayList<CategoryProduct>();
+
+			Statement st =null;
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Cr�ation de la requ�te de s�lection
+			String sql = "Select * From LotuZ.Category Where fatherCategory="+idFatherCategoryProduct;
+
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			
+			// R�cup�ration des donn�es 
+			while( result.next() ){	
+				// Cr�ation et ajout d'un utilisateurs dans la liste 
+				subCategorieS.add( map(result));
+			}
+		
+		ListCategoryProduct subCategories = new ListCategoryJDBC(subCategorieS);
+		return subCategories;
+		
+	}
 	
 	
 	

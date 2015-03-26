@@ -40,10 +40,9 @@ public abstract class PersistKit {
 	public abstract Administrator createAdministrator();
 	public abstract Member createMember();
 	// *************************************Loic*************************************
-		public abstract ListCategoryProduct createListCategory();
-		public abstract CategoryProduct createCategory();
-		
-		
+	public abstract ListCategoryProduct createListCategory();
+	public abstract CategoryProduct createCategory();
+	
 	// *************************************Loic*************************************
 
 	}

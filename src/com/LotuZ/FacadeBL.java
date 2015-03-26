@@ -57,31 +57,41 @@ public class FacadeBL {
 	{
 		return categoryManager.getCategories();
 	}
+	
+	public static ListCategoryProduct getSubCategories() 
+	{
+		return categoryManager.getSubCategories();
+	}
+	
+	public static ListCategoryProduct getSubCategories(int idCategoryProduct) 
+	{
+		return categoryManager.getSubCategories(idCategoryProduct);
+	}
 
 
 
-public static  CategoryProduct getCategory(int idCategory) 
-{
-	return categoryManager.getCategory(idCategory);
-}
-
-public static  void createCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
-{
-	categoryManager.createCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
-}
-
-public static  void updateCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
-{
-	categoryManager.updateCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
-}
-
-public static  void deleteCategory(int idCategory) 
-{
-	System.out.println("FBL");
-	categoryManager.deleteCategory(idCategory);
-}
-
-// )^.^)*************************************Loic End*************************************(^.^(
+	public static  CategoryProduct getCategory(int idCategory) 
+	{
+		return categoryManager.getCategory(idCategory);
+	}
+	
+	public static  void createCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+	{
+		categoryManager.createCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+	}
+	
+	public static  void updateCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+	{
+		categoryManager.updateCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+	}
+	
+	public static  void deleteCategory(int idCategory) 
+	{
+		System.out.println("FBL");
+		categoryManager.deleteCategory(idCategory);
+	}
+	
+	// )^.^)*************************************Loic End*************************************(^.^(
 	
 	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
@@ -168,4 +178,5 @@ public static  void deleteCategory(int idCategory)
 	public static void setProductManager(ProductManager productManager) {
 		FacadeBL.productManager = productManager;
 	}
+
 }

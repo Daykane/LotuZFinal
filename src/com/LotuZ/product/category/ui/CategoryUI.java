@@ -285,20 +285,22 @@ public class CategoryUI extends JFrame {
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("Coucou");
-			ViewCategoryUI ViewCategoryUI = null;
-			try {
-				ViewCategoryUI = new ViewCategoryUI();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (UserNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if (jListCategories.getSelectedValue()!=null)
+			{
+				ViewCategoryUI ViewCategoryUI = null;
+				try {
+					ViewCategoryUI = new ViewCategoryUI(categories.get(jListCategories.getSelectedIndex()));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ViewCategoryUI.setLocationRelativeTo(null);
+				ViewCategoryUI.setVisible(true);
+				dispose();
 			}
-			ViewCategoryUI.setLocationRelativeTo(null);
-			ViewCategoryUI.setVisible(true);
-			dispose();
 			
 			
 		}
@@ -315,8 +317,10 @@ public class CategoryUI extends JFrame {
 			if (!jListCategories.getSelectedValue().equals(null))
 			{		
 				//Suppression de l'élement sélection de la liste des sous category
-				System.out.println(categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct());
+				System.out.println(jListCategories.getSelectedIndex()+"-----"+jListCategories.getSelectedValue());
+				System.out.println(categoriesNames.get(jListCategories.getSelectedIndex())+"-----"+jListCategories.getSelectedValue());
 				FacadeBL.deleteCategory(categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct());
+				categories.remove(jListCategories.getSelectedIndex());
 				categoriesNames.remove(jListCategories.getSelectedValue());
 				jListCategories.setListData(categoriesNames.toArray());
 			}
