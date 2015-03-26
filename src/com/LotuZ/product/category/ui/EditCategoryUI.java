@@ -476,7 +476,7 @@ public class EditCategoryUI extends JFrame
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(cBoxSubCat.getSelectedItem().equals(null))
+				if(!cBoxSubCat.getSelectedItem().equals(null))
 				{
 				//Ajout de l'élement sélectionné à la liste des sous category possible
 				subCategoriesOfSelCatNames.add((String) cBoxSubCat.getSelectedItem()); //Ajout à la liste des noms des sous categories associe a la category
