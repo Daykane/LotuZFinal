@@ -132,7 +132,7 @@ public final class UserLog extends User{
 
 
 	@Override
-	public void delete() throws ClassNotFoundException, SQLException {
+	public void delete(User user) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 
 	}

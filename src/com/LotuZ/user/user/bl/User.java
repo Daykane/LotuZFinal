@@ -217,7 +217,7 @@ public abstract class User {
 	
 	public abstract void update(User user) throws ClassNotFoundException, SQLException;
 	
-	public abstract void delete() throws ClassNotFoundException, SQLException;
+	public abstract void delete(User user) throws ClassNotFoundException, SQLException;
 
 
 

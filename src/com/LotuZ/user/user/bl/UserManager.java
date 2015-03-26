@@ -40,9 +40,9 @@ public class UserManager {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 */
-	public void deleteUser() throws SQLException, ClassNotFoundException {
+	public void deleteUser(User user1) throws SQLException, ClassNotFoundException {
 		User user = pkit.createUser();
-		user.delete();
+		user.delete(user1);
 	}
 	
 	public void updateUser(User user1) throws SQLException, ClassNotFoundException {

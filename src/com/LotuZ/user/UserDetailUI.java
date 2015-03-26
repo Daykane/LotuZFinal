@@ -85,18 +85,17 @@ public class UserDetailUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public UserDetailUI(final User user) throws SQLException, UserNotFoundException {
+	public UserDetailUI(final User user2) throws SQLException, UserNotFoundException {
 		
 		FacadeUser.login("jack","jack");
 		// Initialisation et Recherche du User connecté 
-		//final User user = UserLog.getUserLog();
+		final User user = UserLog.getUserLog();
 		final Member member = UserLog.getMemberLog();
 		Administrator admin = UserLog.getAdminLog();
 		ActivityLeader activityLeader = UserLog.getRespoLog();
 		Contributor contributor = UserLog.getContribLog();
 		
-		System.out.println(" l'id: "+member.getIdMember());
-		
+	
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
 		Bandeau bandeau = new Bandeau();
@@ -228,64 +227,85 @@ public class UserDetailUI extends JFrame {
 		HouseNumber.setText(user.getPhone());
 		City.setText(user.getCity());
 		PostCode.setText(user.getPostCode());
-		Cotisation.setText((member.getCotisation()).toString());
-		DateCotisation.setText(member.getDateCotisation());
-
-
-
+		if (member != null){
+			Cotisation.setText((member.getCotisation()).toString());
+			DateCotisation.setText(member.getDateCotisation());
+		}
 		// Gestion des événements Bouton 
 
-		JButton btnEdit = new JButton("Edit");
+		final JButton btnEdit = new JButton("Edit");
 		btnEdit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				LastName.setEditable(true);
-				FirstName.setEditable(true);
-				StreetName.setEditable(true);
-				PhoneNumber.setEditable(true);
-				HouseNumber.setEditable(true);
-				City.setEditable(true);
-				PostCode.setEditable(true);
-				Cotisation.setEditable(true);
-				DateCotisation.setEditable(true);
-			}
-		});
+				if (btnEdit.getText().equals("Edit")){
+					btnEdit.setText("Validate");
+					LastName.setEditable(true);
+					FirstName.setEditable(true);
+					StreetName.setEditable(true);
+					PhoneNumber.setEditable(true);
+					HouseNumber.setEditable(true);
+					City.setEditable(true);
+					PostCode.setEditable(true);
+					Cotisation.setEditable(true);
+					DateCotisation.setEditable(true);
+				}
+				else if(btnEdit.getText().equals("Validate")){
+					btnEdit.setText("Edit");
+					user.setLastName(LastName.getText());
+					user.setFirstName(FirstName.getText());
+					user.setMail(AdressMail.getText());
+					user.setStreetName(StreetName.getText());
+					user.setPhone(PhoneNumber.getText());
+					user.setNumHouse(HouseNumber.getText());
+					user.setCity(City.getText());
+					user.setPostCode(PostCode.getText());
+					member.setCotisation(Double.parseDouble(Cotisation.getText()));
+					member.setDateCotisation(DateCotisation.getText());
+
+					try {
+						FacadeUser.updateUser(user);
+						FacadeUser.updateMember(member);
+
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (UserNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+		}});
 		btnEdit.setBounds(338, 434, 89, 23);
 		panel.add(btnEdit);
 		
-		JButton btnValidate = new JButton("Validate");
-		btnValidate.addMouseListener(new MouseAdapter() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				user.setLastName(LastName.getText());
-				user.setFirstName(FirstName.getText());
-				user.setMail(AdressMail.getText());
-				user.setStreetName(StreetName.getText());
-				user.setPhone(PhoneNumber.getText());
-				user.setNumHouse(HouseNumber.getText());
-				user.setCity(City.getText());
-				user.setPostCode(PostCode.getText());
-				member.setCotisation(Double.parseDouble(Cotisation.getText()));
-				member.setDateCotisation(DateCotisation.getText());
-
-				try {
-					FacadeUser.updateUser(user);
-					FacadeUser.updateMember(member);
-
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (UserNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+					try {
+						if (member != null){
+							FacadeUser.deleteMember(member);
+						}
+						System.out.println(" le user : "+user);
+						FacadeUser.deleteUser(user);
+						
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (UserNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 		});
-		btnValidate.setBounds(162, 434, 89, 23);
-		panel.add(btnValidate);
+		btnDelete.setBounds(162, 434, 89, 23);
+		panel.add(btnDelete);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addMouseListener(new MouseAdapter() {

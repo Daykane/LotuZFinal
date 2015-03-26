@@ -40,9 +40,9 @@ public class MemberManager {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 */
-	public void deleteMember() throws SQLException, ClassNotFoundException {
+	public void deleteMember(Member member1) throws SQLException, ClassNotFoundException {
 		Member member = pkit.createMember();
-		member.delete();
+		member.delete(member1);
 	}
 	
 	public void updateMember(Member member1) throws SQLException, ClassNotFoundException {

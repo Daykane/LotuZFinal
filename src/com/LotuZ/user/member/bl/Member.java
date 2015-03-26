@@ -91,7 +91,7 @@ public abstract class Member {
 
 
 	public abstract Member load(String idMember) throws SQLException;
-	public abstract void delete() throws ClassNotFoundException, SQLException;
+	public abstract void delete(Member member) throws ClassNotFoundException, SQLException;
 	public abstract void update(Member member) throws SQLException;
 
 }
