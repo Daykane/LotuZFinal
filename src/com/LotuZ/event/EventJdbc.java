@@ -110,7 +110,7 @@ public class EventJdbc extends Event{
 		Statement st =null;
 		// Etape 3 : Création d'un statement
 		st = this.cn.createStatement();
-		//`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)
+		
 		String sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
 				+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`contributor`='"+this.getIdContributor()+"',`room`='"+this.getRoom()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
 		// Etape 4 : exécution requête
@@ -144,12 +144,22 @@ public class EventJdbc extends Event{
 		//st.executeUpdate(sql);
 		ResultSet result = st.executeQuery(sql);
 		while( result.next() ){	
-			// TODO
-			System.out.println("a finir si ça marche");
-			Event event = null;
+			//`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)
+			Event event = new EventJdbc();
 			String name = result.getString("name");
-			//int id = result.getInt("idRepetition");
-			event = new EventJdbc();
+			event.setIdEvent(result.getInt("idEvent"));
+			event.setName( result.getString("name"));
+			event.setNbParticipant(result.getInt("nbParticipant"));
+			event.setHeureDeb(result.getString("startingTime"));
+			event.setHeureFin(result.getString("finishingTime"));
+			event.setDate(result.getDate("date"));
+			event.setRepetition(result.getInt("repetition"));
+			event.setIdActivity(result.getInt("activity"));
+			event.setIdContributor(result.getInt("contributor"));
+			event.setRoom(result.getInt("room"));
+			event.setPrice(result.getDouble("price"));
+			event.setDescription(result.getString("description"));
+			
 			event.setName(name);
 
 			events.add(event);
