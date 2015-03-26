@@ -1,6 +1,7 @@
 package com.LotuZ.event;
 
-import java.util.Date;
+import java.sql.SQLException;
+import java.sql.Date;
 
 import com.LotuZ.PersistKit;
 
@@ -15,8 +16,8 @@ public class EventManager {
 
 	public void createEvent(String name, int nbParticipant,
 			int price, String startingTime, String finishingTime, Date date,
-			int idRepetition, int idActivity, String idContrib, int idRoom) {
-		Event event = new Event();
+			String description, int idRepetition, int idActivity, String idContrib, int idRoom) throws SQLException {
+		Event event = pkit.createEvent();
 		event.setDate(date);
 		event.setName(name);
 		event.setHeureDeb(startingTime);
@@ -24,9 +25,11 @@ public class EventManager {
 		event.setRoom(idRoom);
 		event.setRepetition(idRepetition);
 		event.setIdContributor(idContrib);
+		event.setIdActivity(idActivity);
 		event.setNbParticipant(nbParticipant);
-		//event.setDescription(description);
-		//event.setPrice(price);
+		event.setDescription(description);
+		event.setPrice(price);
+		event.save();
 		
 		
 	}

@@ -15,6 +15,8 @@ import java.util.List;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
+import com.LotuZ.event.Event;
+import com.LotuZ.event.EventJdbc;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.event.repetition.RepetitionJdbc;
 import com.LotuZ.product.Product;
@@ -248,6 +250,14 @@ public class JdbcKit extends PersistKit{
 	@Override
 	public Repetition createRepetition() {
 		return new RepetitionJdbc(this.cn);
+	}
+
+
+
+
+	@Override
+	public Event createEvent() {
+		return new EventJdbc(this.cn);
 	}
 
 

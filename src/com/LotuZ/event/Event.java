@@ -4,11 +4,12 @@
 package com.LotuZ.event;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.room.Room;
 
-public class Event {
+public abstract class Event {
 	
 	
 	private int idEvent;
@@ -22,11 +23,12 @@ public class Event {
 	private double price;
 	private int room;
 	private String idContributor;
+	private int idActivity;
 	
 	public Event() {
 		super();
 	}
-	
+		
 	/**
 	 * @param name
 	 * @param description
@@ -37,6 +39,7 @@ public class Event {
 	 * @param repetition
 	 * @param price
 	 */
+	/*
 	public Event(String name, String description, int nbParticipant, Date date,
 			String heureDeb, String heureFin, int repetition,
 			double price) {
@@ -50,6 +53,7 @@ public class Event {
 		this.repetition = repetition;
 		this.price = price;
 	}
+	*/
 	/**
 	 * @return the idEvent
 	 */
@@ -109,7 +113,7 @@ public class Event {
 	/**
 	 * @param date2 the date to set
 	 */
-	public void setDate( java.util.Date date) {
+	public void setDate( java.sql.Date date) {
 		this.date = (Date) date;
 	}
 	/**
@@ -175,10 +179,33 @@ public class Event {
 		this.room = idRoom;
 	}
 
+	/**
+	 * @return the idContributor
+	 */
+	public String getIdContributor() {
+		return idContributor;
+	}
+
 	public void setIdContributor(String idContrib) {
 		this.idContributor = idContrib;
 		
 	}
+
+	/**
+	 * @return the idActivity
+	 */
+	public int getIdActivity() {
+		return idActivity;
+	}
+
+	/**
+	 * @param idActivity the idActivity to set
+	 */
+	public void setIdActivity(int idActivity) {
+		this.idActivity = idActivity;
+	}
+
+	public abstract void save() throws SQLException;
 
 	
 	
