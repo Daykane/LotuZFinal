@@ -9,6 +9,7 @@ import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.Product;
 import com.LotuZ.product.ProductManager;
 import com.LotuZ.product.category.bl.CategoryManager;
 import com.LotuZ.product.category.bl.CategoryProduct;
@@ -97,6 +98,11 @@ public static  void deleteCategory(int idCategory)
 	
 	public static void product(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException{
 		productManager.createProduct(productName, price, quantity, category, reduction );
+	}
+	
+	public static Product loadProduct(int idProduct) throws SQLException {
+		Product product = productManager.readProduct(idProduct);
+		return product;
 	}
 	
 	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{

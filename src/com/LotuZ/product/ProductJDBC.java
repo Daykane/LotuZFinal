@@ -55,7 +55,8 @@ private Connection cn;
 			Statement st =null;
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "Select * From LotuZ.Product Where id="+'"'+id+'"';
+			String sql = "Select * From LotuZ.Product Where idProduct='"+id+"'";
+			System.out.println(sql);
 			// Etape 2 : exécution requête
 			//st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql);
@@ -75,8 +76,7 @@ private Connection cn;
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
 			String sql = "Select * From LotuZ.Activity Where name="+'"'+productName+'"';
-			// Etape 4 : exécution requête
-			//st.executeUpdate(sql);
+			System.out.println(sql);
 			ResultSet result = st.executeQuery(sql);
 			product = getAndCreateProduct(result);
 		} catch (SQLException e) {
