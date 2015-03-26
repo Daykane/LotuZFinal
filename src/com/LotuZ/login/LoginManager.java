@@ -51,10 +51,15 @@ public class LoginManager {
 			Administrator admin = this.pkit.createAdministrator();
 			Contributor contrib = this.pkit.createContributor();
 			
+			System.out.println("member null 1 ? : "+member);
+
 			respo = respo.load(mail);
 			user = user.load(mail);
 			admin = admin.load(mail);
-			member = (Member) member.load(mail);
+			
+			member = member.load(mail);
+			System.out.println("member null ? : "+member);
+
 			contrib = contrib.load(mail);
 			
 			try {

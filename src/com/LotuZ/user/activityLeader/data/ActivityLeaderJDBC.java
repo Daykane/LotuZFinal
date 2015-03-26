@@ -43,7 +43,8 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	@Override
 	public ActivityLeader load(String mailActivityLeader) throws SQLException {
 
-			List<String> activities = new ArrayList<String>();
+			//List<String> activities = new ArrayList<String>();
+			String nameActivity;
 			ActivityLeader activityLeader = null;
 			Statement st =null;
 			
@@ -65,8 +66,9 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 				// Récupération des données 
 				while(result.next()){	
 					activityLeader = new ActivityLeaderJDBC();
-					activities.add(result.getString("name"));
-					activityLeader.setNamesActivity(activities);
+					//activities.add(result.getString("name"));
+					nameActivity = result.getString("name");
+					activityLeader.setNameActivity(nameActivity);
 					activityLeader.setIdLeader(result.getString("idLeader"));
 				}
 				return activityLeader;

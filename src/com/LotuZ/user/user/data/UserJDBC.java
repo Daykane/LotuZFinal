@@ -91,6 +91,7 @@ public class UserJDBC extends User{
 		} catch (SQLException e) {
 			throw e;
 		}
+		System.out.println("JDBC");
 		return this;
 	}
 	
@@ -106,15 +107,15 @@ public class UserJDBC extends User{
 
 	}
 	
-	public void update() throws ClassNotFoundException, SQLException {
+	public void update(User user) throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "UPDATE User SET `lastName`='"+this.getLastName() +"',`firstName`='"+ this.getFirstName() +"',`mail`='"+this.getMail()
-					+"',`tel`='"+this.getPhone()+"',`streetName`='"+this.getStreetName()+"',`numHouse`='"+this.getNumHouse()+"',`city`='"+this.getCity()+"',`postCode`='"+this.getPostCode()
-					+"',`idMember`='"+this.getIdMember()+"',`idContributor`='"+this.getIdContributor()+"' Where `mail`='"+this.getMail()+"'";
+			String sql = "UPDATE User SET `lastName`='"+user.getLastName() +"',`firstName`='"+ user.getFirstName() +"',`mail`='"+user.getMail()
+					+"',`tel`='"+user.getPhone()+"',`streetName`='"+user.getStreetName()+"',`numHouse`='"+user.getNumHouse()+"',`city`='"+user.getCity()+"',`postCode`='"+user.getPostCode()
+					+"',`idMember`='"+user.getIdMember()+"',`idContributor`='"+user.getIdContributor()+"' Where `mail`='"+user.getMail()+"'";
 			
 					
 			// Etape 4 : exécution requête

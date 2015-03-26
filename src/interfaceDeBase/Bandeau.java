@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,7 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import com.LotuZ.PageAccueil;
+import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.UserJDBC;
 
 public class Bandeau extends JFrame {
 	private static final long serialVersionUID = 1L;	
@@ -55,7 +61,20 @@ public Component createBandeau(User user,String name){
 	lblnameUser.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			System.out.println("Clicked sur name = acces profil");
+			UserDetailUI userDetail;
+			try {
+				User user = new UserJDBC();
+				userDetail = new UserDetailUI(user);
+				userDetail.setVisible(true);
+				userDetail.setLocationRelativeTo(null);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UserNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {

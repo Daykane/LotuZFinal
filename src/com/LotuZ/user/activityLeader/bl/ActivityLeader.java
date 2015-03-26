@@ -20,24 +20,24 @@ public abstract class ActivityLeader {
 		super();
 	}
 
-	private List<String> namesActivity;
+	private String nameActivity;
 	private String idLeader;
 
 
-	public ActivityLeader(List<String> namesActivity) {
+	public ActivityLeader(String nameActivity) {
 		super();
-		this.setNamesActivity(namesActivity);
+		this.setNameActivity(nameActivity);
 	}
 
 
 	
-	public List<String> getNamesActivity() {
-		return namesActivity;
+	public String getNameActivity() {
+		return nameActivity;
 	}
 
 
-	public void setNamesActivity(List<String> namesActivity) {
-		this.namesActivity = namesActivity;
+	public void setNameActivity(String nameActivity) {
+		this.nameActivity = nameActivity;
 	}
 	
 	

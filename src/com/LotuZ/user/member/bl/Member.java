@@ -14,17 +14,18 @@ import com.LotuZ.user.user.bl.User;
  */
 public abstract class Member {
 	
-	private Integer idMember;
+	private int idMember;
 	private Double cotisation;
 	private String dateCotisation;
-	private Integer idBoxLetter;
-	private Integer idAdmin;
-	private Integer idLeader;
+	private int idBoxLetter;
+	private int idAdmin;
+	private int idLeader;
 	
 	/**
 	 * 
 	 */
-	public Member() {
+	public Member(String dateCotisation) {
+		super();
 		this.setCotisation(cotisation);
 		this.setDateCotisation(dateCotisation);
 		this.setIdBoxLetter(idBoxLetter);
@@ -32,6 +33,9 @@ public abstract class Member {
 		this.setIdLeader(idLeader);
 	}
 	
+	public Member() {
+		super();
+	}
 
 
 
@@ -43,11 +47,11 @@ public abstract class Member {
 		this.cotisation = cotisation;
 	}
 
-	public Integer getIdBoxLetter() {
+	public int getIdBoxLetter() {
 		return idBoxLetter;
 	}
 
-	public void setIdBoxLetter(Integer idBoxLetter) {
+	public void setIdBoxLetter(int idBoxLetter) {
 		this.idBoxLetter = idBoxLetter;
 	}
 
@@ -59,36 +63,35 @@ public abstract class Member {
 		this.dateCotisation = dateCotisation;
 	}
 
-	public Integer getIdAdmin() {
+	public int getIdAdmin() {
 		return idAdmin;
 	}
 
-	public void setIdAdmin(Integer idAdmin) {
+	public void setIdAdmin(int idAdmin) {
 		this.idAdmin = idAdmin;
 	}
 
-	public Integer getIdLeader() {
+	public int getIdLeader() {
 		return idLeader;
 	}
 
-	public void setIdLeader(Integer idLeader) {
+	public void setIdLeader(int idLeader) {
 		this.idLeader = idLeader;
 	}
 	
-	public abstract Member load(String idMember) throws SQLException;
-
-
-
 
 	public int getIdMember() {
 		return idMember;
 	}
 
 
-
-
-	public void setIdMember(Integer idMember) {
+	public void setIdMember(int idMember) {
 		this.idMember = idMember;
 	}
+
+
+	public abstract Member load(String idMember) throws SQLException;
+	public abstract void delete() throws ClassNotFoundException, SQLException;
+	public abstract void update(Member member) throws SQLException;
 
 }
