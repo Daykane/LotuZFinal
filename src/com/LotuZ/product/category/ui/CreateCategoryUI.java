@@ -32,6 +32,7 @@ import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.product.category.bl.CategoryProduct;
+import com.LotuZ.product.category.data.CatgeoryJdbc;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
@@ -348,12 +349,17 @@ public class CreateCategoryUI extends JFrame {
 			
 		ActionListener btnSubmitListeners = new ActionListener() 
 		{
-			
+			CategoryProduct cat;
 			public void actionPerformed(ActionEvent e)
 			{
 				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
 				{				
-					facadeBL.createCategory(1, txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
+					try {
+						facadeBL.createCategory(cat.generateId(), txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
 				{

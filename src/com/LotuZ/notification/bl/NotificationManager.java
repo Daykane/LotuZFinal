@@ -1,4 +1,4 @@
-package com.LotuZ.notification;
+package com.LotuZ.notification.bl;
 
 import com.LotuZ.PersistKit;
 

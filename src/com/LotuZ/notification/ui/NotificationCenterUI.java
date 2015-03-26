@@ -1,4 +1,4 @@
-package com.LotuZ.notification;
+package com.LotuZ.notification.ui;
 
 
 public class NotificationCenterUI {

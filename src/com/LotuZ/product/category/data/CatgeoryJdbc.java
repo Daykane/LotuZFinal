@@ -74,7 +74,54 @@ public class CatgeoryJdbc extends CategoryProduct
 
 	/**
 	 * @param cn
+	 * @throws SQLException 
 	 */
+	
+	public int generateId() throws SQLException
+	{
+		int idGenerated=0;
+		try 
+		{
+
+			
+			
+			Statement st =null;
+			
+			// Cr�ation d'un statement
+			st = this.cn.createStatement();
+			
+			// Requ�te de s�lection � partir de l'identifiant 
+			String sql = "Select generatedId From LotuZ.generateIdCategory";
+			
+			// Ex�cution de la requ�te
+			ResultSet result = st.executeQuery(sql);
+			
+			// R�cup�ration des donn�es 
+			System.out.println(idGenerated);
+			while(result.next())
+			{	
+				this.setIdCategoryProduct(result.getInt("idCategory"));
+				idGenerated = result.getInt("generateIdCategory");
+			}
+			System.out.println(idGenerated);
+			idGenerated++;
+			System.out.println(idGenerated);
+			// Requ�te de s�lection � partir de l'identifiant 
+			String sql1 = "Update LotuZ.generateIdCategory Set generateIdCategory="+idGenerated+" Where idgenerateIdCategory="+0;
+			System.out.println("cJDBC3");
+			// Ex�cution de la requ�te
+			st.executeUpdate(sql1);
+			System.out.println("cJDBC4");
+			
+			
+			
+		} 
+		catch (SQLException e) 
+		{
+			throw e;
+		}
+		return idGenerated;
+	}
 	
 	public CategoryProduct load(int idCategoryProduct) throws SQLException
 	{
@@ -122,7 +169,7 @@ public class CatgeoryJdbc extends CategoryProduct
 			System.out.println("cJDBC2");
 			
 			// Requ�te de s�lection � partir de l'identifiant 
-			String sql = "Update Category Set nameCategory='"+name+"', descriptionCategory='"+description+"',levelCategory="+level+",fatherCategory="+father+" Where idCategory="+id;
+			String sql = "Update LotuZ.Category Set nameCategory='"+name+"', descriptionCategory='"+description+"',levelCategory="+level+",fatherCategory="+father+" Where idCategory="+id;
 			System.out.println("cJDBC3");
 			// Ex�cution de la requ�te
 			st.executeUpdate(sql);
