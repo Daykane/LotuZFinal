@@ -161,7 +161,13 @@ public class ProductUI extends JFrame{
 		tfCategory.setBounds(240, 241, 86, 20);
 		panel.add(tfCategory);
 		
-		JButton btnEdit = new JButton("Edit");
+		final JButton btnEdit = new JButton("Edit");
+		
+		tfNameProduct.setEditable(false);
+		tfPrice.setEditable(false);
+		tfQuantity.setEditable(false);
+		tfReduction.setEditable(false);
+		tfCategory.setEditable(false);
 		btnEdit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -177,22 +183,22 @@ public class ProductUI extends JFrame{
 				else if(btnEdit.getText().equals("Validate")){
 					btnEdit.setText("Edit");
 					try {
-						FacadeBL.(activity, tfName.getText(), tfShortDescr.getText(), tfLongDescr.getText(), tfRespo.getText());
-						tfName.setEditable(false);
-						tfShortDescr.setEditable(false);
-						tfLongDescr.setEditable(false);
+						FacadeBL.UploadProduct(product, tfNameProduct.getText(),product.getCategory(),product.getQuantity(),product.getPrice(),product.getReduction());
+						tfNameProduct.setEditable(false);
+						tfPrice.setEditable(false);
+						tfQuantity.setEditable(false);
+						tfReduction.setEditable(false);
+						tfCategory.setEditable(false);
 						// TODO alert boite
 						System.out.println("Activity updaté");
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
-				
-				
-				
-				
+					}				
 			}
+		}
 		});
+		
 		btnEdit.setBounds(155, 361, 89, 23);
 		panel.add(btnEdit);
 		
@@ -200,6 +206,7 @@ public class ProductUI extends JFrame{
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				System.out.println("retour vers page précédente");
 				
 			}
 		});

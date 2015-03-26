@@ -156,7 +156,7 @@ public abstract Product loadProduct(String productName) throws SQLException;
 
 public abstract void saveProduct() throws SQLException, ClassNotFoundException;
 
-public abstract Product updateProduct () throws SQLException;
+public abstract Product updateProduct (Product product) throws SQLException;
 
 public abstract void deleteProduct () throws SQLException;
 

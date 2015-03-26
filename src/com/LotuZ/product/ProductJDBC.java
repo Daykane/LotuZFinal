@@ -105,13 +105,13 @@ private Connection cn;
 		}
 	}
 
-	public Product updateProduct() throws SQLException {
+	public Product updateProduct(Product product) throws SQLException {
 		try {		
 			Statement st =null;
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "UPDATE product SET `productName`='"+this.getProductName() +"',`category`='"+ this.getCategory() +"',`quantity`='"+this.getQuantity()
-					+"',`price`='"+this.getPrice()+"',`reduction`='"+this.getReduction()+"' Where `creationDate`='"+this.getCreationDate() +"',`updateDate`='"+this.getUpdateDate() +"',`idProduct`='"+this.getId() +"',`idProvider`='"+this.getIdProvider() +"'";
+			String sql = "UPDATE Product SET `name`='"+product.getProductName() +"',`category`='"+ product.getCategory() +"',`quantity`='"+product.getQuantity()+"',`prix`='"+product.getPrice()+"',`reduction`='"+product.getReduction()+"' Where `idProduct`='"+product.getId() +"'";
+			System.out.println(sql);
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);	
 			

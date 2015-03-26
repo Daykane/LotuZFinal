@@ -82,17 +82,18 @@ public class ProductManager {
 		
 	}
 	
-	public Product updateProduct(Product product, String productName, int category, int quantity, int price, int reduction) throws SQLException {
+	public Product updateProduct(Product product1, String productName, int category, int quantity, int price, int reduction) throws SQLException {
+		Product product = pkit.createProduct();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
-		product.setProductName(productName);
-		product.setQuantity(quantity);
-		product.setPrice(price);
-		product.setReduction(reduction);
-		product.setUpdateDate(dateFormat.format(date));
-		product.setCategory(category);
+		product1.setProductName(productName);
+		product1.setQuantity(quantity);
+		product1.setPrice(price);
+		product1.setReduction(reduction);
+		product1.setUpdateDate(dateFormat.format(date));
+		product1.setCategory(category);
 
-		product = product.updateProduct();
+		product.updateProduct(product1);
 		return product;
 		
 	}
