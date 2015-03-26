@@ -199,6 +199,8 @@ public abstract class CategoryProduct
 		public CategoryProduct() {
 			// TODO Auto-generated constructor stub
 		}
+		
+				//Methodes
 
 		public abstract int generateId() throws SQLException;
 		public abstract void save() throws SQLException;

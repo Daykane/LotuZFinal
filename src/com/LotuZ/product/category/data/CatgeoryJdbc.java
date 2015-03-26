@@ -126,8 +126,7 @@ public class CatgeoryJdbc extends CategoryProduct
 	{
 		try 
 		{
-
-			List<String> CategoryProduct = new ArrayList<String>();
+				List<String> CategoryProduct = new ArrayList<String>();
 			
 			Statement st =null;
 			
@@ -180,8 +179,6 @@ public class CatgeoryJdbc extends CategoryProduct
 	{
 		try {
 
-			List<String> CategoryProduct = new ArrayList<String>();
-			
 			Statement st =null;
 			
 			// Cr�ation d'un statement

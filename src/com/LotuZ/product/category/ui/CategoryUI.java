@@ -61,31 +61,31 @@ public class CategoryUI extends JFrame {
 	 * Launch the application.
 	 */
 
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CategoryUI frame = new CategoryUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		// Info Connection
+//		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
+//		String login = "ROLL";
+//		String passwd = "rolldevelopment";
+//
+//		// Choose the kit
+//		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
+//		jdbcKit.openConnection(url, login, passwd);
+//
+//		// Init the FacadeBL with the kit
+//		FacadeBL.init(jdbcKit);
+//		//FacadeUser.init();
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					CategoryUI frame = new CategoryUI();
+//					frame.setVisible(true);
+//					frame.setLocationRelativeTo(null);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 
 	/**
