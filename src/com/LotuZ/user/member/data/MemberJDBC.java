@@ -57,7 +57,6 @@ public class MemberJDBC extends Member{
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
-			System.out.println(mailMember+"Retour null MembreJDBC");
 
 			// Requête de sélection à partir de l'identifiant 
 			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and u.idMember is not null and u.mail="+'"'+mailMember+'"';
@@ -72,18 +71,16 @@ public class MemberJDBC extends Member{
 			}
 			else 
 			{
-				// Récupération des données 
-				while(result.next()){	
-					member = new MemberJDBC();
-					member.setCotisation(result.getDouble("cotisation"));
-					member.setDateCotisation(result.getString("dateCotisation"));
-					member.setIdBoxLetter(result.getInt("idBoxLetter"));
-					member.setIdAdmin(result.getInt("idAdmin"));
-					member.setIdLeader(result.getInt("idLeader"));
-					member.setIdMember(result.getInt("idMember"));
-				}
-			System.out.println("Retour non null MembreJDBC");
-			return member;
+
+					Member member2 = new MemberJDBC();
+					member2.setCotisation(result.getDouble("cotisation"));
+					member2.setDateCotisation(result.getString("dateCotisation"));
+					member2.setIdBoxLetter(result.getInt("idBoxLetter"));
+					member2.setIdAdmin(result.getInt("idAdmin"));
+					member2.setIdLeader(result.getInt("idLeader"));
+					member2.setIdMember(result.getInt("idMember"));
+
+			return member2;
 			}
 	}
 	
@@ -92,15 +89,15 @@ public class MemberJDBC extends Member{
 	 * Modification d'un membre en base à partir de son identifiant 
 	 */
 
-	public void update() throws SQLException {
+	public void update(Member member) throws SQLException {
 		try {		
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
-		
+
 			// Requête de modification
-			String sql = "UPDATE LotuZ.User u, LotuZ.Member m SET `cotisation`='"+this.getCotisation()+"',`dateCotisation`='"+this.getDateCotisation()
-					+"',`idBoxLetter`='"+this.getIdBoxLetter()+"',`idAdmin`='"+this.getIdAdmin()+"',`idLeader`='"+this.getIdLeader()+"' Where u.idMember = m.idMember and `idMember`='"+this.getIdMember()+"'";
+			String sql = "UPDATE LotuZ.User u, LotuZ.Member m SET `cotisation`='"+member.getCotisation()+"',`dateCotisation`='"+member.getDateCotisation()
+					+"',`idAdmin`='"+member.getIdAdmin()+"',`idLeader`='"+member.getIdLeader()+"' Where u.idMember = m.idMember and m.idMember='"+member.getIdMember()+"'";
 			
 			// Exécution requête
 			st.executeUpdate(sql);

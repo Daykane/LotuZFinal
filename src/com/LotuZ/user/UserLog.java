@@ -125,7 +125,7 @@ public final class UserLog extends User{
 
 
 	@Override
-	public void update() throws ClassNotFoundException, SQLException {
+	public void update(User user) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 
 	}
