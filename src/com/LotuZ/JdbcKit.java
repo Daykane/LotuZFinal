@@ -21,6 +21,10 @@ import com.LotuZ.event.Event;
 import com.LotuZ.event.EventJdbc;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.event.repetition.RepetitionJdbc;
+import com.LotuZ.notification.bl.BoxLetter;
+import com.LotuZ.notification.bl.Notification;
+import com.LotuZ.notification.data.BoxLetterJDBC;
+import com.LotuZ.notification.data.NotificationJDBC;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.ProductJDBC;
 import com.LotuZ.product.category.bl.CategoryProduct;
@@ -57,8 +61,13 @@ public class JdbcKit extends PersistKit{
 	private ContributorJDBC contribJdbc;
 	private ActivityJdbc activityJdbc;
 	// *************************************Loic*************************************
+	//Category
 	private ListCategoryJDBC listCategoryJDBC;
 	private CatgeoryJdbc categoryJDBC;
+	
+	//Notification
+	private NotificationJDBC notificationJDBC;
+	private BoxLetterJDBC boxLetterJDBC;
 	// *************************************Loic*************************************
 	
 
@@ -180,6 +189,19 @@ public class JdbcKit extends PersistKit{
 
 		return new CatgeoryJdbc(this.cn);
 	}
+	
+	public Notification createNotification()
+	{
+		return new NotificationJDBC(this.cn);
+		
+	}
+	
+	public BoxLetter createBoxLetter() {
+
+		return new BoxLetterJDBC(this.cn);
+	}
+	
+	
 	
 	// *************************************Loïc*************************************
 

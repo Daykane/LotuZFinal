@@ -13,6 +13,8 @@ import com.LotuZ.EventInscription.EventInscription;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.repetition.Repetition;
+import com.LotuZ.notification.bl.BoxLetter;
+import com.LotuZ.notification.bl.Notification;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
@@ -45,9 +47,12 @@ public abstract class PersistKit {
 	public abstract Administrator createAdministrator();
 	public abstract Member createMember();
 	// *************************************Loic*************************************
+	//Category
 	public abstract ListCategoryProduct createListCategory();
 	public abstract CategoryProduct createCategory();
-	
+	//Notification
+	public abstract Notification createNotification();
+	public abstract BoxLetter createBoxLetter();	
 	
 	// *************************************Loic*************************************
 

@@ -1,7 +1,9 @@
 package com.LotuZ;
 
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.LotuZ.activity.Activity;
@@ -9,6 +11,9 @@ import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
 import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.notification.bl.BoxLetter;
+import com.LotuZ.notification.bl.Notification;
+import com.LotuZ.notification.bl.NotificationManager;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.ProductManager;
 import com.LotuZ.product.category.bl.CategoryManager;
@@ -30,6 +35,7 @@ public class FacadeBL {
 	private static ActivityLeaderManager activityLeaderManager;
 	private static ContributorManager contributorManager;
 	private static CategoryManager categoryManager;
+	private static NotificationManager notificationManager;
 	private static ProductManager productManager;
 
 	
@@ -92,9 +98,52 @@ public class FacadeBL {
 	
 	public static  void deleteCategory(int idCategory) 
 	{
-		System.out.println("FBL");
 		categoryManager.deleteCategory(idCategory);
 	}
+	
+	//Notification
+	
+	public static  ArrayList<BoxLetter> getAllNotificationInBox(int idBoxLetter, int idMember) 
+	{
+		return notificationManager.getAllNotificationInBox(idBoxLetter, idMember);
+	}
+	
+
+	public static  Notification getNotification(int idNotification) 
+	{
+		return notificationManager.getNotification(idNotification);
+	}
+	
+	public static  void createNotification(String textNotification, String objectNotification) 
+	{
+		notificationManager.createNotification(textNotification, objectNotification);
+	}
+	
+	public static  void createBoxLetter(int idNotification, int idMember) 
+	{
+		notificationManager.createBoxLetter(idNotification, idMember);
+	}
+	
+	public static  void updateNotification(int idNotification, String textNotification, String objectNotification) 
+	{
+		notificationManager.updateNotification(idNotification,textNotification, objectNotification);
+	}
+	
+	public static  void updateBoxLetter(int idBoxLetter, int idNotification, int idMember) 
+	{
+		notificationManager.updateBoxLetter(idBoxLetter,idNotification, idMember);
+	}
+
+	public static  void deleteNotificationInBox(int idNotification, int idMember) 
+	{
+		notificationManager.deleteNotificationInBox(idNotification, idMember);
+	}
+
+	public static  void deleteNotification(int idNotification) 
+	{
+		notificationManager.deleteNotification(idNotification);
+	}
+		
 	
 	// )^.^)*************************************Loic End*************************************(^.^(
 	
