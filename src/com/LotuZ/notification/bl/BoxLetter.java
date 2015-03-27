@@ -123,7 +123,7 @@ public abstract class BoxLetter
 	
 	//Save
 	public abstract void save() throws SQLException;
-	public abstract void save(int idBoxLetter, int idNotification, int idMember, int readNotification) throws SQLException;
+	public abstract void save(int idNotification, int idMember, int readNotification) throws SQLException;
 	
 	//Delete
 	public abstract void delete(int idBoxLetter, int idNotification, int idMember) throws SQLException;

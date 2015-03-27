@@ -51,7 +51,7 @@ public class BoxLetterJDBC extends BoxLetter {
 	}
 
 	@Override
-	public BoxLetter loadLetter(int idBoxLetter, int idNotification,
+	public BoxLetter loadLetter(int idBoxLetter,int idNotification,
 			int idMember) throws SQLException {
 		Statement st =null;
 		
@@ -152,7 +152,7 @@ public class BoxLetterJDBC extends BoxLetter {
 	}
 
 	@Override
-	public void save(int idBoxLetter, int idNotification, int idMember,
+	public void save(int idNotification, int idMember,
 			int readNotification) throws SQLException {
 		Statement st =null;
 		

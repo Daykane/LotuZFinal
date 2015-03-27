@@ -129,14 +129,14 @@ public class FacadeBL {
 		notificationManager.updateNotification(idNotification,textNotification, objectNotification);
 	}
 	
-	public static  void updateBoxLetter(int idBoxLetter, int idNotification, int idMember) 
+	public static  void updateBoxLetter(int idBoxLetter, int idNotification, int idMember, int readNotification) 
 	{
-		notificationManager.updateBoxLetter(idBoxLetter,idNotification, idMember);
+		notificationManager.updateBoxLetter(idBoxLetter,idNotification, idMember, readNotification);
 	}
 
-	public static  void deleteNotificationInBox(int idNotification, int idMember) 
+	public static  void deleteNotificationInBox(int idBoxLetter, int idNotification, int idMember) 
 	{
-		notificationManager.deleteNotificationInBox(idNotification, idMember);
+		notificationManager.deleteNotificationInBox(idBoxLetter, idNotification, idMember);
 	}
 
 	public static  void deleteNotification(int idNotification) 
