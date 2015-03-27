@@ -96,7 +96,7 @@ public class ActivityUI extends JFrame {
 	public ActivityUI() throws SQLException, UserNotFoundException {
 		
 		// Déclaration du monde
-		FacadeUser.login("jack","jack");
+		//FacadeUser.login("jack","jack");
 		final Activity activity = FacadeBL.readActivity(15);
 		User user = UserLog.getUserLog();
 		//

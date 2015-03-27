@@ -138,7 +138,7 @@ public final class UserLog extends User{
 	}
 
 
-	public static User logOff() {
+	public static void logOff() {
 		if (!UserLog.dispo) {
 			synchronized(UserLog.class) {
 				//TODO
@@ -154,7 +154,7 @@ public final class UserLog extends User{
 			//TODO
 			System.out.println("pas de user connecté");
 		}
-		return user;
+		//return user;
 	}
 	/*
 	public static User logOffMember() {
