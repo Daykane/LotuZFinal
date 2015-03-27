@@ -167,5 +167,40 @@ public class EventJdbc extends Event{
 		}
 		return events;
 	}
+	
+	@Override
+	public List<Event> loadEventsContributor(int idContributor) throws SQLException {		
+		List<Event> events = new ArrayList();
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
+		String sql = "Select * From LotuZ.Event where contributor ='"+idContributor+"'";
+		// Etape 4 : exécution requête
+
+		ResultSet result = st.executeQuery(sql);
+		while( result.next() ){	
+			//`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)
+			Event event = new EventJdbc();
+			int id = result.getInt("idEvent");
+			String name = result.getString("name");
+			event.setIdEvent(result.getInt("idEvent"));
+			event.setName( result.getString("name"));
+			event.setNbParticipant(result.getInt("nbParticipant"));
+			event.setHeureDeb(result.getString("startingTime"));
+			event.setHeureFin(result.getString("finishingTime"));
+			event.setDate(result.getDate("date"));
+			event.setRepetition(result.getInt("repetition"));
+			event.setIdActivity(result.getInt("activity"));
+			event.setIdContributor(result.getInt("contributor"));
+			event.setRoom(result.getInt("room"));
+			event.setPrice(result.getDouble("price"));
+			event.setDescription(result.getString("description"));
+			
+			event.setName(name);
+
+			events.add(event);
+		}
+		return events;
+	}
 
 }

@@ -215,6 +215,8 @@ public abstract class Event {
 	public abstract void delete() throws SQLException;
 
 	public abstract List<Event> loadAll(int idActivity) throws SQLException;
+
+	public abstract List<Event> loadEventsContributor(int idContributor) throws SQLException;
 	
 
 }

@@ -83,5 +83,9 @@ public class FacadeEvent {
 	public static List<Event> getEventsActivity(int idActivity) throws SQLException {
 		return eventManager.getEventsActivity(idActivity);
 	}
+	
+	public static List<Event> getEventsContributor(int idContributor) throws SQLException {
+		return eventManager.getEventsContributor(idContributor);
+	}
 
 }

@@ -94,5 +94,12 @@ public class EventManager {
 		lEvent = event.loadAll(idActivity);
 		return lEvent;
 	}
+	
+	public List<Event> getEventsContributor(int idContributor) throws SQLException {
+		List<Event> eventsContributor;
+		Event event = pkit.createEvent();
+		eventsContributor = event.loadEventsContributor(idContributor);
+		return eventsContributor;
+	}
 
 }
