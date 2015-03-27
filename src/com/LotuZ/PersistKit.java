@@ -55,5 +55,4 @@ public abstract class PersistKit {
 	public abstract BoxLetter createBoxLetter();	
 	
 	// *************************************Loic*************************************
-
 	}

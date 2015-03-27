@@ -69,7 +69,6 @@ public class JdbcKit extends PersistKit{
 	private NotificationJDBC notificationJDBC;
 	private BoxLetterJDBC boxLetterJDBC;
 	// *************************************Loic*************************************
-	
 
 	
 	

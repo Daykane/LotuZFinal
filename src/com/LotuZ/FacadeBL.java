@@ -54,10 +54,10 @@ public class FacadeBL {
 	
 	//Category
 	
-	public static int generateId() 
-	{
-		return categoryManager.generateId();
-	}
+//	public static int generateId() 
+//	{
+//		return categoryManager.generateId();
+//	}
 
 	public static  ListCategoryProduct getAllCategories() 
 	{
@@ -69,6 +69,7 @@ public class FacadeBL {
 		return categoryManager.getCategories();
 	}
 	
+	
 	public static ListCategoryProduct getSubCategories() 
 	{
 		return categoryManager.getSubCategories();
@@ -78,17 +79,16 @@ public class FacadeBL {
 	{
 		return categoryManager.getSubCategories(idCategoryProduct);
 	}
-
-
-
-	public static  CategoryProduct getCategory(int idCategory) 
-	{
-		return categoryManager.getCategory(idCategory);
-	}
 	
-	public static  void createCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+	public static CategoryProduct getCategory(int idCategoryProduct) 
 	{
-		categoryManager.createCategory(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+		return categoryManager.getCategory(idCategoryProduct);
+	}
+
+	
+	public static  void createCategory(String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+	{
+		categoryManager.createCategory(nameCategory, descriptionCategory, levelCategory, fatherCategory);
 	}
 	
 	public static  void updateCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
@@ -105,10 +105,11 @@ public class FacadeBL {
 	
 	public static  ArrayList<BoxLetter> getAllNotificationInBox(int idMember) 
 	{
+		System.out.println(idMember);
+		System.out.println("FBL");
 		return notificationManager.getAllNotificationInBox(idMember);
 	}
 	
-
 	public static  Notification getNotification(int idNotification) 
 	{
 		return notificationManager.getNotification(idNotification);
@@ -145,8 +146,7 @@ public class FacadeBL {
 	}
 		
 	
-	// )^.^)*************************************Loic End*************************************(^.^(
-	
+	// )^.^)*************************************Loic End*************************************(^.^(	
 	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException{
