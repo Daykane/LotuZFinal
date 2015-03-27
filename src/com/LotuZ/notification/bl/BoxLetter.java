@@ -115,8 +115,8 @@ public abstract class BoxLetter
 	//Methodes
 	
 	//Load
-	public abstract BoxLetter loadLetter(int idBoxLetter, int idNotification, int idMember) throws SQLException;
-	public abstract ArrayList<BoxLetter> loadAllLetter(int idBoxLetter, int idMember) throws SQLException;
+	public abstract BoxLetter loadLetter(int idNotification, int idMember) throws SQLException;
+	public abstract ArrayList<BoxLetter> loadAllLetter(int idMember) throws SQLException;
 	
 	//Update
 	public abstract void update(int idBoxLetter, int idNotification, int idMember, int readNotification) throws SQLException;
@@ -126,7 +126,7 @@ public abstract class BoxLetter
 	public abstract void save(int idNotification, int idMember, int readNotification) throws SQLException;
 	
 	//Delete
-	public abstract void delete(int idBoxLetter, int idNotification, int idMember) throws SQLException;
+	public abstract void delete(int idNotification, int idMember) throws SQLException;
 
 	
 }

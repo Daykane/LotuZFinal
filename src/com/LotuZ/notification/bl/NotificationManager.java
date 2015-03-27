@@ -29,12 +29,12 @@ public class NotificationManager
 		return notification;
 	}
 	
-	public ArrayList<BoxLetter> getAllNotificationInBox(int idBoxLetter,int idMember) 
+	public ArrayList<BoxLetter> getAllNotificationInBox(int idMember) 
 	{
 		BoxLetter boxLetter = pkit.createBoxLetter();
 		ArrayList<BoxLetter> boxLetterCenter=null;
 		try {
-			boxLetterCenter = boxLetter.loadAllLetter(idBoxLetter, idMember);
+			boxLetterCenter = boxLetter.loadAllLetter(idMember);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,11 +85,11 @@ public class NotificationManager
 		
 	}
 
-	public void deleteNotificationInBox(int idBoxLetter, int idNotification, int idMember) 
+	public void deleteNotificationInBox(int idNotification, int idMember) 
 	{
 		BoxLetter boxLetter = pkit.createBoxLetter();
 		try {
-			boxLetter.delete(idBoxLetter, idNotification, idMember);
+			boxLetter.delete(idNotification, idMember);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

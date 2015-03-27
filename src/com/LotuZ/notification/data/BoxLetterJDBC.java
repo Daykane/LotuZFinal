@@ -50,8 +50,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		super();
 	}
 
-	@Override
-	public BoxLetter loadLetter(int idBoxLetter,int idNotification,
+	public BoxLetter loadLetter(int idNotification,
 			int idMember) throws SQLException {
 		Statement st =null;
 		
@@ -59,7 +58,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te de s�lection � partir de l'identifiant 
-		String sql = "Select * From LotuZ.BoxLette where idBoxLetter="+idBoxLetter+" and idNotification="+idNotification+" and idMember="+idMember;
+		String sql = "Select * From LotuZ.BoxLette where idNotification="+idNotification+" and idMember="+idMember;
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -74,7 +73,7 @@ public class BoxLetterJDBC extends BoxLetter {
 	return this;
 	}
 
-	public ArrayList<BoxLetter> loadAllLetter(int idBoxLetter, int idMember)
+	public ArrayList<BoxLetter> loadAllLetter(int idMember)
 			throws SQLException {
 		
 		ArrayList<BoxLetter> allLetter = new ArrayList<BoxLetter>();
@@ -84,7 +83,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te de s�lection � partir de l'identifiant 
-		String sql = "Select * From LotuZ.BoxLette where idBoxLetter="+idBoxLetter+"and idMember="+idMember;
+		String sql = "Select * From LotuZ.BoxLette where idMember="+idMember;
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -172,9 +171,19 @@ public class BoxLetterJDBC extends BoxLetter {
 	}
 
 	@Override
-	public void delete(int idBoxLetter, int idNotification, int idMember)
+	public void delete(int idNotification, int idMember)
 			throws SQLException {
-		// TODO Auto-generated method stub
+		Statement st =null;
+		
+		// Creation d'un statement
+		st = this.cn.createStatement();
+		
+		// Requete de suppression a partir de l'identifiant 
+		String sql = "Delete From LotuZ.BoxLette where idNotification="+idNotification+" and idMember="+idMember;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
+		System.out.println(sql);
+		// Execution de la requete
+		st.executeUpdate(sql);
+		System.out.println("cJDBC3");
 		
 	}
 

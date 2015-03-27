@@ -103,9 +103,9 @@ public class FacadeBL {
 	
 	//Notification
 	
-	public static  ArrayList<BoxLetter> getAllNotificationInBox(int idBoxLetter, int idMember) 
+	public static  ArrayList<BoxLetter> getAllNotificationInBox(int idMember) 
 	{
-		return notificationManager.getAllNotificationInBox(idBoxLetter, idMember);
+		return notificationManager.getAllNotificationInBox(idMember);
 	}
 	
 
@@ -134,9 +134,9 @@ public class FacadeBL {
 		notificationManager.updateBoxLetter(idBoxLetter,idNotification, idMember, readNotification);
 	}
 
-	public static  void deleteNotificationInBox(int idBoxLetter, int idNotification, int idMember) 
+	public static  void deleteNotificationInBox(int idNotification, int idMember) 
 	{
-		notificationManager.deleteNotificationInBox(idBoxLetter, idNotification, idMember);
+		notificationManager.deleteNotificationInBox(idNotification, idMember);
 	}
 
 	public static  void deleteNotification(int idNotification) 
