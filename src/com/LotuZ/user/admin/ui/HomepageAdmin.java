@@ -127,6 +127,8 @@ public class HomepageAdmin extends JFrame {
 					listUser = new ListUserUI(1);
 					listUser.setVisible(true);
 					listUser.setLocationRelativeTo(null);
+					dispose();
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -148,6 +150,7 @@ public class HomepageAdmin extends JFrame {
 					listUser = new ListUserUI(2);
 					listUser.setVisible(true);
 					listUser.setLocationRelativeTo(null);
+					dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -171,6 +174,8 @@ public class HomepageAdmin extends JFrame {
 					listUser = new ListUserUI(3);
 					listUser.setVisible(true);
 					listUser.setLocationRelativeTo(null);
+					dispose();
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

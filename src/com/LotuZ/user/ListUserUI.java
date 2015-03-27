@@ -21,6 +21,7 @@ import com.LotuZ.PageAccueil;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.admin.ui.HomepageAdmin;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.data.MemberJDBC;
@@ -47,6 +48,8 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ListUserUI extends JFrame {
@@ -55,6 +58,7 @@ public class ListUserUI extends JFrame {
 	private JTextField textField;
 	private JList list;
 	private User user;
+	private JButton btnCancel;
 
 
 
@@ -83,7 +87,7 @@ public class ListUserUI extends JFrame {
 		// Création contenu de la frame
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 50));
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 50));
 		
 		// Création de la list 
 		List<User> listUser = null;
@@ -118,7 +122,7 @@ public class ListUserUI extends JFrame {
                 Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (renderer instanceof JLabel && value instanceof User) {
                     // Here value will be of the Type 'CD'
-                    ((JLabel) renderer).setText(((User) value).getLastName());
+                    ((JLabel) renderer).setText(((User) value).getLastName()+((User) value).getFirstName());
                 }
                 return renderer;
             }
@@ -131,6 +135,29 @@ public class ListUserUI extends JFrame {
 		
 		JButton btnEdit = new JButton("Edit");
 		panel.add(btnEdit);
+		
+		btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomepageAdmin homepage;
+				try {
+					homepage = new HomepageAdmin();
+					homepage.setVisible(true);
+					homepage.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		panel.add(btnCancel);
 		btnEdit.addMouseListener(new MouseAdapter()  {
 			private User user;
 
