@@ -61,7 +61,7 @@ public class ProductUI extends JFrame{
 	 * Launch the application.
 	 */
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// Info Connection
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
 		String login = "ROLL";
@@ -86,6 +86,7 @@ public class ProductUI extends JFrame{
 			}
 		});
 	}
+	*/
 
 
 	/**
@@ -93,11 +94,11 @@ public class ProductUI extends JFrame{
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ProductUI() throws SQLException, UserNotFoundException {
+	public ProductUI(int idCategory) throws SQLException, UserNotFoundException {
 		
 		
 		FacadeUser.login("jack","jack");
-		final Product product = FacadeBL.loadProduct(18564);
+		final Product product = FacadeBL.loadProduct(idCategory);
 		User user1 = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
 
