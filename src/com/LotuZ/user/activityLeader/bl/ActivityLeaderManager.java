@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import com.LotuZ.PersistKit;
 
 
+
 /**
  * @author Ludo
  *
@@ -37,16 +38,6 @@ public class ActivityLeaderManager {
 	}
 	
 
-	
-	
-	/**
-	 * @return ListActivityLeader
-	 * @throws SQLException
-	 */
-	public ListActivityLeader getActivityLeaders() throws SQLException {
-		ListActivityLeader users = pkit.createListActivityLeader();
-		return users.load();
-	}
 
 
 	/**

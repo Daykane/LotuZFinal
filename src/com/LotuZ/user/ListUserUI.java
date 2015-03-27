@@ -20,11 +20,11 @@ import com.LotuZ.JdbcKit;
 import com.LotuZ.PageAccueil;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.data.MemberJDBC;
+import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.user.data.UserJDBC;
 import com.LotuZ.user.UserLog;
@@ -124,8 +124,8 @@ public class ListUserUI extends JFrame {
 		
 		// Création de la list 
 		
-		ListActivityLeader listActivityLeader = FacadeBL.getActivityLeaders();
-		List<User> listUser = listActivityLeader.getListActivityLeader();
+		ListUser listActivityLeader = FacadeUser.getLeaders();
+		List<User> listUser = listActivityLeader.getListUser();
 
 		List<User> users = new ArrayList<User>();
 	    for(int i = 0; i < listUser.size(); i++)

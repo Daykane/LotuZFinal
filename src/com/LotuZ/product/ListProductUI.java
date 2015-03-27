@@ -24,7 +24,7 @@ import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
+import com.LotuZ.user.user.bl.ListActivityLeader;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JList;

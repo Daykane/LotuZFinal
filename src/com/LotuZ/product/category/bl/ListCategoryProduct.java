@@ -3,7 +3,7 @@ package com.LotuZ.product.category.bl;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
+import com.LotuZ.user.user.bl.ListActivityLeader;
 import com.LotuZ.user.user.bl.User;
 
 /**

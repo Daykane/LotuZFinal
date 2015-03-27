@@ -49,4 +49,23 @@ public class UserManager {
 		User user = pkit.createUser();
 		user.update(user1);
 	}
+	
+	/**
+	 * @return ListActivityLeader
+	 * @throws SQLException
+	 */
+	public ListUser getMembers() throws SQLException {
+		ListUser users = pkit.createListUser();
+		return users.loadMembers();
+	}
+	
+	public ListUser getContributors() throws SQLException {
+		ListUser users = pkit.createListUser();
+		return users.loadContributors();
+	}
+	
+	public ListUser getLeaders() throws SQLException {
+		ListUser users = pkit.createListUser();
+		return users.loadLeaders();
+	}
 }

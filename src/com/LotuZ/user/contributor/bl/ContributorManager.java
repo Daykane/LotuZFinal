@@ -34,15 +34,6 @@ public class ContributorManager {
 	
 	
 	
-	
-	/**
-	 * @return ListContributor
-	 * @throws SQLException
-	 */
-	public ListContributor getContributors() throws SQLException {
-		ListContributor users = pkit.createListContributor();
-		return users.load();
-	}
 
 
 	/**

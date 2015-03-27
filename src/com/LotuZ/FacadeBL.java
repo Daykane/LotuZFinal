@@ -21,10 +21,8 @@ import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
-import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.contributor.bl.ContributorManager;
-import com.LotuZ.user.contributor.bl.ListContributor;
 import com.LotuZ.user.user.bl.User;
 
 public class FacadeBL {
@@ -186,10 +184,6 @@ public class FacadeBL {
 	}
 	
 
-	
-	public static ListActivityLeader getActivityLeaders() throws SQLException, UserNotFoundException{
-		return activityLeaderManager.getActivityLeaders();
-	}
 
 	public static void createActivity(String name, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
 		activityManager.create(name, shortDescr, longDescr);
@@ -219,10 +213,6 @@ public class FacadeBL {
 	
 
 	
-	public static ListContributor getContributors() throws SQLException, UserNotFoundException{
-		return contributorManager.getContributors();
-	}
-
 	/**
 	 * @return the productManager
 	 */

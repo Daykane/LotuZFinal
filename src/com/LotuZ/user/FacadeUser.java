@@ -13,9 +13,9 @@ import com.LotuZ.product.ProductManager;
 import com.LotuZ.product.category.bl.CategoryManager;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
 import com.LotuZ.user.contributor.bl.ContributorManager;
-import com.LotuZ.user.contributor.bl.ListContributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.bl.MemberManager;
+import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.user.bl.UserManager;
 
@@ -66,6 +66,16 @@ public class FacadeUser {
 		userManager.deleteUser(user);
 	}
 	
-
+	public static ListUser getMembers() throws SQLException {
+		return userManager.getMembers();
+	}
+	
+	public static ListUser getContributors() throws SQLException {
+		return userManager.getContributors();
+	}
+	
+	public static ListUser getLeaders() throws SQLException {
+		return userManager.getLeaders();
+	}
 
 }

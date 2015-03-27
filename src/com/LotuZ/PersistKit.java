@@ -19,11 +19,10 @@ import com.LotuZ.product.Product;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
-import com.LotuZ.user.contributor.bl.ListContributor;
 import com.LotuZ.user.member.bl.Member;
+import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 
 public abstract class PersistKit {
@@ -38,11 +37,9 @@ public abstract class PersistKit {
 	public abstract Activity createActivity();
 	public abstract Repetition createRepetition();
 	public abstract Event createEvent();
-	public abstract ListActivityLeader createListActivityLeader();
 	public abstract ActivityLeader createActivityLeader();
 	public abstract Product createProduct();
 	public abstract EventInscription createEventInscription();
-	public abstract ListContributor createListContributor();
 	public abstract Contributor createContributor();
 	public abstract Administrator createAdministrator();
 	public abstract Member createMember();
@@ -52,7 +49,8 @@ public abstract class PersistKit {
 	public abstract CategoryProduct createCategory();
 	//Notification
 	public abstract Notification createNotification();
-	public abstract BoxLetter createBoxLetter();	
+	public abstract BoxLetter createBoxLetter();
+	public abstract ListUser createListUser() ;
 	
 	// *************************************Loic*************************************
 	}

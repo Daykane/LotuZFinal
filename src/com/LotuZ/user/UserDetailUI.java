@@ -87,7 +87,7 @@ public class UserDetailUI extends JFrame {
 	 */
 	public UserDetailUI(final User user2) throws SQLException, UserNotFoundException {
 		
-		FacadeUser.login("jack","jack");
+		//FacadeUser.login("jack","jack");
 		// Initialisation et Recherche du User connecté 
 		final User user = UserLog.getUserLog();
 		final Member member = UserLog.getMemberLog();
@@ -287,6 +287,7 @@ public class UserDetailUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 					try {
 						if (member != null){
+							
 							FacadeUser.deleteMember(member);
 						}
 						System.out.println(" le user : "+user);

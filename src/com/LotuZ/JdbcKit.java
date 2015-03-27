@@ -33,18 +33,16 @@ import com.LotuZ.product.category.data.CatgeoryJdbc;
 import com.LotuZ.product.category.data.ListCategoryJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.activityLeader.bl.ListActivityLeader;
 import com.LotuZ.user.activityLeader.data.ActivityLeaderJDBC;
-import com.LotuZ.user.activityLeader.data.ListActivityLeaderJDBC;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.admin.data.AdministratorJDBC;
 import com.LotuZ.user.contributor.bl.Contributor;
-import com.LotuZ.user.contributor.bl.ListContributor;
 import com.LotuZ.user.contributor.data.ContributorJDBC;
-import com.LotuZ.user.contributor.data.ListContributorJDBC;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.data.MemberJDBC;
+import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
+import com.LotuZ.user.user.data.ListUserJDBC;
 import com.LotuZ.user.user.data.UserJDBC;
 
 
@@ -213,13 +211,6 @@ public class JdbcKit extends PersistKit{
 
 
 
-	@Override
-	public ListActivityLeader createListActivityLeader() {
-		//List<User> userList = null;
-		return new ListActivityLeaderJDBC(this.cn);
-	}
-
-
 
 
 	@Override
@@ -239,13 +230,11 @@ public class JdbcKit extends PersistKit{
 
 
 	@Override
-	public ListContributor createListContributor() {
-		return new ListContributorJDBC(this.cn);
+	public ListUser createListUser() {
+		return new ListUserJDBC(this.cn);
 	}
 
-
-
-
+	
 	@Override
 	public Contributor createContributor() {
 		return new ContributorJDBC(this.cn);
