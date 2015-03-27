@@ -29,7 +29,8 @@ public class MemberManager {
 	 */
 	public Member getMember(String idMember) throws SQLException {
 		Member member = pkit.createMember();
-		member.load(idMember);
+		member = member.load(idMember);
+		System.out.println(" le membre dans le manager : "+member);
 		return member;
 	}
 	

@@ -66,6 +66,7 @@ public class MemberJDBC extends Member{
 			
 			if(result.first() == false)
 			{
+				System.out.println("Aie on passe la ");
 				return member;
 			}
 			else 
@@ -78,6 +79,7 @@ public class MemberJDBC extends Member{
 					member2.setIdAdmin(result.getInt("idAdmin"));
 					member2.setIdLeader(result.getInt("idLeader"));
 					member2.setIdMember(result.getInt("idMember"));
+					System.out.println(" On a retourne :"+member2.getCotisation());
 
 			return member2;
 			}

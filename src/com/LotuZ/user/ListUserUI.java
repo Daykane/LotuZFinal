@@ -174,9 +174,10 @@ public class ListUserUI extends JFrame {
 					UserDetailUI pageAcceuil;
 					
 					try {
-						pageAcceuil = new UserDetailUI(this.user);
+						pageAcceuil = new UserDetailUI(this.user.getMail());
 						pageAcceuil.setVisible(true);
 						pageAcceuil.setLocationRelativeTo(null);
+						dispose();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

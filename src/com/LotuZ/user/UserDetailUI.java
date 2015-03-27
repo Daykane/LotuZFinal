@@ -16,6 +16,7 @@ import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.admin.ui.HomepageAdmin;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.data.MemberJDBC;
@@ -50,51 +51,16 @@ public class UserDetailUI extends JFrame {
 	private JTextField NameActivity;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeUser.init(jdbcKit);
-		FacadeBL.init(jdbcKit);
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					User user = new UserJDBC();
-					UserDetailUI frame = new UserDetailUI(user);
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public UserDetailUI(final User user2) throws SQLException, UserNotFoundException {
+	public UserDetailUI(String mail) throws SQLException, UserNotFoundException {
 		
-		//FacadeUser.login("jack","jack");
-		// Initialisation et Recherche du User connecté 
-		final User user = UserLog.getUserLog();
-		final Member member = UserLog.getMemberLog();
-		Administrator admin = UserLog.getAdminLog();
-		ActivityLeader activityLeader = UserLog.getRespoLog();
-		Contributor contributor = UserLog.getContribLog();
-		
+
+		final User user = FacadeUser.getUser(mail);
+		final Member member = FacadeUser.getMember(mail);
+		System.out.println(" le membre : "+member.getCotisation());
 	
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
@@ -312,6 +278,21 @@ public class UserDetailUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				HomepageAdmin homepage;
+				
+				try {
+					homepage = new HomepageAdmin();
+					homepage.setVisible(true);
+					homepage.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnCancel.setBounds(509, 434, 89, 23);
