@@ -54,6 +54,10 @@ public class ProductManager {
 	public Product readProduct(int idProduct) throws SQLException {
 		Product product = pkit.createProduct();
 		product = product.loadProduct(idProduct);
+		//TODO
+		if (product == null){
+		System.out.println("Proctu manager product null");
+		}
 		return product;
 	}
 	

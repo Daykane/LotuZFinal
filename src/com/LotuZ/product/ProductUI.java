@@ -94,11 +94,11 @@ public class ProductUI extends JFrame{
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ProductUI(int idCategory) throws SQLException, UserNotFoundException {
+	public ProductUI(int idProduct) throws SQLException, UserNotFoundException {
 		
 		
 		FacadeUser.login("jack","jack");
-		final Product product = FacadeBL.loadProduct(idCategory);
+		final Product product = FacadeBL.loadProduct(idProduct);
 		User user1 = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
 
@@ -119,7 +119,9 @@ public class ProductUI extends JFrame{
 		JLabel lblNewLabel = new JLabel("Product Name:");
 		lblNewLabel.setBounds(144, 84, 90, 14);
 		panel.add(lblNewLabel);
-		
+		if (product == null){
+			System.out.println("product null");
+		}
 		tfNameProduct = new JTextField(product.getProductName());
 		//tfNameProduct.setText(product.getProductName());
 		tfNameProduct.setBounds(243, 81, 86, 20);

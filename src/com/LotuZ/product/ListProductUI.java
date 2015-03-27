@@ -131,7 +131,7 @@ public class ListProductUI extends JFrame {
 		list.setBounds(44, 26, 251, 384);
 		panel.add(list);
 
-		JButton btnNewButton = new JButton("Edit");
+		JButton btnNewButton = new JButton("View");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			private Product product;
 			@Override
@@ -146,7 +146,7 @@ public class ListProductUI extends JFrame {
 				ProductUI pageProduct;
 
 				try {
-					pageProduct = new ProductUI(this.product.getCategory());
+					pageProduct = new ProductUI(this.product.getId());
 					pageProduct.setVisible(true);
 					pageProduct.setLocationRelativeTo(null);
 				} catch (SQLException e) {

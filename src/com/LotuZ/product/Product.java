@@ -151,6 +151,11 @@ public abstract class Product {
 	}
 	
 	
+/**
+ * @param id
+ * @return
+ * @throws SQLException
+ */
 public abstract Product loadProduct(int id) throws SQLException;
 
 public abstract Product loadProduct(String productName) throws SQLException;
