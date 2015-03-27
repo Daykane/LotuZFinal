@@ -1,6 +1,7 @@
 package com.LotuZ.product;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.LotuZ.product.category.bl.CategoryProduct;
 
@@ -105,7 +106,7 @@ public abstract class Product {
 		return creationDate;
 	}
 	/**
-	 * @param creationDate the creationDate to set
+	 * @param date the creationDate to set
 	 */
 	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
@@ -161,5 +162,8 @@ public abstract Product updateProduct (Product product) throws SQLException;
 public abstract void deleteProduct () throws SQLException;
 
 
+public abstract List<Product> getAllProducts(int idCategory) throws SQLException;
+
+	
 	
 }

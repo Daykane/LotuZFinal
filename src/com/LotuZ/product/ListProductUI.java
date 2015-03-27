@@ -4,12 +4,16 @@ import interfaceDeBase.Bandeau;
 import interfaceDeBase.PageAccueiltest;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -33,6 +37,7 @@ public class ListProductUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JList list;
 
 	/**
 	 * Launch the application.
@@ -90,5 +95,38 @@ public class ListProductUI extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		// Création de la list 
+		
+				ListCategoryProduct listCategoryProduct = FacadeBL.getCategories();
+				List<Product> listProduct = FacadeBL.getAllProducts(12);
+
+				List<Product> products = new ArrayList<Product>();
+			    for(int i = 0; i < listProduct.size(); i++)
+			    {
+			    	products.add(listProduct.get(i)); 
+			    }
+			    
+			    System.out.println(products);
+
+		
+	    list = new JList(new Vector<Product>(products));
+        list.setVisibleRowCount(15);
+        list.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (renderer instanceof JLabel && value instanceof Product) {
+                    // Here value will be of the Type 'CD'
+                    ((JLabel) renderer).setText(((Product) value).getProductName());
+                }
+                return renderer;
+            }
+        });
+        
+        
+		list.setBounds(44, 26, 251, 384);
+		panel.add(list);
 	}	
+	
+	
 }

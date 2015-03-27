@@ -45,7 +45,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ProductCreateUI extends JFrame {
-
 	/**
 	 * 
 	 */

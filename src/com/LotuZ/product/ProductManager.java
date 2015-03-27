@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import com.LotuZ.PersistKit;
 
@@ -30,26 +31,7 @@ public class ProductManager {
 	public ProductManager(PersistKit kit){
 		this.setPkit(kit);
 	}
-	/*
-	 public void createProduct(int idMember,String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		// Create empty ProductJDBC
-		Product product = pkit.createProduct();
-		// set informations into the userJdbc
-		 product.setIdProvider(idMember);
-		product.setProductName(productName);
-		//faire un setCategory en récupérant l'int de category
-		product.setQuantity(quantity);
-		product.setPrice(price);
-		product.setReduction(reduction);
-		product.setCreationDate(dateFormat.format(date));
-		product.setUpdateDate(dateFormat.format(date));
-		product.setCategory(category);
-		// Save in database 
-		product.saveProduct();
-	}
-	 */
+
 	
 	public void createProduct(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -101,5 +83,13 @@ public class ProductManager {
 	public void deleteProduct(Product product) throws SQLException {
 		product.deleteProduct();
 	}
+
+	public List<Product> getAllProducts(int idCategory) throws SQLException {
+		List<Product> listProduct;
+		Product product = pkit.createProduct();
+		listProduct = product.getAllProducts(idCategory);
+		return listProduct;
+	}
+
 
 }

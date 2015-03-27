@@ -236,6 +236,11 @@ public class FacadeBL {
 	public static void setProductManager(ProductManager productManager) {
 		FacadeBL.productManager = productManager;
 	}
+	
+	public static List<Product> getAllProducts(int idCategory) throws SQLException {
+		return productManager.getAllProducts(idCategory);
+	}
+
 
 
 }

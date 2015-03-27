@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProductJDBC extends Product {
@@ -157,5 +159,35 @@ private Connection cn;
 		return product;
 	}	
 	
+	@Override
+	public List<Product> getAllProducts(int idCategory) throws SQLException {
+		List<Product> products = new ArrayList();
+
+			Statement st =null;
+			// Etape 3 : Création d'un statement
+			st = this.cn.createStatement();
+			String sql = "Select * From LotuZ.Product where `category`='"+idCategory+"'";
+			// Etape 4 : exécution requête
+			System.out.println(sql);
+			ResultSet result = st.executeQuery(sql);
+			while( result.next() ){	
+				ProductJDBC product = null;
+				int idProduct = result.getInt("idProduct");
+				String ProductName = result.getString("name");
+				int quantity = result.getInt("quantity");
+				int category = result.getInt("category");
+				int price = result.getInt("prix");
+				int reduction = result.getInt("reduction");
+				String creationDate = result.getString("creationDate");
+				String updateDate = result.getString("updateDate");
+
+
+				product = new ProductJDBC (idProduct,ProductName,category,quantity,price,reduction, creationDate,updateDate);
+				products.add(product);
+			}
+		return products;
+	}
+	
+
 
 }

@@ -225,11 +225,11 @@ public class ProductUI extends JFrame{
 		lblUpdated.setBounds(390, 96, 60, 14);
 		panel.add(lblUpdated);
 
-		JLabel lblNewLabel_4 = new JLabel(product.getCreationDate());
+		JLabel lblNewLabel_4 = new JLabel(product.getCreationDate().toString());
 		lblNewLabel_4.setBounds(460, 61, 90, 14);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel(product.getUpdateDate());
+		JLabel lblNewLabel_5 = new JLabel(product.getUpdateDate().toString());
 		lblNewLabel_5.setBounds(460, 96, 96, 14);
 		panel.add(lblNewLabel_5);
 
