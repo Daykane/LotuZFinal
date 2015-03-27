@@ -58,7 +58,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te de s�lection � partir de l'identifiant 
-		String sql = "Select * From LotuZ.BoxLette where idNotification="+idNotification+" and idMember="+idMember;
+		String sql = "Select * From LotuZ.BoxLetter where idNotification="+idNotification+" and idMember="+idMember;
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -83,7 +83,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te de s�lection � partir de l'identifiant 
-		String sql = "Select * From LotuZ.BoxLette where idMember="+idMember;
+		String sql = "Select * From LotuZ.BoxLetter where idMember="+idMember;
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -123,7 +123,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		System.out.println("cJDBC2");
 		
 		// Requ�te de s�lection � partir de l'identifiant 
-		String sql = "Update LotuZ.Notification Set readNotification="+readNotification+"Where idBoxLetter="+idBoxLetter+" and idNotification="+idNotification+" and idMember="+idMember;
+		String sql = "Update LotuZ.BoxLetter Set readNotification="+readNotification+"Where idBoxLetter="+idBoxLetter+" and idNotification="+idNotification+" and idMember="+idMember;
 		System.out.println("cJDBC3");
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
@@ -139,7 +139,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te d insertion � partir de l'identifiant 
-		String sql = "INSERT INTO LotuZ.Category (idNotification,idMember,readNotification) VALUES "
+		String sql = "INSERT INTO LotuZ.BoxLetter (idNotification,idMember,readNotification) VALUES "
 				+ "("
 				+this.getIdNotification()+","
 				+this.getIdMember()+","
@@ -159,7 +159,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te d insertion � partir de l'identifiant 
-		String sql = "INSERT INTO LotuZ.Category (idNotification,idMember,readNotification) VALUES "
+		String sql = "INSERT INTO LotuZ.BoxLetter (idNotification,idMember,readNotification) VALUES "
 				+ "("
 				+idNotification+","
 				+idMember+","
@@ -179,7 +179,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requete de suppression a partir de l'identifiant 
-		String sql = "Delete From LotuZ.BoxLette where idNotification="+idNotification+" and idMember="+idMember;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
+		String sql = "Delete From LotuZ.BoxLetter where idNotification="+idNotification+" and idMember="+idMember;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
 		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);

@@ -95,7 +95,6 @@ public class NotificationJDBC extends Notification {
 			// Requ�te d insertion � partir de l'identifiant 
 			String sql = "INSERT INTO LotuZ.Notification (textNotification,objetNotification) VALUES "
 					+ "("
-					+this.getIdNotification()+","
 					+this.getTextNotification()+","
 					+this.getObjetNotification()+")";
 			

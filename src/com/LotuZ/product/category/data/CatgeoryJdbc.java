@@ -77,56 +77,53 @@ public class CatgeoryJdbc extends CategoryProduct
 	 * @throws SQLException 
 	 */
 	
-	public int generateId() throws SQLException
-	{
-		int idGenerated=0;
-		try 
-		{		
-			
-			Statement st =null;
-			
-			// Cr�ation d'un statement
-			st = this.cn.createStatement();
-			
-			// Requ�te de s�lection � partir de l'identifiant 
-			String sql = "Select generatedIdCategory From LotuZ.generateIdCategory";
-			
-			// Ex�cution de la requ�te
-			ResultSet result = st.executeQuery(sql);
-			
-			// R�cup�ration des donn�es 
-			System.out.println(idGenerated);
-			System.out.println(sql);
-			
-			while(result.next())
-			{	
-				System.out.println("generatedIdCategory");
-				idGenerated = result.getInt("generatedIdCategory");
-				System.out.println(idGenerated); 
-			}
-			System.out.println(idGenerated);
-			idGenerated++;
-			System.out.println(idGenerated);
-			// Requ�te de s�lection � partir de l'identifiant 
-			String sql1 = "Update LotuZ.generateIdCategory Set generatedIdCategory="+idGenerated+" Where idgenerateIdCategory="+0;
-			System.out.println("cJDBC3");
-			// Ex�cution de la requ�te
-			st.executeUpdate(sql1);
-			System.out.println("cJDBC4");
-					
-		} 
-		catch (SQLException e) 
-		{
-			throw e;
-		}
-		return idGenerated;
-	}
+//	public int generateId() throws SQLException
+//	{
+//		int idGenerated=0;
+//		try 
+//		{		
+//			
+//			Statement st =null;
+//			
+//			// Cr�ation d'un statement
+//			st = this.cn.createStatement();
+//			
+//			// Requ�te de s�lection � partir de l'identifiant 
+//			String sql = "Select generatedIdCategory From LotuZ.generateIdCategory";
+//			
+//			// Ex�cution de la requ�te
+//			ResultSet result = st.executeQuery(sql);
+//			
+//			// R�cup�ration des donn�es 
+//			System.out.println(idGenerated);
+//			System.out.println(sql);
+//			
+//			while(result.next())
+//			{	
+//				System.out.println("generatedIdCategory");
+//				idGenerated = result.getInt("generatedIdCategory");
+//				System.out.println(idGenerated); 
+//			}
+//			System.out.println(idGenerated);
+//			idGenerated++;
+//			System.out.println(idGenerated);
+//			// Requ�te de s�lection � partir de l'identifiant 
+//			String sql1 = "Update LotuZ.generateIdCategory Set generatedIdCategory="+idGenerated+" Where idgenerateIdCategory="+0;
+//			System.out.println("cJDBC3");
+//			// Ex�cution de la requ�te
+//			st.executeUpdate(sql1);
+//			System.out.println("cJDBC4");
+//					
+//		} 
+//		catch (SQLException e) 
+//		{
+//			throw e;
+//		}
+//		return idGenerated;
+//	}
 	
 	public CategoryProduct load(int idCategoryProduct) throws SQLException
 	{
-		try 
-		{
-				List<String> CategoryProduct = new ArrayList<String>();
 			
 			Statement st =null;
 			
@@ -140,18 +137,15 @@ public class CatgeoryJdbc extends CategoryProduct
 			ResultSet result = st.executeQuery(sql);
 			
 			// R�cup�ration des donn�es 
-			while(result.next()){	
+			while(result.next())
+			{	
 				this.setIdCategoryProduct(result.getInt("idCategory"));
 				this.setNameCategory(result.getString("nameCategory"));
 				this.setDecriptionCategory(result.getString("descriptionCategory"));
 				this.setLevelCategory(result.getInt("levelCategory"));
 				this.setFactherCategory(result.getInt("fatherCategory"));
 			}
-		} 
-		catch (SQLException e) 
-		{
-			throw e;
-		}
+				
 		return this;
 		
 	}
@@ -177,58 +171,41 @@ public class CatgeoryJdbc extends CategoryProduct
 	
 	public void save() throws SQLException 
 	{
-		try {
-
 			Statement st =null;
 			
 			// Cr�ation d'un statement
 			st = this.cn.createStatement();
 			
 			// Requ�te d insertion � partir de l'identifiant 
-			String sql = "INSERT INTO LotuZ.Category VALUES "
+			String sql = "INSERT INTO LotuZ.Category (nameCategory,descriptionCategory,levelCategory,fatherCategory) VALUES  "
 					+ "("
-					+this.getIdCategoryProduct()+","
 					+this.getNameCategory()+","
 					+this.getDecriptionCategory()+","
 					+this.getLevelCategory()+","
 					+this.getFactherCategory()+")";
 			
 			// Ex�cution de la requ�te
-			ResultSet result = st.executeQuery(sql);
-			}
-		 catch (SQLException e) 
-		{
-			throw e;
-		}
+			st.executeQuery(sql);
 	}
 	
-	public void save(int id, String name, String description, int level, int father) throws SQLException 
-	{
-		try {		
+	public void save(String name, String description, int level, int father) throws SQLException 
+	{	
 			Statement st =null;
 			
 			// Cr�ation d'un statement
 			st = this.cn.createStatement();
 			
 			// Requ�te d insertion � partir de l'identifiant 
-			String sql = "INSERT INTO LotuZ.Category VALUES "
+			String sql = "INSERT INTO LotuZ.Category (nameCategory,descriptionCategory,levelCategory,fatherCategory) VALUES "
 					+ "("
-					+id+","
 					+'"'+name+'"'+","
 					+'"'+description+'"'+","
 					+level+","
 					+father+")";
 			// Ex�cution de la requ�te
-			System.out.println(sql);
-			int result = st.executeUpdate(sql);
-			}
-		 catch (SQLException e) 
-		{
-			throw e;
-		}
+			st.executeUpdate(sql);
 	}
 
-	@Override
 	public void delete(int idCategoryProduct) throws SQLException 
 	{
 		System.out.println("cJDBC1");
@@ -243,7 +220,7 @@ public class CatgeoryJdbc extends CategoryProduct
 			String sql = "Delete From LotuZ.Category where idCategory="+idCategoryProduct;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
 			System.out.println(sql);
 			// Ex�cution de la requ�te
-			int result = st.executeUpdate(sql);
+			st.executeUpdate(sql);
 			System.out.println("cJDBC3");
 			
 	}

@@ -3,6 +3,7 @@ package com.LotuZ.product.category.ui;
 import interfaceDeBase.PageAccueiltest;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -21,6 +22,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -61,31 +63,31 @@ public class CategoryUI extends JFrame {
 	 * Launch the application.
 	 */
 
-//	public static void main(String[] args) {
-//		// Info Connection
-//		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-//		String login = "ROLL";
-//		String passwd = "rolldevelopment";
-//
-//		// Choose the kit
-//		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-//		jdbcKit.openConnection(url, login, passwd);
-//
-//		// Init the FacadeBL with the kit
-//		FacadeBL.init(jdbcKit);
-//		//FacadeUser.init();
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					CategoryUI frame = new CategoryUI();
-//					frame.setVisible(true);
-//					frame.setLocationRelativeTo(null);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		// Info Connection
+		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
+		String login = "ROLL";
+		String passwd = "rolldevelopment";
+
+		// Choose the kit
+		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
+		jdbcKit.openConnection(url, login, passwd);
+
+		// Init the FacadeBL with the kit
+		FacadeBL.init(jdbcKit);
+		//FacadeUser.init();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CategoryUI frame = new CategoryUI();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 
 	/**
@@ -93,6 +95,7 @@ public class CategoryUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
+	
 	public CategoryUI() throws SQLException, UserNotFoundException 
 	{
 		User user = UserLog.getUserLog();
@@ -209,13 +212,73 @@ public class CategoryUI extends JFrame {
 		//JListe Category
 		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getAllCategories().getListCategoryProduct();
 		final ArrayList<String> categoriesNames = new ArrayList<String>();
+//		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//			Component renderer =  super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus)
+//		    setText(entry.getTitle());
+//		    setIcon(entry.getImage());
+//		    if (isSelected) {
+//		      setBackground(HIGHLIGHT_COLOR);
+//		      setForeground(Color.white);
+//		    } else {
+//		      setBackground(Color.white);
+//		      setForeground(Color.black);
+//		    }
+//		    return this;
+//		  }	
+		
+//		 Création de la list ListActivityLeader listActivityLeader = FacadeBL.getActivityLeaders(); 
+//		List<User> listUser = listActivityLeader.getListActivityLeader(); 
+//		List<User> users = new ArrayList<User>(); 
+//		for(int i = 0; i < listUser.size(); i++) { users.add(listUser.get(i)); } 
+//		list = new JList(new Vector<User>(users)); 
+//		list.setVisibleRowCount(10); 
+//		list.setCellRenderer(new DefaultListCellRenderer() 
+//		{ 
+//		@Override 
+//		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
+//		{ 
+//			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
+//			if (renderer instanceof JLabel && value instanceof User) 
+//			{ 
+//				// Here value will be of the Type 'CD' 
+//				((JLabel) renderer).setText(((User) value).getLastName()+" "+((User) value).getFirstName()); 
+//				} return renderer; 
+//				} 
+//		});
+//		}
+//		}
+		
 		for (int i=0;i<categories.size();i++)
 		{
 			categoriesNames.add(categories.get(i).getNameCategory());
 		}
 		
 		
-		final JList jListCategories = new JList(categoriesNames.toArray());
+		final JList jListCategories = new JList(categories.toArray());
+		jListCategories.setCellRenderer(new DefaultListCellRenderer() 
+		{ 
+		@Override 
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
+		{ 
+			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
+			if (renderer instanceof JLabel && value instanceof CategoryProduct) 
+			{ 
+				// Here value will be of the Type 'CD' 
+				((JLabel) renderer).setText(((CategoryProduct) value).getNameCategory()+" "+((CategoryProduct) value).getDecriptionCategory()); 
+				if (((CategoryProduct) value).getLevelCategory()==0)
+				{
+					setIcon(new ImageIcon("notif.png"));
+				}
+				else
+				{
+					setIcon(new ImageIcon("notifOpen.png"));
+				}
+			}	 
+			return renderer; 
+		} 
+		}
+		);
+		
 		
 		GridBagConstraints gbc_jListCategories= new GridBagConstraints();
 		gbc_jListCategories.gridx = 0;
@@ -346,7 +409,7 @@ public class CategoryUI extends JFrame {
 	btnRemoveCat.addActionListener(btnRemoveCatListeners);
 		
 		
-		
+	
 
 		
 

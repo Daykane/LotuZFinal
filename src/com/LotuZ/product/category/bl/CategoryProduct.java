@@ -202,9 +202,9 @@ public abstract class CategoryProduct
 		
 				//Methodes
 
-		public abstract int generateId() throws SQLException;
+		//public abstract int generateId() throws SQLException;
 		public abstract void save() throws SQLException;
-		public abstract void save(int id, String name, String decription,int level, int father) throws SQLException;
+		public abstract void save(String name, String decription,int level, int father) throws SQLException;
 		public abstract void delete(int idCategoryProduct) throws SQLException;
 		public abstract CategoryProduct load(int idCategoryProduct) throws SQLException;
 		public abstract void update(int id, String name, String description, int level, int father) throws SQLException;

@@ -31,13 +31,17 @@ public class NotificationManager
 	
 	public ArrayList<BoxLetter> getAllNotificationInBox(int idMember) 
 	{
+		System.out.println("NotifMan1");
 		BoxLetter boxLetter = pkit.createBoxLetter();
+		System.out.println("NotifMan2");
 		ArrayList<BoxLetter> boxLetterCenter=null;
 		try {
 			boxLetterCenter = boxLetter.loadAllLetter(idMember);
+			System.out.println("NotifMan3");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("NotifMan4");
 		return boxLetterCenter;
 	}
 

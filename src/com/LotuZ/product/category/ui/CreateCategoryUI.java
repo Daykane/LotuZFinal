@@ -353,15 +353,15 @@ public class CreateCategoryUI extends JFrame {
 			{
 				if (cBoxLevelCategory.getSelectedItem().equals("Sub Category"))
 				{				
-					int idCatGen = facadeBL.generateId();
-					facadeBL.createCategory(idCatGen, txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
+					//int idCatGen = facadeBL.generateId();
+					facadeBL.createCategory(txtFName.getText(), txtADescription.getText(), 1, categories.get(listFatherCategory.getSelectedIndex()).getIdCategoryProduct());
 				}
 				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
 				{
 					System.out.println("Coucou");
-					int idCatGen = facadeBL.generateId();
+					//int idCatGen = facadeBL.generateId();
 					System.out.println("Kikoo");
-					facadeBL.createCategory(idCatGen, txtFName.getText(), txtADescription.getText(), 0, -1);
+					facadeBL.createCategory(txtFName.getText(), txtADescription.getText(), 0, -1);
 				}
 				CategoryUI CategoryUI = null;
 				try {

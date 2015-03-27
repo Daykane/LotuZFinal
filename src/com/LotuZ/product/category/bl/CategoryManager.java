@@ -90,11 +90,11 @@ public class CategoryManager
 		return category;
 	}
 
-	public void createCategory(int idCategory, String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
+	public void createCategory(String nameCategory, String descriptionCategory, int levelCategory, int fatherCategory) 
 	{
 		CategoryProduct category = pkit.createCategory();
 		try {
-			category.save(idCategory, nameCategory, descriptionCategory, levelCategory, fatherCategory);
+			category.save(nameCategory, descriptionCategory, levelCategory, fatherCategory);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,17 +122,18 @@ public class CategoryManager
 		
 	}
 
-	public int generateId() {
-		int idCatGen = 0;
-		CategoryProduct category = pkit.createCategory();
-		try {
-			idCatGen = category.generateId();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return idCatGen;
-	}
+
+//	public int generateId() {
+//		int idCatGen = 0;
+//		CategoryProduct category = pkit.createCategory();
+//		try {
+//			idCatGen = category.generateId();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return idCatGen;
+//	}
 
 
 
