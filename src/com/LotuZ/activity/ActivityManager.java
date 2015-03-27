@@ -70,6 +70,13 @@ public class ActivityManager {
 		return activity;
 	}
 
+	public void deleteActivity(Activity act) throws SQLException {
+		Activity activity = pkit.createActivity();
+		activity.setIdActivity(act.getIdActivity());		
+		activity.delete();
+		
+	}
+
 	public void update(Activity acti, String name, String shortDescr, String longDescr,
 			String idRespo) throws SQLException {
 		//User user = UserLog.getUserLog();
@@ -91,13 +98,6 @@ public class ActivityManager {
 		//	System.out.println("le this.cn est null");
 		//}
 		activity.update();
-		
-	}
-
-	public void deleteActivity(Activity act) throws SQLException {
-		Activity activity = pkit.createActivity();
-		activity.setIdActivity(act.getIdActivity());		
-		activity.delete();
 		
 	}
 	

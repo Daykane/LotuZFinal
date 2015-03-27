@@ -1,5 +1,8 @@
 package com.LotuZ.EventInscription;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public abstract class EventInscription {
 	
 	private String idMember;
@@ -45,5 +48,8 @@ public abstract class EventInscription {
 		this.idMember = idMember;
 		this.idEvent = idEvent;
 	}
-
+	
+	public abstract void add() throws SQLException;
+	public abstract List<Integer> loadUserEvent() throws SQLException;
+	public abstract List<String> loadEventUser() throws SQLException;
 }

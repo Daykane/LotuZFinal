@@ -137,6 +137,83 @@ public final class UserLog extends User{
 
 	}
 
+
+	public static User logOff() {
+		if (!UserLog.dispo) {
+			synchronized(UserLog.class) {
+				//TODO
+				UserLog.user = null;
+				UserLog.member = null;
+				UserLog.contrib = null;
+				UserLog.respo = null;
+				UserLog.dispo = true;
+
+			}
+		}
+		else{
+			//TODO
+			System.out.println("pas de user connecté");
+		}
+		return user;
+	}
+	/*
+	public static User logOffMember() {
+		if (!UserLog.dispo) {
+			synchronized(UserLog.class) {
+				//TODO
+				UserLog.user = null;
+				UserLog.member = null;
+				UserLog.contrib = null;
+				UserLog.respo = null;
+				UserLog.dispo = true;
+
+			}
+		}
+		else{
+			//TODO
+			System.out.println("pas de user connecté");
+		}
+		return user;
+	}
+	public static User logOffContributor() {
+		if (!UserLog.dispo) {
+			synchronized(UserLog.class) {
+				//TODO
+				UserLog.user = null;
+				UserLog.member = null;
+				UserLog.contrib = null;
+				UserLog.respo = null;
+				UserLog.dispo = true;
+
+			}
+		}
+		else{
+			//TODO
+			System.out.println("pas de user connecté");
+		}
+		return user;
+	}
+	public static User logOffRespo() {
+		if (!UserLog.dispo) {
+			synchronized(UserLog.class) {
+				//TODO
+				UserLog.user = null;
+				UserLog.member = null;
+				UserLog.contrib = null;
+				UserLog.respo = null;
+				UserLog.dispo = true;
+
+			}
+		}
+		else{
+			//TODO
+			System.out.println("pas de user connecté");
+		}
+		return user;
+	}
+	*/
+}
+
 	/*@Override
 	public boolean isAdmin() throws SQLException {
 		boolean flag = false;
@@ -159,7 +236,7 @@ public final class UserLog extends User{
 		}
 		return flag;
 	}*/
-}
+
 
 
 
