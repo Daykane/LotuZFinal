@@ -59,50 +59,13 @@ public class ListUserUI extends JFrame {
 
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeUser.init(jdbcKit);
-		FacadeBL.init(jdbcKit);
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListUserUI frame = new ListUserUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ListUserUI() throws SQLException, UserNotFoundException {
+	public ListUserUI(int idRole) throws SQLException, UserNotFoundException {
 		
-		FacadeUser.login("jack","jack");
-		// Initialisation et Recherche du User connecté 
-		final User user = UserLog.getUserLog();
-		final Member member = UserLog.getMemberLog();
-		Administrator admin = UserLog.getAdminLog();
-		ActivityLeader activityLeader = UserLog.getRespoLog();
-		Contributor contributor = UserLog.getContribLog();
-		
+
 	
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
@@ -123,9 +86,23 @@ public class ListUserUI extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 50));
 		
 		// Création de la list 
-		
-		ListUser listActivityLeader = FacadeUser.getLeaders();
-		List<User> listUser = listActivityLeader.getListUser();
+		List<User> listUser = null;
+		if (idRole == 1)
+		{
+			ListUser listMembers = FacadeUser.getMembers();
+			listUser = listMembers.getListUser();
+		}
+		else if (idRole == 2)
+		{
+			ListUser listContributors = FacadeUser.getContributors();
+			listUser = listContributors.getListUser();
+		}
+		else if (idRole == 3)
+		{
+			ListUser listLeaders = FacadeUser.getLeaders();
+			listUser = listLeaders.getListUser();
+		}
+
 
 		List<User> users = new ArrayList<User>();
 	    for(int i = 0; i < listUser.size(); i++)

@@ -84,7 +84,7 @@ public class ListUserJDBC extends ListUser {
 			st = this.cn.createStatement();
 			
 			// Création de la requête de sélection
-			String sql = "Select * From LotuZ.User u Where m.idMember IS NOT NULL ";
+			String sql = "Select * From LotuZ.User  Where idMember IS NOT NULL ";
 
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
@@ -112,7 +112,7 @@ public class ListUserJDBC extends ListUser {
 			st = this.cn.createStatement();
 			
 			// Création de la requête de sélection
-			String sql = "Select * From LotuZ.User u Where m.idContributor IS NOT NULL ";
+			String sql = "Select * From LotuZ.User  Where idContributor IS NOT NULL ";
 
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
