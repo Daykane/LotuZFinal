@@ -3,6 +3,7 @@ package com.LotuZ.user.activityLeader.bl;
 import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.user.FacadeUser;
 
 
 
@@ -43,6 +44,7 @@ public class ActivityLeaderManager {
 	 */
 	public void deleteActivityLeader(String idActivityLeader) throws SQLException, ClassNotFoundException {
 		ActivityLeader activityLeader = pkit.createActivityLeader();
+		activityLeader = activityLeader.load(idActivityLeader);
 		activityLeader.delete();
 	}
 }

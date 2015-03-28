@@ -91,5 +91,13 @@ public class FacadeUser {
 	public static ListUser getLeaders() throws SQLException {
 		return userManager.getLeaders();
 	}
+	
+	public static void deleteLeader(String idLeader) throws SQLException, UserNotFoundException, ClassNotFoundException{
+		activityLeaderManager.deleteActivityLeader(idLeader);
+	}
+	
+	public static void deleteContributor(String idContributor) throws SQLException, UserNotFoundException, ClassNotFoundException{
+		contributorManager.deleteContributor(idContributor);
+	}
 
 }

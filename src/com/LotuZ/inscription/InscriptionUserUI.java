@@ -56,6 +56,7 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.awt.Dimension;
 
 /**
  * @author Alexis
@@ -92,10 +93,11 @@ public class InscriptionUserUI extends JFrame {
 	 * Create the frame.
 	 */
 	public InscriptionUserUI() {
+		setPreferredSize(new Dimension(750, 600));
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 400);
+		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

@@ -271,24 +271,19 @@ public class UserDetailUI extends JFrame {
 		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					try {
-						if (member != null){
-							
-							FacadeUser.deleteMember(member);
-						}
-						System.out.println(" le user : "+user);
-						FacadeUser.deleteUser(user);
-						
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (UserNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				DeleteUserUI deleteUser;
+				try {
+					deleteUser = new DeleteUserUI();
+					deleteUser.setVisible(true);
+					deleteUser.setLocationRelativeTo(null);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				dispose();
 			}
 		});
 		btnDelete.setBounds(537, 226, 89, 23);

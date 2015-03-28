@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.PageAccueil;
+import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -60,6 +61,7 @@ public class ListUserUI extends JFrame {
 	private JList list;
 	private User user;
 	private JButton btnCancel;
+	private JButton btnInscription;
 
 
 
@@ -87,8 +89,8 @@ public class ListUserUI extends JFrame {
 		
 		// Création contenu de la frame
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.WEST);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 50));
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 50));
 		
 		// Création de la list 
 		List<User> listUser = null;
@@ -137,6 +139,22 @@ public class ListUserUI extends JFrame {
 		JButton btnEdit = new JButton("Edit");
 		panel.add(btnEdit);
 		
+		btnInscription = new JButton("Registration");
+		btnInscription.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				InscriptionUserUI inscription = new InscriptionUserUI();
+				inscription.setVisible(true);
+				inscription.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		btnInscription.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel.add(btnInscription);
+		
 		btnCancel = new JButton("Cancel");
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -157,8 +175,8 @@ public class ListUserUI extends JFrame {
 
 			}
 		});
-
-		panel.add(btnCancel);
+		
+				panel.add(btnCancel);
 		btnEdit.addMouseListener(new MouseAdapter()  {
 			private User user;
 

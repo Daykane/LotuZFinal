@@ -53,8 +53,11 @@ public class ContributorManager {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 */
-	public void deleteContributor() throws SQLException, ClassNotFoundException {
+	public void deleteContributor(String idContributor) throws SQLException, ClassNotFoundException {
 		Contributor contributor = pkit.createContributor();
+		contributor = contributor.load(idContributor);
 		contributor.delete();
 	}
+
+
 }
