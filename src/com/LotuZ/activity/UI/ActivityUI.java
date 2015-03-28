@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
@@ -59,7 +60,7 @@ public class ActivityUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(new Bandeau().createBandeau(user, "Ma page"), BorderLayout.NORTH);
 		
-		JPanel mainPanel = new JPanel();
+		final JPanel mainPanel = new JPanel();
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		mainPanel.setLayout(new BorderLayout(0, 0));
 		
@@ -73,16 +74,13 @@ public class ActivityUI extends JFrame {
 		enTete.add(labelEnTete);
 		
 		// List
-		List<Activity> lAct = null; 	
-		try {
-			lAct = FacadeActivity.getAllActivities();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		final Activity[] list = toActivityArray(lAct);
+		final Activity[] list = this.generateList();
+		
 		final JList listActivities = new JList(list);
+		mainPanel.add(listActivities, BorderLayout.WEST);
+		listActivities.setPreferredSize(new Dimension(450, 300));
+		
+		
 		listActivities.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -105,8 +103,7 @@ public class ActivityUI extends JFrame {
 			}
 		});
 		
-		mainPanel.add(listActivities, BorderLayout.WEST);
-		listActivities.setPreferredSize(new Dimension(450, 300));
+	
 		
 	
 		
@@ -144,6 +141,23 @@ public class ActivityUI extends JFrame {
 		panelButton.add(btnAdd, "3, 10, fill, center");
 		
 		JButton btnRemove = new JButton("Remove");
+		btnRemove.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					int dialogButton = JOptionPane.YES_NO_OPTION;
+					int i = listActivities.getSelectedIndex();
+					int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure to remove"+list[i].getName(),"Advert",dialogButton);
+					if (dialogButton == JOptionPane.YES_OPTION){
+						FacadeActivity.deleteActivity(list[i]);
+						//TODO mette à jour la Jlsit;
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		panelButton.add(btnRemove, "3, 12, left, center");
 		
 		JPanel panel = new JPanel();
@@ -151,6 +165,19 @@ public class ActivityUI extends JFrame {
 		
 	}
 
+	Activity[] generateList(){
+		List<Activity> lAct = null; 	
+		try {
+			lAct = FacadeActivity.getAllActivities();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		final Activity[] liste = toActivityArray(lAct);		
+		return liste;		
+	}
+	
 	Activity[] toActivityArray(List<Activity> list){
 		  Activity[] ret = new Activity[list.size()];
 		  for(int i = 0;i < ret.length;i++)

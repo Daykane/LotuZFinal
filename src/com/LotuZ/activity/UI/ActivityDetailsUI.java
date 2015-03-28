@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -264,8 +265,7 @@ public class ActivityDetailsUI extends JFrame {
 						tfName.setEditable(false);
 						tfShortDescr.setEditable(false);
 						tfLongDescr.setEditable(false);
-						// TODO alert boite
-						System.out.println("Activity updaté");
+						JOptionPane.showMessageDialog(null,"update sucess","Update",JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -290,7 +290,7 @@ public class ActivityDetailsUI extends JFrame {
 				}
 				else{
 					//TODO
-					System.out.println("Retour vers la page précédente");
+					dispose();
 				}
 			}
 		});
