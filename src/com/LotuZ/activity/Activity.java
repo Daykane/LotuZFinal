@@ -163,6 +163,18 @@ public abstract class Activity {
 	public void setMajDate(String date) {
 		this.majDate = date;
 	}
+	
+	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return name ;
+	}
+
+
 
 	public abstract void save() throws SQLException, ClassNotFoundException;
 

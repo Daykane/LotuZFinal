@@ -1,4 +1,4 @@
-package com.LotuZ.activity;
+package com.LotuZ.activity.UI;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.activity.Activity;
+import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
@@ -45,7 +47,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 
 
-public class ActivityUI extends JFrame {
+public class ActivityDetailsUI extends JFrame {
 
 	/**
 	 * 
@@ -60,7 +62,7 @@ public class ActivityUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-
+/*
 	public static void main(String[] args) {
 		// Info Connection
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -77,7 +79,7 @@ public class ActivityUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ActivityUI frame = new ActivityUI();
+					ActivityDetailsUI frame = new ActivityDetailsUI();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -86,23 +88,23 @@ public class ActivityUI extends JFrame {
 			}
 		});
 	}
-
+*/
 
 	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ActivityUI() throws SQLException, UserNotFoundException {
+	public ActivityDetailsUI(int idAct) throws SQLException, UserNotFoundException {
 		
 		// Déclaration du monde
 		//FacadeUser.login("jack","jack");
-		final Activity activity = FacadeBL.readActivity(15);
+		final Activity activity = FacadeActivity.getActivity(idAct);
 		User user = UserLog.getUserLog();
 		//
 		
 		setTitle("Zen Lounge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");

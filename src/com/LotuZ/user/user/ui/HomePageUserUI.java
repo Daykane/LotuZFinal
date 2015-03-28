@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import com.LotuZ.activity.ActivityCreateUI;
+import com.LotuZ.activity.UI.ActivityCreateUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 

@@ -1,4 +1,4 @@
-package com.LotuZ.activity;
+package com.LotuZ.activity.UI;
 
 
 import java.awt.EventQueue;
@@ -19,6 +19,8 @@ import javax.swing.JButton;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.activity.Activity;
+import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
