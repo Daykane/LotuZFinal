@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,7 +24,10 @@ import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
+import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -64,11 +68,11 @@ public class ActivityCreateUI extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_top = new JPanel();
-		panel_1.add(panel_top, BorderLayout.NORTH);
+		JPanel panel_EnTete = new JPanel();
+		panel_1.add(panel_EnTete, BorderLayout.NORTH);
 		
 		JLabel lblCreateActivity = new JLabel("Create Activity");
-		panel_top.add(lblCreateActivity);
+		panel_EnTete.add(lblCreateActivity);
 		
 		JPanel panelMain = new JPanel();
 		panel_1.add(panelMain, BorderLayout.CENTER);
@@ -89,25 +93,49 @@ public class ActivityCreateUI extends JFrame {
 				RowSpec.decode("max(9dlu;default)"),
 				RowSpec.decode("max(73dlu;pref)"),}));
 		
-		JLabel lblNewLabel = new JLabel("Name : ");
-		panelMain.add(lblNewLabel, "1, 2, right, default");
+		JLabel lblName = new JLabel("Name : ");
+		panelMain.add(lblName, "1, 2, right, default");
 		
 		tfName = new JTextField();
 		panelMain.add(tfName, "3, 2, fill, default");
 		tfName.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Short description : ");
-		panelMain.add(lblNewLabel_1, "1, 4, right, default");
+		JLabel lblShortDescr = new JLabel("Short description : ");
+		panelMain.add(lblShortDescr, "1, 4, right, default");
 		
 		tfShortDesc = new JTextField();
 		panelMain.add(tfShortDesc, "3, 4, fill, default");
 		tfShortDesc.setColumns(10);
 		
-		Choice choice = new Choice();
-		panelMain.add(choice, "3, 7, left, default");
+		// Fill the choice box
+		ListUser list = null;
+		try {
+			list = FacadeUser.getLeaders();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//TODO replace activity par respo
 		
-		JLabel lblNewLabel_2 = new JLabel("Long description : ");
-		panelMain.add(lblNewLabel_2, "1, 9, right, default");
+		List<Activity> lAct = null; 	
+		try {
+			lAct = FacadeActivity.getAllActivities();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		final Activity[] liste = toActivityArray(lAct);
+				
+		
+		final Choice choiceRespo = new Choice();
+		for ( Activity name : liste ){
+			choiceRespo.add(name.getName());
+		}
+		panelMain.add(choiceRespo, "3, 7, left, default");
+		
+		JLabel lblLongDescr = new JLabel("Long description : ");
+		panelMain.add(lblLongDescr, "1, 9, right, default");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panelMain.add(scrollPane, "3, 9, fill, fill");
@@ -119,15 +147,18 @@ public class ActivityCreateUI extends JFrame {
 		JLabel lblRespo = new JLabel("Leader : ");
 		panelMain.add(lblRespo, "1, 7, right, default");
 		
-		JPanel panel_Bottom = new JPanel();
-		panel_1.add(panel_Bottom, BorderLayout.SOUTH);
-		panel_Bottom.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel panel_Button = new JPanel();
+		panel_1.add(panel_Button, BorderLayout.SOUTH);
+		panel_Button.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					FacadeBL.createActivity(tfName.getText(), tfShortDesc.getText(), tfLongDesc.getText());
+					//TODO
+					int idRespo =liste[choiceRespo.getSelectedIndex()].getIdActivity();
+					//TODO
+					FacadeBL.createActivity(tfName.getText(),idRespo, tfShortDesc.getText(), tfLongDesc.getText());
 
 					
 				} catch (com.mysql.jdbc.MysqlDataTruncation e){
@@ -143,7 +174,7 @@ public class ActivityCreateUI extends JFrame {
 			}
 		});
 		btnConfirm.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_Bottom.add(btnConfirm);
+		panel_Button.add(btnConfirm);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addMouseListener(new MouseAdapter() {
@@ -153,6 +184,12 @@ public class ActivityCreateUI extends JFrame {
 			}
 		});
 		btnCancel.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_Bottom.add(btnCancel);
+		panel_Button.add(btnCancel);
 	}
+	Activity[] toActivityArray(List<Activity> list){
+		  Activity[] ret = new Activity[list.size()];
+		  for(int i = 0;i < ret.length;i++)
+		    ret[i] = list.get(i);
+		  return ret;
+		}
 }
