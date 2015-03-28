@@ -168,7 +168,7 @@ public class FacadeBL {
 		return product;
 	}
 	
-	public static void UploadProduct(Product product, String productName, int category, int quantity, int price, int reduction) throws SQLException {
+	public static void UpdateProduct(Product product, String productName, int category, int quantity, int price, int reduction) throws SQLException {
 		productManager.updateProduct(product, productName, category, quantity, price, reduction);
 	}
 	

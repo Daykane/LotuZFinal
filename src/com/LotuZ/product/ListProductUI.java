@@ -102,7 +102,7 @@ public class ListProductUI extends JFrame {
 		// Création de la list 
 
 		ListCategoryProduct listCategoryProduct = FacadeBL.getCategories();
-		List<Product> listProduct = FacadeBL.getAllProducts(12);
+		List<Product> listProduct = FacadeBL.getAllProducts(1014);
 
 		List<Product> products = new ArrayList<Product>();
 		for(int i = 0; i < listProduct.size(); i++)

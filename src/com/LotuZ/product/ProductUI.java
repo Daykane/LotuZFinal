@@ -186,7 +186,7 @@ public class ProductUI extends JFrame{
 				else if(btnEdit.getText().equals("Validate")){
 					btnEdit.setText("Edit");
 					try {
-						FacadeBL.UploadProduct(product, tfNameProduct.getText(),product.getCategory(),product.getQuantity(),product.getPrice(),product.getReduction());
+						FacadeBL.UpdateProduct(product, tfNameProduct.getText(),Integer.parseInt(tfCategory.getText()),Integer.parseInt(tfQuantity.getText()),Integer.parseInt(tfPrice.getText()),Integer.parseInt(tfReduction.getText()) );
 						tfNameProduct.setEditable(false);
 						tfPrice.setEditable(false);
 						tfQuantity.setEditable(false);
@@ -210,9 +210,21 @@ public class ProductUI extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("retour vers page précédente");
-				
+				ListProductUI pageListProductUI = null;
+					try {
+						pageListProductUI = new ListProductUI();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (UserNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					pageListProductUI.setVisible(true);
+					pageListProductUI.setLocationRelativeTo(null);			
 			}
 		});
+		
 		btnCancel.setBounds(312, 361, 89, 23);
 		panel.add(btnCancel);
 		
