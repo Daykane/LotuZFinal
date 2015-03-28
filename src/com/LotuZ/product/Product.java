@@ -7,7 +7,6 @@ import com.LotuZ.product.category.bl.CategoryProduct;
 
 
 public abstract class Product {
-	
 	private int idProduct;
 	private String productName;
 	private int category;
@@ -164,7 +163,7 @@ public abstract void saveProduct() throws SQLException, ClassNotFoundException;
 
 public abstract Product updateProduct (Product product) throws SQLException;
 
-public abstract void deleteProduct () throws SQLException;
+public abstract void deleteProduct() throws SQLException;
 
 
 public abstract List<Product> getAllProducts(int idCategory) throws SQLException;

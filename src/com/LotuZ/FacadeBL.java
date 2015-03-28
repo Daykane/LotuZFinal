@@ -230,6 +230,10 @@ public class FacadeBL {
 	public static List<Product> getAllProducts(int idCategory) throws SQLException {
 		return productManager.getAllProducts(idCategory);
 	}
+	
+	public static void deleteProduct(int idProduct) throws SQLException {
+		productManager.deleteProduct(idProduct);
+	}
 
 
 

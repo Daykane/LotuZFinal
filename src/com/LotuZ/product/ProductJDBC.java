@@ -39,7 +39,6 @@ private Connection cn;
 		this.setReduction(reduction);
 		this.setCreationDate(creationDate);
 		this.setUpdateDate(updateDate);
-		//this.setIdProvider(idProvider);
 	}
 	
 	public ProductJDBC(String productName, int quantity, int price, int reduction) {
@@ -112,6 +111,8 @@ private Connection cn;
 			Statement st =null;
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
+			
+			
 			String sql = "UPDATE Product SET `name`='"+product.getProductName() +"',`category`='"+ product.getCategory() +"',`quantity`='"+product.getQuantity()+"',`prix`='"+product.getPrice()+"',`reduction`='"+product.getReduction()+"' Where `idProduct`='"+product.getId() +"'";
 			System.out.println(sql);
 			// Etape 4 : exécution requête
@@ -127,12 +128,17 @@ private Connection cn;
 
 
 	public void deleteProduct() throws SQLException {
-		try {		
+		try {	
+			System.out.println(this);
+			System.out.println(this.getId());
 			Statement st =null;
+			System.out.println("------------------------------");
+			System.out.println(this.cn);
 			// Etape 1 : Création d'un statement
 			st = this.cn.createStatement();
-			String sql = "DELETE FROM product WHERE `idProduct`='"+this.getId() +"'";
+			String sql = "DELETE FROM product WHERE `idProduct`='"+this.getId()+"'";
 			// Etape 4 : exécution requête
+			System.out.println(sql);
 			st.executeUpdate(sql);	
 			
 		} catch (SQLException e) {
@@ -187,7 +193,6 @@ private Connection cn;
 			}
 		return products;
 	}
-	
 
 
 }

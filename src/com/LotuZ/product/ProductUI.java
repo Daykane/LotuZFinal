@@ -202,7 +202,7 @@ public class ProductUI extends JFrame{
 		}
 		});
 		
-		btnEdit.setBounds(155, 361, 89, 23);
+		btnEdit.setBounds(200, 361, 89, 23);
 		panel.add(btnEdit);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -213,7 +213,7 @@ public class ProductUI extends JFrame{
 				
 			}
 		});
-		btnCancel.setBounds(291, 361, 89, 23);
+		btnCancel.setBounds(312, 361, 89, 23);
 		panel.add(btnCancel);
 		
 		JLabel label = new JLabel("");
@@ -235,6 +235,22 @@ public class ProductUI extends JFrame{
 		JLabel lblNewLabel_5 = new JLabel(product.getUpdateDate().toString());
 		lblNewLabel_5.setBounds(460, 96, 96, 14);
 		panel.add(lblNewLabel_5);
+		
+		JButton btnNewButton = new JButton("Delete");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					System.out.println(product.getId());
+					FacadeBL.deleteProduct(product.getId());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(94, 361, 89, 23);
+		panel.add(btnNewButton);
 
 	}
 }

@@ -6,12 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.LotuZ.FacadeBL;
 import com.LotuZ.PersistKit;
 
 
 
 public class ProductManager {
-	
+
 	private PersistKit pkit;
 
 	/**
@@ -54,18 +55,7 @@ public class ProductManager {
 	public Product readProduct(int idProduct) throws SQLException {
 		Product product = pkit.createProduct();
 		product = product.loadProduct(idProduct);
-		//TODO
-		if (product == null){
-		System.out.println("Proctu manager product null");
-		}
 		return product;
-	}
-	
-	public Product readProduct(String productName) throws SQLException {
-		Product product = pkit.createProduct();
-		Product productread = product.loadProduct(productName);
-		return productread;
-		
 	}
 	
 	public Product updateProduct(Product product1, String productName, int category, int quantity, int price, int reduction) throws SQLException {
@@ -84,9 +74,14 @@ public class ProductManager {
 		
 	}
 	
-	public void deleteProduct(Product product) throws SQLException {
+	public void deleteProduct(int idProduct) throws SQLException {
+		Product product = pkit.createProduct();
+		System.out.println("LE PRODUIT EST:");
+		System.out.println(product);
+		product = FacadeBL.loadProduct(idProduct);
 		product.deleteProduct();
 	}
+
 
 	public List<Product> getAllProducts(int idCategory) throws SQLException {
 		List<Product> listProduct;
