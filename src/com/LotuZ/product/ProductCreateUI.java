@@ -29,7 +29,7 @@ import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
-import com.LotuZ.activity.ActivityCreateUI;
+import com.LotuZ.activity.UI.ActivityCreateUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
