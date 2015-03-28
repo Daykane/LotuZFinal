@@ -1,83 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.LotuZ.activity.ActivityManager" project="LotuZ" 
-    file="/LotuZ/src/com/LotuZ/activity/ActivityManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="519" y="-211"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="com.LotuZ.activity.Activity" project="LotuZ" 
+  <class id="1" language="java" name="com.LotuZ.activity.Activity" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/activity/Activity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="282" width="172" x="1035" y="-351"/>    
+    <position height="690" width="472" x="506" y="-335"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.LotuZ.activity.ActivityJdbc" project="LotuZ" 
+  <class id="2" language="java" name="com.LotuZ.activity.ActivityJdbc" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/activity/ActivityJdbc.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="259" width="290" x="696" y="-343"/>    
+    <position height="320" width="420" x="37" y="-187"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.LotuZ.activity.FacadeActivity" project="LotuZ" 
-    file="/LotuZ/src/com/LotuZ/activity/FacadeActivity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="159" y="-211"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="com.LotuZ.PersistKit" project="LotuZ" file="/LotuZ/src/com/LotuZ/PersistKit.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="524" y="-596"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="com.LotuZ.JdbcKit" project="LotuZ" file="/LotuZ/src/com/LotuZ/JdbcKit.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="233" width="245" x="859" y="-668"/>    
-    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="7">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="8" name="activityManager"/>      
-      <multiplicity id="9" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="10">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="11">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="12" name="pkit"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="14">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="3">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
