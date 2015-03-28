@@ -129,17 +129,6 @@ public class ActivityUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				ActivityCreateUI frame = new ActivityCreateUI();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-			}
-		});
-		panelButton.add(btnAdd, "3, 10, fill, center");
-		
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.addMouseListener(new MouseAdapter() {
 			@Override
@@ -158,7 +147,18 @@ public class ActivityUI extends JFrame {
 				}
 			}
 		});
-		panelButton.add(btnRemove, "3, 12, left, center");
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ActivityCreateUI frame = new ActivityCreateUI();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
+		panelButton.add(btnAdd, "1, 10, fill, center");
+		panelButton.add(btnRemove, "1, 12, left, center");
 		
 		JPanel panel = new JPanel();
 		mainPanel.add(panel, BorderLayout.SOUTH);
