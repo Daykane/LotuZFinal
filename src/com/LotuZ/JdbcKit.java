@@ -56,8 +56,7 @@ public class JdbcKit extends PersistKit{
 	
 	//List of ConcretObjectJdbc
 	private UserJDBC userJdbc;
-	private ContributorJDBC contribJdbc;
-	private ActivityJdbc activityJdbc;
+	/*
 	// *************************************Loic*************************************
 	//Category
 	private ListCategoryJDBC listCategoryJDBC;
@@ -67,7 +66,7 @@ public class JdbcKit extends PersistKit{
 	private NotificationJDBC notificationJDBC;
 	private BoxLetterJDBC boxLetterJDBC;
 	// *************************************Loic*************************************
-
+	*/
 	
 	
 	public JdbcKit(String url, String login, String passwd){
@@ -157,23 +156,6 @@ public class JdbcKit extends PersistKit{
 
 
 
-
-	/**
-	 * @return the activityJdbc
-	 */
-	public ActivityJdbc getActivityJdbc() {
-		return activityJdbc;
-	}
-
-
-
-
-	/**
-	 * @param activityJdbc the activityJdbc to set
-	 */
-	public void setActivityJdbc(ActivityJdbc activityJdbc) {
-		this.activityJdbc = activityJdbc;
-	}
 
 	// *************************************Loïc*************************************
 	public ListCategoryProduct createListCategory()
