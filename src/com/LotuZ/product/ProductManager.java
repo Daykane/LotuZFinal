@@ -78,7 +78,8 @@ public class ProductManager {
 		Product product = pkit.createProduct();
 		System.out.println("LE PRODUIT EST:");
 		System.out.println(product);
-		product = FacadeBL.loadProduct(idProduct);
+		product.setId(idProduct);
+		//product = FacadeBL.loadProduct(idProduct);
 		product.deleteProduct();
 	}
 
