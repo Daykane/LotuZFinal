@@ -11,7 +11,9 @@ import com.LotuZ.login.LoginManager;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.product.ProductManager;
 import com.LotuZ.product.category.bl.CategoryManager;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
+import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.contributor.bl.ContributorManager;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.member.bl.MemberManager;
@@ -48,6 +50,18 @@ public class FacadeUser {
 	
 	public static Member getMember(String mail) throws SQLException, UserNotFoundException{
 		return memberManager.getMember(mail);
+	}
+	
+	public static Contributor getContributor(String mail) throws SQLException, UserNotFoundException{
+		return contributorManager.getContributor(mail);
+	}
+	
+	public static Contributor getContributorEvents(int mail) throws SQLException, UserNotFoundException{
+		return contributorManager.getContributorEvents(mail);
+	}
+	
+	public static ActivityLeader getActivityLeader(String mail) throws SQLException, UserNotFoundException{
+		return activityLeaderManager.getActivityLeader(mail);
 	}
 	
 	public static void updateMember(Member member) throws SQLException, UserNotFoundException, ClassNotFoundException{

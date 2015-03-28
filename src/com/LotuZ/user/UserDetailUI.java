@@ -60,7 +60,9 @@ public class UserDetailUI extends JFrame {
 
 		final User user = FacadeUser.getUser(mail);
 		final Member member = FacadeUser.getMember(mail);
-		System.out.println(" le membre : "+member.getCotisation());
+		final Contributor contributor = FacadeUser.getContributor(mail);
+		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
+
 	
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
@@ -129,61 +131,53 @@ public class UserDetailUI extends JFrame {
 		AdressMail.setBounds(326, 107, 160, 20);
 		panel.add(AdressMail);
 		AdressMail.setColumns(10);
-		AdressMail.setEditable(false);
 		
 		LastName = new JTextField();
 		LastName.setBounds(326, 27, 160, 20);
 		panel.add(LastName);
 		LastName.setColumns(10);
-		LastName.setEditable(false);
 
 		FirstName = new JTextField();
 		FirstName.setBounds(326, 70, 160, 20);
 		panel.add(FirstName);
 		FirstName.setColumns(10);		
-		FirstName.setEditable(false);
 
 		StreetName = new JTextField();
 		StreetName.setBounds(326, 147, 160, 20);
 		panel.add(StreetName);
 		StreetName.setColumns(10);
-		StreetName.setEditable(false);
 
 		PhoneNumber = new JTextField();
 		PhoneNumber.setBounds(326, 187, 160, 20);
 		panel.add(PhoneNumber);
 		PhoneNumber.setColumns(10);
-		PhoneNumber.setEditable(false);
 
 		HouseNumber = new JTextField();
 		HouseNumber.setBounds(326, 227, 160, 20);
 		panel.add(HouseNumber);
 		HouseNumber.setColumns(10);
-		HouseNumber.setEditable(false);
 
 		City = new JTextField();
 		City.setBounds(326, 267, 160, 20);
 		panel.add(City);
 		City.setColumns(10);
-		City.setEditable(false);
 
 		PostCode = new JTextField();
 		PostCode.setBounds(326, 307, 160, 20);
 		panel.add(PostCode);
 		PostCode.setColumns(10);
-		PostCode.setEditable(false);
 
 		Cotisation = new JTextField();
 		Cotisation.setBounds(326, 349, 160, 20);
 		panel.add(Cotisation);
 		Cotisation.setColumns(10);
-		Cotisation.setEditable(false);
 
 		DateCotisation = new JTextField();
 		DateCotisation.setBounds(326, 392, 160, 20);
 		panel.add(DateCotisation);
 		DateCotisation.setColumns(10);
-		DateCotisation.setEditable(false);
+		
+		editableTrue(false);
 
 		FirstName.setText(user.getFirstName());
 		LastName.setText(user.getLastName());
@@ -205,15 +199,7 @@ public class UserDetailUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if (btnEdit.getText().equals("Edit")){
 					btnEdit.setText("Validate");
-					LastName.setEditable(true);
-					FirstName.setEditable(true);
-					StreetName.setEditable(true);
-					PhoneNumber.setEditable(true);
-					HouseNumber.setEditable(true);
-					City.setEditable(true);
-					PostCode.setEditable(true);
-					Cotisation.setEditable(true);
-					DateCotisation.setEditable(true);
+					editableTrue(true);
 				}
 				else if(btnEdit.getText().equals("Validate")){
 					btnEdit.setText("Edit");
@@ -225,9 +211,13 @@ public class UserDetailUI extends JFrame {
 					user.setNumHouse(HouseNumber.getText());
 					user.setCity(City.getText());
 					user.setPostCode(PostCode.getText());
-					member.setCotisation(Double.parseDouble(Cotisation.getText()));
-					member.setDateCotisation(DateCotisation.getText());
+					editableTrue(false);
 
+					if (member!=null)
+					{
+						member.setCotisation(Double.parseDouble(Cotisation.getText()));
+						member.setDateCotisation(DateCotisation.getText());
+					}
 					try {
 						FacadeUser.updateUser(user);
 						FacadeUser.updateMember(member);
@@ -299,5 +289,32 @@ public class UserDetailUI extends JFrame {
 		panel.add(btnCancel);
 
 
+	}
+	
+	private void editableTrue(Boolean show) {
+		if (show)
+		{
+			LastName.setEditable(true);
+			FirstName.setEditable(true);
+			StreetName.setEditable(true);
+			PhoneNumber.setEditable(true);
+			HouseNumber.setEditable(true);
+			City.setEditable(true);
+			PostCode.setEditable(true);
+			Cotisation.setEditable(true);
+			DateCotisation.setEditable(true);
+		}
+		else
+		{
+			LastName.setEditable(false);
+			FirstName.setEditable(false);
+			StreetName.setEditable(false);
+			PhoneNumber.setEditable(false);
+			HouseNumber.setEditable(false);
+			City.setEditable(false);
+			PostCode.setEditable(false);
+			Cotisation.setEditable(false);
+			DateCotisation.setEditable(false);	
+		}
 	}
 }

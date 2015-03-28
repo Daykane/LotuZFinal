@@ -64,7 +64,7 @@ public Component createBandeau(User user,String name){
 			UserDetailUI userDetail;
 			try {
 				User user = new UserJDBC();
-				userDetail = new UserDetailUI(user);
+				userDetail = new UserDetailUI(user.getMail());
 				userDetail.setVisible(true);
 				userDetail.setLocationRelativeTo(null);
 			} catch (SQLException e) {
