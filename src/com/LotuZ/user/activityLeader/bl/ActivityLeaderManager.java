@@ -26,7 +26,7 @@ public class ActivityLeaderManager {
 	
 	/**
 	 * @param idActivityLeader
-	 * @return
+	 * @return activityLeader
 	 * @throws SQLException
 	 */
 	public ActivityLeader getActivityLeader(String idActivityLeader) throws SQLException {

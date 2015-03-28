@@ -3,8 +3,6 @@ package com.LotuZ.user.admin.bl;
 
 import java.sql.SQLException;
 
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.member.bl.Member;
 
 
 /**

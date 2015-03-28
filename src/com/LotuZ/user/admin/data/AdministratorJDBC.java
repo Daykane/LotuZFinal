@@ -4,19 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
-
-
-
-
-
-
-
-
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.member.bl.Member;
-import com.LotuZ.user.member.data.MemberJDBC;
+
 
 
 /**
@@ -74,7 +63,6 @@ public class AdministratorJDBC extends Administrator{
 			
 			if(!result.first())
 			{
-				System.out.println("Retour null Administrateur");
 				return administrator;
 			} else 
 			{

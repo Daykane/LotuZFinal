@@ -1,10 +1,7 @@
 package com.LotuZ.user.activityLeader.bl;
 
 import java.sql.SQLException;
-import java.util.List;
 
-import com.LotuZ.activity.Activity;
-import com.LotuZ.user.member.bl.Member;
 
 
 /**
@@ -13,17 +10,23 @@ import com.LotuZ.user.member.bl.Member;
  */
 
 
+
 public abstract class ActivityLeader {
 	
+
 
 	public ActivityLeader() {
 		super();
 	}
 
+
 	private String nameActivity;
 	private String idLeader;
 
 
+	/**
+	 * @param nameActivity
+	 */
 	public ActivityLeader(String nameActivity) {
 		super();
 		this.setNameActivity(nameActivity);
@@ -31,11 +34,17 @@ public abstract class ActivityLeader {
 
 
 	
+	/**
+	 * @return nameActivity
+	 */
 	public String getNameActivity() {
 		return nameActivity;
 	}
 
 
+	/**
+	 * @param nameActivity to set
+	 */
 	public void setNameActivity(String nameActivity) {
 		this.nameActivity = nameActivity;
 	}
@@ -52,18 +61,29 @@ public abstract class ActivityLeader {
 
 
 
+	/**
+	 * @return idLeader
+	 */
 	public String getIdLeader() {
 		return idLeader;
 	}
 
 
 
+	/**
+	 * @param idLeader to set
+	 */
 	public void setIdLeader(String idLeader) {
 		this.idLeader = idLeader;
 	}
 
 
 
+	/**
+	 * delete an Activity Leader
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public abstract void delete() throws ClassNotFoundException, SQLException ;
 	
 

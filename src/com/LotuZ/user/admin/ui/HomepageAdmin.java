@@ -4,45 +4,31 @@ import interfaceDeBase.Bandeau;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.FlowLayout;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.event.FacadeEvent;
-import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.ListUserUI;
-import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.contributor.bl.Contributor;
-import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 
-import java.awt.Font;
 import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
-import javax.swing.BoxLayout;
-
-import java.awt.GridLayout;
-
-import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 
 
@@ -53,7 +39,6 @@ public class HomepageAdmin extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JFrame ActivityLeaderUI;
 
 	/**
 	 * Launch the application.
@@ -189,7 +174,25 @@ public class HomepageAdmin extends JFrame {
 			}
 		});
 		
-		
+		// Test des droits de l'utilisateur connecté 
+		if (admin != null)
+		{
+			btnGestionDesResponsables.setVisible(true);
+			btnGestionDesMembres.setVisible(true);
+			btnGestionDesIntervenants.setVisible(true);
+		}
+		if (admin == null && activityLeader != null)
+		{
+			btnGestionDesResponsables.setVisible(false);
+			btnGestionDesMembres.setVisible(false);
+			btnGestionDesIntervenants.setVisible(true);
+		}
+		else 
+		{
+			btnGestionDesResponsables.setVisible(false);
+			btnGestionDesMembres.setVisible(false);
+			btnGestionDesIntervenants.setVisible(false);
+		}
 	}
 
 }

@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.LotuZ.activity.Activity;
+
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 
@@ -20,6 +18,7 @@ import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 public class ActivityLeaderJDBC extends ActivityLeader{
 
 	
+
 	public ActivityLeaderJDBC() {
 		super();
 	}
@@ -38,18 +37,14 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	
 
 	/**
-	 * Lecture d'un responsable d'activité en base à partir de son identifiant 
+	 * Load an activity leader from database  
 	 */
 	@Override
 	public ActivityLeader load(String mailActivityLeader) throws SQLException {
 
-			//List<String> activities = new ArrayList<String>();
-			String nameActivity;
 			ActivityLeader activityLeader = null;
 			Statement st =null;
 			
-			System.out.println(" Le fameux mail : "+mailActivityLeader);
-
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
@@ -61,19 +56,12 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 			
 			if(!result.first())
 			{
-				System.out.println(" Pas de résultats : "+activityLeader);
-
 				return activityLeader;
-
 			}
 			else 
 			{
 				activityLeader = new ActivityLeaderJDBC();
 				activityLeader.setIdLeader(result.getString("idLeader"));
-				System.out.println(" le respo et surtout son id : "+activityLeader.getIdLeader());
-
-				System.out.println(" le respo : "+activityLeader);
-
 				return activityLeader;
 			}
 	}
@@ -81,19 +69,21 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 
 
 	/**
-	 * Suppression d'un responsable d'activité en base à partir de son identifiant 
+	 * delete an activity leader  
 	 */
 
 	public void delete() throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
-			// Etape 3 : Création d'un statement
+			// Création d'un statement
 			st = this.cn.createStatement();
+			
+			// Suppression de la référence dans membre 
 			String sql = "UPDATE LotuZ.Member SET idLeader = null Where idLeader='"+ this.getIdLeader() +"'";
 
 			String sql2 = "Delete From LotuZ.Leader Where idLeader='"+ this.getIdLeader() +"'";
 
-			// Etape 4 : exécution requête
+			// Exécution requête
 			st.executeUpdate(sql);
 			st.executeUpdate(sql2);
 
@@ -104,16 +94,12 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 	}
 
 
-	public Connection getCn() {
-		return cn;
-	}
-
-
-	public void setCn(Connection cn) {
-		this.cn = cn;
-	}
-
-
+	/**
+	 * save an activity leader in database
+	 * @param mailLeader
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public void save(String mailLeader) throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
@@ -125,6 +111,7 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
+			
 			int result = st.executeUpdate(sql2);
 			
 			String sql3 = "INSERT INTO `LotuZ`.`Member` (`idLeader` ) VALUES ('"+ result +"')'";
@@ -135,9 +122,6 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 			throw e;
 		}
 	}
-
-
-
 
 }
 
