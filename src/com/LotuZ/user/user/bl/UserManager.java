@@ -29,7 +29,7 @@ public class UserManager {
 	 */
 	public User getUser(String idUser) throws SQLException {
 		User user = pkit.createUser();
-		user.load(idUser);
+		user = user.load(idUser);
 		return user;
 	}
 	

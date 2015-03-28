@@ -99,6 +99,7 @@ public class EventManager {
 		List<Event> eventsContributor;
 		Event event = pkit.createEvent();
 		eventsContributor = event.loadEventsContributor(idContributor);
+		System.out.println(" dans le manager :"+eventsContributor);
 		return eventsContributor;
 	}
 

@@ -56,8 +56,8 @@ public class FacadeUser {
 		return contributorManager.getContributor(mail);
 	}
 	
-	public static Contributor getContributorEvents(int mail) throws SQLException, UserNotFoundException{
-		return contributorManager.getContributorEvents(mail);
+	public static Contributor getContributorEvents(int idContributor) throws SQLException, UserNotFoundException{
+		return contributorManager.getContributorEvents(idContributor);
 	}
 	
 	public static ActivityLeader getActivityLeader(String mail) throws SQLException, UserNotFoundException{

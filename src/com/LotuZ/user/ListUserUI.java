@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -163,15 +164,15 @@ public class ListUserUI extends JFrame {
 
 			public void mouseClicked(MouseEvent arg0){
 			      int selected[] = list.getSelectedIndices();
-			      System.out.println("Selected Elements:  ");
 
 			      for (int i = 0; i < selected.length; i++) {
 			        User element = (User) list.getModel()
 			            .getElementAt(selected[i]);
-			        System.out.println("  " + element.getLastName());
 			        this.user = (User)element;
 			      }
-					UserDetailUI pageAcceuil;
+			      if (user != null)
+			      {
+					UserDetailUI pageAcceuil = null;
 					
 					try {
 						pageAcceuil = new UserDetailUI(this.user.getMail());
@@ -185,7 +186,12 @@ public class ListUserUI extends JFrame {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+			      }
+			      else 
+			      {
+						JOptionPane.showMessageDialog(null,"Please, select a user","Please, select a user",JOptionPane.ERROR_MESSAGE);
 
+			      }
 			    }
 		});
 		

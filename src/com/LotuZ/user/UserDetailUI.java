@@ -5,6 +5,8 @@ import interfaceDeBase.Bandeau;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.event.Event;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -49,7 +52,10 @@ public class UserDetailUI extends JFrame {
 	private JTextField Cotisation;
 	private JTextField DateCotisation;
 	private JTextField NameActivity;
-
+	private JLabel lblLastName;
+	private JLabel lblDateCotisation;
+	private JLabel lblCotisation;
+	private JTextField textField;
 	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
@@ -62,8 +68,11 @@ public class UserDetailUI extends JFrame {
 		final Member member = FacadeUser.getMember(mail);
 		final Contributor contributor = FacadeUser.getContributor(mail);
 		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
+		
+		System.out.println("Member :"+member+" \n contributor : "+contributor+" \n activityleader : "+leader);
+		
 
-	
+		
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
 		Bandeau bandeau = new Bandeau();
@@ -83,47 +92,51 @@ public class UserDetailUI extends JFrame {
 		
 		// Création des labels 
 		
-		JLabel lblNewLabel = new JLabel("Last Name");
-		lblNewLabel.setBounds(233, 30, 73, 14);
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		panel.add(lblNewLabel);
+		JLabel lblLastName = new JLabel("Last Name");
+		lblLastName.setBounds(233, 30, 73, 14);
+		lblLastName.setVerticalAlignment(SwingConstants.TOP);
+		lblLastName.setHorizontalAlignment(SwingConstants.LEFT);
+		panel.add(lblLastName);
 		
 		JLabel lblDateCotisation = new JLabel("Date Cotisation");
 		lblDateCotisation.setBounds(233, 395, 83, 14);
 		panel.add(lblDateCotisation);
 		
-		JLabel lblNewLabel_1 = new JLabel("First Name");
-		lblNewLabel_1.setBounds(233, 70, 83, 20);
-		panel.add(lblNewLabel_1);
+		JLabel lblFirstName = new JLabel("First Name");
+		lblFirstName.setBounds(233, 70, 83, 20);
+		panel.add(lblFirstName);
 		
-		JLabel lblNewLabel_2 = new JLabel("Adress Mail");
-		lblNewLabel_2.setBounds(233, 110, 73, 14);
-		panel.add(lblNewLabel_2);
+		JLabel lblAdressMail = new JLabel("Adress Mail");
+		lblAdressMail.setBounds(233, 110, 73, 14);
+		panel.add(lblAdressMail);
 		
-		JLabel lblNewLabel_3 = new JLabel("Phone Number");
-		lblNewLabel_3.setBounds(233, 190, 73, 14);
-		panel.add(lblNewLabel_3);
+		JLabel lblPhoneNumber = new JLabel("Phone Number");
+		lblPhoneNumber.setBounds(233, 190, 73, 14);
+		panel.add(lblPhoneNumber);
 		
-		JLabel lblNewLabel_4 = new JLabel("Street Name");
-		lblNewLabel_4.setBounds(233, 150, 73, 14);
-		panel.add(lblNewLabel_4);
+		JLabel lblStreetName = new JLabel("Street Name");
+		lblStreetName.setBounds(233, 150, 73, 14);
+		panel.add(lblStreetName);
 		
-		JLabel lblNewLabel_5 = new JLabel("House Number");
-		lblNewLabel_5.setBounds(233, 230, 73, 14);
-		panel.add(lblNewLabel_5);
+		JLabel lblHouseNumber = new JLabel("House Number");
+		lblHouseNumber.setBounds(233, 230, 73, 14);
+		panel.add(lblHouseNumber);
 		
-		JLabel lblNewLabel_6 = new JLabel("City");
-		lblNewLabel_6.setBounds(233, 270, 73, 14);
-		panel.add(lblNewLabel_6);
+		JLabel lblCity = new JLabel("City");
+		lblCity.setBounds(233, 270, 73, 14);
+		panel.add(lblCity);
 		
-		JLabel lblNewLabel_7 = new JLabel("Post Code");
-		lblNewLabel_7.setBounds(233, 310, 73, 14);
-		panel.add(lblNewLabel_7);
+		JLabel lblPostCode = new JLabel("Post Code");
+		lblPostCode.setBounds(233, 310, 73, 14);
+		panel.add(lblPostCode);
 		
 		JLabel lblCotisation = new JLabel("Cotisation");
 		lblCotisation.setBounds(233, 352, 73, 14);
 		panel.add(lblCotisation);
+		
+		JLabel lblActivity = new JLabel("Activity");
+		lblActivity.setBounds(233, 441, 46, 14);
+		panel.add(lblActivity);
 		
 		// Création des textField
 		
@@ -177,7 +190,24 @@ public class UserDetailUI extends JFrame {
 		panel.add(DateCotisation);
 		DateCotisation.setColumns(10);
 		
-		editableTrue(false);
+		NameActivity = new JTextField();
+		NameActivity.setBounds(326, 438, 160, 20);
+		panel.add(NameActivity);
+		NameActivity.setColumns(10);
+
+		if (member == null)
+		{
+			DateCotisation.setVisible(false);
+			Cotisation.setVisible(false);
+			lblCotisation.setVisible(false);
+			lblDateCotisation.setVisible(false);
+		}
+		if (leader == null)
+		{
+			NameActivity.setVisible(false);
+			lblActivity.setVisible(false);
+		}
+		editableTextField(false);
 
 		FirstName.setText(user.getFirstName());
 		LastName.setText(user.getLastName());
@@ -199,7 +229,7 @@ public class UserDetailUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if (btnEdit.getText().equals("Edit")){
 					btnEdit.setText("Validate");
-					editableTrue(true);
+					editableTextField(true);
 				}
 				else if(btnEdit.getText().equals("Validate")){
 					btnEdit.setText("Edit");
@@ -211,7 +241,7 @@ public class UserDetailUI extends JFrame {
 					user.setNumHouse(HouseNumber.getText());
 					user.setCity(City.getText());
 					user.setPostCode(PostCode.getText());
-					editableTrue(false);
+					editableTextField(false);
 
 					if (member!=null)
 					{
@@ -234,7 +264,7 @@ public class UserDetailUI extends JFrame {
 					}
 				}
 		}});
-		btnEdit.setBounds(338, 434, 89, 23);
+		btnEdit.setBounds(537, 150, 89, 23);
 		panel.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Delete");
@@ -261,7 +291,7 @@ public class UserDetailUI extends JFrame {
 					}
 			}
 		});
-		btnDelete.setBounds(162, 434, 89, 23);
+		btnDelete.setBounds(537, 226, 89, 23);
 		panel.add(btnDelete);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -285,36 +315,43 @@ public class UserDetailUI extends JFrame {
 				
 			}
 		});
-		btnCancel.setBounds(509, 434, 89, 23);
+		btnCancel.setBounds(537, 301, 89, 23);
 		panel.add(btnCancel);
+		
+
 
 
 	}
 	
-	private void editableTrue(Boolean show) {
+	private void editableTextField(Boolean show) {
 		if (show)
 		{
 			LastName.setEditable(true);
 			FirstName.setEditable(true);
 			StreetName.setEditable(true);
+			AdressMail.setEditable(false);
 			PhoneNumber.setEditable(true);
 			HouseNumber.setEditable(true);
 			City.setEditable(true);
 			PostCode.setEditable(true);
 			Cotisation.setEditable(true);
 			DateCotisation.setEditable(true);
+			NameActivity.setEditable(false);
 		}
 		else
 		{
 			LastName.setEditable(false);
 			FirstName.setEditable(false);
 			StreetName.setEditable(false);
+			AdressMail.setEditable(false);
 			PhoneNumber.setEditable(false);
 			HouseNumber.setEditable(false);
 			City.setEditable(false);
 			PostCode.setEditable(false);
 			Cotisation.setEditable(false);
 			DateCotisation.setEditable(false);	
+			NameActivity.setEditable(false);
+
 		}
 	}
 }

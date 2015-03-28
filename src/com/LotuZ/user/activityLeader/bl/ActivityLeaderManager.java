@@ -29,11 +29,7 @@ public class ActivityLeaderManager {
 	 */
 	public ActivityLeader getActivityLeader(String idActivityLeader) throws SQLException {
 		ActivityLeader activityLeader = pkit.createActivityLeader();
-		activityLeader.load(idActivityLeader);
-		if (activityLeader == null)
-		{
-			System.out.println("FAUX");
-		}
+		activityLeader = activityLeader.load(idActivityLeader);
 		return activityLeader;
 	}
 	

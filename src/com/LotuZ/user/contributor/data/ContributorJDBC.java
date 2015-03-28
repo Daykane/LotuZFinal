@@ -88,7 +88,7 @@ public class ContributorJDBC extends Contributor{
 		{
 			// Récupération des données 
 			Contributor contributor2 = new ContributorJDBC();
-			contributor2.setIdContributor(result.getString("idContributor"));
+			contributor2.setIdContributor(result.getInt("idContributor"));
 
 			return contributor2;
 		}

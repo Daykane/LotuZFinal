@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
@@ -71,6 +72,7 @@ public class HomepageAdmin extends JFrame {
 		// Init the FacadeBL with the kit
 		FacadeBL.init(jdbcKit);
 		FacadeUser.init(jdbcKit);
+		FacadeEvent.init(jdbcKit);
 		//FacadeUser.init();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -14,6 +14,7 @@ import com.LotuZ.JdbcKit;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JTable;
@@ -26,8 +27,11 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JScrollPane;
+
 import java.awt.Dimension;
 import java.awt.Component;
 
@@ -75,6 +79,12 @@ public class PlanningUI extends JFrame {
 	 */
 	public PlanningUI() throws SQLException, UserNotFoundException {
 		FacadeUser.login("jack","jack");
+		
+		final Contributor contributor = FacadeUser.getContributorEvents((FacadeUser.getContributor(mail)).getIdContributor());
+		List<Event> listEventContributor = new ArrayList<Event>();
+		listEventContributor = contributor.getEvents();
+		
+		
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
 		List<Event> events =  FacadeEvent.getEventsActivity(15);

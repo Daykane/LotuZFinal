@@ -32,15 +32,17 @@ public class ContributorManager {
 	 */
 	public Contributor getContributor(String idContributor) throws SQLException {
 		Contributor contributor = pkit.createContributor();
-		contributor.load(idContributor);
+		contributor = contributor.load(idContributor);
 		return contributor;
 	}
 	
 	public Contributor getContributorEvents(int idContributor) throws SQLException {
 		List<Event> listEvents = new ArrayList<Event>();
-		FacadeEvent.getEventsContributor(idContributor);
+		listEvents = FacadeEvent.getEventsContributor(idContributor);
 		Contributor contributor = pkit.createContributor();
 		contributor.setEvents(listEvents);
+		contributor.setIdContributor(idContributor);
+		System.out.println("Manager contrib : "+(contributor.getEvents()).size());
 		return contributor;
 	}
 	

@@ -63,6 +63,7 @@ public class UserJDBC extends User{
 
 	public User load(String idmail) throws SQLException {
 		try {
+
 			Statement st =null;
 			// Création d'un statement
 			st = this.cn.createStatement();
