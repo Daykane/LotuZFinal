@@ -3,7 +3,6 @@ package com.LotuZ.activity.UI;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,12 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
-import com.LotuZ.activity.Activity;
-import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.jgoodies.forms.factories.FormFactory;
@@ -35,7 +31,6 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import java.awt.Choice;
 
 public class ActivityCreateUI extends JFrame {
 
@@ -109,30 +104,20 @@ public class ActivityCreateUI extends JFrame {
 		tfShortDesc.setColumns(10);
 		
 		// Fill the choice box
-		ListUser list = null;
+		
+		final List<User> listUser;
+		ListUser u = null;
 		try {
-			list = FacadeUser.getLeaders();
+			u = FacadeUser.getLeaders();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//TODO replace activity par respo
+		listUser = u.getListUser();
+		final User[] arrayLeader;
+		arrayLeader = toUserArray(listUser);
 		
-		List<Activity> lAct = null; 	
-		try {
-			lAct = FacadeActivity.getAllActivities();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		final Activity[] liste = toActivityArray(lAct);
-				
-		
-		final Choice choiceRespo = new Choice();
-		for ( Activity name : liste ){
-			choiceRespo.add(name.getName());
-		}
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		final JComboBox choiceRespo = new JComboBox(arrayLeader);
 		panelMain.add(choiceRespo, "3, 7, left, default");
 		
 		JLabel lblLongDescr = new JLabel("Long description : ");
@@ -156,10 +141,7 @@ public class ActivityCreateUI extends JFrame {
 		btnConfirm.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					//TODO
-					//String idRespo =liste[choiceRespo.getSelectedIndex()].getIdRespo();
-					String idRespo = "ludo";
-					//TODO
+					String idRespo = arrayLeader[choiceRespo.getSelectedIndex()].getMail();
 					
 					FacadeBL.createActivity(tfName.getText(),idRespo, tfShortDesc.getText(), tfLongDesc.getText());
 					JOptionPane.showMessageDialog(null,"creation sucess","Creation",JOptionPane.INFORMATION_MESSAGE);
@@ -189,10 +171,11 @@ public class ActivityCreateUI extends JFrame {
 		btnCancel.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_Button.add(btnCancel);
 	}
-	Activity[] toActivityArray(List<Activity> list){
-		  Activity[] ret = new Activity[list.size()];
+	
+	User[] toUserArray(List<User> listUser){
+		User[] ret = new User[listUser.size()];
 		  for(int i = 0;i < ret.length;i++)
-		    ret[i] = list.get(i);
+		    ret[i] = listUser.get(i);
 		  return ret;
-		}
+	}
 }

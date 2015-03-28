@@ -24,6 +24,8 @@ import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.User;
 
 import java.awt.Font;
@@ -66,36 +68,6 @@ public class ActivityDetailsUI extends JFrame {
 	private JTextField tfShortDescr;
 	static String editText = "Edit";
 
-	/**
-	 * Launch the application.
-	 */
-/*
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ActivityDetailsUI frame = new ActivityDetailsUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
 
 	/**
 	 * Create the frame.
@@ -108,6 +80,8 @@ public class ActivityDetailsUI extends JFrame {
 		//FacadeUser.login("jack","jack");
 		final Activity activity = FacadeActivity.getActivity(idAct);
 		User user = UserLog.getUserLog();
+		ActivityLeader respo = UserLog.getRespoLog();
+		Administrator admin = UserLog.getAdminLog();
 		//
 		
 		setTitle("Zen Lounge");
@@ -337,6 +311,15 @@ public class ActivityDetailsUI extends JFrame {
 		});
 		panelButton.add(btnCancel);
 		
+		btnAddEvent.setVisible(false);
+		btnRemoveEvent.setVisible(false);
+		btnEdit.setVisible(false);
+		if( admin != null | respo !=null && respo.getIdLeader()!= activity.getIdRespo()  ){
+			btnAddEvent.setVisible(true);
+			btnRemoveEvent.setVisible(true);
+			btnEdit.setVisible(true);
+		}
+
 	}
 	Event[] generateList(int idActivity){
 		List<Event> lEvent = null; 	

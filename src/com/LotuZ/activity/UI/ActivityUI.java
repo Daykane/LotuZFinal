@@ -49,7 +49,7 @@ public class ActivityUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ActivityUI() {
-		
+
 		User user = UserLog.getUserLog();
 		Administrator admin = UserLog.getAdminLog();
 		setTitle("Zen Lounge");
@@ -61,34 +61,34 @@ public class ActivityUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(new Bandeau().createBandeau(user, "Ma page"), BorderLayout.NORTH);
-		
+
 		final JPanel mainPanel = new JPanel();
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		mainPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel enTete = new JPanel();
 		mainPanel.add(enTete, BorderLayout.NORTH);
 		enTete.setLayout(new BoxLayout(enTete, BoxLayout.X_AXIS));
-		
+
 		JLabel labelEnTete = new JLabel("Liste des activit\u00E9s");
 		labelEnTete.setHorizontalAlignment(SwingConstants.LEFT);
 		labelEnTete.setVerticalAlignment(SwingConstants.BOTTOM);
 		enTete.add(labelEnTete);
-		
+
 		// List
 		final Activity[] list = this.generateList();
-		
+
 		final JList listActivities = new JList(list);
 		mainPanel.add(listActivities, BorderLayout.WEST);
 		listActivities.setPreferredSize(new Dimension(450, 300));
-		
-		
+
+
 		listActivities.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					ActivityDetailsUI details;
-					
+
 					try {
 						details = new ActivityDetailsUI(list[listActivities.getSelectedIndex()].getIdActivity());
 						details.setVisible(true);
@@ -100,24 +100,24 @@ public class ActivityUI extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
-				    }
+
+				}
 			}
 		});
-		
-	
-		
-	
-		
-		
+
+
+
+
+
+
 		// Button pannel and Button
 		JPanel panelButton = new JPanel();
 		mainPanel.add(panelButton, BorderLayout.CENTER);
 		panelButton.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("71px"),
+				ColumnSpec.decode("98px"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
+				new RowSpec[] {
 				RowSpec.decode("23px"),
 				RowSpec.decode("23px"),
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -130,7 +130,7 @@ public class ActivityUI extends JFrame {
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
-		
+
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.addMouseListener(new MouseAdapter() {
 			@Override
@@ -138,10 +138,19 @@ public class ActivityUI extends JFrame {
 				try {
 					int dialogButton = JOptionPane.YES_NO_OPTION;
 					int i = listActivities.getSelectedIndex();
-					int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure to remove"+list[i].getName(),"Advert",dialogButton);
-					if (dialogButton == JOptionPane.YES_OPTION){
-						FacadeActivity.deleteActivity(list[i]);
-						//TODO mette à jour la Jlsit;
+					if ( i >= 0){
+						System.out.println(list.length);
+						JOptionPane.showConfirmDialog (null, "Are you sure to remove"+list[i].getName(),"Advert",dialogButton);
+						if (dialogButton == JOptionPane.YES_OPTION){
+							FacadeActivity.deleteActivity(list[i]);
+							
+							Activity[] list = generateList();
+							listActivities.setListData(list);
+							listActivities.revalidate();
+							listActivities.repaint();
+							
+							//TODO mette à jour la Jlsit;
+						}
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -149,7 +158,7 @@ public class ActivityUI extends JFrame {
 				}
 			}
 		});
-		
+
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
@@ -159,12 +168,24 @@ public class ActivityUI extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		panelButton.add(btnAdd, "1, 10, fill, center");
-		panelButton.add(btnRemove, "1, 12, left, center");
 		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Activity[] list = generateList();
+				listActivities.setListData(list);
+				listActivities.revalidate();
+				listActivities.repaint();
+			}
+		});
+		panelButton.add(btnRefresh, "1, 1");
+		panelButton.add(btnAdd, "1, 10, fill, center");
+		panelButton.add(btnRemove, "1, 12, fill, center");
+
 		JPanel panel = new JPanel();
 		mainPanel.add(panel, BorderLayout.SOUTH);
-		
+
 		//If not admin no add and remove
 		if ( admin == null){
 			btnAdd.setVisible(false);
@@ -176,7 +197,7 @@ public class ActivityUI extends JFrame {
 		List<Activity> lAct = null; 	
 		try {
 			lAct = FacadeActivity.getAllActivities();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,11 +205,11 @@ public class ActivityUI extends JFrame {
 		final Activity[] liste = toActivityArray(lAct);		
 		return liste;		
 	}
-	
+
 	Activity[] toActivityArray(List<Activity> list){
-		  Activity[] ret = new Activity[list.size()];
-		  for(int i = 0;i < ret.length;i++)
-		    ret[i] = list.get(i);
-		  return ret;
-		}
+		Activity[] ret = new Activity[list.size()];
+		for(int i = 0;i < ret.length;i++)
+			ret[i] = list.get(i);
+		return ret;
+	}
 }

@@ -179,7 +179,13 @@ public class ActivityJdbc extends Activity{
 		// Etape 3 : Création d'un statement
 		st = this.cn.createStatement();
 
-		String sql = "Delete From LotuZ.Activity Where idActivity = '"+ this.getIdActivity() +"'";
+		//delete before event with the id activity
+		String sql = "Delete From LotuZ.Event Where activity = '"+ this.getIdActivity() +"'";
+
+		// Etape 4 : exécution requête
+		st.executeUpdate(sql);
+		
+		sql = "Delete From LotuZ.Activity Where idActivity = '"+ this.getIdActivity() +"'";
 
 		// Etape 4 : exécution requête
 		st.executeUpdate(sql);
