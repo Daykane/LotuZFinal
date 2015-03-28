@@ -34,7 +34,6 @@ import java.awt.event.MouseEvent;
 
 public class ListProductUI extends JFrame {
 
-
 	/**
 	 * 
 	 */
@@ -71,6 +70,8 @@ public class ListProductUI extends JFrame {
 			}
 		});
 	}
+	
+	
 
 
 	/**
@@ -161,5 +162,5 @@ public class ListProductUI extends JFrame {
 		
 		btnNewButton.setBounds(351, 162, 89, 23);
 		panel.add(btnNewButton);
-}	
+}		
 }
