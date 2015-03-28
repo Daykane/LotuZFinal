@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+  associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="com.LotuZ.event.FacadeEvent" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/event/FacadeEvent.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="266" width="299" x="-25" y="-61"/>    
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.LotuZ.event.EventJdbc" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/event/EventJdbc.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="784" y="522"/>    
+    <position height="-1" width="-1" x="792" y="589"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.LotuZ.event.Event" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/event/Event.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="145" width="184" x="420" y="536"/>    
+    <position height="145" width="184" x="411" y="515"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.LotuZ.event.repetition.RepetitionManager" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/event/repetition/RepetitionManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="148" width="185" x="418" y="187"/>    
+    <position height="148" width="185" x="389" y="252"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.LotuZ.event.repetition.Repetition" project="LotuZ" 
     file="/LotuZ/src/com/LotuZ/event/repetition/Repetition.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="179" width="123" x="200" y="378"/>    
+    <position height="179" width="123" x="242" y="454"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="com.LotuZ.JdbcKit" project="LotuZ" file="/LotuZ/src/com/LotuZ/JdbcKit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="211" width="276" x="677" y="138"/>    
+    <position height="211" width="276" x="688" y="198"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
