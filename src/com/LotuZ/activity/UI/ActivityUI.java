@@ -87,12 +87,12 @@ public class ActivityUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					ActivityDetailsUI frame;
+					ActivityDetailsUI details;
 					
 					try {
-						frame = new ActivityDetailsUI(list[listActivities.getSelectedIndex()].getIdActivity());
-						frame.setVisible(true);
-						frame.setLocationRelativeTo(null);
+						details = new ActivityDetailsUI(list[listActivities.getSelectedIndex()].getIdActivity());
+						details.setVisible(true);
+						details.setLocationRelativeTo(null);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -133,6 +133,14 @@ public class ActivityUI extends JFrame {
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ActivityCreateUI frame = new ActivityCreateUI();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		panelButton.add(btnAdd, "3, 10, fill, center");
 		
 		JButton btnRemove = new JButton("Remove");
