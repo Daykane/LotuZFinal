@@ -159,8 +159,8 @@ public class FacadeBL {
 
 	 */
 	
-	public static void product(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException{
-		productManager.createProduct(productName, price, quantity, category, reduction );
+	public static void product(String productName, int price, int quantity, int category, int reduction, String creationDate) throws ClassNotFoundException, SQLException{
+		productManager.createProduct(productName, price, quantity, category, reduction, creationDate );
 	}
 	
 	public static Product loadProduct(int idProduct) throws SQLException {
@@ -168,8 +168,8 @@ public class FacadeBL {
 		return product;
 	}
 	
-	public static void UpdateProduct(Product product, String productName, int category, int quantity, int price, int reduction) throws SQLException {
-		productManager.updateProduct(product, productName, category, quantity, price, reduction);
+	public static void UpdateProduct(Product product, String productName, int category, int quantity, int price, int reduction, String updateDate) throws SQLException {
+		productManager.updateProduct(product, productName, category, quantity, price, reduction, updateDate);
 	}
 	
 	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{

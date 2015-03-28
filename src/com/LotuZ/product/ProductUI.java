@@ -28,6 +28,9 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -186,7 +189,11 @@ public class ProductUI extends JFrame{
 				else if(btnEdit.getText().equals("Validate")){
 					btnEdit.setText("Edit");
 					try {
-						FacadeBL.UpdateProduct(product, tfNameProduct.getText(),Integer.parseInt(tfCategory.getText()),Integer.parseInt(tfQuantity.getText()),Integer.parseInt(tfPrice.getText()),Integer.parseInt(tfReduction.getText()) );
+						Date updateDate = new Date();
+						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						FacadeBL.UpdateProduct(product, tfNameProduct.getText(),Integer.parseInt(tfCategory.getText()),Integer.parseInt(tfQuantity.getText()),Integer.parseInt(tfPrice.getText()),Integer.parseInt(tfReduction.getText()),dateFormat.format(updateDate));
+						//TODO update updateDate
+						
 						tfNameProduct.setEditable(false);
 						tfPrice.setEditable(false);
 						tfQuantity.setEditable(false);

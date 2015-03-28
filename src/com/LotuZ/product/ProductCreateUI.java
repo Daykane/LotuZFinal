@@ -11,6 +11,9 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -252,8 +255,9 @@ public class ProductCreateUI extends JFrame {
 					{
 						System.out.println("ok");
 						//FacadeBL.product(user.getIdMember,TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()));
-
-						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()));
+						Date creationDate = new Date();
+						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()), dateFormat.format(creationDate));
 						System.out.println("ok");
 						JOptionPane.showMessageDialog(null,"Product added","Product added",JOptionPane.INFORMATION_MESSAGE);
 					}

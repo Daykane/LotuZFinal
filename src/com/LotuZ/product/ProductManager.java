@@ -34,10 +34,7 @@ public class ProductManager {
 	}
 
 	
-	public void createProduct(String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		// Create empty ProductJDBC
+	public void createProduct(String productName, int price, int quantity, int category, int reduction, String creationDate) throws ClassNotFoundException, SQLException {
 		Product product = pkit.createProduct();
 		// set informations into the userJdbc
 		product.setProductName(productName);	
@@ -45,8 +42,8 @@ public class ProductManager {
 		product.setQuantity(quantity);
 		product.setPrice(price);
 		product.setReduction(reduction);
-		product.setCreationDate(dateFormat.format(date));
-		product.setUpdateDate(dateFormat.format(date));
+		product.setCreationDate(creationDate);
+		product.setUpdateDate(creationDate);
 		product.setCategory(category);
 		// Save in database 
 		product.saveProduct();
@@ -58,15 +55,13 @@ public class ProductManager {
 		return product;
 	}
 	
-	public Product updateProduct(Product product1, String productName, int category, int quantity, int price, int reduction) throws SQLException {
+	public Product updateProduct(Product product1, String productName, int category, int quantity, int price, int reduction, String updateDate) throws SQLException {
 		Product product = pkit.createProduct();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
 		product1.setProductName(productName);
 		product1.setQuantity(quantity);
 		product1.setPrice(price);
 		product1.setReduction(reduction);
-		product1.setUpdateDate(dateFormat.format(date));
+		product1.setUpdateDate(updateDate);
 		product1.setCategory(category);
 
 		product.updateProduct(product1);
