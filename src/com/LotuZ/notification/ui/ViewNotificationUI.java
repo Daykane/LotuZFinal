@@ -28,7 +28,7 @@ public class ViewNotificationUI extends JFrame{
 	
 	private FacadeBL facadeBL;
 	Notification notification;
-
+	/*
 	public ViewNotificationUI(Notification notif) 
 	{
 		FacadeUser.login("jack","jack");
@@ -186,5 +186,5 @@ public class ViewNotificationUI extends JFrame{
 			//date
 		
 	}
-
+*/
 }

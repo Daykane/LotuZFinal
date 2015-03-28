@@ -88,7 +88,7 @@ public class NotificationCenterUI extends JFrame
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-
+	/*
 	public NotificationCenterUI() throws SQLException, UserNotFoundException 
 	{
 		FacadeUser.login("jack","jack");
@@ -346,5 +346,5 @@ public class NotificationCenterUI extends JFrame
 		
 			//South
 	}
-	
+	*/
 }
