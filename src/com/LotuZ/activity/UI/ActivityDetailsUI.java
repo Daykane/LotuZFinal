@@ -21,6 +21,7 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
+import com.LotuZ.event.UI.CreateEventUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
@@ -74,7 +75,7 @@ public class ActivityDetailsUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ActivityDetailsUI(int idAct) throws SQLException, UserNotFoundException {
+	public ActivityDetailsUI(final int idAct) throws SQLException, UserNotFoundException {
 		
 		// Déclaration du monde
 		//FacadeUser.login("jack","jack");
@@ -239,12 +240,28 @@ public class ActivityDetailsUI extends JFrame {
 		btnAddEvent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				//TODO
+				CreateEventUI frame = new CreateEventUI();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
 				System.out.println("create a event");
 			}
 		});
 		
 		JButton btnRemoveEvent = new JButton("Remove");
 		panel.add(btnRemoveEvent, "12, 18");
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Event[] list = generateList(idAct);
+				listEvents.setListData(list);
+				listEvents.revalidate();
+				listEvents.repaint();
+			}
+		});
+		panel.add(btnRefresh, "14, 18");
 		btnRemoveEvent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -252,7 +269,16 @@ public class ActivityDetailsUI extends JFrame {
 					
 				}
 				else{
-				System.out.println(list[listEvents.getSelectedIndex()].getName());
+				try {
+					FacadeEvent.deleteEvent(list[listEvents.getSelectedIndex()].getIdEvent());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Event[] list = generateList(idAct);
+				listEvents.setListData(list);
+				listEvents.revalidate();
+				listEvents.repaint();
 				}
 			}
 		});
@@ -314,7 +340,12 @@ public class ActivityDetailsUI extends JFrame {
 		btnAddEvent.setVisible(false);
 		btnRemoveEvent.setVisible(false);
 		btnEdit.setVisible(false);
-		if( admin != null | respo !=null && respo.getIdLeader()!= activity.getIdRespo()  ){
+		if( admin != null ){
+			btnAddEvent.setVisible(true);
+			btnRemoveEvent.setVisible(true);
+			btnEdit.setVisible(true);
+		}
+		else if(respo !=null && respo.getIdLeader()!= activity.getIdRespo() ){
 			btnAddEvent.setVisible(true);
 			btnRemoveEvent.setVisible(true);
 			btnEdit.setVisible(true);

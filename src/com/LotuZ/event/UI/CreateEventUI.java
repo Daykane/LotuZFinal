@@ -19,6 +19,7 @@ import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
@@ -65,6 +66,7 @@ public class CreateEventUI extends JFrame {
 	 */
 	public CreateEventUI() {
 		User user = UserLog.getUserLog();
+
 		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
@@ -326,14 +328,20 @@ public class CreateEventUI extends JFrame {
 		}
 	
 	private Activity[] generateListActi(String idRespo) {
-		List<Activity> lrepet = null; 	
+		List<Activity> lact = null; 	
 		try {
-			lrepet = FacadeActivity.getActivityOfLeader(idRespo);
+			Administrator admin = UserLog.getAdminLog();
+			if (admin != null){
+				lact = FacadeActivity.getAllActivities();
+			}
+			else{
+				lact = FacadeActivity.getActivityOfLeader(idRespo);
+			}		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		final Activity[] liste = toActivityArray(lrepet);		
+		final Activity[] liste = toActivityArray(lact);		
 		return liste;
 	}
 	

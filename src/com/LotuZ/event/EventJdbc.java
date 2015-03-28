@@ -60,7 +60,6 @@ public class EventJdbc extends Event{
 	public void save() throws SQLException {
 		// TODO Auto-generated method stub
 		
-				System.out.println("Dans le save envent Jdbc Contributor = "+ this.getIdContributor()+"Id room :"+this.getRoom());
 				Statement st =null;
 				// Etape 3 : Création d'un statement
 				st = this.cn.createStatement();
@@ -130,8 +129,6 @@ public class EventJdbc extends Event{
 		String sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
 				+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`contributor`='"+this.getIdContributor()+"',`room`='"+this.getRoom()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
 		// Etape 4 : exécution requête
-		System.out.println("Dans le Jdbc :" + this.getName());
-		System.out.println("Dans le Jdbc :" + this.getIdEvent());
 		st.executeUpdate(sql);
 		
 	}
@@ -141,9 +138,11 @@ public class EventJdbc extends Event{
 		Statement st =null;
 		// Etape 3 : Création d'un statement
 		st = this.cn.createStatement();
-
-		String sql = "Delete From LotuZ.Event Where idEvent = '"+ this.getIdEvent() +"'";
-
+		//Delete les inscription
+		String sql = "Delete From LotuZ.InscriptionEvent Where idEvent = '"+ this.getIdEvent() +"'";
+		st.executeUpdate(sql);
+		
+		sql = "Delete From LotuZ.Event Where idEvent = '"+ this.getIdEvent() +"'";
 		// Etape 4 : exécution requête
 		st.executeUpdate(sql);
 		
