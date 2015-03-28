@@ -36,9 +36,10 @@ public class ContributorManager {
 		return contributor;
 	}
 	
-	public Contributor getContributorEvents(int idContributor) throws SQLException {
+	public Contributor getContributorEvents(String idContributor) throws SQLException {
 		List<Event> listEvents = new ArrayList<Event>();
-		listEvents = FacadeEvent.getEventsContributor(idContributor);
+		int idContrib = (Integer.parseInt(idContributor));
+		listEvents = FacadeEvent.getEventsContributor(idContrib);
 		Contributor contributor = pkit.createContributor();
 		contributor.setEvents(listEvents);
 		contributor.setIdContributor(idContributor);
@@ -55,7 +56,7 @@ public class ContributorManager {
 	 */
 	public void deleteContributor(String idContributor) throws SQLException, ClassNotFoundException {
 		Contributor contributor = pkit.createContributor();
-		contributor = contributor.load(idContributor);
+		contributor.setIdContributor(idContributor);
 		contributor.delete();
 	}
 

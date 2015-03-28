@@ -21,7 +21,7 @@ public abstract class Contributor{
 
 
 	private List<Event> events;
-	private int idContributor;
+	private String idContributor;
 
 	
 	public Contributor(List<Event> events ) {
@@ -54,14 +54,14 @@ public abstract class Contributor{
 
 
 
-	public int getIdContributor() {
+	public String getIdContributor() {
 		return idContributor;
 	}
 
 
 
 
-	public void setIdContributor(int idContributor) {
+	public void setIdContributor(String idContributor) {
 		this.idContributor = idContributor;
 	}
 

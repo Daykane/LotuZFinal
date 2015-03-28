@@ -48,29 +48,32 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 			ActivityLeader activityLeader = null;
 			Statement st =null;
 			
+			System.out.println(" Le fameux mail : "+mailActivityLeader);
+
 			// Création d'un statement
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u ,LotuZ.Member m, LotuZ.Activity a Where m.idMember = u.idMember and u.mail = a.activityLeader and m.idLeader is not null and u.mail="+'"'+mailActivityLeader+'"';
+			String sql = "Select * From LotuZ.User u ,LotuZ.Member m Where m.idMember = u.idMember and m.idLeader is not null and u.mail="+'"'+mailActivityLeader+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);
 			
 			if(!result.first())
 			{
+				System.out.println(" Pas de résultats : "+activityLeader);
+
 				return activityLeader;
+
 			}
 			else 
 			{
-				// Récupération des données 
-				while(result.next()){	
-					activityLeader = new ActivityLeaderJDBC();
-					//activities.add(result.getString("name"));
-					nameActivity = result.getString("name");
-					activityLeader.setNameActivity(nameActivity);
-					activityLeader.setIdLeader(result.getString("idLeader"));
-				}
+				activityLeader = new ActivityLeaderJDBC();
+				activityLeader.setIdLeader(result.getString("idLeader"));
+				System.out.println(" le respo et surtout son id : "+activityLeader.getIdLeader());
+
+				System.out.println(" le respo : "+activityLeader);
+
 				return activityLeader;
 			}
 	}
@@ -86,8 +89,7 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 			Statement st =null;
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
-			
-			String sql = "UPDATE LotuZ.Member SET (`idLeader`) = null Where idLeader='"+ this.getIdLeader() +"'";
+			String sql = "UPDATE LotuZ.Member SET idLeader = null Where idLeader='"+ this.getIdLeader() +"'";
 
 			String sql2 = "Delete From LotuZ.Leader Where idLeader='"+ this.getIdLeader() +"'";
 
@@ -99,6 +101,16 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 		} catch (SQLException e) {
 			throw e;
 		}
+	}
+
+
+	public Connection getCn() {
+		return cn;
+	}
+
+
+	public void setCn(Connection cn) {
+		this.cn = cn;
 	}
 
 

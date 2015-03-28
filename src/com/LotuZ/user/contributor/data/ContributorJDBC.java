@@ -88,7 +88,7 @@ public class ContributorJDBC extends Contributor{
 		{
 			// Récupération des données 
 			Contributor contributor2 = new ContributorJDBC();
-			contributor2.setIdContributor(result.getInt("idContributor"));
+			contributor2.setIdContributor(result.getString("idContributor"));
 
 			return contributor2;
 		}
@@ -100,7 +100,7 @@ public class ContributorJDBC extends Contributor{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 			
-			String sql = "UPDATE LotuZ.User SET (`idContributor`) = null Where idContributor='"+ this.getIdContributor() +"'";
+			String sql = "UPDATE LotuZ.User SET idContributor = null Where idContributor='"+ this.getIdContributor() +"'";
 
 			String sql2 = "Delete From LotuZ.Contributor Where idContributor='"+ this.getIdContributor() +"'";
 

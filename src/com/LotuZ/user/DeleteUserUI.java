@@ -37,18 +37,17 @@ public class DeleteUserUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public DeleteUserUI() throws SQLException, UserNotFoundException {
+	public DeleteUserUI(String mail) throws SQLException, UserNotFoundException {
 		
 		
-		final User user = UserLog.getUserLog();
-		final Member member = UserLog.getMemberLog();
-		final Administrator admin = UserLog.getAdminLog();
-		final ActivityLeader respo = UserLog.getRespoLog();
-		final Contributor contrib = UserLog.getContribLog();
-
+		final User user = FacadeUser.getUser(mail);
+		final Member member = FacadeUser.getMember(mail);
+		final Contributor contributor = FacadeUser.getContributor(mail);
+		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
+		
+	
 
 		Bandeau bandeau = new Bandeau();
-		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +71,7 @@ public class DeleteUserUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					FacadeUser.deleteLeader(respo.getIdLeader());
+					FacadeUser.deleteLeader(leader.getIdLeader());
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -92,6 +91,8 @@ public class DeleteUserUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					FacadeUser.deleteLeader(leader.getIdLeader());
+					FacadeUser.deleteMember(member);
 					FacadeUser.deleteUser(user);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -127,25 +128,26 @@ public class DeleteUserUI extends JFrame {
 		});
 		panel.add(btnDeleteMember);
 		
-//		JButton btnDeleteContributor = new JButton("Delete Contributor");
-//		btnDeleteContributor.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				try {
-//					//FacadeUser.deleteContributor((contrib.getIdContributor()));
-//				} catch (ClassNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (UserNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		panel.add(btnDeleteContributor);
+		JButton btnDeleteContributor = new JButton("Delete Contributor");
+		btnDeleteContributor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					System.out.println("le contributoooor : "+contributor);
+					FacadeUser.deleteContributor(contributor.getIdContributor());
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		panel.add(btnDeleteContributor);
 		
 
 	}

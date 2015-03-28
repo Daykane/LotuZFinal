@@ -69,10 +69,7 @@ public class UserDetailUI extends JFrame {
 		final Contributor contributor = FacadeUser.getContributor(mail);
 		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
 		
-		System.out.println("Member :"+member+" \n contributor : "+contributor+" \n activityleader : "+leader);
-		
-
-		
+	
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
 		Bandeau bandeau = new Bandeau();
@@ -273,7 +270,7 @@ public class UserDetailUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				DeleteUserUI deleteUser;
 				try {
-					deleteUser = new DeleteUserUI();
+					deleteUser = new DeleteUserUI(user.getMail());
 					deleteUser.setVisible(true);
 					deleteUser.setLocationRelativeTo(null);
 				} catch (SQLException e1) {
