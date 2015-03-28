@@ -185,7 +185,7 @@ public class FacadeBL {
 	
 
 
-	public static void createActivity(String name, int idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
+	public static void createActivity(String name, String idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
 		activityManager.create(name,idRespo, shortDescr, longDescr);
 
 		

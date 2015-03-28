@@ -156,7 +156,7 @@ public class ActivityCreateUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					//TODO
-					int idRespo =liste[choiceRespo.getSelectedIndex()].getIdActivity();
+					String idRespo =liste[choiceRespo.getSelectedIndex()].getIdRespo();
 					//TODO
 					FacadeBL.createActivity(tfName.getText(),idRespo, tfShortDesc.getText(), tfLongDesc.getText());
 

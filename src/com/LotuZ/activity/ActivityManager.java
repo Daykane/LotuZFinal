@@ -32,8 +32,8 @@ public class ActivityManager {
 		this.setPkit(kit);
 	}
 	
-	public void create(String name, int idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
-			User user = UserLog.getUserLog();
+	public void create(String name, String idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
+			//User user = UserLog.getUserLog();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			// Create empty ActivityJdbc
@@ -42,7 +42,7 @@ public class ActivityManager {
 			activity.setName(name);
 			activity.setShortDescr(shortDescr);
 			activity.setLongDescr(longDescr);
-			activity.setIdRespo(user.getMail());
+			activity.setIdRespo(idRespo);
 			activity.setCreateDate(dateFormat.format(date));
 			activity.setMajDate(dateFormat.format(date));
 			// Save in database the user
