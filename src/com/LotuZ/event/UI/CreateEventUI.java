@@ -59,21 +59,6 @@ public class CreateEventUI extends JFrame {
 	private JTextField tfPrice;
 	private JTextField BoxActivity;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateEventUI frame = new CreateEventUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

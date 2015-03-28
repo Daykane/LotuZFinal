@@ -16,6 +16,7 @@ import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JLabel;
@@ -50,6 +51,7 @@ public class ActivityUI extends JFrame {
 	public ActivityUI() {
 		
 		User user = UserLog.getUserLog();
+		Administrator admin = UserLog.getAdminLog();
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
@@ -163,6 +165,11 @@ public class ActivityUI extends JFrame {
 		JPanel panel = new JPanel();
 		mainPanel.add(panel, BorderLayout.SOUTH);
 		
+		//If not admin no add and remove
+		if ( admin == null){
+			btnAdd.setVisible(false);
+			btnRemove.setVisible(false);
+		}
 	}
 
 	Activity[] generateList(){
