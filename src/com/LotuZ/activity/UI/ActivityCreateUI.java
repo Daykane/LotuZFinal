@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -156,10 +157,12 @@ public class ActivityCreateUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					//TODO
-					String idRespo =liste[choiceRespo.getSelectedIndex()].getIdRespo();
+					//String idRespo =liste[choiceRespo.getSelectedIndex()].getIdRespo();
+					String idRespo = "ludo";
 					//TODO
+					
 					FacadeBL.createActivity(tfName.getText(),idRespo, tfShortDesc.getText(), tfLongDesc.getText());
-
+					JOptionPane.showMessageDialog(null,"creation sucess","Creation",JOptionPane.INFORMATION_MESSAGE);
 					
 				} catch (com.mysql.jdbc.MysqlDataTruncation e){
 					//TODO
@@ -180,7 +183,7 @@ public class ActivityCreateUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Retour à la page Acceuil respo");
+				dispose();
 			}
 		});
 		btnCancel.setHorizontalAlignment(SwingConstants.LEFT);

@@ -19,6 +19,8 @@ import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
+import com.LotuZ.event.Event;
+import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
@@ -26,6 +28,7 @@ import com.LotuZ.user.user.bl.User;
 
 import java.awt.Font;
 import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -48,6 +51,7 @@ import java.awt.Component;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JList;
 
 
 public class ActivityDetailsUI extends JFrame {
@@ -133,7 +137,7 @@ public class ActivityDetailsUI extends JFrame {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.PREF_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_COLSPEC,
@@ -192,7 +196,13 @@ public class ActivityDetailsUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+				RowSpec.decode("max(61dlu;default)"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		JLabel lblName = new JLabel("Name : ");
 		panel.add(lblName, "4, 2, right, default");
@@ -241,6 +251,37 @@ public class ActivityDetailsUI extends JFrame {
 		tfLongDescr.setEditable(false);
 		scrollPane.setViewportView(tfLongDescr);
 		
+		JLabel lblListEvents = new JLabel("list events");
+		panel.add(lblListEvents, "4, 16");
+		
+		//List gestion		
+		final Event[] list = this.generateList(idAct);
+		final JList listEvents = new JList(list);
+		panel.add(listEvents, "4, 18, 5, 1, fill, fill");
+		
+		JButton btnAddEvent = new JButton("Add Event");
+		
+		panel.add(btnAddEvent, "10, 18, default, center");
+		btnAddEvent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println("create a event");
+			}
+		});
+		
+		JButton btnRemoveEvent = new JButton("Remove");
+		panel.add(btnRemoveEvent, "12, 18");
+		btnRemoveEvent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (listEvents.getSelectedIndex() == -1){
+					
+				}
+				else{
+				System.out.println(list[listEvents.getSelectedIndex()].getName());
+				}
+			}
+		});
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.EAST);
 		panel_2.setLayout(new GridLayout(1, 0, 0, 0));
@@ -297,5 +338,24 @@ public class ActivityDetailsUI extends JFrame {
 		panelButton.add(btnCancel);
 		
 	}
+	Event[] generateList(int idActivity){
+		List<Event> lEvent = null; 	
+		try {
+			lEvent = FacadeEvent.getEventsActivity(idActivity);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		final Event[] liste = toActivityArray(lEvent);		
+		return liste;		
+	}
+	
+	Event[] toActivityArray(List<Event> lEvent){
+		  Event[] ret = new Event[lEvent.size()];
+		  for(int i = 0;i < ret.length;i++)
+		    ret[i] = lEvent.get(i);
+		  return ret;
+		}
 
 }

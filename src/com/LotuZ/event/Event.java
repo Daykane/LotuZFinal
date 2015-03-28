@@ -217,6 +217,15 @@ public abstract class Event {
 	public abstract List<Event> loadAll(int idActivity) throws SQLException;
 
 	public abstract List<Event> loadEventsContributor(int idContributor) throws SQLException;
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return name + ", date : " + date + ", Start : "
+				+ heureDeb + ", Finish : " + heureFin ;
+	}
 	
 
 }
