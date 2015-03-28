@@ -17,7 +17,10 @@ import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
+import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.contributor.bl.Contributor;
+import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -119,6 +122,8 @@ public class CreateEventUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("max(35dlu;min)"),}));
 		
 		JLabel lblName = new JLabel("Name : ");
@@ -190,7 +195,9 @@ public class CreateEventUI extends JFrame {
 		JLabel lblRepetition = new JLabel("Repetition : ");
 		panelMain.add(lblRepetition, "2, 12, right, default");
 		
-		
+		/*
+		 * Repetition in the comboBox
+		 */
 		final Repetition[] list = this.generateListRepet();
 		final JComboBox choiceRep = new JComboBox(list);		
 		panelMain.add(choiceRep, "4, 12, left, default");
@@ -207,18 +214,38 @@ public class CreateEventUI extends JFrame {
 		Choice choiceRoom = new Choice();
 		panelMain.add(choiceRoom, "4, 16, left, default");
 		
+		JLabel lblContributor = new JLabel("Contributor : ");
+		panelMain.add(lblContributor, "2, 18, right, default");
+		
+		/*
+		 * Contributor in comboBox
+		 */
+		List<User> listUser;
+		ListUser u = null;
+		try {
+			u = FacadeUser.getContributors();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		listUser = u.getListUser();
+		User[] arrayContrib;
+		arrayContrib = toUserArray(listUser);
+		final JComboBox choiceContrib = new JComboBox(arrayContrib);
+		panelMain.add(choiceContrib, "4, 18, left, default");
+		
 		JLabel lblPrice = new JLabel("Price : ");
-		panelMain.add(lblPrice, "2, 18, right, default");
+		panelMain.add(lblPrice, "2, 20, right, default");
 		
 		tfPrice = new JTextField();
-		panelMain.add(tfPrice, "4, 18, left, default");
+		panelMain.add(tfPrice, "4, 20, left, default");
 		tfPrice.setColumns(10);
 		
 		JLabel lblDescr = new JLabel("Description : ");
-		panelMain.add(lblDescr, "2, 20, right, default");
+		panelMain.add(lblDescr, "2, 22, right, default");
 		
 		final JTextArea tfDescr = new JTextArea();
-		panelMain.add(tfDescr, "4, 20, fill, fill");
+		panelMain.add(tfDescr, "4, 22, fill, fill");
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
@@ -249,7 +276,17 @@ public class CreateEventUI extends JFrame {
 					int idRepetition = list[choiceRep.getSelectedIndex()].getIdRepetition();
 					int idActivity = listAct[BoxActivity.getSelectedIndex()].getIdActivity();
 
-					//TODO get list contrib;
+					//TODO get list contrib a mettre dans uen check box;
+					List<User> listUser;
+					ListUser u = null;
+					try {
+						u = FacadeUser.getContributors();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					listUser = u.getListUser();
+					
 					int idContrib = -1;
 					//TODO get list Romm;
 					int idRoom = -1;
@@ -317,6 +354,13 @@ public class CreateEventUI extends JFrame {
 	
 	Activity[] toActivityArray(List<Activity> lrepet){
 		Activity[] ret = new Activity[lrepet.size()];
+		  for(int i = 0;i < ret.length;i++)
+		    ret[i] = lrepet.get(i);
+		  return ret;
+		}
+	
+	User[] toUserArray(List<User> lrepet){
+		User[] ret = new User[lrepet.size()];
 		  for(int i = 0;i < ret.length;i++)
 		    ret[i] = lrepet.get(i);
 		  return ret;

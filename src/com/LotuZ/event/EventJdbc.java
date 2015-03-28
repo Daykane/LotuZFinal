@@ -60,13 +60,29 @@ public class EventJdbc extends Event{
 	public void save() throws SQLException {
 		// TODO Auto-generated method stub
 		
+				System.out.println("Dans le save envent Jdbc Contributor = "+ this.getIdContributor()+"Id room :"+this.getRoom());
 				Statement st =null;
 				// Etape 3 : Création d'un statement
 				st = this.cn.createStatement();
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				String date = dateFormat.format(this.getDate());
-				String sql = "INSERT INTO `LotuZ`.`Event` (`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)"+
+				String sql = null;
+				if ( this.getIdContributor() == 0 && this.getRoom() == 0){
+					sql = "INSERT INTO `LotuZ`.`Event` (`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `price`, `description`)"+
+							"VALUES ('"+ this.getName() +"','"+ this.getNbParticipant() +"','"+ this.getHeureDeb() +"','"+ this.getHeureFin() +"','"+ date +"','"+ this.getRepetition() +"','"+ this.getIdActivity() +"','"+ this.getPrice() +"','"+ this.getDescription() +"')";
+				}
+				else if(this.getRoom() == 0){
+					sql = "INSERT INTO `LotuZ`.`Event` (`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `price`, `description`)"+
+							"VALUES ('"+ this.getName() +"','"+ this.getNbParticipant() +"','"+ this.getHeureDeb() +"','"+ this.getHeureFin() +"','"+ date +"','"+ this.getRepetition() +"','"+ this.getIdActivity() +"','"+ this.getIdContributor() +"','"+ this.getPrice() +"','"+ this.getDescription() +"')";
+				}
+				else if(this.getIdContributor() == 0){
+					sql = "INSERT INTO `LotuZ`.`Event` (`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `room`, `price`, `description`)"+
+							"VALUES ('"+ this.getName() +"','"+ this.getNbParticipant() +"','"+ this.getHeureDeb() +"','"+ this.getHeureFin() +"','"+ date +"','"+ this.getRepetition() +"','"+ this.getIdActivity() +"','"+ this.getRoom() +"','"+ this.getPrice() +"','"+ this.getDescription() +"')";
+				}
+				else{
+				sql = "INSERT INTO `LotuZ`.`Event` (`name`, `nbParticipant`, `startingTime`, `finishingTime`, `date`, `repetition`, `activity`, `contributor`, `room`, `price`, `description`)"+
 						"VALUES ('"+ this.getName() +"','"+ this.getNbParticipant() +"','"+ this.getHeureDeb() +"','"+ this.getHeureFin() +"','"+ date +"','"+ this.getRepetition() +"','"+ this.getIdActivity() +"','"+ this.getIdContributor() +"','"+ this.getRoom() +"','"+ this.getPrice() +"','"+ this.getDescription() +"')";
+				}
 				// Etape 4 : exécution requête
 				st.executeUpdate(sql);
 

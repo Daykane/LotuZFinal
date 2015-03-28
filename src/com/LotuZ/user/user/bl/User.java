@@ -24,6 +24,14 @@ public abstract class User {
 	private int idMember;
 	
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return lastName +" " +firstName;
+	}
+
 	public User() {
 		super();
 	}
