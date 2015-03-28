@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.event.repetition.RepetitionManager;
@@ -49,7 +50,7 @@ public class FacadeEvent {
 	}
 
 	public static void createEvent(String name, int nbParticipant,
-			int price, String startingTime, String finishingTime, Date date,
+			int price, String startingTime, String finishingTime, java.util.Date date,
 			String description, int idRepetition, int idActivity, int idContrib, int idRoom) throws SQLException {
 		eventManager.createEvent(name, nbParticipant,price,
 			startingTime, finishingTime, date,description,
@@ -86,6 +87,16 @@ public class FacadeEvent {
 	
 	public static List<Event> getEventsContributor(int idContributor) throws SQLException {
 		return eventManager.getEventsContributor(idContributor);
+	}
+
+	public static void createEvent2(String name, int nbParticipant, int price,
+			String startingTime, String finishingTime, java.util.Date date,
+			String description, int idRepetition, int idActivity,
+			int idContrib, int idRoom) throws SQLException {
+		eventManager.createEvent(name, nbParticipant,price,
+				startingTime, finishingTime, date,description,
+				idRepetition, idActivity, idContrib, idRoom);
+		
 	}
 
 }

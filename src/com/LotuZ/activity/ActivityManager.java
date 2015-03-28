@@ -100,6 +100,14 @@ public class ActivityManager {
 		activity.update();
 		
 	}
+
+	public List<Activity> getActivityOfLeader(String idRespo) throws SQLException {
+		List<Activity> lAct;
+		Activity activity = pkit.createActivity();
+		activity.setIdRespo(idRespo);
+		lAct = activity.loadForRespo();
+		return lAct;
+	}
 	
 	
 

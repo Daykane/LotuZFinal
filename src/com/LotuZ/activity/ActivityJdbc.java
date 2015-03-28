@@ -186,5 +186,33 @@ public class ActivityJdbc extends Activity{
 
 	}
 
+	@Override
+	public List<Activity> loadForRespo() throws SQLException {
+		List<Activity> activities = new ArrayList();
+
+		Statement st =null;
+		// Etape 3 : Création d'un statement
+		st = this.cn.createStatement();
+		String sql = "Select * From LotuZ.Activity a, LotuZ.User u where a.activityLeader = u.mail and activityLeader='"+this.getIdRespo()+"'";
+		// Etape 4 : exécution requête
+		//st.executeUpdate(sql);
+		ResultSet result = st.executeQuery(sql);
+		while( result.next() ){	
+			ActivityJdbc activity = null;
+			int idActivity = result.getInt("idActivity");
+			String name = result.getString("name");
+			String longDescription = result.getString("longDescription");
+			String shortDescription = result.getString("shortDescription");
+			String activityLeader = result.getString("activityLeader");
+			String creationDate = result.getString("creationDate");
+			String updateDate = result.getString("updateDate");
+
+
+			activity = new ActivityJdbc(idActivity,name,longDescription,shortDescription,activityLeader,creationDate,updateDate);
+			activities.add(activity);
+		}
+	return activities;
+	}
+
 	
 }

@@ -189,5 +189,9 @@ public abstract class Activity {
 
 
 	public abstract void delete() throws SQLException;
+
+
+
+	public abstract List<Activity> loadForRespo() throws SQLException;
 	
 }

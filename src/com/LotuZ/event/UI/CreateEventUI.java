@@ -6,12 +6,17 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
+import com.LotuZ.activity.Activity;
+import com.LotuZ.activity.FacadeActivity;
+import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
+import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 import com.jgoodies.forms.layout.FormLayout;
@@ -27,7 +32,12 @@ import java.awt.FlowLayout;
 import javax.swing.JSpinner;
 
 import java.awt.Choice;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.sql.Date;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -35,12 +45,16 @@ import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JTextArea;
+
 public class CreateEventUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField TfName;
 	private Calendar cal;
 	private JTextField textDate;
+	private JTextField tfPrice;
+	private JTextField BoxActivity;
 
 	/**
 	 * Launch the application.
@@ -89,6 +103,8 @@ public class CreateEventUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("max(17dlu;pref)"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.PREF_ROWSPEC,
@@ -101,7 +117,9 @@ public class CreateEventUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(35dlu;min)"),}));
 		
 		JLabel lblName = new JLabel("Name : ");
 		panelMain.add(lblName, "2, 2, right, default");
@@ -110,11 +128,19 @@ public class CreateEventUI extends JFrame {
 		panelMain.add(TfName, "4, 2, left, default");
 		TfName.setColumns(10);
 		
+		JLabel lblActivite = new JLabel("Activit\u00E9e : ");
+		panelMain.add(lblActivite, "2, 4, right, default");
+		
+		final Activity[] listAct = this.generateListActi(user.getMail());
+		final JComboBox BoxActivity = new JComboBox(listAct);		
+		panelMain.add(BoxActivity, "4, 4, left, default");
+		//BoxActivity.setColumns(10);
+		
 		JLabel lblHeureDbut = new JLabel("Heure D\u00E9but : ");
-		panelMain.add(lblHeureDbut, "2, 4, right, default");
+		panelMain.add(lblHeureDbut, "2, 6, right, default");
 		
 		JPanel panel = new JPanel();
-		panelMain.add(panel, "4, 4, fill, fill");
+		panelMain.add(panel, "4, 6, fill, fill");
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
 		SpinnerModel modelHeureDeb = new SpinnerNumberModel(01, 00, 12, 1);
@@ -132,10 +158,10 @@ public class CreateEventUI extends JFrame {
 		panel.add(lblMin);
 		
 		JLabel lblHeureDeFin = new JLabel("Heure de Fin : ");
-		panelMain.add(lblHeureDeFin, "2, 6, right, default");
+		panelMain.add(lblHeureDeFin, "2, 8, right, default");
 		
 		JPanel panel_1 = new JPanel();
-		panelMain.add(panel_1, "4, 6, left, fill");
+		panelMain.add(panel_1, "4, 8, left, fill");
 		
 		SpinnerModel modelHeureFin = new SpinnerNumberModel(01, 00, 12, 1);
 		final JSpinner spinnerHeureFin = new JSpinner(modelHeureFin);
@@ -153,34 +179,46 @@ public class CreateEventUI extends JFrame {
 		panel_1.add(lblMinute);
 		
 		JLabel lblDate = new JLabel("Date : ");
-		panelMain.add(lblDate, "2, 8, right, default");
+		panelMain.add(lblDate, "2, 10, right, default");
 		
 		textDate = new JTextField();
 		textDate.setText("YYYY-MM-dd");
-		panelMain.add(textDate, "4, 8, left, default");
+		panelMain.add(textDate, "4, 10, left, default");
 		textDate.setColumns(10);
 		
 		
 		JLabel lblRepetition = new JLabel("Repetition : ");
-		panelMain.add(lblRepetition, "2, 10, right, default");
+		panelMain.add(lblRepetition, "2, 12, right, default");
 		
-		Choice choice = new Choice();
-		panelMain.add(choice, "4, 10, left, default");
+		
+		final Repetition[] list = this.generateListRepet();
+		final JComboBox choiceRep = new JComboBox(list);		
+		panelMain.add(choiceRep, "4, 12, left, default");
 		
 		JLabel lblNombreParticipant = new JLabel("Nombre participant : ");
-		panelMain.add(lblNombreParticipant, "2, 12");
+		panelMain.add(lblNombreParticipant, "2, 14");
 		
 		final JSpinner spinnerNbParticipant = new JSpinner();
-		panelMain.add(spinnerNbParticipant, "4, 12, left, default");
+		panelMain.add(spinnerNbParticipant, "4, 14, left, default");
 		
 		JLabel lblSalle = new JLabel("Salle : ");
-		panelMain.add(lblSalle, "2, 14, right, default");
+		panelMain.add(lblSalle, "2, 16, right, default");
 		
-		Choice choice_1 = new Choice();
-		panelMain.add(choice_1, "4, 14, left, default");
+		Choice choiceRoom = new Choice();
+		panelMain.add(choiceRoom, "4, 16, left, default");
+		
+		JLabel lblPrice = new JLabel("Price : ");
+		panelMain.add(lblPrice, "2, 18, right, default");
+		
+		tfPrice = new JTextField();
+		panelMain.add(tfPrice, "4, 18, left, default");
+		tfPrice.setColumns(10);
 		
 		JLabel lblDescr = new JLabel("Description : ");
-		panelMain.add(lblDescr, "2, 16, right, default");
+		panelMain.add(lblDescr, "2, 20, right, default");
+		
+		final JTextArea tfDescr = new JTextArea();
+		panelMain.add(tfDescr, "4, 20, fill, fill");
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
@@ -199,9 +237,33 @@ public class CreateEventUI extends JFrame {
 					int minFin = (Integer) spinnerMinuteDeb.getValue();
 					String startingTime = heureDeb+"h"+minDeb+"min";
 					String finishingTime = heureFin+"h"+minFin+"min";
+					String description = tfDescr.getText();
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");					
+					String dateInString = textDate.getText();
+					java.util.Date date = null;
+					try {
+						date = formatter.parse(dateInString);
+					} catch (ParseException e) {
+						System.out.println("format date error");
+					}
+					int idRepetition = list[choiceRep.getSelectedIndex()].getIdRepetition();
+					int idActivity = listAct[BoxActivity.getSelectedIndex()].getIdActivity();
+
+					//TODO get list contrib;
+					int idContrib = -1;
+					//TODO get list Romm;
+					int idRoom = -1;
+					
 					System.out.println(startingTime);
 					System.out.println(finishingTime);
-					//FacadeEvent.createEvent(name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
+					int price = Integer.parseInt(tfPrice.getText());
+							
+					try {
+						FacadeEvent.createEvent2(name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 				}
 			}
@@ -214,8 +276,49 @@ public class CreateEventUI extends JFrame {
 		panel_2.add(btnCancel);
 	}
 	
+	
+
 	private boolean control() {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	Repetition[] generateListRepet(){
+		List<Repetition> lrepet = null; 	
+		try {
+			lrepet = FacadeEvent.getAllRepetition();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		final Repetition[] liste = toRepetitionArray(lrepet);		
+		return liste;		
+	}
+	
+	Repetition[] toRepetitionArray(List<Repetition> lrepet){
+		Repetition[] ret = new Repetition[lrepet.size()];
+		  for(int i = 0;i < ret.length;i++)
+		    ret[i] = lrepet.get(i);
+		  return ret;
+		}
+	
+	private Activity[] generateListActi(String idRespo) {
+		List<Activity> lrepet = null; 	
+		try {
+			lrepet = FacadeActivity.getActivityOfLeader(idRespo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		final Activity[] liste = toActivityArray(lrepet);		
+		return liste;
+	}
+	
+	Activity[] toActivityArray(List<Activity> lrepet){
+		Activity[] ret = new Activity[lrepet.size()];
+		  for(int i = 0;i < ret.length;i++)
+		    ret[i] = lrepet.get(i);
+		  return ret;
+		}
 }

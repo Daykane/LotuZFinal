@@ -7,6 +7,15 @@ import com.LotuZ.user.user.bl.User;
 
 public abstract class Repetition {
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return name;
+	}
+
+
 	private int idRepetition;
 	private String name;
 	

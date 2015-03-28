@@ -31,4 +31,8 @@ public class FacadeActivity {
 		
 	}
 
+	public static List<Activity> getActivityOfLeader(String idRespo) throws SQLException {
+		return activityManager.getActivityOfLeader(idRespo);
+	}
+
 }

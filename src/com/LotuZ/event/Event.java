@@ -114,8 +114,9 @@ public abstract class Event {
 	/**
 	 * @param date2 the date to set
 	 */
-	public void setDate( java.sql.Date date) {
-		this.date = (Date) date;
+	public void setDate( java.util.Date date2) {
+	    java.sql.Date sqlDate = new java.sql.Date(date2.getTime());
+		this.date = sqlDate;
 	}
 	/**
 	 * @return the heureDeb
@@ -177,7 +178,9 @@ public abstract class Event {
 	 * @param idRoom the room to set
 	 */
 	public void setRoom(int idRoom) {
-		this.room = idRoom;
+		if (idRoom != -1){
+			this.room = idRoom;
+			}		
 	}
 
 	/**
@@ -188,8 +191,9 @@ public abstract class Event {
 	}
 
 	public void setIdContributor(int idContrib) {
-		this.idContributor = idContrib;
-		
+		if (idContrib != -1){
+			this.idContributor = idContrib;
+			}
 	}
 
 	/**

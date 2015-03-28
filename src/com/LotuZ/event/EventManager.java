@@ -17,7 +17,7 @@ public class EventManager {
 	}
 
 	public void createEvent(String name, int nbParticipant,
-			int price, String startingTime, String finishingTime, Date date,
+			int price, String startingTime, String finishingTime, java.util.Date date,
 			String description, int idRepetition, int idActivity, int idContrib, int idRoom) throws SQLException {
 		Event event = pkit.createEvent();
 		event.setDate(date);
@@ -101,6 +101,27 @@ public class EventManager {
 		eventsContributor = event.loadEventsContributor(idContributor);
 		System.out.println(" dans le manager :"+eventsContributor);
 		return eventsContributor;
+	}
+
+	public void createEvent2(String name, int nbParticipant, int price,
+			String startingTime, String finishingTime, java.util.Date date,
+			String description, int idRepetition, int idActivity,
+			int idContrib, int idRoom) throws SQLException {
+		Event event = pkit.createEvent();
+		event.setDate(date);
+		event.setName(name);
+		event.setHeureDeb(startingTime);
+		event.setHeureFin(finishingTime);
+		event.setRoom(idRoom);
+		event.setRepetition(idRepetition);
+		event.setIdContributor(idContrib);
+		event.setIdActivity(idActivity);
+		event.setNbParticipant(nbParticipant);
+		event.setDescription(description);
+		event.setPrice(price);
+		event.save();
+		
+		
 	}
 
 }
