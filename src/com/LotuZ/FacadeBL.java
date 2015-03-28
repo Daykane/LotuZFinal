@@ -44,7 +44,8 @@ public class FacadeBL {
 		activityLeaderManager = new ActivityLeaderManager(kit);
 		contributorManager = new ContributorManager(kit);
 		categoryManager = new CategoryManager(kit);
-		setProductManager(new ProductManager(kit));
+		productManager = new ProductManager(kit);
+		//setProductManager(new ProductManager(kit));
 		
 	}
 	
