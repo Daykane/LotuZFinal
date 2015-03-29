@@ -110,7 +110,7 @@ public class EditAccessoryUI extends JFrame {
 		accessoryPan.add(lbldescription, gbc_lbldescription);
 	
 			//TextField
-		JTextArea txtAdescription = new JTextArea(accessorySel.getDescriptionAccessory());
+		final JTextArea txtAdescription = new JTextArea(accessorySel.getDescriptionAccessory());
 		GridBagConstraints gbc_txtAdescription= new GridBagConstraints();
 		gbc_txtAdescription.gridx = 2;
 		gbc_txtAdescription.gridy = 2;
