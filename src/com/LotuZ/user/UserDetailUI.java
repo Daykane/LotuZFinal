@@ -69,7 +69,7 @@ public class UserDetailUI extends JFrame {
 		final Contributor contributor = FacadeUser.getContributor(mail);
 		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
 		
-	
+		System.out.println(" user : "+user+" mail :"+mail);
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
 		Bandeau bandeau = new Bandeau();
@@ -81,7 +81,7 @@ public class UserDetailUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(bandeau.createBandeau(user, "Détail Utilisateur"), BorderLayout.NORTH);
+		contentPane.add(bandeau.createBandeau(UserLog.getUserLog(), "Détail Utilisateur"), BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);

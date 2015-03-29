@@ -80,11 +80,14 @@ public class HomepageAdmin extends JFrame {
 	 */
 	public HomepageAdmin() throws SQLException, UserNotFoundException {
 		
+		FacadeUser.login("jack","jack");
+
 		User user = UserLog.getUserLog();
 
 		Administrator admin = UserLog.getAdminLog();
 		ActivityLeader activityLeader = UserLog.getRespoLog();
 
+		System.out.println(" admin "+admin+"respo : "+activityLeader+" User : "+user.getFirstName());
 		Bandeau bandeau = new Bandeau();
 
 		setTitle("Zen Lounge");
@@ -181,7 +184,7 @@ public class HomepageAdmin extends JFrame {
 			btnGestionDesMembres.setVisible(true);
 			btnGestionDesIntervenants.setVisible(true);
 		}
-		if (admin == null && activityLeader != null)
+		else if (admin == null && activityLeader != null)
 		{
 			btnGestionDesResponsables.setVisible(false);
 			btnGestionDesMembres.setVisible(false);
