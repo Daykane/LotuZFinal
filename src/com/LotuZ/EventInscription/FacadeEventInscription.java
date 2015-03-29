@@ -22,7 +22,7 @@ public class FacadeEventInscription {
 		
 	}
 
-	public static List<Integer> getUserEvent(User user) throws SQLException {
+	public static List<Event> getUserEvent(User user) throws SQLException {
 		return eventInscriptionManager.getUserEvent(user);		
 	}
 

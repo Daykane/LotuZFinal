@@ -27,7 +27,7 @@ public class Bandeau extends JFrame {
 	public Bandeau() {
 	}
 	private static final long serialVersionUID = 1L;	
-	
+	private JFrame jframe;
 
 
 public Component createBandeau(final User user,String name){
@@ -131,6 +131,7 @@ public Component createBandeau(final User user,String name){
 				LoginUI loginUI = new LoginUI();
 				loginUI.setVisible(true);
 				loginUI.setLocationRelativeTo(null);
+				getJframe().dispose();
 				System.out.println("il est censer faire le dispose()");
 				
 			}
@@ -148,4 +149,19 @@ public Component createBandeau(final User user,String name){
 		
 	});
 	return panelBandeau;
+}
+
+/**
+ * @return the jframe
+ */
+public JFrame getJframe() {
+	return jframe;
+}
+
+
+/**
+ * @param jframe the jframe to set
+ */
+public void setJframe(JFrame jframe) {
+	this.jframe = jframe;
 }}

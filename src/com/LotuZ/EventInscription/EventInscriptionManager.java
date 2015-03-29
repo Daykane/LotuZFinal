@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.LotuZ.PersistKit;
 import com.LotuZ.event.Event;
+import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.user.bl.User;
 
@@ -24,11 +25,16 @@ public class EventInscriptionManager {
 		
 	}
 
-	public List<Integer> getUserEvent(User user) throws SQLException {
-		List<Integer> lEvent;
+	public List<Event> getUserEvent(User user) throws SQLException {
+		List<Integer> lIdEvent;
+		List<Event> lEvent = null;
 		EventInscription eventInscription = pkit.createEventInscription();
 		eventInscription.setIdMember(user.getMail());
-		lEvent = eventInscription.loadUserEvent();
+		lIdEvent = eventInscription.loadUserEvent();
+		for(int i : lIdEvent){
+			Event envent = FacadeEvent.getEvent(i);
+			lEvent.add(envent);
+		}
 		return lEvent;
 	}
 
