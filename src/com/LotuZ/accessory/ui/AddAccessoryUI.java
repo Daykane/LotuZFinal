@@ -129,6 +129,8 @@ public class AddAccessoryUI extends JFrame {
 		GridBagConstraints gbc_txtADesscription= new GridBagConstraints();
 		gbc_txtADesscription.gridx = 2;
 		gbc_txtADesscription.gridy = 2;
+		txtADesscription.setColumns(15);
+		txtADesscription.setRows(3);
 		roomPan.add(txtADesscription, gbc_txtADesscription);
 		
 		//Center South
@@ -160,9 +162,9 @@ public class AddAccessoryUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				RoomsUI roomsUI = null;
+				AccessoriesUI accessoriesUI=null; 
 				try {
-					roomsUI = new RoomsUI();
+					accessoriesUI = new AccessoriesUI();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -170,8 +172,8 @@ public class AddAccessoryUI extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				roomsUI.setLocationRelativeTo(null);
-				roomsUI.setVisible(true);
+				accessoriesUI.setLocationRelativeTo(null);
+				accessoriesUI.setVisible(true);
 				dispose();
 				
 				

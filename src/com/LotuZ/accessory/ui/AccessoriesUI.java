@@ -185,7 +185,15 @@ public class AccessoriesUI extends JFrame
 		if (jListAccessories.getSelectedValue()!=null)
 		{
 			ViewAccessoryUI viewAccessoryUI = null;
-			viewAccessoryUI  = new ViewAccessoryUI(accessories.get(jListAccessories.getSelectedIndex()));
+			try {
+				viewAccessoryUI  = new ViewAccessoryUI(accessories.get(jListAccessories.getSelectedIndex()));
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (UserNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			viewAccessoryUI.setLocationRelativeTo(null);
 			viewAccessoryUI.setVisible(true);
 			dispose();

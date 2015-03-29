@@ -124,13 +124,13 @@ public class AccessoryJDBC extends Accessory
 		st = this.cn.createStatement();
 		
 		// Requ�te d insertion � partir de l'identifiant
-		String sql = "INSERT INTO LotuZ.Accessory (name,description,room) VALUES "
+		String sql = "INSERT INTO LotuZ.Accessory (name,description) VALUES "
 				+ "("
 				+'"'+this.getNameAccessory()+'"'+","
 				+'"'+this.getDescriptionAccessory()+'"'+")";
 		
 		// Ex�cution de la requ�te
-		st.executeQuery(sql);
+		st.executeUpdate(sql);
 		
 	}
 
@@ -141,14 +141,14 @@ public class AccessoryJDBC extends Accessory
 		st = this.cn.createStatement();
 		
 		// Requ�te d insertion � partir de l'identifiant
-		String sql = "INSERT INTO LotuZ.Accessory (name,description,room) VALUES "
+		String sql = "INSERT INTO LotuZ.Accessory (name,description) VALUES"
 				+ "("
 				+'"'+nameAccessory+'"'+","
 				+'"'+descriptionAccessory+'"'+")";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
-		st.executeQuery(sql);
-		
+		st.executeUpdate(sql);
+		System.out.println("Ok:"+sql);
 	}
 
 	public void delete(int idAccessory) throws SQLException 
