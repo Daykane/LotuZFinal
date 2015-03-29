@@ -113,15 +113,6 @@ public abstract class Notification
 	//Delete
 	public abstract void delete(int idNotification) throws SQLException;
 	
-	//SendNotification
-	public void sendNotification(int idNotification, int idMember) throws SQLException
-	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Calendar cal = Calendar.getInstance();
-		BoxLetter boxLetter = null;
-		boxLetter.save(idNotification,idMember,dateFormat.format(cal.getTime()),0);
-	}
-	
 	
 
 }

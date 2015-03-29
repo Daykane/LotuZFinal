@@ -2,7 +2,10 @@ package com.LotuZ.notification.bl;
 
 import java.awt.List;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * <b> BoxLetter est la classe représentant les notifications des utlisateurs dans le système. </b>
@@ -143,6 +146,16 @@ public abstract class BoxLetter
 	
 	//Delete
 	public abstract void delete(int idNotification, int idMember) throws SQLException;
+	
+	//SendNotification
+	public void sendNotification(int idNotification, int idMember) throws SQLException
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		System.out.println(dateFormat.format(cal.getTime()));
+		this.save(idNotification,idMember,(String) dateFormat.format(cal.getTime()),0);
+	}
+	
 
 
 	

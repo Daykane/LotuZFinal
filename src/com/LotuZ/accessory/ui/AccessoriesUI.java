@@ -70,6 +70,10 @@ public class AccessoriesUI extends JFrame
 		});
 	}
 	
+	/**
+	 * @throws SQLException
+	 * @throws UserNotFoundException
+	 */
 	public AccessoriesUI() throws SQLException, UserNotFoundException {
 		
 	FacadeUser.login("jack","jack");
@@ -103,7 +107,6 @@ public class AccessoriesUI extends JFrame
 		Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
 		if (renderer instanceof JLabel && value instanceof Accessory) 
 		{ 
-			// Here value will be of the Type 'CD' 
 			((JLabel) renderer).setText(((Accessory) value).getNameAccessory()); 
 		}	 
 		return renderer; 
@@ -221,16 +224,5 @@ public class AccessoriesUI extends JFrame
 	}
 	};
 	btnRemoveA.addActionListener(btnRemoveAccListeners);
-	
-	
-//			//set ScrollPan
-//	JScrollPane scrollPpanelCategory = new JScrollPane(accessoryPan);
-//	//scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-//	contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
-//				//add  JScrollBar
-//	JScrollBar scrollBarEast = new JScrollBar();
-//	scrollPpanelCategory.add(scrollBarEast);
-//	
-//		//South
 	}
 }

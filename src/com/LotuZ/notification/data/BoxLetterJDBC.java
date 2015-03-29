@@ -163,15 +163,15 @@ public class BoxLetterJDBC extends BoxLetter {
 		st = this.cn.createStatement();
 		
 		// Requ�te d insertion � partir de l'identifiant 
-		String sql = "INSERT INTO LotuZ.BoxLetter (idNotification,idMember,readNotification) VALUES "
+		String sql = "INSERT INTO LotuZ.BoxLetter (idNotification,idMember, dateReceived,readNotification) VALUES "
 				+ "("
 				+idNotification+","
 				+idMember+","
 				+'"'+dateReceived+'"'+","
 				+readNotification+")";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
-		st.executeQuery(sql);
+		st.executeUpdate(sql);
 		
 	}
 

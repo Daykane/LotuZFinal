@@ -48,18 +48,18 @@ public class RoomsUI extends JFrame
 	 */
 
 	public static void main(String[] args) {
-		// Info Connection
+		//
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
 		String login = "ROLL";
 		String passwd = "rolldevelopment";
 
-		// Choose the kit
+		//
 		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
 		jdbcKit.openConnection(url, login, passwd);
 
-		// Init the FacadeBL with the kit
+		//
 		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
+		//
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -110,11 +110,11 @@ public class RoomsUI extends JFrame
 			((JLabel) renderer).setText(((Room) value).getNameRoom()); 
 			if (((Room) value).getTypeRoom()==0)
 			{
-				setIcon(new ImageIcon("notif.png"));
+				setIcon(new ImageIcon(""));
 			}
 			else
 			{
-				setIcon(new ImageIcon("notifOpen.png"));
+				setIcon(new ImageIcon(""));
 			}
 		}	 
 		return renderer; 
