@@ -401,10 +401,7 @@ public class AddRoomUI extends JFrame
 				}
 				else if (cBoxTypeRoom.getSelectedItem().equals("Cabinet"))
 				{
-					System.out.println("yrert");
 					int surface = (Integer) spnrSurface.getValue();
-					System.out.println(surface);
-					System.out.println(accessoriesSel.get(1).getClass());
 					facadeBL.createRoom(txtFName.getText(), surface , 0, accessoriesSel); //Code cabinet = 1
 				}
 				RoomsUI roomsUI = null;

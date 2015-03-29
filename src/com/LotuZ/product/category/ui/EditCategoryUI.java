@@ -118,7 +118,6 @@ public class EditCategoryUI extends JFrame
 		lblnameUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -147,7 +146,6 @@ public class EditCategoryUI extends JFrame
 		lblBoutique.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -162,7 +160,6 @@ public class EditCategoryUI extends JFrame
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Connexion ou deconnexion si la personne n'est pas connect� ou l'est");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -529,10 +526,12 @@ public class EditCategoryUI extends JFrame
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println("Coucou");
-				CategoryUI CategoryUI = null;
+				CategoryUI CategoryUI;
 				try {
 					CategoryUI = new CategoryUI();
+					CategoryUI.setVisible(true);
+					CategoryUI.setLocationRelativeTo(null);
+					dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -540,8 +539,7 @@ public class EditCategoryUI extends JFrame
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				CategoryUI.setVisible(true);
-				dispose();
+
 				
 				
 			}
@@ -561,10 +559,6 @@ public class EditCategoryUI extends JFrame
 					try 
 					{
 						CategoryProduct CaSelToUpdate = FacadeBL.getCategory((categorySelected.getIdCategoryProduct()));
-						System.out.println(categorySelected.getIdCategoryProduct());
-						System.out.println(txtFName.getText());
-						System.out.println(txtADescription.getText());
-						System.out.println(categorySelected);
 						CaSelToUpdate.update((categorySelected.getIdCategoryProduct()), txtFName.getText(), txtADescription.getText(), 0, -1);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

@@ -241,7 +241,6 @@ public class ActivityDetailsUI extends JFrame {
 					details.setLocationRelativeTo(null);
 					}
 					catch(java.lang.ArrayIndexOutOfBoundsException ex){
-					 System.out.println("Error indice Jlist");
 					}
 					
 			}
@@ -259,7 +258,6 @@ public class ActivityDetailsUI extends JFrame {
 				CreateEventUI frame = new CreateEventUI();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				System.out.println("create a event");
 			}
 		});
 		

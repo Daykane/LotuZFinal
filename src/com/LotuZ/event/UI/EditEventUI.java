@@ -60,7 +60,6 @@ public class EditEventUI extends JFrame {
 	public EditEventUI(final Event event) {
 		User user = UserLog.getUserLog();
 
-		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -253,7 +252,6 @@ public class EditEventUI extends JFrame {
 					try {
 						date = formatter.parse(dateInString);
 					} catch (ParseException e) {
-						System.out.println("format date error");
 					}
 					int idRepetition = list[choiceRep.getSelectedIndex()].getIdRepetition();
 					int idActivity = listAct[BoxActivity.getSelectedIndex()].getIdActivity();
@@ -267,7 +265,6 @@ public class EditEventUI extends JFrame {
 					price = Integer.parseInt(tfPrice.getText());
 					}
 					catch (java.lang.NumberFormatException e){
-						System.out.println("Error int string null");
 					}
 					try {
 						FacadeEvent.updateEvent(event,name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);

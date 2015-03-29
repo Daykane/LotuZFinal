@@ -76,9 +76,6 @@ public class EventManager {
 		event.setNbParticipant(newEvent.getNbParticipant());
 		event.setDescription(newEvent.getDescription());
 		event.setPrice(newEvent.getPrice());
-		System.out.println("Dans le manager " + event.getName());
-		System.out.println("Dans le manager " + oldEvent.getIdEvent());
-		System.out.println("Dans le manager " + event.getIdEvent());
 		event.update();
 	}
 
@@ -99,7 +96,6 @@ public class EventManager {
 		List<Event> eventsContributor;
 		Event event = pkit.createEvent();
 		eventsContributor = event.loadEventsContributor(idContributor);
-		System.out.println(" dans le manager :"+eventsContributor);
 		return eventsContributor;
 	}
 
@@ -142,9 +138,6 @@ public class EventManager {
 		event.setNbParticipant(nbParticipant);
 		event.setDescription(description);
 		event.setPrice(price);
-		System.out.println("Dans le manager " + event.getName());
-		System.out.println("Dans le manager " + oldEvent.getIdEvent());
-		System.out.println("Dans le manager " + event.getIdEvent());
 		event.update();
 	}
 

@@ -59,7 +59,6 @@ public class BoxLetterJDBC extends BoxLetter {
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.BoxLetter where idNotification="+idNotification+" and idMember="+idMember;
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
@@ -85,7 +84,6 @@ public class BoxLetterJDBC extends BoxLetter {
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.BoxLetter where idMember="+idMember;
-		System.out.println(sql);
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -124,7 +122,6 @@ public class BoxLetterJDBC extends BoxLetter {
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Update LotuZ.BoxLetter Set readNotification="+readNotification+" Where idBoxLetter="+idBoxLetter+" and idNotification="+idNotification+" and idMember="+idMember;
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
@@ -144,7 +141,6 @@ public class BoxLetterJDBC extends BoxLetter {
 				+this.getIdMember()+","
 				+this.getDateReceived()+","
 				+this.getReadNotification()+")";
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeQuery(sql);
 		
@@ -165,7 +161,6 @@ public class BoxLetterJDBC extends BoxLetter {
 				+idMember+","
 				+'"'+dateReceived+'"'+","
 				+readNotification+")";
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
@@ -181,7 +176,6 @@ public class BoxLetterJDBC extends BoxLetter {
 		
 		// Requete de suppression a partir de l'identifiant 
 		String sql = "Delete From LotuZ.BoxLetter where idNotification="+idNotification+" and idMember="+idMember;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
-		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
 		

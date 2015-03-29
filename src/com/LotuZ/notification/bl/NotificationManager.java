@@ -34,17 +34,13 @@ public class NotificationManager
 	
 	public ArrayList<BoxLetter> getAllNotificationInBox(int idMember) 
 	{
-		System.out.println("NotifMan1");
 		BoxLetter boxLetter = pkit.createBoxLetter();
-		System.out.println("NotifMan2");
 		ArrayList<BoxLetter> boxLetterCenter=null;
 		try {
 			boxLetterCenter = boxLetter.loadAllLetter(idMember);
-			System.out.println("NotifMan3");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("NotifMan4");
 		return boxLetterCenter;
 	}
 
@@ -52,7 +48,6 @@ public class NotificationManager
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
-		//System.out.println(dateFormat.format(cal.getTime()));
 		BoxLetter boxLetter = pkit.createBoxLetter();
 		try {
 			boxLetter.save(idNotification, idMember,dateFormat.format(cal.getTime()), 0);

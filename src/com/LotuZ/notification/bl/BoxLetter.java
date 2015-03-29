@@ -152,7 +152,6 @@ public abstract class BoxLetter
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
-		System.out.println(dateFormat.format(cal.getTime()));
 		this.save(idNotification,idMember,(String) dateFormat.format(cal.getTime()),0);
 	}
 	

@@ -51,14 +51,12 @@ public class ContributorJDBC extends Contributor{
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql2);
-			System.out.println(" RESULT : "+result);
 			
 			int idContrib = 0;
 			while (result.next())
 			{
 				idContrib = result.getInt("idContributor");
 			}
-			System.out.println(" RESULT : "+idContrib);
 
 			String sql3 = "UPDATE User SET idContributor = ('"+ idContrib +"') Where mail='"+ mailContributor +"'";
 			st.executeUpdate(sql3);

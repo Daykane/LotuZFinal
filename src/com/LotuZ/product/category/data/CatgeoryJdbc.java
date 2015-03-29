@@ -77,50 +77,6 @@ public class CatgeoryJdbc extends CategoryProduct
 	 * @throws SQLException 
 	 */
 	
-//	public int generateId() throws SQLException
-//	{
-//		int idGenerated=0;
-//		try 
-//		{		
-//			
-//			Statement st =null;
-//			
-//			// Cr�ation d'un statement
-//			st = this.cn.createStatement();
-//			
-//			// Requ�te de s�lection � partir de l'identifiant 
-//			String sql = "Select generatedIdCategory From LotuZ.generateIdCategory";
-//			
-//			// Ex�cution de la requ�te
-//			ResultSet result = st.executeQuery(sql);
-//			
-//			// R�cup�ration des donn�es 
-//			System.out.println(idGenerated);
-//			System.out.println(sql);
-//			
-//			while(result.next())
-//			{	
-//				System.out.println("generatedIdCategory");
-//				idGenerated = result.getInt("generatedIdCategory");
-//				System.out.println(idGenerated); 
-//			}
-//			System.out.println(idGenerated);
-//			idGenerated++;
-//			System.out.println(idGenerated);
-//			// Requ�te de s�lection � partir de l'identifiant 
-//			String sql1 = "Update LotuZ.generateIdCategory Set generatedIdCategory="+idGenerated+" Where idgenerateIdCategory="+0;
-//			System.out.println("cJDBC3");
-//			// Ex�cution de la requ�te
-//			st.executeUpdate(sql1);
-//			System.out.println("cJDBC4");
-//					
-//		} 
-//		catch (SQLException e) 
-//		{
-//			throw e;
-//		}
-//		return idGenerated;
-//	}
 	
 	public CategoryProduct load(int idCategoryProduct) throws SQLException
 	{
@@ -132,7 +88,6 @@ public class CatgeoryJdbc extends CategoryProduct
 			
 			// Requ�te de s�lection � partir de l'identifiant 
 			String sql = "Select * From LotuZ.Category where idCategory="+idCategoryProduct;
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
@@ -159,7 +114,6 @@ public class CatgeoryJdbc extends CategoryProduct
 			
 			// Requ�te de s�lection � partir de l'identifiant 
 			String sql = "Update LotuZ.Category Set nameCategory='"+name+"', descriptionCategory='"+description+"',levelCategory="+level+",fatherCategory="+father+" Where idCategory="+id;
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			st.executeUpdate(sql);
 		
@@ -179,7 +133,6 @@ public class CatgeoryJdbc extends CategoryProduct
 					+this.getDecriptionCategory()+","
 					+this.getLevelCategory()+","
 					+this.getFactherCategory()+")";
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			st.executeQuery(sql);
 	}
@@ -198,7 +151,6 @@ public class CatgeoryJdbc extends CategoryProduct
 					+'"'+description+'"'+","
 					+level+","
 					+father+")";
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			st.executeUpdate(sql);
 	}
@@ -213,7 +165,6 @@ public class CatgeoryJdbc extends CategoryProduct
 			// Requ�te d insertion � partir de l'identifiant 
 			//String sql = "Select * From LotuZ.Category where idCategory="+idCategoryProduct;
 			String sql = "Delete From LotuZ.Category where idCategory="+idCategoryProduct;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			st.executeUpdate(sql);
 			

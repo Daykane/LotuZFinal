@@ -97,7 +97,6 @@ public class ViewNotificationUI extends JFrame{
 		lblnameUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -126,7 +125,6 @@ public class ViewNotificationUI extends JFrame{
 		lblBoutique.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -147,9 +145,7 @@ public class ViewNotificationUI extends JFrame{
 					loginUI.setVisible(true);
 				}
 				else{
-					System.out.println("Faire une d�connexion");
 				}
-				//System.out.println("Connexion ou deconnexion si la personne n'est pas connect� ou l'est");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {

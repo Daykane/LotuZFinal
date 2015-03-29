@@ -116,7 +116,6 @@ public class ViewCategoryUI extends JFrame {
 		lblnameUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -145,7 +144,6 @@ public class ViewCategoryUI extends JFrame {
 		lblBoutique.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -160,7 +158,6 @@ public class ViewCategoryUI extends JFrame {
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Connexion ou deconnexion si la personne n'est pas connect� ou l'est");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -367,7 +364,6 @@ public class ViewCategoryUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println("Coucou");
 				CategoryUI CategoryUI = null;
 				try {
 					CategoryUI = new CategoryUI();
@@ -420,7 +416,6 @@ public class ViewCategoryUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println("Coucou");
 				EditCategoryUI EditCategoryUI = null;
 				try {
 					EditCategoryUI = new EditCategoryUI(categorySel);

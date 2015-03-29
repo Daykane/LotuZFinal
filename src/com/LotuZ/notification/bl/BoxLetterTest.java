@@ -55,7 +55,6 @@ public class BoxLetterTest {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				System.out.println("Ouverture de la connexion");
 
 	}
 
@@ -65,7 +64,6 @@ public class BoxLetterTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception 
 	{
-			System.out.println("fermeture de la connexion");
 			cn.close();
 	}
 

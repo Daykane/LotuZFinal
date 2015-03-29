@@ -117,7 +117,6 @@ public final class UserLog extends User{
 		}
 		else{
 			//TODO
-			System.out.println("deja logger");
 		}
 	}
 
@@ -153,7 +152,6 @@ public final class UserLog extends User{
 		}
 		else{
 			//TODO
-			System.out.println("pas de user connecté");
 		}
 		//return user;
 	}

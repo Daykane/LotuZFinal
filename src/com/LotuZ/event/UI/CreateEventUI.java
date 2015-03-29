@@ -287,8 +287,6 @@ public class CreateEventUI extends JFrame {
 
 						int idRoom = 0;
 
-						System.out.println(startingTime);
-						System.out.println(finishingTime);
 						int price = 0;
 						price = Integer.parseInt(tfPrice.getText());
 						

@@ -44,7 +44,6 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Accessory where idAccessory="+idAccessory;
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
@@ -66,7 +65,6 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Accessory ";
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
@@ -103,7 +101,6 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Update LotuZ.Accessory Set name='"+nameAccessory+"' and description='"+descriptionAccessory+" Where idAccessory="+idAccessory;
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
@@ -120,7 +117,6 @@ public class AccessoryJDBC extends Accessory
 				+ "("
 				+'"'+this.getNameAccessory()+'"'+","
 				+'"'+this.getDescriptionAccessory()+'"'+")";
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
@@ -137,10 +133,8 @@ public class AccessoryJDBC extends Accessory
 				+ "("
 				+'"'+nameAccessory+'"'+","
 				+'"'+descriptionAccessory+'"'+")";
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
-		System.out.println("Ok:"+sql);
 	}
 
 	public void delete(int idAccessory) throws SQLException 
@@ -152,7 +146,6 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requete de suppression a partir de l'identifiant 
 		String sql = "Delete From LotuZ.Accessory where idAccessory="+idAccessory;
-		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
 		

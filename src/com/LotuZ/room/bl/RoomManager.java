@@ -17,16 +17,12 @@ public class RoomManager
 
 	public ArrayList<Room> getAllRoom() {
 		Room room = pkit.createRoom();
-		System.out.println("Loic");
 		ArrayList<Room> rooms=null;
 		try {
-			System.out.println("Loic");
 			rooms = room.loadAllRoom();
-			System.out.println("Loic");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Loic");
 		return rooms;
 	}
 
@@ -66,7 +62,6 @@ public class RoomManager
 	public void createRoom(String nameRoom, int surfaceRoom, int typeRoom,ArrayList<Accessory> listAccessory) 
 	{
 		Room room = pkit.createRoom();
-		System.out.println("manager");
 		try {
 			room.save(nameRoom, surfaceRoom, typeRoom,listAccessory);
 		} catch (SQLException e) {

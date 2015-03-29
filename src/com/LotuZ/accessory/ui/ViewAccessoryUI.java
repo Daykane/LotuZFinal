@@ -135,7 +135,6 @@ public class ViewAccessoryUI extends JFrame{
 		gbc_btnEdit.gridx = 2;
 		gbc_btnEdit.gridy = 3;
 		validationPan.add(btnEdit, gbc_btnEdit);
-		System.out.println("coucou");
 		
 		//Listeners
 		
@@ -171,7 +170,6 @@ public class ViewAccessoryUI extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println("coucou");
 				EditAccessoryUI editAccessoryUI = null;
 				try {
 					editAccessoryUI = new EditAccessoryUI(accessorySel);

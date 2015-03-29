@@ -109,7 +109,6 @@ public class NotificationCenterUI extends JFrame
 		lblnameUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -138,7 +137,6 @@ public class NotificationCenterUI extends JFrame
 		lblBoutique.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -159,9 +157,7 @@ public class NotificationCenterUI extends JFrame
 					loginUI.setVisible(true);
 				}
 				else{
-					System.out.println("Faire une d�connexion");
 				}
-				//System.out.println("Connexion ou deconnexion si la personne n'est pas connect� ou l'est");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -178,15 +174,11 @@ public class NotificationCenterUI extends JFrame
 		notifCenterPan.setLayout(new GridBagLayout());
 	
 		//JListe Category
-		System.out.println("Coucou");
-		System.out.println(user.getIdMember());
 		final ArrayList<BoxLetter> boxLetter = (ArrayList<BoxLetter>) FacadeBL.getAllNotificationInBox(user.getIdMember());
 		final ArrayList<Notification> notifications = new ArrayList<Notification>();
 		for (int i=0;i<boxLetter.size();i++)
 		{
-			System.out.println("Coucouoooo");
 			notifications.add(FacadeBL.getNotification(boxLetter.get(i).getIdNotification()));
-			System.out.println("Coucouaaa");
 		}	
 		final JList jListNotifications = new JList(notifications.toArray());
 		jListNotifications.setCellRenderer(new DefaultListCellRenderer() 
@@ -233,7 +225,6 @@ public class NotificationCenterUI extends JFrame
 		notifCenterPan.add(jListNotifications, gbc_jListNotifications);
 			
 			//Button View
-		System.out.println("le pingpu");
 		JButton btnViewNotif = new JButton("View");
 		GridBagConstraints gbc_btnViewNotif= new GridBagConstraints();
 		gbc_btnViewNotif.gridx = 1;
@@ -242,7 +233,6 @@ public class NotificationCenterUI extends JFrame
 		notifCenterPan.add(btnViewNotif, gbc_btnViewNotif);
 		
 			//Button Remove
-		System.out.println("la pingpu");
 		final JButton btnRemoveNotif = new JButton("Remove");
 		GridBagConstraints gbc_btnRemoveNotif= new GridBagConstraints();
 		gbc_btnRemoveNotif.gridx = 1;
@@ -272,7 +262,6 @@ public class NotificationCenterUI extends JFrame
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				System.out.println("idBox:"+boxLetter.get(jListNotifications.getSelectedIndex()).getIdBoxLetter()+"  id notif:"+boxLetter.get(jListNotifications.getSelectedIndex()).getIdNotification()+"  idMember:"+boxLetter.get(jListNotifications.getSelectedIndex()).getIdMember());
 				FacadeBL.updateBoxLetter(boxLetter.get(jListNotifications.getSelectedIndex()).getIdBoxLetter(), boxLetter.get(jListNotifications.getSelectedIndex()).getIdNotification(), boxLetter.get(jListNotifications.getSelectedIndex()).getIdMember(), 1);
 				viewNotificationUI.setLocationRelativeTo(null);
 				viewNotificationUI.setVisible(true);

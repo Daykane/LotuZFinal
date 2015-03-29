@@ -51,7 +51,6 @@ public class NotificationJDBC extends Notification {
 			
 			// Requ�te de s�lection � partir de l'identifiant 
 			String sql = "Select * From LotuZ.Notification where idNotification="+idNotification;
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
@@ -73,7 +72,6 @@ public class NotificationJDBC extends Notification {
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Update LotuZ.Notification Set textNotification='"+textNotification+"', objetNotification='"+objetNotification+"' Where idCategory="+idNotification;
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
@@ -93,7 +91,6 @@ public class NotificationJDBC extends Notification {
 					+ "("
 					+this.getTextNotification()+","
 					+this.getObjetNotification()+")";
-			System.out.println(sql);
 			// Ex�cution de la requ�te
 			st.executeQuery(sql);
 		
@@ -114,7 +111,6 @@ public class NotificationJDBC extends Notification {
 				+this.getIdNotification()+","
 				+'"'+textNotification+'"'+","
 				+'"'+objetNotification+'"'+")";
-		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeQuery(sql);
 		
@@ -131,7 +127,6 @@ public class NotificationJDBC extends Notification {
 		
 		// Requete de suppression a partir de l'identifiant 
 		String sql = "Delete From LotuZ.Notification where idNotification="+idNotification;	// pour réaliser un suppression il faut utiliser "executeUpdate" et non pas executeQuery " 	
-		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
 		

@@ -111,7 +111,6 @@ public class CreateCategoryUI extends JFrame {
 		lblnameUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -140,7 +139,6 @@ public class CreateCategoryUI extends JFrame {
 		lblBoutique.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -155,7 +153,6 @@ public class CreateCategoryUI extends JFrame {
 		lblConnexion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Connexion ou deconnexion si la personne n'est pas connect� ou l'est");
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -276,7 +273,6 @@ public class CreateCategoryUI extends JFrame {
 		gbc_listFatherCategory.gridy = 4;
 		listFatherCategory.setVisible(false);
 		categoryPan.add(listFatherCategory, gbc_listFatherCategory);
-		System.out.println(cBoxLevelCategory.getSelectedItem());
 		
 		//Center South
 		JPanel validationPan = new JPanel();
@@ -359,9 +355,7 @@ public class CreateCategoryUI extends JFrame {
 				}
 				if (cBoxLevelCategory.getSelectedItem().equals("Category"))
 				{
-					System.out.println("Coucou");
 					//int idCatGen = facadeBL.generateId();
-					System.out.println("Kikoo");
 					facadeBL.createCategory(txtFName.getText(), txtADescription.getText(), 0, -1);
 				}
 				CategoryUI CategoryUI = null;

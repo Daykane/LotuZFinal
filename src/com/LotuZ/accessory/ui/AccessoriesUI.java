@@ -126,7 +126,6 @@ public class AccessoriesUI extends JFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("ici");
 			AddAccessoryUI add = null;
 			try {
 				add = new AddAccessoryUI();
