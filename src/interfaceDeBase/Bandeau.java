@@ -18,7 +18,7 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserDetailUI;
-import com.LotuZ.user.admin.ui.HomepageAdmin;
+import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.User;
 
 public class Bandeau extends JFrame {
@@ -51,7 +51,7 @@ public Component createBandeau(final User user,String name){
 		public void mouseClicked(MouseEvent arg0) {
 			UserDetailUI userDetail;
 			try {
-				HomepageAdmin homepage = new HomepageAdmin();
+				Homepage homepage = new Homepage();
 				homepage.setVisible(true);
 				homepage.setLocationRelativeTo(null);
 				getJframe().dispose();

@@ -32,7 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.admin.ui.HomepageAdmin;
+import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.UserLog;
@@ -448,10 +448,10 @@ public class InscriptionUI extends JFrame {
 				btnCancel.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						HomepageAdmin homepage;
+						Homepage homepage;
 						
 						try {
-							homepage = new HomepageAdmin();
+							homepage = new Homepage();
 							homepage.setVisible(true);
 							homepage.setLocationRelativeTo(null);
 							dispose();

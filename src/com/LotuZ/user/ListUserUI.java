@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.admin.ui.HomepageAdmin;
+import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 
@@ -169,9 +169,9 @@ public class ListUserUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				HomepageAdmin homepage;
+				Homepage homepage;
 				try {
-					homepage = new HomepageAdmin();
+					homepage = new Homepage();
 					homepage.setVisible(true);
 					homepage.setLocationRelativeTo(null);
 					dispose();

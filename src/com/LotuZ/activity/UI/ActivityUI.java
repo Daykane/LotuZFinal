@@ -15,7 +15,7 @@ import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.admin.ui.HomepageAdmin;
+import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JLabel;
@@ -237,9 +237,9 @@ public class ActivityUI extends JFrame {
 		btnHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				HomepageAdmin homepage;
+				Homepage homepage;
 				try {
-					homepage = new HomepageAdmin();
+					homepage = new Homepage();
 					homepage.setVisible(true);
 					homepage.setLocationRelativeTo(null);
 					dispose();

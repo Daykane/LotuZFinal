@@ -44,7 +44,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 
-public class HomepageAdmin extends JFrame {
+public class Homepage extends JFrame {
 
 	/**
 	 * 
@@ -91,7 +91,7 @@ public class HomepageAdmin extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public HomepageAdmin() throws SQLException, UserNotFoundException {
+	public Homepage() throws SQLException, UserNotFoundException {
 		
 		FacadeUser.login("jack","jack");
 

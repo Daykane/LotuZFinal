@@ -16,7 +16,7 @@ import com.LotuZ.user.HomepageUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.admin.ui.HomepageAdmin;
+import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
@@ -121,7 +121,7 @@ public class LoginUI extends JFrame {
 
 					
 					if(user != null){
-						HomepageAdmin homepage = new HomepageAdmin();
+						Homepage homepage = new Homepage();
 						homepage.setVisible(true);
 						homepage.setLocationRelativeTo(null);
 						dispose();
