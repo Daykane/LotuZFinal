@@ -1,35 +1,29 @@
 package com.LotuZ.payment;
 
 import interfaceDeBase.Bandeau;
-import interfaceDeBase.PageAccueiltest;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
-import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PaymentUI extends JFrame{
 
@@ -97,38 +91,58 @@ public class PaymentUI extends JFrame{
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		//label Card Number
 		JLabel lblNewLabel = new JLabel("Card Number");
-		lblNewLabel.setBounds(104, 50, 74, 14);
+		lblNewLabel.setBounds(89, 50, 131, 14);
 		panel.add(lblNewLabel);
 		
+		//label Expiration Date
 		JLabel lblExpirationDate = new JLabel("Expiration Date");
-		lblExpirationDate.setBounds(104, 87, 74, 14);
+		lblExpirationDate.setBounds(89, 87, 101, 14);
 		panel.add(lblExpirationDate);
 		
+		//label CodeDeConfirmation
 		JLabel lblCodeDeConfirmation = new JLabel("Code de confidentialit\u00E9");
-		lblCodeDeConfirmation.setBounds(104, 126, 131, 14);
+		lblCodeDeConfirmation.setBounds(87, 126, 142, 14);
 		panel.add(lblCodeDeConfirmation);
 		
+		//textfield card number
 		textField = new JTextField();
 		textField.setBounds(270, 47, 185, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
+		//textfield Expiration date
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(270, 84, 86, 20);
 		panel.add(textField_1);
 		
+		//textfield Code de confirmation
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(270, 123, 86, 20);
 		panel.add(textField_2);
 		
+		
 		JButton btnNewButton = new JButton("Submit");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//a message to inform that the payment is submit
+				JOptionPane.showMessageDialog(null,"Payment submit","Payment submit",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		btnNewButton.setBounds(162, 270, 89, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//TODO
+			}
+		});
 		btnCancel.setBounds(295, 270, 89, 23);
 		panel.add(btnCancel);
 
