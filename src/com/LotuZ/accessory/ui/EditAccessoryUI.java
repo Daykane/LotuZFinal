@@ -32,12 +32,6 @@ public class EditAccessoryUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private static final int PARTICIPANTMIN = 5;
-	private static final int PARTCIPANTMAX = 50;
-	private static final int PARTICIPANTSTANDARD = 15;
-	private static final int descriptionSTANDDARD = 25;
-	private static final int descriptionMIN = 15;
-	private static final int descriptionMAX = 50;
 	private JPanel contentPane;
 
 	public EditAccessoryUI(Accessory accessory) throws SQLException, UserNotFoundException 
@@ -74,7 +68,7 @@ public class EditAccessoryUI extends JFrame {
 		panelBannerCenter.setLayout(new BorderLayout(0, 0));
 		
 		//Set top banner Title
-		JLabel lblSbTitle = new JLabel("Accessory View");
+		JLabel lblSbTitle = new JLabel("Accessory Edit");
 		lblSbTitle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSbTitle.setVerticalAlignment(SwingConstants.CENTER);
 		lblSbTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,7 +94,7 @@ public class EditAccessoryUI extends JFrame {
 		gbc_txtFName.gridx = 2;
 		gbc_txtFName.gridy = 1;
 		txtFName.setColumns(15);
-		txtFName.setEditable(false);
+		txtFName.setEditable(true);
 		accessoryPan.add(txtFName, gbc_txtFName);
 
 		
@@ -119,7 +113,7 @@ public class EditAccessoryUI extends JFrame {
 		GridBagConstraints gbc_txtAdescription= new GridBagConstraints();
 		gbc_txtAdescription.gridx = 2;
 		gbc_txtAdescription.gridy = 2;
-		txtAdescription.setEditable(false);
+		txtAdescription.setEditable(true);
 		txtAdescription.setColumns(30);
 		txtAdescription.setRows(3);
 		accessoryPan.add(txtAdescription, gbc_txtAdescription);
@@ -136,12 +130,12 @@ public class EditAccessoryUI extends JFrame {
 		gbc_btnCancel.gridy = 3;
 		validationPan.add(btnCancel, gbc_btnCancel);
 		
-			//Edit
-		JButton btnEdit=new JButton("Edit");
-		GridBagConstraints gbc_btnEdit= new GridBagConstraints();
-		gbc_btnEdit.gridx = 2;
-		gbc_btnEdit.gridy = 3;
-		validationPan.add(btnEdit, gbc_btnEdit);
+			//Submit
+		JButton btnSubmit =new JButton("Submit");
+		GridBagConstraints gbc_btnSubmit= new GridBagConstraints();
+		gbc_btnSubmit.gridx = 2;
+		gbc_btnSubmit.gridy = 3;
+		validationPan.add(btnSubmit, gbc_btnSubmit);
 		
 		//Listeners
 		
@@ -171,15 +165,15 @@ public class EditAccessoryUI extends JFrame {
 		
 		
 		
-			//btnEditListeners
+			//btnSubmitListeners
 			
 		ActionListener btnEditListeners = new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				EditAccessoryUI editaccessoryUI = null;
+				AccessoriesUI accessoriesUI = null;
 				try {
-					editaccessoryUI = new EditAccessoryUI(accessorySel);
+					accessoriesUI = new AccessoriesUI();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -187,12 +181,12 @@ public class EditAccessoryUI extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				editaccessoryUI.setLocationRelativeTo(null);
-				editaccessoryUI.setVisible(true);
-				dispose();
+				accessoriesUI.setLocationRelativeTo(null);
+				accessoriesUI.setVisible(true);
+				dispose();				
 			}
 		};
-		btnEdit.addActionListener(btnEditListeners);
+		btnSubmit.addActionListener(btnEditListeners);
 		
 	}
 }
