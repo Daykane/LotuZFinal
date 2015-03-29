@@ -1,5 +1,6 @@
 package com.LotuZ.product.category.ui;
 
+import interfaceDeBase.Bandeau;
 import interfaceDeBase.PageAccueiltest;
 
 import java.awt.BorderLayout;
@@ -42,6 +43,7 @@ import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
+import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
@@ -98,120 +100,27 @@ public class CategoryUI extends JFrame {
 	
 	public CategoryUI() throws SQLException, UserNotFoundException 
 	{
+		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
-		//Create Window
+		Bandeau bandeau = new Bandeau();
+		System.out.println("Mail page acceuil test : " + user.getMail());
+
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);
-		
-		//North
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-			//Set top banner
-		JPanel panelBanner = new JPanel();
-		panelBanner.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		contentPane.add(panelBanner, BorderLayout.NORTH);
-		panelBanner.setLayout(new BorderLayout(0, 0));
-
-				//Set top banner Title
-		JLabel lblTitle = new JLabel("CATEGORY MANAGEMENT");
-		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		panelBanner.add(lblTitle, BorderLayout.CENTER);
-
-				//Set top banner Logo
-		JLabel lblToto = new JLabel("LOGO");
-		lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblToto.setHorizontalAlignment(SwingConstants.LEFT);
-//		panel.add(lblToto, BorderLayout.WEST);
-
-
-		JLabel image = new JLabel(new ImageIcon("zen.jpg"));
-		panelBanner.add(image,BorderLayout.WEST);
-
-				//Set top banner Options
-		JPanel panelOptions = new JPanel();
-		panelBanner.add(panelOptions, BorderLayout.EAST);
-		panelOptions.setLayout(new GridLayout(3, 1, 0, 0));
-
-				//Set top banner option parameter initalisation
-		final JLabel lblnameUser = new JLabel("name");
-		panelOptions.add(lblnameUser);
-		if 	(user!=null){
-			lblnameUser.setText(user.getLastName() +" "+ user.getFirstName());
-		}
-		else {
-			lblnameUser.setVisible(false);
-		}
-		final String nameUser = lblnameUser.getText(); 
-		lblnameUser.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblnameUser.setText("<html><u><font color = #1373cc >"+nameUser +" </u></font></html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblnameUser.setText(nameUser);
-			}
-		});
-		lblnameUser.setHorizontalAlignment(SwingConstants.LEFT);
-
-		final JLabel lblConnexion = new JLabel("connexion/deconnexion");
-		lblConnexion.setHorizontalAlignment(SwingConstants.LEFT);
-		panelOptions.add(lblConnexion);
-		if (user == null){
-			lblConnexion.setText("connexion");
-		}
-		else {
-			lblConnexion.setText("d�connexion");
-		}
-		final String Connexion = lblConnexion.getText();
-		final JLabel lblBoutique = new JLabel("Boutique Access ");
-		panelOptions.add(lblBoutique);
-		final String Boutique = lblBoutique.getText();
-		lblBoutique.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblBoutique.setText("<html><u><font color = #1373cc >"+Boutique +" </u></font></html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblBoutique.setText(Boutique);
-			}
-		});
-		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
-		lblConnexion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Connexion ou deconnexion si la personne n'est pas connect� ou l'est");
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblConnexion.setText("<html><u><font color = #1373cc >"+Connexion +" </u></font></html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblConnexion.setText(Connexion);
-			}
-		});
+		contentPane.add(bandeau.createBandeau(user, "CATEGORY MANAGEMENT"), BorderLayout.NORTH);
 			//Center
 		JPanel categoryPan = new JPanel();
 		categoryPan.setLayout(new GridBagLayout());
 
 		//JListe Category
 		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getAllCategories().getListCategoryProduct();
-		final ArrayList<String> categoriesNames = new ArrayList<String>();
+		final ArrayList<String> categoriesNames = new ArrayList<StrinProductg>();
 //		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 //			Component renderer =  super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus)
 //		    setText(entry.getTitle());

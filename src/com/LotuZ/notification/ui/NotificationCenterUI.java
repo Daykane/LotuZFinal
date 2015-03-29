@@ -221,7 +221,6 @@ public class NotificationCenterUI extends JFrame
 		final JList jListNotifications = new JList(notifications.toArray());
 		jListNotifications.setCellRenderer(new DefaultListCellRenderer() 
 		{ 
-		@Override 
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
 		{ 
 			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
@@ -257,7 +256,6 @@ public class NotificationCenterUI extends JFrame
 		} 
 		}
 		);	
-		System.out.println("li pingpu");
 		GridBagConstraints gbc_jListNotifications= new GridBagConstraints();
 		gbc_jListNotifications.gridx = 0;
 		gbc_jListNotifications.gridy = 1;		

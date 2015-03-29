@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.LotuZ.product.category.bl.CategoryProduct;
 
 /**
- * <b> Notification est la classe représentant les notfication dans le systel. </b>
+ * <b> Notification est la classe représentant les notfications dans le systeme. </b>
  * <p> 
  * Les attributs de la classe Notification sont:
  * <ul>
