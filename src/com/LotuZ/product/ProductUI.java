@@ -193,8 +193,10 @@ public class ProductUI extends JFrame{
 						e1.printStackTrace();
 					}
 					pageListProductUI.setVisible(true);
-					pageListProductUI.setLocationRelativeTo(null);			
+					pageListProductUI.setLocationRelativeTo(null);		
+					dispose();
 			}
+	
 		});
 		
 		//button  CANCEL added to the central panel

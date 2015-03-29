@@ -153,6 +153,7 @@ public class ListProductUI extends JFrame {
 				} catch (UserNotFoundException e) {
 					e.printStackTrace();
 				}
+				dispose();
 
 			}
 		});
