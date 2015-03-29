@@ -397,6 +397,7 @@ public class ViewCategoryUI extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				EditCategoryUI.setLocationRelativeTo(null);
 				EditCategoryUI.setVisible(true);
 				dispose();
 				
