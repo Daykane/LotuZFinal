@@ -191,8 +191,8 @@ public class HomepageAdmin extends JFrame {
 		JButton btnGestionDesResponsables = new JButton("Gestion des Responsables d'Activit\u00E9s");
 		panel.add(btnGestionDesResponsables);
 		
-		JButton btnGestionDesActivitées = new JButton("Gestion des activit\u00E9es");
-		btnGestionDesActivitées.addMouseListener(new MouseAdapter() {
+		JButton btnGestionDesActivitees = new JButton("Gestion des activit\u00E9es");
+		btnGestionDesActivitees.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				ActivityUI activityUI = new ActivityUI();
@@ -201,7 +201,7 @@ public class HomepageAdmin extends JFrame {
 				dispose();
 			}
 		});
-		panel.add(btnGestionDesActivitées);
+		panel.add(btnGestionDesActivitees);
 		
 		JButton btnGestionDesEvents = new JButton("Mes activit\u00E9es");
 		btnGestionDesEvents.addMouseListener(new MouseAdapter() {
@@ -242,7 +242,7 @@ public class HomepageAdmin extends JFrame {
 			}
 		});
 		
-		// Test des droits de l'utilisateur connecté 
+		// Test des droits de l'utilisateur connectï¿½ 
 		if (admin != null)
 		{
 			btnGestionDesResponsables.setVisible(true);
