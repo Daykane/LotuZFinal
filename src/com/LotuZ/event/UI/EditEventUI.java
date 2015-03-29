@@ -70,9 +70,7 @@ public class EditEventUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		//JPanel panelBandeau = new JPanel();
-		//panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		contentPane.add(new Bandeau().createBandeau(user, "Gestion Event"), BorderLayout.NORTH);
+		contentPane.add(new Bandeau().createBandeau(user, "Edit Event"), BorderLayout.NORTH);
 		
 		JPanel panelMain = new JPanel();
 		contentPane.add(panelMain, BorderLayout.CENTER);
@@ -119,7 +117,6 @@ public class EditEventUI extends JFrame {
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox BoxActivity = new JComboBox(listAct);		
 		panelMain.add(BoxActivity, "4, 4, left, default");
-		//BoxActivity.setColumns(10);
 		
 		JLabel lblHeureDbut = new JLabel("Heure D\u00E9but : ");
 		panelMain.add(lblHeureDbut, "2, 6, right, default");
@@ -158,7 +155,6 @@ public class EditEventUI extends JFrame {
 		SpinnerModel modelMinFin = new SpinnerNumberModel(01, 00, 59, 1);
 		final JSpinner spinnerMinuteFin = new JSpinner(modelMinFin);
 		panel_1.add(spinnerMinuteFin);
-		//spinnerMinuteFin
 		
 		JLabel lblMinute = new JLabel("min");
 		panel_1.add(lblMinute);
@@ -192,6 +188,8 @@ public class EditEventUI extends JFrame {
 		JLabel lblSalle = new JLabel("Salle : ");
 		panelMain.add(lblSalle, "2, 16, right, default");
 		
+		//TODO get list room
+		String mail;
 		Choice choiceRoom = new Choice();
 		panelMain.add(choiceRoom, "4, 16, left, default");
 		
@@ -262,8 +260,6 @@ public class EditEventUI extends JFrame {
 					//TODO get list Romm;
 					int idRoom = 0;
 					
-					System.out.println(startingTime);
-					System.out.println(finishingTime);
 					int price = 0;
 					try{
 					price = Integer.parseInt(tfPrice.getText());
@@ -286,6 +282,12 @@ public class EditEventUI extends JFrame {
 		panel_2.add(btnConfirm);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
 		panel_2.add(btnCancel);
 	}
 	

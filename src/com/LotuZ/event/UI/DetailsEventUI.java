@@ -50,8 +50,8 @@ public class DetailsEventUI extends JFrame {
 	private JTextField TfContrib;
 
 	/**
-	 * Create the frame.
-	 * @param event 
+	 * Create the Detail Event frame.
+	 * @param event : Event
 	 */
 	public DetailsEventUI(final Event event) {
 		User user = UserLog.getUserLog();
@@ -113,7 +113,6 @@ public class DetailsEventUI extends JFrame {
 		JLabel lblActivite = new JLabel("Activit\u00E9e : ");
 		panelMain.add(lblActivite, "2, 4, right, default");
 
-		//BoxActivity.setColumns(10);
 		Activity activity = null;
 		try {
 			activity = FacadeActivity.getActivity(event.getIdActivity());
@@ -231,6 +230,7 @@ public class DetailsEventUI extends JFrame {
 		});
 		panel_2.add(btnCancel);
 		
+		// Set Visible button only if admin or si le leader est en charde de l'activité observé
 		btnEdit.setVisible(false);
 		if( admin != null ){
 			btnEdit.setVisible(true);

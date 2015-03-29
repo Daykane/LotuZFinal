@@ -3,13 +3,12 @@ package com.LotuZ.event.repetition;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.LotuZ.user.user.bl.User;
-
+/**
+ * @author Alexis
+ *
+ */
 public abstract class Repetition {
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return name;
@@ -70,17 +69,44 @@ public abstract class Repetition {
 		this.name = name;
 	}
 
+	/**
+	 * Save repetition in base
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public abstract void save() throws SQLException, ClassNotFoundException;
 
+	/**
+	 * @param id : identifier of repretition
+	 * @throws SQLException
+	 */
 	public abstract Repetition load(int id) throws SQLException;
 	
+	/**
+	 * @param name : Name of repetition like identifier
+	 * @throws SQLException
+	 */
 	public abstract Repetition load(String name) throws SQLException;
 	
+	/**
+	 * Update the Repetition in base
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public abstract void update() throws ClassNotFoundException, SQLException;
 	
+	/**
+	 * delete repetition in the base
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public abstract void delete() throws ClassNotFoundException, SQLException;
 
 
+	/**
+	 * @return List of all repetition
+	 * @throws SQLException
+	 */
 	public abstract List<Repetition> loadAll() throws SQLException;
 
 	
