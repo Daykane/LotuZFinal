@@ -116,7 +116,7 @@ public class PlanningUI extends JFrame {
 					detailsEvent = new DetailsEventUI(this.event);
 					detailsEvent.setVisible(true);
 					detailsEvent.setLocationRelativeTo(null);
-
+					dispose();
 				}
 			}
 		});
