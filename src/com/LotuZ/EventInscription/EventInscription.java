@@ -3,6 +3,10 @@ package com.LotuZ.EventInscription;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * @author Alexis
+ *
+ */
 public abstract class EventInscription {
 	
 	private String idMember;
@@ -49,7 +53,23 @@ public abstract class EventInscription {
 		this.idEvent = idEvent;
 	}
 	
+	/**
+	 * Add inscription in the base
+	 * @throws SQLException
+	 */
 	public abstract void add() throws SQLException;
+	
+	
+	/**
+	 * Get the event where the user is register
+	 * @return List with identifer of Event
+	 * @throws SQLException
+	 */
 	public abstract List<Integer> loadUserEvent() throws SQLException;
+	/**
+	 * Get the user register in the event
+	 * @return List with the idenfier of User
+	 * @throws SQLException
+	 */
 	public abstract List<String> loadEventUser() throws SQLException;
 }

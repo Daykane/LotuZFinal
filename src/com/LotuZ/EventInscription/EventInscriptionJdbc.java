@@ -7,13 +7,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.LotuZ.event.repetition.Repetition;
-import com.LotuZ.event.repetition.RepetitionJdbc;
-
 public class EventInscriptionJdbc extends EventInscription {
 	
 	private Connection cn;
 	
+	/**
+	 * Init the EventInscription with the connexion
+	 * @param cn : the connexion
+	 */
 	public EventInscriptionJdbc(Connection cn) {
 		super();
 		this.cn = cn;
@@ -34,8 +35,10 @@ public class EventInscriptionJdbc extends EventInscription {
 		
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Integer> loadUserEvent() throws SQLException {
+		@SuppressWarnings("unchecked")
 		List<Integer> userEvent = new ArrayList();
 
 		Statement st =null;
@@ -43,7 +46,6 @@ public class EventInscriptionJdbc extends EventInscription {
 		st = this.cn.createStatement();
 		String sql = "Select * From LotuZ.InscriptionEvent where mail= '"+ this.getIdMember()+"'";
 		// Etape 4 : exécution requête
-		//st.executeUpdate(sql);
 		ResultSet result = st.executeQuery(sql);
 		while( result.next() ){	
 			int idEvent = result.getInt("idEvent");
@@ -53,8 +55,10 @@ public class EventInscriptionJdbc extends EventInscription {
 		return userEvent;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> loadEventUser() throws SQLException {
+		@SuppressWarnings("rawtypes")
 		List<String> eventUser = new ArrayList();
 
 		Statement st =null;
@@ -62,7 +66,6 @@ public class EventInscriptionJdbc extends EventInscription {
 		st = this.cn.createStatement();
 		String sql = "Select * From LotuZ.InscriptionEvent where idEvent= '"+ this.getIdEvent()+"'";
 		// Etape 4 : exécution requête
-		//st.executeUpdate(sql);
 		ResultSet result = st.executeQuery(sql);
 		while( result.next() ){	
 			String idUser = result.getString("mail");
