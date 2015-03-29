@@ -1,48 +1,31 @@
 package com.LotuZ.product;
 
 import interfaceDeBase.Bandeau;
-import interfaceDeBase.PageAccueiltest;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
-import com.LotuZ.activity.Activity;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
-import javax.swing.ImageIcon;
-
-import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
-import java.awt.Font;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
-import javax.swing.BoxLayout;
-
-import java.awt.GridLayout;
-
-import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -60,37 +43,6 @@ public class ProductUI extends JFrame{
 	private JLabel lblCategoryid;
 	private JTextField tfCategory;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/*public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ProductUI frame = new ProductUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
-
 
 	/**
 	 * Create the frame.
@@ -99,6 +51,7 @@ public class ProductUI extends JFrame{
 	 */
 	public ProductUI(int idProduct) throws SQLException, UserNotFoundException {
 		
+		//creation du bandeau 
 		
 		FacadeUser.login("jack","jack");
 		final Product product = FacadeBL.loadProduct(idProduct);
@@ -115,57 +68,67 @@ public class ProductUI extends JFrame{
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(bandeau.createBandeau(user1, "Consultation d'un produit"), BorderLayout.NORTH);
 		
+		//central panel
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		//label product name
 		JLabel lblNewLabel = new JLabel("Product Name:");
-		lblNewLabel.setBounds(144, 84, 90, 14);
+		lblNewLabel.setBounds(112, 84, 121, 14);
 		panel.add(lblNewLabel);
-		if (product == null){
-			System.out.println("product null");
-		}
+		
+		//textfield product name
 		tfNameProduct = new JTextField(product.getProductName());
-		//tfNameProduct.setText(product.getProductName());
-		tfNameProduct.setBounds(243, 81, 86, 20);
+		tfNameProduct.setBounds(264, 81, 86, 20);
 		panel.add(tfNameProduct);
 		tfNameProduct.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Price (\u20AC):");
-		lblNewLabel_1.setBounds(144, 121, 52, 14);
+		//label price
+		JLabel lblNewLabel_1 = new JLabel("Price (number in €):");
+		lblNewLabel_1.setBounds(112, 121, 121, 14);
 		panel.add(lblNewLabel_1);
 		
+		//textfield price
 		tfPrice = new JTextField(Integer.toString(product.getPrice()));
 		tfPrice.setColumns(10);
-		tfPrice.setBounds(243, 118, 86, 20);
+		tfPrice.setBounds(264, 118, 86, 20);
 		panel.add(tfPrice);
 		
-		JLabel lblQuantity = new JLabel("Quantity:");
-		lblQuantity.setBounds(144, 162, 52, 14);
+		//label quantity
+		JLabel lblQuantity = new JLabel("Quantity (number):");
+		lblQuantity.setBounds(112, 162, 121, 14);
 		panel.add(lblQuantity);
 		
+		//textfield quantity
 		tfQuantity = new JTextField(Integer.toString(product.getQuantity()));
 		tfQuantity.setColumns(10);
-		tfQuantity.setBounds(243, 159, 86, 20);
+		tfQuantity.setBounds(264, 159, 86, 20);
 		panel.add(tfQuantity);
 		
-		JLabel lblReduction = new JLabel("Reduction (%):");
-		lblReduction.setBounds(144, 204, 86, 14);
+		//label reduction
+		JLabel lblReduction = new JLabel("Reduction (number in %):");
+		lblReduction.setBounds(112, 204, 142, 14);
 		panel.add(lblReduction);
 		
+		//textfield reduction
 		tfReduction = new JTextField(Integer.toString(product.getReduction()));
 		tfReduction.setColumns(10);
-		tfReduction.setBounds(243, 201, 86, 20);
+		tfReduction.setBounds(264, 201, 86, 20);
 		panel.add(tfReduction);
 		
+		//label id category
 		lblCategoryid = new JLabel("Category(id):");
-		lblCategoryid.setBounds(144, 244, 86, 14);
+		lblCategoryid.setBounds(112, 244, 121, 14);
 		panel.add(lblCategoryid);
 		
+		//textfield id category
 		tfCategory = new JTextField(Integer.toString(product.getCategory()));
 		tfCategory.setColumns(10);
-		tfCategory.setBounds(240, 241, 86, 20);
+		tfCategory.setBounds(264, 241, 86, 20);
 		panel.add(tfCategory);
+		
+		//button EDIT
 		
 		final JButton btnEdit = new JButton("Edit");
 		
@@ -175,6 +138,8 @@ public class ProductUI extends JFrame{
 		tfReduction.setEditable(false);
 		tfCategory.setEditable(false);
 		btnEdit.addMouseListener(new MouseAdapter() {
+			
+			//when we click on EDIT
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
@@ -192,39 +157,40 @@ public class ProductUI extends JFrame{
 						Date updateDate = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 						FacadeBL.UpdateProduct(product, tfNameProduct.getText(),Integer.parseInt(tfCategory.getText()),Integer.parseInt(tfQuantity.getText()),Integer.parseInt(tfPrice.getText()),Integer.parseInt(tfReduction.getText()),dateFormat.format(updateDate));
-						//TODO update updateDate
 						
 						tfNameProduct.setEditable(false);
 						tfPrice.setEditable(false);
 						tfQuantity.setEditable(false);
 						tfReduction.setEditable(false);
 						tfCategory.setEditable(false);
-						// TODO alert boite
-						System.out.println("Activity updaté");
+						//a message to inform that the product is edited
+						JOptionPane.showMessageDialog(null,"Product edited","Product edited",JOptionPane.INFORMATION_MESSAGE);
+						
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}				
 			}
 		}
 		});
 		
-		btnEdit.setBounds(200, 361, 89, 23);
+		// button EDIT added to the panel center
+		btnEdit.setBounds(212, 361, 89, 23);
 		panel.add(btnEdit);
+		
+		//button CANCEL
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addMouseListener(new MouseAdapter() {
+			
+			//when we click on CANCEL
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("retour vers page précédente");
 				ListProductUI pageListProductUI = null;
 					try {
 						pageListProductUI = new ListProductUI();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (UserNotFoundException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					pageListProductUI.setVisible(true);
@@ -232,43 +198,51 @@ public class ProductUI extends JFrame{
 			}
 		});
 		
+		//button  CANCEL added to the central panel
 		btnCancel.setBounds(312, 361, 89, 23);
 		panel.add(btnCancel);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(390, 84, 46, 14);
-		panel.add(label);
-		
+		//panel creationDate
 		JLabel lblNewLabel_2 = new JLabel("Created:");
 		lblNewLabel_2.setBounds(390, 61, 60, 14);
 		panel.add(lblNewLabel_2);
 		
+		//panel updateDate
 		JLabel lblUpdated = new JLabel("Updated:");
 		lblUpdated.setBounds(390, 96, 60, 14);
 		panel.add(lblUpdated);
 
+		//label creationDate
 		JLabel lblNewLabel_4 = new JLabel(product.getCreationDate().toString());
 		lblNewLabel_4.setBounds(460, 61, 90, 14);
 		panel.add(lblNewLabel_4);
 		
+		//label updateDate
 		JLabel lblNewLabel_5 = new JLabel(product.getUpdateDate().toString());
 		lblNewLabel_5.setBounds(460, 96, 96, 14);
 		panel.add(lblNewLabel_5);
 		
-		JButton btnNewButton = new JButton("Delete");
+		//button DELETE
+		
+		JButton btnNewButton = 
+				new JButton("Delete");
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+			//when we click on DELETE
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					System.out.println(product.getId());
 					FacadeBL.deleteProduct(product.getId());
+					//a message to inform that the product is deleted
+					JOptionPane.showMessageDialog(null,"Product deleted","Product deleted",JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		btnNewButton.setBounds(94, 361, 89, 23);
+		
+		//button DELETE added to the central panel
+		btnNewButton.setBounds(112, 361, 89, 23);
 		panel.add(btnNewButton);
 
 	}

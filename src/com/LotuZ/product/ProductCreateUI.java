@@ -2,12 +2,11 @@ package com.LotuZ.product;
 
 
 
+import interfaceDeBase.Bandeau;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -16,41 +15,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
-import com.LotuZ.activity.UI.ActivityCreateUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-
-import javax.swing.JScrollBar;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ProductCreateUI extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField TFProductName;
@@ -62,10 +44,7 @@ public class ProductCreateUI extends JFrame {
 
 	static int count = 0;
 
-	/**
-	 * Launch the application.
-	 */
-
+	//TODO supprimer et raccorder ProductCreateUI à l'UI de la liste des category
 	public static void main(String[] args) {
 		// Info Connection
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -99,8 +78,12 @@ public class ProductCreateUI extends JFrame {
 	 * @throws SQLException 
 	 */
 	public ProductCreateUI() throws SQLException, UserNotFoundException {
+
+		//creation du bandeau
+
 		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
+		Bandeau bandeau = new Bandeau();
 		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
@@ -111,158 +94,91 @@ public class ProductCreateUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.add(bandeau.createBandeau(user, "Add Product"), BorderLayout.NORTH);
 
-		JPanel panelBandeau = new JPanel();
-		panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		contentPane.add(panelBandeau, BorderLayout.NORTH);
-		panelBandeau.setLayout(new BorderLayout(0, 0));
-
-
-		JLabel lblTitle = new JLabel("CREATE A PRODUCT");
-		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		panelBandeau.add(lblTitle, BorderLayout.CENTER);
-
-		JLabel lblToto = new JLabel("LOGO");
-		lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblToto.setHorizontalAlignment(SwingConstants.LEFT);
-		//panel.add(lblToto, BorderLayout.WEST);
-
-		JLabel image = new JLabel(new ImageIcon("zen.jpg"));
-		panelBandeau.add(image,BorderLayout.WEST);
-
-		JPanel panelOptions = new JPanel();
-		panelBandeau.add(panelOptions, BorderLayout.EAST);
-		panelOptions.setLayout(new GridLayout(0, 2, 0, 0));
-
-		final JLabel lblnameUser = new JLabel("name");
-		panelOptions.add(lblnameUser);
-		if 	(user!=null){
-			lblnameUser.setText(user.getLastName() +" "+ user.getFirstName());
-		}
-		else {
-			lblnameUser.setVisible(false);
-		}
-		final String nameUser = lblnameUser.getText(); 
-		lblnameUser.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur name = acces profil");
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblnameUser.setText("<html><u><font color = #1373cc >"+nameUser +" </u></font></html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblnameUser.setText(nameUser);
-			}
-		});
-		lblnameUser.setHorizontalAlignment(SwingConstants.LEFT);
-
-		final JLabel lblConnexion = new JLabel("connexion/deconnexion");
-		lblConnexion.setHorizontalAlignment(SwingConstants.RIGHT);
-		panelOptions.add(lblConnexion);
-		if (user == null){
-			lblConnexion.setText("connexion");
-		}
-		else {
-			lblConnexion.setText("déconnexion");
-		}
-		final String Connexion = lblConnexion.getText();
-		final JLabel lblBoutique = new JLabel("Boutique Access ");
-		panelOptions.add(lblBoutique);
-		final String Boutique = lblBoutique.getText();
-		lblBoutique.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Clicked sur acces boutique");
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblBoutique.setText("<html><u><font color = #1373cc >"+Boutique +" </u></font></html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblBoutique.setText(Boutique);
-			}
-		});
-		lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
-
-		JLabel lblIconeMail = new JLabel("icone mail");
-		lblIconeMail.setHorizontalAlignment(SwingConstants.RIGHT);
-		panelOptions.add(lblIconeMail);
-
+		//panel central
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(null);
 
+		// label NameProduct
 		JLabel lblNameProduct = new JLabel("Name Product:");
 		lblNameProduct.addMouseListener(new MouseAdapter() {
 		});
 		lblNameProduct.setBounds(112, 85, 128, 14);
 		panelCenter.add(lblNameProduct);
 
+		//textfield ProductName
 		TFProductName = new JTextField();
 		TFProductName.setBounds(271, 79, 165, 27);
 		panelCenter.add(TFProductName);
 		TFProductName.setColumns(10);
 
-		JLabel lblPrice = new JLabel("Price: (number)");
+		//label Price
+		JLabel lblPrice = new JLabel("Price: (number in €)");
 		lblPrice.setBounds(112, 141, 128, 14);
 		panelCenter.add(lblPrice);
 
+		//textfield Price
 		TFPrice = new JTextField();
 		TFPrice.setColumns(10);
 		TFPrice.setBounds(271, 135, 165, 27);
 		panelCenter.add(TFPrice);
 
+		//label quantity
 		JLabel lblQuantity = new JLabel("Quantity: (number)");
 		lblQuantity.setBounds(112, 203, 128, 14);
 		panelCenter.add(lblQuantity);
 
+		//textfield quatity
 		TFQuantity = new JTextField();
 		TFQuantity.setColumns(10);
 		TFQuantity.setBounds(271, 197, 165, 27);
 		panelCenter.add(TFQuantity);
 
+		//label category
 		JLabel lblCategory = new JLabel("Category:");
 		lblCategory.setBounds(112, 316, 129, 14);
 		panelCenter.add(lblCategory);
 
-		JLabel lblRduction = new JLabel("Reduction: (number)");
-		lblRduction.setBounds(112, 260, 128, 14);
-		panelCenter.add(lblRduction);
+		//lavel reduction
+		JLabel lblReduction = new JLabel("Reduction: (number in %)");
+		lblReduction.setBounds(112, 260, 149, 14);
+		panelCenter.add(lblReduction);
 
+		//textfield category
 		TFCategory = new JTextField();
 		TFCategory.setColumns(10);
 		TFCategory.setBounds(271, 310, 165, 27);
 		panelCenter.add(TFCategory);
 
+		//textfield reduction
 		TFReduction = new JTextField();
 		TFReduction.setColumns(10);
 		TFReduction.setBounds(271, 254, 165, 27);
 		panelCenter.add(TFReduction);
 
-		JButton btnOk = new JButton("OK");
-		btnOk.addMouseListener(new MouseAdapter() {
+		//button ADD
+		JButton btnADD = new JButton("ADD");
+		btnADD.addMouseListener(new MouseAdapter() {
+
+			// when we click on the button
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
+				// verification of the fields
 				if( this.verifyTF() & this.verifyPrice() & this.verifyQuantity() & this.verifyReduction() )
 				{
 					try
 					{
-						System.out.println("ok");
-						//FacadeBL.product(user.getIdMember,TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()));
+						//the product is added
 						Date creationDate = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()), dateFormat.format(creationDate));
-						System.out.println("ok");
+
+						//a message to inform that the product is added
 						JOptionPane.showMessageDialog(null,"Product added","Product added",JOptionPane.INFORMATION_MESSAGE);
 					}
-
-
 					catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e1) 
 					{
 						e1.printStackTrace();
@@ -276,7 +192,11 @@ public class ProductCreateUI extends JFrame {
 					}
 				}
 			}
-			
+
+			/**
+			 * to verify that all textfields or not empty
+			 * @return
+			 */
 			private boolean verifyTF() {
 
 				this.TFisempty(TFProductName);
@@ -293,23 +213,38 @@ public class ProductCreateUI extends JFrame {
 				}
 			}
 
+
+			/**
+			 * to verify that a textfield is not empty
+			 * @param textfield
+			 */
 			private void TFisempty(JTextField textfield){
 				RemoveBorder(textfield);
 				String text = textfield.getText();
 
-					if(text.equals("")){
-						RedBorder(textfield);
-						count++;
-					}
+				if(text.equals("")){
+					RedBorder(textfield);
+					count++;
+				}
 			}
 
 
+			/**
+			 * change the border of a textfield in red if it is not well filled
+			 * @param textfield
+			 */
 			private void RedBorder(JTextField textfield){
 				jlblStatus.setVisible(true);
 				Border border = BorderFactory.createLineBorder(Color.RED, 2);
 				textfield.setBorder(border);
 			}
 
+
+
+			/**
+			 * change the border of a textfield in white
+			 * @param textfield
+			 */
 			private void RemoveBorder(JTextField textfield){
 				jlblStatus.setVisible(false);
 				Border border = BorderFactory.createLineBorder(Color.white, 2);
@@ -317,6 +252,10 @@ public class ProductCreateUI extends JFrame {
 
 			}
 
+			/**
+			 * verify if a price is written with numbers
+			 * @return
+			 */
 			private boolean verifyPrice(){
 				if (!isNumeric(TFPrice.getText())){
 					RedBorder(TFPrice);
@@ -325,6 +264,10 @@ public class ProductCreateUI extends JFrame {
 				return true;
 			}
 
+			/**
+			 * verify if a quantity is written with numbers
+			 * @return
+			 */
 			private boolean verifyQuantity(){
 				if (!isNumeric(TFQuantity.getText())){
 					RedBorder(TFQuantity);
@@ -333,6 +276,11 @@ public class ProductCreateUI extends JFrame {
 				return true;
 			}
 
+
+			/**
+			 * verify if a reduction is written with numbers
+			 * @return
+			 */
 			private boolean verifyReduction(){
 				if (!isNumeric(TFReduction.getText())){
 					RedBorder(TFReduction);
@@ -341,54 +289,47 @@ public class ProductCreateUI extends JFrame {
 				return true;
 			}
 
+
+			/**
+			 * verify if a string is written with numbers
+			 * @param str
+			 * @return
+			 */
 			private boolean isNumeric(String str)  
 			{  
-			  try  
-			  {  
-				  Integer.parseInt(str);  
-			  }  
-			  catch(Exception e)  
-			  {  
-			    return false;  
-			  }  
-			  return true;  
+				try  
+				{  
+					Integer.parseInt(str);  
+				}  
+				catch(Exception e)  
+				{  
+					return false;  
+				}  
+				return true;  
 			}	
-			
-});
-		btnOk.setBounds(131, 451, 89, 23);
-		panelCenter.add(btnOk);
 
+		});
+		//the button ADD is added to the center panel
+		btnADD.setBounds(190, 451, 89, 23);
+		panelCenter.add(btnADD);
+
+		//button CANCEL
 		JButton btnCancel = new JButton("CANCEL");
 		btnCancel.addMouseListener(new MouseAdapter() {
+
+			//when we click on the button CANCEL
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				//TODO renvoyer vers la liste des catégory
 				System.out.println("cancel");
 			}
 		});
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnCancel.setBounds(252, 451, 89, 23);
+
+		//the button CANCEL is added to the center panel
+		btnCancel.setBounds(315, 451, 89, 23);
 		panelCenter.add(btnCancel);
-		lblConnexion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("Connexion ou deconnexion si la personne n'est pas connecté ou l'est");
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblConnexion.setText("<html><u><font color = #1373cc >"+Connexion +" </u></font></html>");
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblConnexion.setText(Connexion);
-
-			}
-
-		});
-
 
 	}
+
+
 }

@@ -3,7 +3,6 @@ package com.LotuZ.product;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.LotuZ.product.category.bl.CategoryProduct;
 
 
 public abstract class Product {
@@ -15,19 +14,16 @@ public abstract class Product {
 	private int reduction;
 	private String creationDate;
 	private String updateDate;
-	private int idProvider;
-	
-	public Product() {
-		super();
-	}
 
-		
 	/**
+	 * constructor of the abstract class Product
 	 * @param productName
 	 * @param quantity
 	 * @param price
 	 * @param reduction
+	 * 
 	 */
+
 	public Product(String productName, int quantity, int price, int reduction, int category) {
 		super();
 		this.productName = productName;
@@ -37,9 +33,13 @@ public abstract class Product {
 		this.category = category;
 	}
 
+	public Product(){
+		super();
+	}
 
 	/**
-	 * @return the productName
+	 *
+	 * @return the name of the product
 	 */
 	public String getProductName() {
 		return productName;
@@ -51,123 +51,128 @@ public abstract class Product {
 		this.productName = productName;
 	}
 	/**
-	 * @return the category
+	 * @return the product category 
 	 */
 	public int getCategory() {
 		return category;
 	}
 	/**
-	 * @param category the category to set
+	 * @param category the product category to set
 	 */
 	public void setCategory(int category) {
 		this.category = category;
 	}
 	/**
-	 * @return the quantity
+	 * @return the product quantity 
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
 	/**
-	 * @param quantity the quantity to set
+	 * @param quantity the product quantity to set
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	/**
-	 * @return the price
+	 * @return the product price (in €)
 	 */
 	public int getPrice() {
 		return price;
 	}
 	/**
-	 * @param price the price to set
+	 * @param price the product price to set (in €)
 	 */
 	public void setPrice(int price) {
 		this.price = price;
 	}
 	/**
-	 * @return the reduction
+	 * @return the product reduction (in %)
 	 */
 	public int getReduction() {
 		return reduction;
 	}
 	/**
-	 * @param reduction the reduction to set
+	 * @param reduction the product reduction to set (in %)
 	 */
 	public void setReduction(int reduction) {
 		this.reduction = reduction;
 	}
 	/**
-	 * @return the creationDate
+	 * @return the creationDate of the product
 	 */
 	public String getCreationDate() {
 		return creationDate;
 	}
 	/**
-	 * @param date the creationDate to set
+	 * @param date the creationDate of the product to set
 	 */
 	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 	/**
-	 * @return the updateDate
+	 * @return the updateDate of the product
 	 */
 	public String getUpdateDate() {
 		return updateDate;
 	}
 	/**
-	 * @param updateDate the updateDate to set
+	 * @param updateDate the updateDate of the product to set
 	 */
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 
 	/**
-	 * @return the id
+	 * @return the product id
 	 */
 	public int getId() {
 		return idProduct;
 	}
 	/**
-	 * @param id the id to set
+	 * @param id the product id to set
 	 */
 	public void setId(int id) {
 		this.idProduct = id;
 	}
 
+
 	/**
-	 * @return the idProvider
+	 * abstract method to load a product according to its id
+	 * @param id
+	 * @return
+	 * @throws SQLException
 	 */
-	public int getIdProvider() {
-		return idProvider;
-	}
+	public abstract Product loadProduct(int id) throws SQLException;
+
 	/**
-	 * @param idProvider the idProvider to set
+	 * abstract method to save a product in the database
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
-	public void setIdProvider(int idProvider) {
-		this.idProvider = idProvider;
-	}
-	
-	
-/**
- * @param id
- * @return
- * @throws SQLException
- */
-public abstract Product loadProduct(int id) throws SQLException;
+	public abstract void saveProduct() throws SQLException, ClassNotFoundException;
 
-public abstract Product loadProduct(String productName) throws SQLException;
+	/**
+	 * abstract method to update a product in the database
+	 * @param product
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract Product updateProduct (Product product) throws SQLException;
 
-public abstract void saveProduct() throws SQLException, ClassNotFoundException;
-
-public abstract Product updateProduct (Product product) throws SQLException;
-
-public abstract void deleteProduct() throws SQLException;
+	/**
+	 * abstract method to delete a product in the database
+	 * @throws SQLException
+	 */
+	public abstract void deleteProduct() throws SQLException;
 
 
-public abstract List<Product> getAllProducts(int idCategory) throws SQLException;
+	/**
+	 * abstract method to load all the products in the database according to its id
+	 * @param idCategory
+	 * @return
+	 * @throws SQLException
+	 */
+	public abstract List<Product> loadAllProducts(int idCategory) throws SQLException;
 
-	
-	
 }

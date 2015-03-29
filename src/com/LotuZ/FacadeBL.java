@@ -46,7 +46,6 @@ public class FacadeBL {
 		categoryManager = new CategoryManager(kit);
 		notificationManager = new NotificationManager(kit);
 		productManager = new ProductManager(kit);
-		//setProductManager(new ProductManager(kit));
 		
 	}
 	
@@ -153,25 +152,80 @@ public class FacadeBL {
 		inscriptionManager.inscription(lastName, firstName, adress, phone, street, houseNumber, city, postCode, password);
 	}
 	
-	/*
-	public static void product(int idMember,String productName, int price, int quantity, int category, int reduction) throws ClassNotFoundException, SQLException{
-		productManager.createProduct(idMember,productName, price, quantity, category, reduction );
-	}
+	// ------------------------------------------ FACADE PRODUCT -------------------------------------------------------------------
+	
+		/**
+		 * @param productName
+		 * @param price
+		 * @param quantity
+		 * @param category
+		 * @param reduction
+		 * @param creationDate
+		 * @throws ClassNotFoundException
+		 * @throws SQLException
+		 */
+		public static void product(String productName, int price, int quantity, int category, int reduction, String creationDate) throws ClassNotFoundException, SQLException{
+			productManager.createProduct(productName, price, quantity, category, reduction, creationDate );
+		}
+		
+		/**
+		 * @param idProduct
+		 * @return
+		 * @throws SQLException
+		 */
+		public static Product loadProduct(int idProduct) throws SQLException {
+			Product product = productManager.loadProduct(idProduct);
+			return product;
+		}
+		
+		/**
+		 * @param product
+		 * @param productName
+		 * @param category
+		 * @param quantity
+		 * @param price
+		 * @param reduction
+		 * @param updateDate
+		 * @throws SQLException
+		 */
+		public static void UpdateProduct(Product product, String productName, int category, int quantity, int price, int reduction, String updateDate) throws SQLException {
+			productManager.updateProduct(product, productName, category, quantity, price, reduction, updateDate);
+		}
 
-	 */
-	
-	public static void product(String productName, int price, int quantity, int category, int reduction, String creationDate) throws ClassNotFoundException, SQLException{
-		productManager.createProduct(productName, price, quantity, category, reduction, creationDate );
-	}
-	
-	public static Product loadProduct(int idProduct) throws SQLException {
-		Product product = productManager.readProduct(idProduct);
-		return product;
-	}
-	
-	public static void UpdateProduct(Product product, String productName, int category, int quantity, int price, int reduction, String updateDate) throws SQLException {
-		productManager.updateProduct(product, productName, category, quantity, price, reduction, updateDate);
-	}
+		/**
+		 * @return the productManager
+		 */
+		public static ProductManager getProductManager() {
+			return productManager;
+		}
+
+		/**
+		 * @param productManager the productManager to set
+		 */
+		public static void setProductManager(ProductManager productManager) {
+			FacadeBL.productManager = productManager;
+		}
+		
+		/**
+		 * @param idCategory
+		 * @return
+		 * @throws SQLException
+		 */
+		public static List<Product> loadAllProducts(int idCategory) throws SQLException {
+			return productManager.loadAllProducts(idCategory);
+		}
+		
+		/**
+		 * @param idProduct
+		 * @throws SQLException
+		 */
+		public static void deleteProduct(int idProduct) throws SQLException {
+			productManager.deleteProduct(idProduct);
+		}
+
+
+		
+		// --------------------------------------------------------------------------------------------------------------------------------
 	
 	public static void loginUser(String mail, String password) throws SQLException, UserNotFoundException{
 		loginManager.loginUser(mail,password);
@@ -213,29 +267,6 @@ public class FacadeBL {
 		return contributorManager.getContributor(idContributor);
 	}
 	
-
-	
-	/**
-	 * @return the productManager
-	 */
-	public static ProductManager getProductManager() {
-		return productManager;
-	}
-
-	/**
-	 * @param productManager the productManager to set
-	 */
-	public static void setProductManager(ProductManager productManager) {
-		FacadeBL.productManager = productManager;
-	}
-	
-	public static List<Product> getAllProducts(int idCategory) throws SQLException {
-		return productManager.getAllProducts(idCategory);
-	}
-	
-	public static void deleteProduct(int idProduct) throws SQLException {
-		productManager.deleteProduct(idProduct);
-	}
 
 
 

@@ -1,12 +1,8 @@
 package com.LotuZ.product;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import com.LotuZ.FacadeBL;
 import com.LotuZ.PersistKit;
 
 
@@ -29,16 +25,28 @@ public class ProductManager {
 		this.pkit = pkit;
 	}
 	
+	/**
+	 * @param kit
+	 */
 	public ProductManager(PersistKit kit){
 		this.setPkit(kit);
 	}
 
 	
+	/**
+	 * @param productName
+	 * @param price
+	 * @param quantity
+	 * @param category
+	 * @param reduction
+	 * @param creationDate
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public void createProduct(String productName, int price, int quantity, int category, int reduction, String creationDate) throws ClassNotFoundException, SQLException {
 		Product product = pkit.createProduct();
-		// set informations into the userJdbc
+		// set informations into the product
 		product.setProductName(productName);	
-		//faire un setCategory en récupérant l'int de category
 		product.setQuantity(quantity);
 		product.setPrice(price);
 		product.setReduction(reduction);
@@ -49,14 +57,32 @@ public class ProductManager {
 		product.saveProduct();
 	}
 	
-	public Product readProduct(int idProduct) throws SQLException {
+	/**
+	 * @param idProduct
+	 * @return
+	 * @throws SQLException
+	 */
+	public Product loadProduct(int idProduct) throws SQLException {
 		Product product = pkit.createProduct();
 		product = product.loadProduct(idProduct);
 		return product;
 	}
 	
+	/**
+	 * @param product1
+	 * @param productName
+	 * @param category
+	 * @param quantity
+	 * @param price
+	 * @param reduction
+	 * @param updateDate
+	 * @return
+	 * @throws SQLException
+	 */
 	public Product updateProduct(Product product1, String productName, int category, int quantity, int price, int reduction, String updateDate) throws SQLException {
 		Product product = pkit.createProduct();
+		
+		//set informations into the product got
 		product1.setProductName(productName);
 		product1.setQuantity(quantity);
 		product1.setPrice(price);
@@ -69,22 +95,27 @@ public class ProductManager {
 		
 	}
 	
+	/**
+	 * @param idProduct
+	 * @throws SQLException
+	 */
 	public void deleteProduct(int idProduct) throws SQLException {
 		Product product = pkit.createProduct();
-		System.out.println("LE PRODUIT EST:");
-		System.out.println(product);
 		product.setId(idProduct);
-		//product = FacadeBL.loadProduct(idProduct);
 		product.deleteProduct();
 	}
 
 
-	public List<Product> getAllProducts(int idCategory) throws SQLException {
+	/**
+	 * @param idCategory
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Product> loadAllProducts(int idCategory) throws SQLException {
 		List<Product> listProduct;
 		Product product = pkit.createProduct();
-		listProduct = product.getAllProducts(idCategory);
+		listProduct = product.loadAllProducts(idCategory);
 		return listProduct;
 	}
-
 
 }
