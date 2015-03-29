@@ -4,7 +4,6 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
@@ -37,12 +35,13 @@ public class ListProductUI extends JFrame {
 	private JPanel contentPane;
 	@SuppressWarnings("rawtypes")
 	private JList list;
+	private int idCat;
 
 	/**
 	 * Launch the application.
 	 */
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// Info Connection
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
 		String login = "ROLL";
@@ -77,8 +76,8 @@ public class ListProductUI extends JFrame {
 	 * @throws SQLException 
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
-	public ListProductUI() throws SQLException, UserNotFoundException {
-
+	public ListProductUI(int idCategory) throws SQLException, UserNotFoundException {
+		idCat = idCategory;
 		// creation of the "bandeau"
 
 		FacadeUser.login("jack","jack");
@@ -103,7 +102,7 @@ public class ListProductUI extends JFrame {
 
 		//creation of the list
 
-		List<Product> listProduct = FacadeBL.loadAllProducts(12);
+		List<Product> listProduct = FacadeBL.loadAllProducts(idCategory);
 		List<Product> products = new ArrayList<Product>();
 		for(int i = 0; i < listProduct.size(); i++)
 		{
@@ -145,7 +144,7 @@ public class ListProductUI extends JFrame {
 
 				ProductUI pageProduct;
 				try {
-					pageProduct = new ProductUI(this.product.getId());
+					pageProduct = new ProductUI(this.product.getId(), idCat);
 					pageProduct.setVisible(true);
 					pageProduct.setLocationRelativeTo(null);
 				} catch (SQLException e) {

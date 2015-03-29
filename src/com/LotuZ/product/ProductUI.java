@@ -42,17 +42,16 @@ public class ProductUI extends JFrame{
 	private JTextField tfReduction;
 	private JLabel lblCategoryid;
 	private JTextField tfCategory;
-
+	private int idCat;
 
 	/**
 	 * Create the frame.
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ProductUI(int idProduct) throws SQLException, UserNotFoundException {
-		
+	public ProductUI(int idProduct, int idCategory) throws SQLException, UserNotFoundException {
 		//creation du bandeau 
-		
+		idCat = idCategory;
 		FacadeUser.login("jack","jack");
 		final Product product = FacadeBL.loadProduct(idProduct);
 		User user1 = UserLog.getUserLog();
@@ -187,7 +186,7 @@ public class ProductUI extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				ListProductUI pageListProductUI = null;
 					try {
-						pageListProductUI = new ListProductUI();
+						pageListProductUI = new ListProductUI(idCat);
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					} catch (UserNotFoundException e1) {
