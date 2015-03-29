@@ -16,6 +16,7 @@ import com.LotuZ.user.HomepageUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.admin.ui.HomepageAdmin;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
@@ -89,6 +90,7 @@ public class LoginUI extends JFrame {
 				PageAccueil pageaccueil;
 				pageaccueil = new PageAccueil();
 				pageaccueil.setVisible(true);
+				pageaccueil.setLocationRelativeTo(null);
 				dispose();
 				
 			}
@@ -119,9 +121,9 @@ public class LoginUI extends JFrame {
 
 					
 					if(user != null){
-						PageAccueil pageAcceuil = new PageAccueil();
-						pageAcceuil.setVisible(true);
-						pageAcceuil.setLocationRelativeTo(null);
+						HomepageAdmin homepage = new HomepageAdmin();
+						homepage.setVisible(true);
+						homepage.setLocationRelativeTo(null);
 						dispose();
 					}
 

@@ -51,7 +51,7 @@ public class HomepageAdmin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-
+	/*
 	public static void main(String[] args) {
 		// Info Connection
 		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
@@ -80,7 +80,7 @@ public class HomepageAdmin extends JFrame {
 			}
 		});
 	}
-
+*/
 
 	/**
 	 * Create the frame.
@@ -96,7 +96,7 @@ public class HomepageAdmin extends JFrame {
 		ActivityLeader activityLeader = UserLog.getRespoLog();
 
 		Bandeau bandeau = new Bandeau();
-
+		bandeau.setJframe(this);
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);

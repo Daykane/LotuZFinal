@@ -15,13 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import com.LotuZ.PageAccueil;
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserDetailUI;
-import com.LotuZ.user.UserLog;
+import com.LotuZ.user.admin.ui.HomepageAdmin;
 import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
 
 public class Bandeau extends JFrame {
 	public Bandeau() {
@@ -41,14 +39,33 @@ public Component createBandeau(final User user,String name){
 	lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 	panelBandeau.add(lblTitle, BorderLayout.CENTER);
 
-	JLabel lblToto = new JLabel("LOGO");
-	lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	lblToto.setHorizontalAlignment(SwingConstants.LEFT);
+	//JLabel lblToto = new JLabel("LOGO");
+	//lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	//lblToto.setHorizontalAlignment(SwingConstants.LEFT);
 	//panel.add(lblToto, BorderLayout.WEST);
 
 	JLabel image = new JLabel(new ImageIcon("zen.jpg"));
 	panelBandeau.add(image,BorderLayout.WEST);
+	image.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			UserDetailUI userDetail;
+			try {
+				HomepageAdmin homepage = new HomepageAdmin();
+				homepage.setVisible(true);
+				homepage.setLocationRelativeTo(null);
+				getJframe().dispose();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UserNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
+		}
+	});
+	
 	JPanel panelOptions = new JPanel();
 	panelBandeau.add(panelOptions, BorderLayout.EAST);
 	panelOptions.setLayout(new GridLayout(0, 2, 0, 0));
@@ -132,8 +149,7 @@ public Component createBandeau(final User user,String name){
 				loginUI.setVisible(true);
 				loginUI.setLocationRelativeTo(null);
 				getJframe().dispose();
-				System.out.println("il est censer faire le dispose()");
-				
+
 			}
 				
 		}
