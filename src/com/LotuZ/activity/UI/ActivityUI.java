@@ -4,12 +4,10 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.activity.Activity;
@@ -22,10 +20,7 @@ import com.LotuZ.user.user.bl.User;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import java.awt.FlowLayout;
-import java.sql.Array;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -40,8 +35,13 @@ import com.jgoodies.forms.factories.FormFactory;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * @author Alexis
+ */
 public class ActivityUI extends JFrame {
 
+
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 
@@ -78,6 +78,7 @@ public class ActivityUI extends JFrame {
 		// List
 		final Activity[] list = this.generateList();
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JList listActivities = new JList(list);
 		mainPanel.add(listActivities, BorderLayout.WEST);
 		listActivities.setPreferredSize(new Dimension(450, 300));
@@ -133,6 +134,7 @@ public class ActivityUI extends JFrame {
 
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
@@ -149,7 +151,6 @@ public class ActivityUI extends JFrame {
 							listActivities.revalidate();
 							listActivities.repaint();
 							
-							//TODO mette à jour la Jlsit;
 						}
 					}
 				} catch (SQLException e) {
@@ -171,6 +172,7 @@ public class ActivityUI extends JFrame {
 		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Activity[] list = generateList();
@@ -186,13 +188,16 @@ public class ActivityUI extends JFrame {
 		JPanel panel = new JPanel();
 		mainPanel.add(panel, BorderLayout.SOUTH);
 
-		//If not admin no add and remove
+		//If not admin no add and remove button
 		if ( admin == null){
 			btnAdd.setVisible(false);
 			btnRemove.setVisible(false);
 		}
 	}
 
+	/**
+	 * @return All Activities in an Array
+	 */
 	Activity[] generateList(){
 		List<Activity> lAct = null; 	
 		try {
@@ -206,6 +211,10 @@ public class ActivityUI extends JFrame {
 		return liste;		
 	}
 
+	/**
+	 * @param listActivity to convert
+	 * @return listActivity in ArrayActivity
+	 */
 	Activity[] toActivityArray(List<Activity> list){
 		Activity[] ret = new Activity[list.size()];
 		for(int i = 0;i < ret.length;i++)

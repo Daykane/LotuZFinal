@@ -50,12 +50,12 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JList;
 
+/**
+ * @author Alexis
+ */
 
 public class ActivityDetailsUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfName;
@@ -361,6 +361,10 @@ public class ActivityDetailsUI extends JFrame {
 		}
 
 	}
+	/**
+	 * @param idActivity : identifer of Activity
+	 * @return Activity's Events
+	 */
 	Event[] generateList(int idActivity){
 		List<Event> lEvent = null; 	
 		try {
@@ -374,6 +378,10 @@ public class ActivityDetailsUI extends JFrame {
 		return liste;		
 	}
 	
+	/**
+	 * Parse ListEvent in ArrayEvent
+	 * @param lEvent : List Event to convert
+	 */
 	Event[] toActivityArray(List<Event> lEvent){
 		  Event[] ret = new Event[lEvent.size()];
 		  for(int i = 0;i < ret.length;i++)

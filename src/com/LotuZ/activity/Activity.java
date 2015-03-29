@@ -6,12 +6,8 @@
 package com.LotuZ.activity;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
-import com.LotuZ.event.Event;
-import com.LotuZ.user.user.bl.User;
 
 public abstract class Activity {	
 	
@@ -175,23 +171,45 @@ public abstract class Activity {
 	}
 
 
-
+	/**
+	 * Save Activity in base
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public abstract void save() throws SQLException, ClassNotFoundException;
-
+	/**
+	 * Get Activity in base with its name
+	 * @param name : name of activity
+	 * @throws SQLException
+	 */
 	public abstract Activity load(String name) throws SQLException;
-
+	/**
+	 * Get Activity in base with its id
+	 * @param i : identifier of Activity
+	 * @throws SQLException
+	 */
 	public abstract Activity load(int i) throws SQLException;
-
+	/**
+	 * Update the Activity in base
+	 * @throws SQLException
+	 */
 	public abstract void update() throws SQLException;
-
+	/**
+	 * Return all Activity in Base
+	 * @throws SQLException
+	 */
 	public abstract List<Activity> loadAll() throws SQLException;
-
-
-
-	public abstract void delete() throws SQLException;
-
-
-
+	/**
+	 * Return List Activity managed by the respo
+	 * @throws SQLException
+	 */
 	public abstract List<Activity> loadForRespo() throws SQLException;
+	/**
+	 * Delete the Activity in Base
+	 * @throws SQLException
+	 */
+	public abstract void delete() throws SQLException;
+	
+
 	
 }

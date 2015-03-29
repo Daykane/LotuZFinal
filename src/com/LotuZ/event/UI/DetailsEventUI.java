@@ -3,53 +3,43 @@ package com.LotuZ.event.UI;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.Choice;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
-import com.LotuZ.activity.UI.ActivityDetailsUI;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
-import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * @author Alexis
+ *
+ */
 public class DetailsEventUI extends JFrame {
 
+
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField TfName;
-	private Calendar cal;
 	private JTextField tfPrice;
-	private JTextField BoxActivity;
 	private JTextField TfActivity;
 	private JTextField TfHeureDeb;
 	private JTextField TfheureFin;
@@ -79,8 +69,6 @@ public class DetailsEventUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		//JPanel panelBandeau = new JPanel();
-		//panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
 		contentPane.add(new Bandeau().createBandeau(user, "Gestion Event"), BorderLayout.NORTH);
 
 		JPanel panelMain = new JPanel();
@@ -150,10 +138,6 @@ public class DetailsEventUI extends JFrame {
 		JLabel lblHeureDeFin = new JLabel("Heure de Fin : ");
 		panelMain.add(lblHeureDeFin, "2, 8, right, default");
 
-		SpinnerModel modelHeureFin = new SpinnerNumberModel(01, 00, 12, 1);
-
-		SpinnerModel modelMinFin = new SpinnerNumberModel(01, 00, 59, 1);
-
 		TfheureFin = new JTextField(event.getHeureFin());
 		panelMain.add(TfheureFin, "4, 8, left, fill");
 		TfheureFin.setColumns(10);
@@ -204,6 +188,8 @@ public class DetailsEventUI extends JFrame {
 		panelMain.add(lblContributor, "2, 18, right, default");
 
 		//TODO le nom du contributor
+		String mail = null;
+		//FacadeUser.getContributor(mail);
 		TfContrib = new JTextField();
 		panelMain.add(TfContrib, "4, 18, left, default");
 		TfContrib.setColumns(10);

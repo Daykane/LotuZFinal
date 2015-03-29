@@ -30,13 +30,12 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-
+/**
+ * @author Alexis
+ */
 
 public class ActivityCreateUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfName;
@@ -172,6 +171,11 @@ public class ActivityCreateUI extends JFrame {
 		panel_Button.add(btnCancel);
 	}
 	
+	
+	/**
+	 * Parse the List User in Array USer
+	 * @param listUser
+	 */
 	User[] toUserArray(List<User> listUser){
 		User[] ret = new User[listUser.size()];
 		  for(int i = 0;i < ret.length;i++)

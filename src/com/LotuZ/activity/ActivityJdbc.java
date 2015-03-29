@@ -7,35 +7,36 @@ import java.sql.SQLException;
 
 
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.LotuZ.user.UserLog;
-import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
-
+/**
+ * @author Alexis
+ *
+ */
 public class ActivityJdbc extends Activity{
 
 	private Connection cn;
 
 
 	/**
-	 * @return the cn
+	 * @return the cn, the connexion for the base
 	 */
 	public Connection getCn() {
 		return cn;
 	}
 
 	/**
-	 * @param cn the cn to set
+	 * @param cn the connexion to set
 	 */
 	public void setCn(Connection cn) {
 		this.cn = cn;
 	}
 
+	/**
+	 * Constructeur for the base connexion
+	 * @param cn : Connexion
+	 */
 	public ActivityJdbc(Connection cn) {
 		this.cn = cn;
 	}
@@ -116,8 +117,10 @@ public class ActivityJdbc extends Activity{
 		return activity;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Activity> loadAll() throws SQLException {
+		@SuppressWarnings("unchecked")
 		List<Activity> activities = new ArrayList();
 
 			Statement st =null;
@@ -194,6 +197,7 @@ public class ActivityJdbc extends Activity{
 
 	@Override
 	public List<Activity> loadForRespo() throws SQLException {
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		List<Activity> activities = new ArrayList();
 
 		Statement st =null;

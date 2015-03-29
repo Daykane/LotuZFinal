@@ -3,10 +3,8 @@ package com.LotuZ.event.UI;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -14,13 +12,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
-import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.jgoodies.forms.layout.FormLayout;
@@ -39,8 +35,6 @@ import java.awt.Choice;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.sql.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -51,14 +45,17 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JTextArea;
 
+/**
+ * @author Alexis
+ *
+ */
 public class CreateEventUI extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField TfName;
-	private Calendar cal;
 	private JTextField textDate;
 	private JTextField tfPrice;
-	private JTextField BoxActivity;
 
 
 	/**
@@ -78,8 +75,6 @@ public class CreateEventUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		//JPanel panelBandeau = new JPanel();
-		//panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
 		contentPane.add(new Bandeau().createBandeau(user, "Gestion Event"), BorderLayout.NORTH);
 		
 		JPanel panelMain = new JPanel();
@@ -124,6 +119,7 @@ public class CreateEventUI extends JFrame {
 		panelMain.add(lblActivite, "2, 4, right, default");
 		
 		final Activity[] listAct = this.generateListActi(user.getMail());
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox BoxActivity = new JComboBox(listAct);		
 		panelMain.add(BoxActivity, "4, 4, left, default");
 		//BoxActivity.setColumns(10);
@@ -186,6 +182,7 @@ public class CreateEventUI extends JFrame {
 		 * Repetition in the comboBox
 		 */
 		final Repetition[] list = this.generateListRepet();
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox choiceRep = new JComboBox(list);		
 		panelMain.add(choiceRep, "4, 12, left, default");
 		
@@ -198,6 +195,7 @@ public class CreateEventUI extends JFrame {
 		JLabel lblSalle = new JLabel("Salle : ");
 		panelMain.add(lblSalle, "2, 16, right, default");
 		
+		//TODO get list room
 		Choice choiceRoom = new Choice();
 		panelMain.add(choiceRoom, "4, 16, left, default");
 		
@@ -218,6 +216,7 @@ public class CreateEventUI extends JFrame {
 		listUser = u.getListUser();
 		User[] arrayContrib;
 		arrayContrib = toUserArray(listUser);
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox choiceContrib = new JComboBox(arrayContrib);
 		panelMain.add(choiceContrib, "4, 18, left, default");
 		
@@ -263,19 +262,8 @@ public class CreateEventUI extends JFrame {
 					int idRepetition = list[choiceRep.getSelectedIndex()].getIdRepetition();
 					int idActivity = listAct[BoxActivity.getSelectedIndex()].getIdActivity();
 
-					//TODO get list contrib a mettre dans uen check box;
-					List<User> listUser;
-					ListUser u = null;
-					try {
-						u = FacadeUser.getContributors();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					listUser = u.getListUser();
-					
 					int idContrib = 0;
-					//TODO get list Romm;
+
 					int idRoom = 0;
 					
 					System.out.println(startingTime);
