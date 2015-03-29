@@ -12,8 +12,12 @@ import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.EventInscription.FacadeEventInscription;
 import com.LotuZ.event.Event;
+import com.LotuZ.event.UI.DetailsEventUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.user.bl.User;
+
+
+
 
 
 import java.awt.FlowLayout;
@@ -26,6 +30,8 @@ import java.util.Vector;
 
 import java.awt.Dimension;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JList;
 
@@ -92,6 +98,26 @@ public class PlanningUI extends JFrame {
 
 		list.setVisibleRowCount(10);
 
+		list.addMouseListener(new MouseAdapter() {
+			private Event event;
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					int selected[] = list.getSelectedIndices();
+
+				      for (int i = 0; i < selected.length; i++) {
+				        Event events = (Event) list.getModel().getElementAt(selected[i]);
+				        this.event = (Event)events;
+				      }
+					DetailsEventUI detailsEvent = null;
+					detailsEvent = new DetailsEventUI(this.event);
+					detailsEvent.setVisible(true);
+					detailsEvent.setLocationRelativeTo(null);
+
+				}
+			}
+		});
 
 	}
 	
