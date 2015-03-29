@@ -222,42 +222,6 @@ public class ViewRoomUI extends JFrame
 		gbc_jListAccesoriesSel.gridy = 6;	
 		roomPan.add(jListAccessoriesSel , gbc_jListAccesoriesSel);
 		
-//			//ComboBox
-//		
-//		final ArrayList<Accessory> accessories = FacadeBL.getAllAccessory();
-//		final JComboBox cBoxAccessories = new JComboBox(accessories.toArray());
-//		cBoxAccessories.setRenderer(new DefaultListCellRenderer() 
-//		{ 
-//		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
-//		{ 
-//			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
-//			if (renderer instanceof JLabel && value instanceof Accessory) 
-//			{ 
-//				// Here value will be of the Type 'CD' 
-//				((JLabel) renderer).setText(((Accessory) value).getNameAccessory()); 
-//			}
-//			return renderer; 
-//		}
-//		}
-//		);
-//		GridBagConstraints gbc_cBoxAccessories = new GridBagConstraints();
-//		gbc_cBoxAccessories.gridx = 3;
-//		gbc_cBoxAccessories.gridy = 6;	
-//		roomPan.add(cBoxAccessories , gbc_cBoxAccessories);
-//		
-//			//AddAccesories
-//		final JButton btnAddAccesories =new JButton("AddAccesories");
-//		GridBagConstraints gbc_btnAddAccesories= new GridBagConstraints();
-//		gbc_btnAddAccesories.gridx = 3;
-//		gbc_btnAddAccesories.gridy = 7;
-//		roomPan.add(btnAddAccesories, gbc_btnAddAccesories);
-//		
-//			//RemvoveAccesories
-//		final JButton btnRemoveAccesories=new JButton("Remove");
-//		GridBagConstraints gbc_btnRemoveAccesories= new GridBagConstraints();
-//		gbc_btnRemoveAccesories.gridx = 3;
-//		gbc_btnRemoveAccesories.gridy = 8;
-//		roomPan.add(btnRemoveAccesories, gbc_btnRemoveAccesories);
 		
 		//Center South
 		JPanel validationPan = new JPanel();
@@ -280,27 +244,6 @@ public class ViewRoomUI extends JFrame
 		
 		//Listeners
 		
-//				//cBoxTypeRoom Listeners
-//		ActionListener cBoxTypeRoomListeners = new ActionListener ()
-//		{
-//		
-//			public void actionPerformed(ActionEvent arg0) 
-//			{
-//				if (cBoxTypeRoom.getSelectedItem().equals("Salle de cours"))
-//				{
-//					lblnbMaxParticipant.setVisible(true);
-//					spnrNbMaxParticipant.setVisible(true);
-//				}
-//				if (cBoxTypeRoom.getSelectedItem().equals("Cabinet"))
-//				{
-//					lblnbMaxParticipant.setVisible(false);
-//					spnrNbMaxParticipant.setVisible(false);
-//				}
-//			}
-//			
-//		}
-//		;
-//		cBoxTypeRoom.addActionListener(cBoxTypeRoomListeners);
 		
 			//btnCancelListeners
 			
@@ -327,64 +270,6 @@ public class ViewRoomUI extends JFrame
 		};
 		btnCancel.addActionListener(btnCancelListeners);
 		
-//			//btnAddAccesories
-//		
-//		ActionListener btnAddAccesoriesListeners = new ActionListener() 
-//		{
-//			
-//			public void actionPerformed(ActionEvent e)
-//			{
-//				if (cBoxAccessories.getSelectedObjects()!=null)
-//				{
-//					//Ajout dans la liste des accesoires sélectionné
-//					accessoriesSel.add(accessories.get(cBoxAccessories.getSelectedIndex()));
-//					jListAccessoriesSel.setListData(accessoriesSel.toArray());
-//					
-//					//Suppression dans la liste des accesoires disponible
-//					accessories.remove(cBoxAccessories.getSelectedIndex());
-//					cBoxAccessories.removeItem(cBoxAccessories.getSelectedItem());
-//					
-//					btnRemoveAccesories.setVisible(true);
-//
-//				}
-//				if (accessories.isEmpty())
-//				{
-//					cBoxAccessories.setVisible(false);
-//					btnAddAccesories.setVisible(false);
-//				}
-//			}
-//		};
-//		btnAddAccesories.addActionListener(btnAddAccesoriesListeners);
-		
-			//btnRemoveAccesories
-		
-//		ActionListener btnRemoveAccesoriesListeners = new ActionListener() 
-//		{
-//			
-//			public void actionPerformed(ActionEvent e)
-//			{
-//				if (jListAccessoriesSel.getSelectedValue()!=null)
-//				{
-//					//Ajout dans la liste des accesoires disponible
-//					accessories.add(accessoriesSel.get(jListAccessoriesSel.getSelectedIndex()));
-//					cBoxAccessories.addItem(accessoriesSel.get(jListAccessoriesSel.getSelectedIndex()));
-//					
-//					//Suppression dans la liste des accesoires selectionné
-//					accessoriesSel.remove(jListAccessoriesSel.getSelectedIndex());
-//					jListAccessoriesSel.setListData(accessoriesSel.toArray());
-//					
-//					cBoxAccessories.setVisible(true);
-//					btnAddAccesories.setVisible(true);
-//					
-//
-//				}
-//				if (accessoriesSel.isEmpty())
-//				{
-//					btnRemoveAccesories.setVisible(false);
-//				}
-//			}
-//		};
-//		btnRemoveAccesories.addActionListener(btnRemoveAccesoriesListeners);
 		
 			//btnEditListeners
 			
@@ -392,21 +277,6 @@ public class ViewRoomUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-//				if (cBoxTypeRoom.getSelectedItem().equals("Salle de cours"))
-//				{	
-//					int surface = (Integer) spnrSurface.getValue();
-//					int nbMaxParticipant = (Integer) spnrNbMaxParticipant.getValue();
-//					facadeBL.createRoom(txtFName.getText(), surface , 0, nbMaxParticipant, accessoriesSel); //Code salle de cours = 0
-//					System.out.println("coucou");
-//					Room r = facadeBL.getRoom(txtFName.getText());
-//					System.out.println("id:"+r.getIdRoom()+"   name"+r.getNameRoom());
-//				}
-//				if (cBoxTypeRoom.getSelectedItem().equals("Cabinet"))
-//				{
-//					int surface = (Integer) spnrSurface.getValue();
-//					facadeBL.createRoom(txtFName.getText(), surface, 1, accessoriesSel); //Code cabinet = 1
-//					Room r = facadeBL.getRoom(txtFName.getText());
-//				}
 				EditRoomUI editRoomUI = null;
 				try {
 					editRoomUI = new EditRoomUI(roomSel);
@@ -424,15 +294,6 @@ public class ViewRoomUI extends JFrame
 		};
 		btnEdit.addActionListener(btnEditListeners);
 		
-//			//set ScrollPan
-//		JScrollPane scrollPpanelCategory = new JScrollPane(roomPan);
-//		//scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-//		contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
-//					//add  JScrollBar
-//		JScrollBar scrollBarEast = new JScrollBar();
-//		scrollPpanelCategory.add(scrollBarEast);
-//		
-//			//South
 	}
 
 }

@@ -30,13 +30,14 @@ public class AccessoryManager
 
 	public Accessory getAccessory(int idAccessory) 
 	{
+		Accessory accessori =null;
 		Accessory accessory = pkit.createAccessory();
 		try {
-			accessory = accessory.load(idAccessory);
+			accessori = accessory.load(idAccessory);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return accessory;
+		return accessori;
 	}
 
 	public void createAccessory(String nameAccessory,String descriptionAccessory) 
@@ -61,6 +62,18 @@ public class AccessoryManager
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void deleteAccessory(int idAccessory) 
+	{
+		Accessory accessory = pkit.createAccessory();
+		try 
+		{
+			accessory.delete(idAccessory);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

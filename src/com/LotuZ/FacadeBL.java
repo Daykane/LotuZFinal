@@ -188,6 +188,14 @@ public class FacadeBL {
 				typeRoom, nbMaxParticipant,listAccessory);
 	}
 	
+	public static void updateRoom(int idRoom, String nameRoom, int surfaceRoom,
+			int typeRoom, ArrayList<Accessory> listAccessory) 
+	{
+		roomManager.updateRoom(idRoom, nameRoom, surfaceRoom,
+				typeRoom, listAccessory);
+		
+	}
+	
 
 	public static  void deleteRoom(int idRoom) 
 	{
@@ -224,7 +232,7 @@ public class FacadeBL {
 
 	public static  void deleteAccessory(int idAccessory) 
 	{
-		accessoryManager.getAccessory(idAccessory);
+		accessoryManager.deleteAccessory(idAccessory);
 	}
 		
 	
@@ -355,6 +363,7 @@ public class FacadeBL {
 	{
 		return roomManager.getAllRoom();
 	}
+
 	
 
 

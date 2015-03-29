@@ -198,15 +198,29 @@ public class RoomJDBC extends Room
 		System.out.println("cJDBC2");
 		
 		// Requ�te de s�lection � partir de l'identifiant
-		String sql;
-		if (typeRoom==0)
+		String sql = "Update LotuZ.Room Set name='"+nameRoom+"' and surface="+surfaceRoom+" and type="+typeRoom+" and nbMaxParticipant="+nbMaxParticipant+" Where idBoxLetter="+idRoom;
+		st.executeUpdate(sql);
+		for (int i=0;i<listAccessory.size();i++)
 		{
-			sql = "Update LotuZ.Room Set name='"+nameRoom+"' and surface="+surfaceRoom+" and type="+typeRoom+" and nbMaxParticipant="+nbMaxParticipant+" Where idBoxLetter="+idRoom;
+			String sql1 = "Insert Into LotuZ.AffectionAccessoryRoom (idAccessory,idRoom) values("+listAccessory.get(i).getIdAccesorry()+","+idRoom+")";
+			st.executeUpdate(sql1);
 		}
-		else
-		{
-			sql = "Update LotuZ.Room Set name='"+nameRoom+"' and surface="+surfaceRoom+" and type="+typeRoom+" Where idBoxLetter="+idRoom;
-		}
+		
+	}
+	
+	public void update(int idRoom, String nameRoom, int surfaceRoom,
+			int typeRoom, ArrayList<Accessory> listAccessory)
+			throws SQLException 
+	{
+		System.out.println("cJDBC1");	
+		Statement st =null;
+		System.out.println("cJDBC1'");
+		// Cr�ation d'un statement
+		st = this.cn.createStatement();
+		System.out.println("cJDBC2");
+		
+		// Requ�te de s�lection � partir de l'identifiant
+		String 	sql = "Update LotuZ.Room Set name='"+nameRoom+"' and surface="+surfaceRoom+" and type="+typeRoom+" Where idBoxLetter="+idRoom;
 		st.executeUpdate(sql);
 		for (int i=0;i<listAccessory.size();i++)
 		{

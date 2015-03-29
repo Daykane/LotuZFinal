@@ -85,7 +85,7 @@ public class AddAccessoryUI extends JFrame {
 		panelBannerCenter.setLayout(new BorderLayout(0, 0));
 		
 		//Set top banner Title
-		JLabel lblSbTitle = new JLabel("Room Creation");
+		JLabel lblSbTitle = new JLabel("Accessory Creation");
 		lblSbTitle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSbTitle.setVerticalAlignment(SwingConstants.CENTER);
 		lblSbTitle.setHorizontalAlignment(SwingConstants.CENTER);
