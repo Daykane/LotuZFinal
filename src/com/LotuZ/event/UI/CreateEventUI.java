@@ -290,7 +290,7 @@ public class CreateEventUI extends JFrame {
 						System.out.println(finishingTime);
 						int price = 0;
 						price = Integer.parseInt(tfPrice.getText());
-
+						
 
 						FacadeEvent.createEvent2(name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
 						JOptionPane.showMessageDialog(null,"Event add in system","Sucess",JOptionPane.INFORMATION_MESSAGE);

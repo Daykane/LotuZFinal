@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import com.LotuZ.PageAccueil;
+import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.UserLog;
@@ -23,11 +24,13 @@ import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.user.data.UserJDBC;
 
 public class Bandeau extends JFrame {
+	public Bandeau() {
+	}
 	private static final long serialVersionUID = 1L;	
 	
 
 
-public Component createBandeau(User user,String name){
+public Component createBandeau(final User user,String name){
 	JPanel panelBandeau = new JPanel();
 	panelBandeau.setLayout(new BorderLayout(0, 0));
 	
@@ -64,8 +67,8 @@ public Component createBandeau(User user,String name){
 		public void mouseClicked(MouseEvent arg0) {
 			UserDetailUI userDetail;
 			try {
-				User user = new UserJDBC();
-				user = UserLog.getUserLog();
+				//User user = new UserJDBC();
+				//user = UserLog.getUserLog();
 				userDetail = new UserDetailUI(user.getMail());
 				userDetail.setVisible(true);
 				userDetail.setLocationRelativeTo(null);
@@ -124,7 +127,14 @@ public Component createBandeau(User user,String name){
 	lblConnexion.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			System.out.println("Connexion ou deconnexion si la personne n'est pas connecté ou l'est");
+			if (user == null){
+				LoginUI loginUI = new LoginUI();
+				loginUI.setVisible(true);
+				loginUI.setLocationRelativeTo(null);
+				System.out.println("il est censer faire le dispose()");
+				
+			}
+				
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {

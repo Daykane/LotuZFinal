@@ -3,7 +3,11 @@ package com.LotuZ;
 
 import java.sql.SQLException;
 
+import com.LotuZ.EventInscription.FacadeEventInscription;
+import com.LotuZ.activity.FacadeActivity;
+import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.FacadeUser;
 
 public class Main {
 
@@ -20,6 +24,10 @@ public class Main {
 		
 		// Init the FacadeBL with the kit
 		FacadeBL.init(jdbcKit);
+		FacadeUser.init(jdbcKit);
+		FacadeActivity.init(jdbcKit);
+		FacadeEvent.init(jdbcKit);
+		FacadeEventInscription.init(jdbcKit);
 		//FacadeUser.init();
 		
 		//First UI to call

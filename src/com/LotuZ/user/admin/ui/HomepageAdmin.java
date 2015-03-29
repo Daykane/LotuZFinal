@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,8 +15,12 @@ import java.awt.FlowLayout;
 
 
 
+
+
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
+import com.LotuZ.activity.FacadeActivity;
+import com.LotuZ.activity.UI.ActivityUI;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
@@ -27,6 +33,8 @@ import com.LotuZ.user.user.bl.User;
 import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+
 
 
 import javax.swing.JButton;
@@ -58,6 +66,7 @@ public class HomepageAdmin extends JFrame {
 		FacadeBL.init(jdbcKit);
 		FacadeUser.init(jdbcKit);
 		FacadeEvent.init(jdbcKit);
+		FacadeActivity.init(jdbcKit);
 		//FacadeUser.init();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -177,6 +186,18 @@ public class HomepageAdmin extends JFrame {
 		
 		JButton btnGestionDesResponsables = new JButton("Gestion des Responsables d'Activit\u00E9s");
 		panel.add(btnGestionDesResponsables);
+		
+		JButton btnGestionDesActivitées = new JButton("Gestion des activit\u00E9es");
+		btnGestionDesActivitées.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ActivityUI activityUI = new ActivityUI();
+				activityUI.setVisible(true);
+				activityUI.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		panel.add(btnGestionDesActivitées);
 		
 		btnGestionDesResponsables.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {

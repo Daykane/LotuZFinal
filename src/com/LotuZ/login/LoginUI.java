@@ -45,7 +45,7 @@ public class LoginUI extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,12 +86,14 @@ public class LoginUI extends JFrame {
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				HomepageUI homepageUI = new HomepageUI();
-				HomepageUI.frame = homepageUI;
-				homepageUI.setVisible(true);
-				frame.dispose();
+				PageAccueil pageaccueil;
+				pageaccueil = new PageAccueil();
+				pageaccueil.setVisible(true);
+				dispose();
+				
 			}
 		});
+		
 		btnCancel.setBounds(241, 217, 89, 23);
 		contentPane.add(btnCancel);
 		
@@ -103,6 +105,7 @@ public class LoginUI extends JFrame {
 				frame.setVisible(true);
 			}
 		});
+		
 		lblInscription.setBounds(143, 156, 69, 14);
 		contentPane.add(lblInscription);
 
@@ -113,44 +116,15 @@ public class LoginUI extends JFrame {
 					FacadeUser.login(TfMail.getText(),Tfpassword.getText());
 
 					User user = UserLog.getUserLog();
-					Member member = UserLog.getMemberLog();
-					Administrator admin = UserLog.getAdminLog();
-					ActivityLeader respo = UserLog.getRespoLog();
-					Contributor contrib = UserLog.getContribLog();
 
-					//TODO des println à enlever
-					System.out.println("le user log LastName : " + user.getLastName());
-					System.out.println("le user log FirstName : " + user.getFirstName());
-					//System.out.println("le user log est admin : " + user.isAdmin());
 					
 					if(user != null){
-						System.out.println("C'est un user");
+						PageAccueil pageAcceuil = new PageAccueil();
+						pageAcceuil.setVisible(true);
+						pageAcceuil.setLocationRelativeTo(null);
+						dispose();
 					}
-					if ( member != null){
-						System.out.println("C'est un membre");
-						System.out.println("Sa boite au lettre est : " + member.getIdBoxLetter());
-					}
-					if ( admin != null){
-						System.out.println("C'est un admin");
-					}
-					if ( respo != null){
-						System.out.println("C'est un respo");
-						//System.out.println("respo : " + respo.getIdBoxLetter() );
-					}
-					if (contrib != null){
-						System.out.println("C'est un contrib");
-					}
-					/*else if(user.isAdmin()) {
-						System.out.println("C'est un contributor");
-						
-					}*/
-					else{
-						//HomePageUserUI frame =  new HomePageUserUI();				
-						frame.setVisible(true);
-					}
-					System.out.println("Mail : " +user.getMail());
-					PageAccueil pageAcceuil = new PageAccueil();
-					pageAcceuil.setVisible(true);
+
 
 
 				} 
@@ -158,7 +132,6 @@ public class LoginUI extends JFrame {
 					JOptionPane.showMessageDialog(null,"Error user not found","Error user not found",JOptionPane.ERROR_MESSAGE);
 				}
 				catch (SQLException e) {
-					//JOptionPane.showMessageDialog(null,"Error Mail/Password","Mail ou password inexistant",JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 
