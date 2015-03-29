@@ -4,7 +4,6 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -19,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 
 
-import com.LotuZ.inscription.InscriptionUserUI;
+
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -35,6 +34,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JList;
+
 
 
 

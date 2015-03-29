@@ -4,7 +4,6 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -32,19 +31,11 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.UserLog;
 
-//import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-
-
-
-
-
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -57,7 +48,6 @@ import java.awt.Dimension;
 
 
 
-import com.LotuZ.user.DeleteUserUI;
 
 
 
@@ -82,8 +72,6 @@ public class InscriptionUI extends JFrame {
 	private JTextField TFHouse;
 	private JTextField TFCity;
 	private JTextField TFPostCode;
-	private JTextField TFCotisation;
-	private JTextField TFDateCotisation;
 	
 	private JPasswordField TFPassword;
 	private JPasswordField TFConfirmPw;	

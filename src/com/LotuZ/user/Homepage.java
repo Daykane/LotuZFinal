@@ -2,12 +2,6 @@ package com.LotuZ.user;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-
-
-
-
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,16 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 
 
-
-
-
-
-
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
-import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.activity.UI.ActivityUI;
-import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
