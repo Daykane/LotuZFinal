@@ -213,18 +213,25 @@ public class Homepage extends JFrame {
 			btnGestionDesResponsables.setVisible(true);
 			btnGestionDesMembres.setVisible(true);
 			btnGestionDesIntervenants.setVisible(true);
+			btnGestionDesUtilisateurs.setVisible(true);
+			btnGestionDesEvents.setVisible(true);
+			
 		}
 		else if (admin == null && activityLeader != null)
 		{
 			btnGestionDesResponsables.setVisible(false);
 			btnGestionDesMembres.setVisible(false);
 			btnGestionDesIntervenants.setVisible(true);
+			btnGestionDesUtilisateurs.setVisible(false);
+			btnGestionDesEvents.setVisible(true);
 		}
-		else 
+		else if (admin == null && activityLeader == null && user != null)
 		{
 			btnGestionDesResponsables.setVisible(false);
 			btnGestionDesMembres.setVisible(false);
 			btnGestionDesIntervenants.setVisible(false);
+			btnGestionDesEvents.setVisible(true);
+			btnGestionDesUtilisateurs.setVisible(false);
 		}
 	}
 
