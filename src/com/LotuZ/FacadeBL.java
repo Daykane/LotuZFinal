@@ -156,11 +156,6 @@ public class FacadeBL {
 	
 	//Room
 	
-	public static  ArrayList<Room> getAllRoom() 
-	{
-		return roomManager.getAllRoom();
-	}
-	
 	public static  Room getRoom(int idRoom) 
 	{
 		return roomManager.getRoom(idRoom) ;
@@ -354,6 +349,11 @@ public class FacadeBL {
 	
 	public static Contributor getContributor(String idContributor) throws SQLException, UserNotFoundException{
 		return contributorManager.getContributor(idContributor);
+	}
+
+	public static ArrayList<Room> getAllRoom() 
+	{
+		return roomManager.getAllRoom();
 	}
 	
 

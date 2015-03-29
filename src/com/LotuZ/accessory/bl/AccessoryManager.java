@@ -8,7 +8,7 @@ import com.LotuZ.PersistKit;
 public class AccessoryManager 
 {
 	
-	PersistKit pkit;
+	private PersistKit pkit;
 	
 	public AccessoryManager(PersistKit kit){
 		this.pkit=kit;

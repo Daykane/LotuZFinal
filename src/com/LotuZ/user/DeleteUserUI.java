@@ -54,6 +54,8 @@ public class DeleteUserUI extends JFrame {
 		System.out.println(" Le contributor : "+user );
 
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

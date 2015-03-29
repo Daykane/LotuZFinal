@@ -65,6 +65,8 @@ public class ListUserUI extends JFrame {
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Zen Lounge");
 		setBounds(300,800, 750, 600);

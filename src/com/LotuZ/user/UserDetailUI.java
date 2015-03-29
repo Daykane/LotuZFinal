@@ -121,6 +121,7 @@ public class UserDetailUI extends JFrame {
 		setContentPane(contentPane);
 		
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
 		contentPane.add(bandeau.createBandeau(UserLog.getUserLog(), "Détail Utilisateur"), BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
@@ -391,8 +392,8 @@ public class UserDetailUI extends JFrame {
 		
 		if (member == null)
 		{
-			TFDateCotisation.setVisible(false);
-			TFCotisation.setVisible(false);
+			TFDateCotisation.setVisible(true);
+			TFCotisation.setVisible(true);
 			lblCotisation.setVisible(false);
 			lblDateCotisation.setVisible(false);
 		}

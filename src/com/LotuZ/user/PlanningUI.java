@@ -52,6 +52,7 @@ public class PlanningUI extends JFrame {
 	
 		
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

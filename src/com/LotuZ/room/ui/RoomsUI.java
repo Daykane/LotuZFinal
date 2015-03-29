@@ -37,7 +37,6 @@ import com.LotuZ.user.user.bl.User;
 
 public class RoomsUI extends JFrame
 {
-	private FacadeBL facadeBL;
 	/**
 	 * 
 	 */

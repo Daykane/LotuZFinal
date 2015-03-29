@@ -9,7 +9,7 @@ import com.LotuZ.notification.bl.Notification;
 
 public class RoomManager 
 {
-	PersistKit pkit;
+	private PersistKit pkit;
 	
 	public RoomManager(PersistKit kit){
 		this.pkit=kit;
