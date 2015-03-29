@@ -32,7 +32,6 @@ public class ContributorManager {
 	 */
 	public Contributor getContributor(String idContributor) throws SQLException {
 		Contributor contributor = pkit.createContributor();
-		System.out.println(" le contributor dans le manager : "+contributor+"id<Contrib "+idContributor);
 		contributor = contributor.load(idContributor);
 		return contributor;
 	}

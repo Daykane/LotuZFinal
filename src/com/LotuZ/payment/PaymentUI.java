@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.ui.CategoryUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
@@ -46,6 +47,7 @@ public class PaymentUI extends JFrame{
 	public PaymentUI() throws SQLException, UserNotFoundException {
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +112,18 @@ public class PaymentUI extends JFrame{
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//TODO
+				try {
+					CategoryUI category = new CategoryUI();
+					category.setVisible(true);
+					category.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnCancel.setBounds(295, 270, 89, 23);

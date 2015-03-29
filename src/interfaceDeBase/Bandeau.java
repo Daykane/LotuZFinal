@@ -181,7 +181,7 @@ public Component createBandeau(final User user,String name){
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
-			lblConnexion.setText("<html><u><font color = #1373cc >"+Connexion +" </u></font></html>");
+			lblConnexion.setText(Connexion);
 		}
 		@Override
 		public void mouseExited(MouseEvent arg0) {
@@ -220,7 +220,7 @@ public Component createBandeau(final User user,String name){
 		}
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
-			lblConnexion.setText("<html><u><font color = #1373cc >"+Connexion +" </u></font></html>");
+			lblConnexion.setText(Connexion);
 		}
 		@Override
 		public void mouseExited(MouseEvent arg0) {

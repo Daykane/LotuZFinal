@@ -94,7 +94,7 @@ public class ActivityUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					ActivityDetailsUI details;
-
+					if (listActivities.getSelectedIndex() >= 0){
 					try {
 						details = new ActivityDetailsUI(list[listActivities.getSelectedIndex()].getIdActivity());
 						details.setVisible(true);
@@ -106,7 +106,7 @@ public class ActivityUI extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-
+					}
 				}
 			}
 		});

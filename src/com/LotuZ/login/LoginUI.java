@@ -104,6 +104,8 @@ public class LoginUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				InscriptionUI frame =  new InscriptionUI();				
 				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+
 			}
 		});
 		

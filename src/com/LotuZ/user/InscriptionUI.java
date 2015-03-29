@@ -416,6 +416,10 @@ public class InscriptionUI extends JFrame {
 									FacadeUser.inscriptionMember(user,cotisation);
 								}
 								JOptionPane.showMessageDialog(null,"Inscription réussie","Inscription réussie",JOptionPane.INFORMATION_MESSAGE);
+								Homepage homepage = new Homepage();
+								homepage.setVisible(true);
+								homepage.setLocationRelativeTo(null);
+
 							} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 								e.printStackTrace();
 								//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
