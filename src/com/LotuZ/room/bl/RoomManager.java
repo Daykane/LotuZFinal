@@ -86,6 +86,18 @@ public class RoomManager
 		}	
 		
 	}
+	
+	public void updateRoom(int idRoom, String nameRoom, int surfaceRoom,
+			int typeRoom, ArrayList<Accessory> listAccessory) {
+		Room room = pkit.createRoom();
+		try {
+			room.update(idRoom, nameRoom, surfaceRoom,
+					typeRoom, listAccessory);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+	}
 
 	public void deleteRoom(int idRoom) 
 	{
@@ -97,6 +109,7 @@ public class RoomManager
 		}
 		
 	}
+
 
 
 }

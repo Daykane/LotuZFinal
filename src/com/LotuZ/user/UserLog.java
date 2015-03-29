@@ -146,6 +146,7 @@ public final class UserLog extends User{
 				UserLog.member = null;
 				UserLog.contrib = null;
 				UserLog.respo = null;
+				UserLog.admin= null;
 				UserLog.dispo = true;
 
 			}
@@ -156,86 +157,8 @@ public final class UserLog extends User{
 		}
 		//return user;
 	}
-	/*
-	public static User logOffMember() {
-		if (!UserLog.dispo) {
-			synchronized(UserLog.class) {
-				//TODO
-				UserLog.user = null;
-				UserLog.member = null;
-				UserLog.contrib = null;
-				UserLog.respo = null;
-				UserLog.dispo = true;
 
-			}
-		}
-		else{
-			//TODO
-			System.out.println("pas de user connecté");
-		}
-		return user;
-	}
-	public static User logOffContributor() {
-		if (!UserLog.dispo) {
-			synchronized(UserLog.class) {
-				//TODO
-				UserLog.user = null;
-				UserLog.member = null;
-				UserLog.contrib = null;
-				UserLog.respo = null;
-				UserLog.dispo = true;
-
-			}
-		}
-		else{
-			//TODO
-			System.out.println("pas de user connecté");
-		}
-		return user;
-	}
-	public static User logOffRespo() {
-		if (!UserLog.dispo) {
-			synchronized(UserLog.class) {
-				//TODO
-				UserLog.user = null;
-				UserLog.member = null;
-				UserLog.contrib = null;
-				UserLog.respo = null;
-				UserLog.dispo = true;
-
-			}
-		}
-		else{
-			//TODO
-			System.out.println("pas de user connecté");
-		}
-		return user;
-	}
-	*/
 }
-
-	/*@Override
-	public boolean isAdmin() throws SQLException {
-		boolean flag = false;
-		int answer = 0;
-		try{
-			Statement st =null;
-			// Etape 3 : Création d'un statement
-			st = this.cn.createStatement();
-			String sql = "Select idAdmin From LotuZ.Member m,LotuZ.User u where m.idMember=u.idMember and u.mail='"+this.getMail()+"'";
-			ResultSet result = st.executeQuery(sql);
-			while( result.next() ){	
-				answer = result.getInt("idAdmin");			
-			}
-		}
-		catch  (SQLException e) {
-			throw e;
-		}
-		if(answer == 1){
-			flag = true;
-		}
-		return flag;
-	}*/
 
 
 

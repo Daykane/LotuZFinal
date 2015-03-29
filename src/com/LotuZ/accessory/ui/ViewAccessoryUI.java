@@ -3,20 +3,15 @@ package com.LotuZ.accessory.ui;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -24,7 +19,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import com.LotuZ.FacadeBL;
 import com.LotuZ.accessory.bl.Accessory;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
@@ -34,18 +28,10 @@ import com.LotuZ.user.user.bl.User;
 public class ViewAccessoryUI extends JFrame{
 
 
-	private FacadeBL facadeBL;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private static final int PARTICIPANTMIN = 5;
-	private static final int PARTCIPANTMAX = 50;
-	private static final int PARTICIPANTSTANDARD = 15;
-	private static final int descriptionSTANDDARD = 25;
-	private static final int descriptionMIN = 15;
-	private static final int descriptionMAX = 50;
 	private JPanel contentPane;
 
 	public ViewAccessoryUI(Accessory accessory) throws SQLException, UserNotFoundException 
@@ -150,6 +136,7 @@ public class ViewAccessoryUI extends JFrame{
 		gbc_btnEdit.gridx = 2;
 		gbc_btnEdit.gridy = 3;
 		validationPan.add(btnEdit, gbc_btnEdit);
+		System.out.println("coucou");
 		
 		//Listeners
 		
@@ -185,9 +172,10 @@ public class ViewAccessoryUI extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				EditAccessoryUI editaccessoryUI = null;
+				System.out.println("coucou");
+				EditAccessoryUI editAccessoryUI = null;
 				try {
-					editaccessoryUI = new EditAccessoryUI(accessorySel);
+					editAccessoryUI = new EditAccessoryUI(accessorySel);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -195,8 +183,8 @@ public class ViewAccessoryUI extends JFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				editaccessoryUI.setLocationRelativeTo(null);
-				editaccessoryUI.setVisible(true);
+				editAccessoryUI.setLocationRelativeTo(null);
+				editAccessoryUI.setVisible(true);
 				dispose();
 			}
 		};

@@ -27,16 +27,13 @@ import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.accessory.bl.Accessory;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.room.bl.Room;
-import com.LotuZ.room.ui.AddRoomUI;
-import com.LotuZ.room.ui.RoomsUI;
-import com.LotuZ.room.ui.ViewRoomUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
 public class AccessoriesUI extends JFrame 
 {
+	private FacadeBL facadeBL;
 	/**
 	 * 
 	 */
@@ -91,10 +88,10 @@ public class AccessoriesUI extends JFrame
 	contentPane.add(bandeau.createBandeau(user, "ACCESSORIES MANAGEMENT"), BorderLayout.NORTH);
 	
 		//Center
-	JPanel roomPan = new JPanel();
-	roomPan.setLayout(new GridBagLayout());
+	JPanel accessoryPan = new JPanel();
+	accessoryPan.setLayout(new GridBagLayout());
 	
-	//JListe Room
+	//JListe accessory
 	
 	final ArrayList<Accessory> accessories = (ArrayList<Accessory>) FacadeBL.getAllAccessory();
 	final JList jListAccessories= new JList(accessories.toArray());
@@ -117,7 +114,7 @@ public class AccessoriesUI extends JFrame
 	gbc_jListAccessories.gridx = 0;
 	gbc_jListAccessories.gridy = 1;		
 	jListAccessories.setVisible(true);
-	roomPan.add(jListAccessories, gbc_jListAccessories);
+	accessoryPan.add(jListAccessories, gbc_jListAccessories);
 	
 		//Button Add
 	
@@ -126,7 +123,7 @@ public class AccessoriesUI extends JFrame
 	gbc_btnAdd.gridx = 1;
 	gbc_btnAdd.gridy = 1;		
 	btnAdd.setVisible(true);
-	roomPan.add(btnAdd, gbc_btnAdd);
+	accessoryPan.add(btnAdd, gbc_btnAdd);
 	
 		//Button View
 	
@@ -135,16 +132,16 @@ public class AccessoriesUI extends JFrame
 	gbc_btnView.gridx = 1;
 	gbc_btnView.gridy = 2;		
 	btnView.setVisible(true);
-	roomPan.add(btnView, gbc_btnView);
+	accessoryPan.add(btnView, gbc_btnView);
 	
 		//Button Remove
 		
-	final JButton btnRemove= new JButton("Remove");
+	final JButton btnRemoveA= new JButton("Remove");
 	GridBagConstraints gbc_btnRemove= new GridBagConstraints();
 	gbc_btnRemove.gridx = 1;
 	gbc_btnRemove.gridy = 3;		
-	btnRemove.setVisible(true);
-	roomPan.add(btnRemove, gbc_btnRemove);
+	btnRemoveA.setVisible(true);
+	accessoryPan.add(btnRemoveA, gbc_btnRemove);
 	
 		
 	//Listeners
@@ -153,9 +150,10 @@ public class AccessoriesUI extends JFrame
 	
 	ActionListener btnAddListeners = new ActionListener() 
 	{
-	
+
 		public void actionPerformed(ActionEvent e)
 		{
+			System.out.println("ici");
 			AddAccessoryUI add = null;
 			try {
 				add = new AddAccessoryUI();
@@ -175,7 +173,7 @@ public class AccessoriesUI extends JFrame
 	
 	btnAdd.addActionListener(btnAddListeners);
 	
-		//btnViewRoomListeners
+		//btnViewaccessoryListeners
 	
 	ActionListener btnViewListeners = new ActionListener() 
 	{
@@ -202,9 +200,9 @@ public class AccessoriesUI extends JFrame
 	};
 	btnView.addActionListener(btnViewListeners);
 	
-	//btnRemoveCatListeners
+	//btnRemoveAccListeners
 	
-	ActionListener btnRemoveRoomListeners = new ActionListener() 
+	ActionListener btnRemoveAccListeners = new ActionListener() 
 	{
 	
 	public void actionPerformed(ActionEvent e) 
@@ -218,21 +216,21 @@ public class AccessoriesUI extends JFrame
 		}
 		if (accessories.isEmpty())
 		{
-			btnRemove.setVisible(false);			
+			btnRemoveA.setVisible(false);			
 		}
 	}
 	};
-	btnRemove.addActionListener(btnRemoveRoomListeners);
+	btnRemoveA.addActionListener(btnRemoveAccListeners);
 	
 	
-			//set ScrollPan
-	JScrollPane scrollPpanelCategory = new JScrollPane(roomPan);
-	//scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-	contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
-				//add  JScrollBar
-	JScrollBar scrollBarEast = new JScrollBar();
-	scrollPpanelCategory.add(scrollBarEast);
-	
-		//South
+//			//set ScrollPan
+//	JScrollPane scrollPpanelCategory = new JScrollPane(accessoryPan);
+//	//scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
+//	contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
+//				//add  JScrollBar
+//	JScrollBar scrollBarEast = new JScrollBar();
+//	scrollPpanelCategory.add(scrollBarEast);
+//	
+//		//South
 	}
 }

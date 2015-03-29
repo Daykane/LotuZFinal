@@ -121,41 +121,6 @@ public class CategoryUI extends JFrame {
 		//JListe Category
 		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getAllCategories().getListCategoryProduct();
 		final ArrayList<String> categoriesNames = new ArrayList<String>();
-//		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-//			Component renderer =  super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus)
-//		    setText(entry.getTitle());
-//		    setIcon(entry.getImage());
-//		    if (isSelected) {
-//		      setBackground(HIGHLIGHT_COLOR);
-//		      setForeground(Color.white);
-//		    } else {
-//		      setBackground(Color.white);
-//		      setForeground(Color.black);
-//		    }
-//		    return this;
-//		  }	
-		
-//		 Création de la list ListActivityLeader listActivityLeader = FacadeBL.getActivityLeaders(); 
-//		List<User> listUser = listActivityLeader.getListActivityLeader(); 
-//		List<User> users = new ArrayList<User>(); 
-//		for(int i = 0; i < listUser.size(); i++) { users.add(listUser.get(i)); } 
-//		list = new JList(new Vector<User>(users)); 
-//		list.setVisibleRowCount(10); 
-//		list.setCellRenderer(new DefaultListCellRenderer() 
-//		{ 
-//		@Override 
-//		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
-//		{ 
-//			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
-//			if (renderer instanceof JLabel && value instanceof User) 
-//			{ 
-//				// Here value will be of the Type 'CD' 
-//				((JLabel) renderer).setText(((User) value).getLastName()+" "+((User) value).getFirstName()); 
-//				} return renderer; 
-//				} 
-//		});
-//		}
-//		}
 		
 		for (int i=0;i<categories.size();i++)
 		{
@@ -241,6 +206,7 @@ public class CategoryUI extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			add.setLocationRelativeTo(null);
 			add.setVisible(true);
 			dispose();
 			
@@ -289,8 +255,6 @@ public class CategoryUI extends JFrame {
 			if (!jListCategories.getSelectedValue().equals(null))
 			{		
 				//Suppression de l'élement sélection de la liste des sous category
-				System.out.println(jListCategories.getSelectedIndex()+"-----"+jListCategories.getSelectedValue());
-				System.out.println(categoriesNames.get(jListCategories.getSelectedIndex())+"-----"+jListCategories.getSelectedValue());
 				FacadeBL.deleteCategory(categories.get(jListCategories.getSelectedIndex()).getIdCategoryProduct());
 				for(int i=0;i<categories.size();i++)
 				{
@@ -306,8 +270,7 @@ public class CategoryUI extends JFrame {
 					}
 				}
 				categories.remove(jListCategories.getSelectedIndex());
-				categoriesNames.remove(jListCategories.getSelectedValue());
-				jListCategories.setListData(categoriesNames.toArray());
+				jListCategories.setListData(categories.toArray());
 			}
 			if (categoriesNames.isEmpty())
 			{

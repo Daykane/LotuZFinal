@@ -43,12 +43,11 @@ public class AccessoryJDBC extends Accessory
 		st = this.cn.createStatement();
 		
 		// Requ�te de s�lection � partir de l'identifiant 
-		String sql = "Select * From LotuZ.Accessory where idNotification="+idAccessory;
+		String sql = "Select * From LotuZ.Accessory where idAccessory="+idAccessory;
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
-		// R�cup�ration des donn�es 
 		while(result.next()){	
 			this.setIdAccesorry((result.getInt("idAccessory")));
 			this.setNameAccessory((result.getString("name")));
@@ -67,7 +66,7 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Accessory ";
-		System.out.println("cJDBC1");
+		System.out.println("cJDEEBC1");
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -100,7 +99,7 @@ public class AccessoryJDBC extends Accessory
 	public void update(int idAccessory, String nameAccessory,
 			String descriptionAccessory) throws SQLException 
 	{
-		System.out.println("cJDBC1");	
+		System.out.println("cJDEEBC1");	
 		Statement st =null;
 		System.out.println("cJDBC1'");
 		// Cr�ation d'un statement

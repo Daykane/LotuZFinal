@@ -61,7 +61,7 @@ public class EditRoomUI extends JFrame
 	
 	public EditRoomUI(Room roomSel) throws SQLException, UserNotFoundException 
 	{
-		Room room = roomSel;
+		final Room room = roomSel;
 		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
@@ -181,11 +181,11 @@ public class EditRoomUI extends JFrame
 		int nbParcSt = 0;
 		if (room.getTypeRoom()==0)
 		{
-			nbParcSt = room.getNbMaxParticipant();
+			nbParcSt = (int) room.getNbMaxParticipant();
 		}
 		if (room.getTypeRoom()==1)
 		{
-			nbParcSt = PARTICIPANTSTANDARD;
+			nbParcSt = (int) PARTICIPANTSTANDARD;
 		}
 		SpinnerModel nbMaxParticipantSpinerModel = new SpinnerNumberModel(nbParcSt,PARTICIPANTMIN,PARTCIPANTMAX,1);
 		
@@ -194,7 +194,14 @@ public class EditRoomUI extends JFrame
 		gbc_spnrNbMaxParticipant.gridx = 2;
 		gbc_spnrNbMaxParticipant.gridy = 4;
 		roomPan.add(spnrNbMaxParticipant, gbc_spnrNbMaxParticipant);
-		spnrNbMaxParticipant.setVisible(false);
+		if (room.getTypeRoom()==0)
+		{
+			spnrNbMaxParticipant.setVisible(true);
+		}
+		if (room.getTypeRoom()==1)
+		{
+			spnrNbMaxParticipant.setVisible(false);
+		}
 		
 		
 			//Accesories
@@ -408,12 +415,12 @@ public class EditRoomUI extends JFrame
 				{	
 					int surface = (Integer) spnrSurface.getValue();
 					int nbMaxParticipant = (Integer) spnrNbMaxParticipant.getValue();
-					facadeBL.createRoom(txtFName.getText(), surface , 0, nbMaxParticipant, accessoriesSel); //Code salle de cours = 0
+					FacadeBL.updateRoom(room.getIdRoom(),txtFName.getText(), surface , 0, nbMaxParticipant, accessoriesSel); //Code salle de cours = 0
 				}
 				if (cBoxTypeRoom.getSelectedItem().equals("Cabinet"))
 				{
 					int surface = (Integer) spnrSurface.getValue();
-					facadeBL.createRoom(txtFName.getText(), surface, 1, accessoriesSel); //Code cabinet = 1
+					FacadeBL.updateRoom(room.getIdRoom(),txtFName.getText(), surface, 1, accessoriesSel); //Code cabinet = 1
 				}
 				RoomsUI roomsUI = null;
 				try {

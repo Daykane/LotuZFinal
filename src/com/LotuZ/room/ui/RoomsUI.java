@@ -247,6 +247,7 @@ public class RoomsUI extends JFrame
 	
 	public void actionPerformed(ActionEvent e)
 	{
+		System.out.println("iciiia");
 		AccessoriesUI accessorieUI=null;
 		try {
 			accessorieUI = new AccessoriesUI();
@@ -262,7 +263,7 @@ public class RoomsUI extends JFrame
 		dispose();	
 	}
 	};
-	btnAccessories.addActionListener(btnViewListeners);
+	btnAccessories.addActionListener(btnAccessoriesListeners);
 	
 	
 			//set ScrollPan

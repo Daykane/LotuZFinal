@@ -40,11 +40,6 @@ public Component createBandeau(final User user,String name){
 	lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 	panelBandeau.add(lblTitle, BorderLayout.CENTER);
 
-	//JLabel lblToto = new JLabel("LOGO");
-	//lblToto.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	//lblToto.setHorizontalAlignment(SwingConstants.LEFT);
-	//panel.add(lblToto, BorderLayout.WEST);
-
 	JLabel image = new JLabel(new ImageIcon("zen.jpg"));
 	panelBandeau.add(image,BorderLayout.WEST);
 	image.addMouseListener(new MouseAdapter() {
@@ -85,8 +80,6 @@ public Component createBandeau(final User user,String name){
 		public void mouseClicked(MouseEvent arg0) {
 			UserDetailUI userDetail;
 			try {
-				//User user = new UserJDBC();
-				//user = UserLog.getUserLog();
 				userDetail = new UserDetailUI(user.getMail());
 				userDetail.setVisible(true);
 				userDetail.setLocationRelativeTo(null);
@@ -154,10 +147,9 @@ public Component createBandeau(final User user,String name){
 			}
 			else{
 				UserLog.logOff();
-				User user = UserLog.getUserLog();
 				Homepage loginUI;
 				try {
-					//getJframe().dispose();
+					getJframe().dispose();
 					loginUI = new Homepage();
 					loginUI.setVisible(true);
 					loginUI.setLocationRelativeTo(null);

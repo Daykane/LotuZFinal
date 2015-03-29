@@ -1,6 +1,9 @@
 package com.LotuZ.notification.bl;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import com.LotuZ.product.category.bl.CategoryProduct;
 
@@ -110,7 +113,14 @@ public abstract class Notification
 	//Delete
 	public abstract void delete(int idNotification) throws SQLException;
 	
-	
+	//SendNotification
+	public void sendNotification(int idNotification, int idMember) throws SQLException
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		BoxLetter boxLetter = null;
+		boxLetter.save(idNotification,idMember,dateFormat.format(cal.getTime()),0);
+	}
 	
 	
 

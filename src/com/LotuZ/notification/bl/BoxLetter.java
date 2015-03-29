@@ -67,7 +67,7 @@ public abstract class BoxLetter
 	/**
 	 * readNotification permet de savoir si un notification a deja ete lu par son proprietaire
 	 * Lorsque la notification est non lu, readNotification == 0, dans le cas contraire readNotification ==1
-	 * r
+	 * 
 	 */
 	private int readNotification;
 	
