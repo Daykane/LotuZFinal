@@ -124,4 +124,28 @@ public class EventManager {
 		
 	}
 
+	public void updateEvent(Event oldEvent, String name, int nbParticipant,
+			int price, String startingTime, String finishingTime,
+			java.util.Date date, String description, int idRepetition,
+			int idActivity, int idContrib, int idRoom) throws SQLException {
+		
+		Event event = pkit.createEvent();
+		event.setIdEvent(oldEvent.getIdEvent());
+		event.setDate(date);
+		event.setName(name);
+		event.setHeureDeb(startingTime);
+		event.setHeureFin(finishingTime);
+		event.setRoom(idRoom);
+		event.setRepetition(idRepetition);
+		event.setIdContributor(idContrib);
+		event.setIdActivity(idActivity);
+		event.setNbParticipant(nbParticipant);
+		event.setDescription(description);
+		event.setPrice(price);
+		System.out.println("Dans le manager " + event.getName());
+		System.out.println("Dans le manager " + oldEvent.getIdEvent());
+		System.out.println("Dans le manager " + event.getIdEvent());
+		event.update();
+	}
+
 }

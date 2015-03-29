@@ -3,11 +3,23 @@ package com.LotuZ.event.UI;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Choice;
+import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
@@ -20,51 +32,29 @@ import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+public class EditEventUI extends JFrame {
 
-import java.awt.FlowLayout;
-
-import javax.swing.JSpinner;
-
-import java.awt.Choice;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.sql.Date;
-import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JTextArea;
-
-public class CreateEventUI extends JFrame {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField TfName;
-	private Calendar cal;
 	private JTextField textDate;
 	private JTextField tfPrice;
-	private JTextField BoxActivity;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public CreateEventUI() {
+	public EditEventUI(final Event event) {
 		User user = UserLog.getUserLog();
 
 		System.out.println("Mail page acceuil test : " + user.getMail());
@@ -124,6 +114,7 @@ public class CreateEventUI extends JFrame {
 		panelMain.add(lblActivite, "2, 4, right, default");
 		
 		final Activity[] listAct = this.generateListActi(user.getMail());
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox BoxActivity = new JComboBox(listAct);		
 		panelMain.add(BoxActivity, "4, 4, left, default");
 		//BoxActivity.setColumns(10);
@@ -186,6 +177,7 @@ public class CreateEventUI extends JFrame {
 		 * Repetition in the comboBox
 		 */
 		final Repetition[] list = this.generateListRepet();
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox choiceRep = new JComboBox(list);		
 		panelMain.add(choiceRep, "4, 12, left, default");
 		
@@ -218,6 +210,7 @@ public class CreateEventUI extends JFrame {
 		listUser = u.getListUser();
 		User[] arrayContrib;
 		arrayContrib = toUserArray(listUser);
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox choiceContrib = new JComboBox(arrayContrib);
 		panelMain.add(choiceContrib, "4, 18, left, default");
 		
@@ -262,17 +255,6 @@ public class CreateEventUI extends JFrame {
 					}
 					int idRepetition = list[choiceRep.getSelectedIndex()].getIdRepetition();
 					int idActivity = listAct[BoxActivity.getSelectedIndex()].getIdActivity();
-
-					//TODO get list contrib a mettre dans uen check box;
-					List<User> listUser;
-					ListUser u = null;
-					try {
-						u = FacadeUser.getContributors();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					listUser = u.getListUser();
 					
 					int idContrib = 0;
 					//TODO get list Romm;
@@ -287,9 +269,8 @@ public class CreateEventUI extends JFrame {
 					catch (java.lang.NumberFormatException e){
 						System.out.println("Error int string null");
 					}
-							
 					try {
-						FacadeEvent.createEvent2(name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
+						FacadeEvent.updateEvent(event,name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -364,4 +345,6 @@ public class CreateEventUI extends JFrame {
 		    ret[i] = lrepet.get(i);
 		  return ret;
 		}
-}
+	}
+
+

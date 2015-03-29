@@ -125,9 +125,24 @@ public class EventJdbc extends Event{
 		Statement st =null;
 		// Etape 3 : Création d'un statement
 		st = this.cn.createStatement();
-		
-		String sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
+		String sql;
+		if ( this.getIdContributor() == 0 && this.getRoom() == 0){
+			sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
+					+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
+		}
+		else if(this.getRoom() == 0){
+			sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
+					+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`contributor`='"+this.getIdContributor()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
+				}
+		else if(this.getIdContributor() == 0){
+			sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
+					+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`room`='"+this.getRoom()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
+			
+		}
+		else{
+		sql = "UPDATE Event SET `name`='"+this.getName() +"',`nbParticipant`='"+ this.getNbParticipant()+"',`startingTime`='"+this.getHeureDeb()
 				+"',`finishingTime`='"+this.getHeureFin()+"',`date`='"+this.getDate()+"',`repetition`='"+this.getRepetition()+"',`activity`='"+this.getIdActivity()+"',`contributor`='"+this.getIdContributor()+"',`room`='"+this.getRoom()+"',`price`='"+this.getPrice()+"',`description`='"+this.getDescription()+"' Where `idEvent`='"+this.getIdEvent()+"'";
+		}
 		// Etape 4 : exécution requête
 		st.executeUpdate(sql);
 		

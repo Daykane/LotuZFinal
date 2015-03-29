@@ -28,11 +28,13 @@ import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
+import com.LotuZ.activity.UI.ActivityDetailsUI;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
@@ -61,13 +63,15 @@ public class DetailsEventUI extends JFrame {
 	 * Create the frame.
 	 * @param event 
 	 */
-	public DetailsEventUI(Event event) {
+	public DetailsEventUI(final Event event) {
 		User user = UserLog.getUserLog();
+		ActivityLeader respo = UserLog.getRespoLog();
+		Administrator admin = UserLog.getAdminLog();
 
 		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
@@ -165,10 +169,6 @@ public class DetailsEventUI extends JFrame {
 		JLabel lblRepetition = new JLabel("Repetition : ");
 		panelMain.add(lblRepetition, "2, 12, right, default");
 
-		/*
-		 * Repetition in the comboBox
-		 */
-		//BoxActivity.setColumns(10);
 		Repetition repet = null;
 		try {
 			repet = FacadeEvent.getRepetition(event.getRepetition());
@@ -224,11 +224,34 @@ public class DetailsEventUI extends JFrame {
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 
-		JButton btnConfirm = new JButton("Confirm");
-		panel_2.add(btnConfirm);
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				EditEventUI details;
+				details = new EditEventUI(event);
+				details.setVisible(true);
+				details.setLocationRelativeTo(null);
+			}
+		});
+		panel_2.add(btnEdit);
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
 		panel_2.add(btnCancel);
+		
+		btnEdit.setVisible(false);
+		if( admin != null ){
+			btnEdit.setVisible(true);
+		}
+		else if(respo !=null && respo.getIdLeader()!= activity.getIdRespo() ){
+			btnEdit.setVisible(true);
+		}
 	}
 
 }

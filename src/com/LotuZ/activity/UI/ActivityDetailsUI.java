@@ -2,34 +2,28 @@ package com.LotuZ.activity.UI;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.UI.CreateEventUI;
+import com.LotuZ.event.UI.DetailsEventUI;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.User;
 
-import java.awt.Font;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.MouseAdapter;
@@ -39,7 +33,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
-import javax.swing.BoxLayout;
+
+
 
 import java.awt.GridLayout;
 
@@ -49,7 +44,6 @@ import com.jgoodies.forms.factories.FormFactory;
 
 import javax.swing.JTextField;
 
-import java.awt.Component;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -231,7 +225,20 @@ public class ActivityDetailsUI extends JFrame {
 		
 		//List gestion		
 		final Event[] list = this.generateList(idAct);
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JList listEvents = new JList(list);
+		listEvents.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					DetailsEventUI details;
+
+					details = new DetailsEventUI(list[listEvents.getSelectedIndex()]);
+					details.setVisible(true);
+					details.setLocationRelativeTo(null);
+			}
+			}
+		});
 		panel.add(listEvents, "4, 18, 5, 1, fill, fill");
 		
 		JButton btnAddEvent = new JButton("Add Event");
@@ -253,6 +260,7 @@ public class ActivityDetailsUI extends JFrame {
 		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Event[] list = generateList(idAct);
@@ -263,6 +271,7 @@ public class ActivityDetailsUI extends JFrame {
 		});
 		panel.add(btnRefresh, "14, 18");
 		btnRemoveEvent.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (listEvents.getSelectedIndex() == -1){

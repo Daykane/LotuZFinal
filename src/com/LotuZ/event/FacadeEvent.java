@@ -99,4 +99,15 @@ public class FacadeEvent {
 		
 	}
 
+	public static void updateEvent(Event oldEvent, String name, int nbParticipant,
+			int price, String startingTime, String finishingTime,
+			java.util.Date date, String description, int idRepetition,
+			int idActivity, int idContrib, int idRoom) throws SQLException {
+		eventManager.updateEvent(oldEvent, name, nbParticipant,
+			 price, startingTime, finishingTime,
+			 date, description, idRepetition,
+			 idActivity, idContrib, idRoom);
+		
+	}
+
 }

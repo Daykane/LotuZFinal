@@ -189,8 +189,13 @@ public abstract class Event {
 	public int getIdContributor() {
 		return idContributor;
 	}
-
+	
 	public void setIdContributor(int idContrib) {
+		this.idContributor=idContrib;
+		
+	}
+
+	public void idRepetition(int idContrib) {
 		if (idContrib != -1){
 			this.idContributor = idContrib;
 			}
@@ -230,6 +235,8 @@ public abstract class Event {
 		return name + ", date : " + date + ", Start : "
 				+ heureDeb + ", Finish : " + heureFin ;
 	}
+
+	
 	
 
 }
