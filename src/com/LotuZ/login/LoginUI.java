@@ -1,6 +1,5 @@
 package com.LotuZ.login;
 
-import interfaceDeBase.PageAccueiltest;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import com.LotuZ.FacadeBL;
 import com.LotuZ.PageAccueil;
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.user.FacadeUser;
@@ -20,16 +18,12 @@ import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
-import com.LotuZ.user.member.ui.HomePageMemberUI;
 import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
-import com.LotuZ.user.user.ui.HomePageUserUI;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
-import javax.swing.JCheckBox;
 
 public class LoginUI extends JFrame {
 
@@ -151,7 +145,7 @@ public class LoginUI extends JFrame {
 						
 					}*/
 					else{
-						HomePageUserUI frame =  new HomePageUserUI();				
+						//HomePageUserUI frame =  new HomePageUserUI();				
 						frame.setVisible(true);
 					}
 					System.out.println("Mail : " +user.getMail());
