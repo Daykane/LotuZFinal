@@ -9,7 +9,8 @@ import com.LotuZ.login.UserNotFoundException;
 
 public class EditAccessoryUI extends JFrame {
 
-	public EditAccessoryUI(Accessory accessorySel) throws SQLException, UserNotFoundException{
+	public EditAccessoryUI(Accessory accessorySel) throws SQLException, UserNotFoundException
+	{
 		// TODO Auto-generated constructor stub
 	}
 
