@@ -38,6 +38,7 @@ import javax.swing.JList;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import javax.swing.JScrollPane;
 
 
 public class ListUserUI extends JFrame {
@@ -128,8 +129,8 @@ public class ListUserUI extends JFrame {
                 return renderer;
             }
         });
+		panel.add(new JScrollPane(list));
 
-		panel.add(list);
 		list.setPreferredSize(new Dimension(500, 300));
 
 		list.setVisibleRowCount(10);

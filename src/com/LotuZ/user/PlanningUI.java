@@ -8,6 +8,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.EventInscription.FacadeEventInscription;
@@ -15,6 +16,7 @@ import com.LotuZ.event.Event;
 import com.LotuZ.event.UI.DetailsEventUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.user.bl.User;
+
 
 
 
@@ -93,7 +95,7 @@ public class PlanningUI extends JFrame {
             }
         });
 
-		panel.add(list);
+		panel.add(new JScrollPane(list));
 		list.setPreferredSize(new Dimension(400, 400));
 
 		list.setVisibleRowCount(10);
