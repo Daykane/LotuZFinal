@@ -44,6 +44,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextArea;
+import javax.swing.JCheckBox;
 
 /**
  * @author Alexis
@@ -84,7 +85,7 @@ public class CreateEventUI extends JFrame {
 				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),},
-				new RowSpec[] {
+			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -102,7 +103,7 @@ public class CreateEventUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.PREF_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -199,7 +200,12 @@ public class CreateEventUI extends JFrame {
 
 		JLabel lblContributor = new JLabel("Contributor : ");
 		panelMain.add(lblContributor, "2, 18, right, default");
-
+		
+		
+		JPanel panelContributor = new JPanel();
+		panelMain.add(panelContributor, "4, 18, left, fill");
+		panelContributor.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 		/*
 		 * Contributor in comboBox
 		 */
@@ -214,9 +220,13 @@ public class CreateEventUI extends JFrame {
 		listUser = u.getListUser();
 		final User[] arrayContrib;
 		arrayContrib = toUserArray(listUser);
+		
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox choiceContrib = new JComboBox(arrayContrib);
-		panelMain.add(choiceContrib, "4, 18, left, default");
+		panelContributor.add(choiceContrib);		
+		
+		final JCheckBox chckbxContrib = new JCheckBox("No contributor");
+		panelContributor.add(chckbxContrib);
 
 		JLabel lblPrice = new JLabel("Price : ");
 		panelMain.add(lblPrice, "2, 20, right, default");
@@ -269,7 +279,9 @@ public class CreateEventUI extends JFrame {
 						if (choiceContrib.getSelectedIndex() != 1){
 							idContrib = arrayContrib[choiceContrib.getSelectedIndex()].getIdContributor();
 						}
-
+						if (chckbxContrib.isSelected()){
+							idContrib = 0;
+						}
 
 						int idRoom = 0;
 
