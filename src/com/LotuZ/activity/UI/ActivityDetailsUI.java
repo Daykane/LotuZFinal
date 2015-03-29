@@ -90,7 +90,9 @@ public class ActivityDetailsUI extends JFrame {
 
 		JPanel panelBandeau = new JPanel();
 		panelBandeau.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		contentPane.add(new Bandeau().createBandeau(user,"Details Activity"), BorderLayout.NORTH);
+		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+		contentPane.add(bandeau.createBandeau(user,"Details Activity"), BorderLayout.NORTH);
 		panelBandeau.setLayout(new BorderLayout(0, 0));
 
 

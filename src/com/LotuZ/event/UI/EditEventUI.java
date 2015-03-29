@@ -69,8 +69,9 @@ public class EditEventUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-
-		contentPane.add(new Bandeau().createBandeau(user, "Edit Event"), BorderLayout.NORTH);
+		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+		contentPane.add(bandeau.createBandeau(user, "Edit Event"), BorderLayout.NORTH);
 		
 		JPanel panelMain = new JPanel();
 		contentPane.add(panelMain, BorderLayout.CENTER);

@@ -18,6 +18,7 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserDetailUI;
+import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.User;
 
@@ -150,6 +151,24 @@ public Component createBandeau(final User user,String name){
 				loginUI.setLocationRelativeTo(null);
 				getJframe().dispose();
 
+			}
+			else{
+				UserLog.logOff();
+				User user = UserLog.getUserLog();
+				Homepage loginUI;
+				try {
+					//getJframe().dispose();
+					loginUI = new Homepage();
+					loginUI.setVisible(true);
+					loginUI.setLocationRelativeTo(null);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 				
 		}
