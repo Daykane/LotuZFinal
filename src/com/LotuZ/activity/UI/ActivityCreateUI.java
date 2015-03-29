@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
@@ -145,10 +146,7 @@ public class ActivityCreateUI extends JFrame {
 					FacadeBL.createActivity(tfName.getText(),idRespo, tfShortDesc.getText(), tfLongDesc.getText());
 					JOptionPane.showMessageDialog(null,"creation sucess","Creation",JOptionPane.INFORMATION_MESSAGE);
 					
-				} catch (com.mysql.jdbc.MysqlDataTruncation e){
-					//TODO
-					System.out.println("Boite alert, text trop long");
-				} catch (SQLException e) {
+				} catch (DataBaseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {

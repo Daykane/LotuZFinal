@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.PersistKit;
 
 /**
@@ -14,6 +15,7 @@ import com.LotuZ.PersistKit;
  */
 public class ActivityManager {
 	
+	private static final Exception DataBaseException = null;
 	private PersistKit pkit;
 	
 	/**
@@ -43,10 +45,11 @@ public class ActivityManager {
 	 * @param idRespo : Activity leader identifier
 	 * @param shortDescr : short description
 	 * @param longDescr : long description
-	 * @throws ClassNotFoundException
+	 * @throws ClassNotFoundException 
+	 * @throws Exception 
 	 * @throws SQLException
 	 */
-	public void create(String name, String idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
+	public void create(String name, String idRespo, String shortDescr, String longDescr) throws DataBaseException, ClassNotFoundException {
 			//User user = UserLog.getUserLog();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
@@ -60,7 +63,13 @@ public class ActivityManager {
 			activity.setCreateDate(dateFormat.format(date));
 			activity.setMajDate(dateFormat.format(date));
 			// Save in database the user
-			activity.save();
+			try {
+				activity.save();
+			} catch (SQLException e) {
+				throw new DataBaseException();
+			} catch (ClassNotFoundException e) {
+				throw e;
+			}
 		}
 	
 	
@@ -68,10 +77,14 @@ public class ActivityManager {
 	 * Return All activities in Base
 	 * @throws SQLException
 	 */
-	public List<Activity> getActivities() throws SQLException {
+	public List<Activity> getActivities() throws DataBaseException {
 		List<Activity> lAct;
 		Activity activity = pkit.createActivity();
-		lAct = activity.loadAll();
+		try {
+			lAct = activity.loadAll();
+		} catch (SQLException e) {
+			throw new DataBaseException();
+		}
 		return lAct;
 	}
 
@@ -80,9 +93,14 @@ public class ActivityManager {
 	 * @param name
 	 * @throws SQLException
 	 */
-	public Activity read(String name) throws SQLException {
+	public Activity read(String name) throws DataBaseException {
 		Activity activity = pkit.createActivity();
-		Activity acti = activity.load(name);
+		Activity acti;
+		try {
+			acti = activity.load(name);
+		} catch (SQLException e) {
+			throw new DataBaseException();
+		}
 		return acti;
 		
 	}
@@ -92,9 +110,13 @@ public class ActivityManager {
 	 * @param i : identifier of Activity
 	 * @throws SQLException
 	 */
-	public Activity read(int i) throws SQLException {
+	public Activity read(int i) throws DataBaseException {
 		Activity activity = pkit.createActivity();
-		activity = activity.load(i);
+		try {
+			activity = activity.load(i);
+		} catch (SQLException e) {
+			throw new DataBaseException();
+		}
 		return activity;
 	}
 
@@ -103,10 +125,14 @@ public class ActivityManager {
 	 * @param act : Activity
 	 * @throws SQLException
 	 */
-	public void deleteActivity(Activity act) throws SQLException {
+	public void deleteActivity(Activity act) throws DataBaseException {
 		Activity activity = pkit.createActivity();
 		activity.setIdActivity(act.getIdActivity());		
-		activity.delete();
+		try {
+			activity.delete();
+		} catch (SQLException e) {
+			throw new DataBaseException();
+		}
 		
 	}
 
@@ -120,7 +146,7 @@ public class ActivityManager {
 	 * @throws SQLException
 	 */
 	public void update(Activity acti, String name, String shortDescr, String longDescr,
-			String idRespo) throws SQLException {
+			String idRespo) throws DataBaseException {
 		//Parse forma Date
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -136,7 +162,11 @@ public class ActivityManager {
 		activity.setMajDate(dateFormat.format(date));
 		
 		
-		activity.update();
+		try {
+			activity.update();
+		} catch (SQLException e) {
+			throw new DataBaseException();
+		}
 		
 	}
 
@@ -145,11 +175,15 @@ public class ActivityManager {
 	 * @return Leader Activity's list Activity
 	 * @throws SQLException
 	 */
-	public List<Activity> getActivityOfLeader(String idRespo) throws SQLException {
+	public List<Activity> getActivityOfLeader(String idRespo) throws DataBaseException {
 		List<Activity> lAct;
 		Activity activity = pkit.createActivity();
 		activity.setIdRespo(idRespo);
-		lAct = activity.loadForRespo();
+		try {
+			lAct = activity.loadForRespo();
+		} catch (SQLException e) {
+			throw new DataBaseException();
+		}
 		return lAct;
 	}
 	

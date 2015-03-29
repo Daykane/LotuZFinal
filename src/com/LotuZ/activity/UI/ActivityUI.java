@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
@@ -98,7 +99,7 @@ public class ActivityUI extends JFrame {
 						details = new ActivityDetailsUI(list[listActivities.getSelectedIndex()].getIdActivity());
 						details.setVisible(true);
 						details.setLocationRelativeTo(null);
-					} catch (SQLException e1) {
+					} catch (DataBaseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (UserNotFoundException e1) {
@@ -193,7 +194,7 @@ public class ActivityUI extends JFrame {
 							
 						}
 					}
-				} catch (SQLException e) {
+				} catch (DataBaseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -271,7 +272,7 @@ public class ActivityUI extends JFrame {
 		try {
 			lAct = FacadeActivity.getAllActivities();
 
-		} catch (SQLException e) {
+		} catch (DataBaseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

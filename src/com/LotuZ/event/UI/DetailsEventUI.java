@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.Event;
@@ -117,7 +118,7 @@ public class DetailsEventUI extends JFrame {
 		Activity activity = null;
 		try {
 			activity = FacadeActivity.getActivity(event.getIdActivity());
-		} catch (SQLException e2) {
+		} catch (DataBaseException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}

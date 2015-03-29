@@ -323,7 +323,7 @@ public class FacadeBL {
 		loginManager.loginUser(mail,password);
 	}	
 
-	public  List<Activity> getActivities() throws SQLException {
+	public  List<Activity> getActivities() throws DataBaseException {
 		return activityManager.getActivities();
 	}
 	
@@ -333,25 +333,25 @@ public class FacadeBL {
 	
 
 
-	public static void createActivity(String name, String idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, SQLException {
+	public static void createActivity(String name, String idRespo, String shortDescr, String longDescr) throws ClassNotFoundException, DataBaseException {
 		activityManager.create(name,idRespo, shortDescr, longDescr);
 
 		
 	}
 
-	public static Activity readActivity(String name) throws SQLException {
+	public static Activity readActivity(String name) throws DataBaseException {
 		Activity acti = activityManager.read(name);
 		return acti;
 		
 	}
 
-	public static Activity readActivity(int i) throws SQLException {
+	public static Activity readActivity(int i) throws DataBaseException {
 		Activity acti = activityManager.read(i);
 		return acti;
 	}
 
 	public static void updateActivity(Activity acti, String name, String shortDescr,
-			String longDescr, String idRespo) throws SQLException {	
+			String longDescr, String idRespo) throws DataBaseException {	
 			activityManager.update(acti,name,shortDescr,longDescr,idRespo);	
 	}
 	

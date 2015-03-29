@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
@@ -32,6 +33,7 @@ import java.awt.event.MouseEvent;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
 
 
 
@@ -69,7 +71,7 @@ public class ActivityDetailsUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public ActivityDetailsUI(final int idAct) throws SQLException, UserNotFoundException {
+	public ActivityDetailsUI(final int idAct) throws DataBaseException, UserNotFoundException {
 		
 		// Déclaration du monde
 		//FacadeUser.login("jack","jack");
@@ -323,7 +325,7 @@ public class ActivityDetailsUI extends JFrame {
 						tfShortDescr.setEditable(false);
 						tfLongDescr.setEditable(false);
 						JOptionPane.showMessageDialog(null,"update sucess","Update",JOptionPane.INFORMATION_MESSAGE);
-					} catch (SQLException e) {
+					} catch (DataBaseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

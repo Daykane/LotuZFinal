@@ -24,6 +24,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.Event;
@@ -329,7 +330,7 @@ public class EditEventUI extends JFrame {
 			else{
 				lact = FacadeActivity.getActivityOfLeader(idRespo);
 			}		
-		} catch (SQLException e) {
+		} catch (DataBaseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

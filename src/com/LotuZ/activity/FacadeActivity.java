@@ -3,6 +3,7 @@ package com.LotuZ.activity;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.LotuZ.DataBaseException;
 import com.LotuZ.PersistKit;
 
 
@@ -25,8 +26,9 @@ public class FacadeActivity {
 	/**
 	 * @param i : identifier of Activity
 	 * @throws SQLException
+	 * @throws DataBaseException 
 	 */
-	public static Activity getActivity(int i) throws SQLException {
+	public static Activity getActivity(int i) throws DataBaseException {
 		return activityManager.read(i);
 	}
 
@@ -34,7 +36,7 @@ public class FacadeActivity {
 	 * @return All Activities
 	 * @throws SQLException
 	 */
-	public static List<Activity> getAllActivities() throws SQLException {
+	public static List<Activity> getAllActivities() throws DataBaseException {
 		return activityManager.getActivities();
 	}
 	
@@ -43,7 +45,7 @@ public class FacadeActivity {
 	 * @return Activity list of the Leader
 	 * @throws SQLException
 	 */
-	public static List<Activity> getActivityOfLeader(String idRespo) throws SQLException {
+	public static List<Activity> getActivityOfLeader(String idRespo) throws DataBaseException {
 		return activityManager.getActivityOfLeader(idRespo);
 	}
 
@@ -56,7 +58,7 @@ public class FacadeActivity {
 	 * @param idRespo : Leader Activity identifier
 	 * @throws SQLException
 	 */
-	public static void updateActivity(Activity act, String name, String shortDescr, String LongDescr, String idRespo) throws SQLException{
+	public static void updateActivity(Activity act, String name, String shortDescr, String LongDescr, String idRespo) throws DataBaseException{
 		activityManager.update(act, name, shortDescr, LongDescr, idRespo);
 	}
 
@@ -65,7 +67,7 @@ public class FacadeActivity {
 	 * @param act : activity
 	 * @throws SQLException
 	 */
-	public static void deleteActivity(Activity act) throws SQLException {
+	public static void deleteActivity(Activity act) throws DataBaseException {
 		activityManager.deleteActivity(act);
 		
 	}
