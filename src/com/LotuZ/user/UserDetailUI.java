@@ -61,6 +61,8 @@ import java.awt.Dimension;
 
 
 
+
+
 import com.LotuZ.user.DeleteUserUI;
 
 
@@ -590,7 +592,6 @@ public class UserDetailUI extends JFrame {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						if (chckbxBecomeContributor.isSelected() == true && contributor == null )
-							System.out.println("  Userdetail : ");
 							try {
 								FacadeUser.inscriptionContributor(user);
 							} catch (ClassNotFoundException e1) {
@@ -600,6 +601,17 @@ public class UserDetailUI extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							};
+						if (chckbxMember.isSelected() == true && member == null ) {
+							try {
+								FacadeUser.inscriptionMember(user,10.0);
+							} catch (ClassNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
 					}
 				});
 				panelButton.add(btnNewRole);
