@@ -62,10 +62,10 @@ public class EditRoomUI extends JFrame
 	public EditRoomUI(Room roomSel) throws SQLException, UserNotFoundException 
 	{
 		final Room room = roomSel;
-		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
-		System.out.println("Mail page acceuil test : " + user.getMail());
+		bandeau.setJframe(this);
+
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

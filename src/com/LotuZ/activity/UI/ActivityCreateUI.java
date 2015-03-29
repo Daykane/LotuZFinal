@@ -57,8 +57,11 @@ public class ActivityCreateUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+		contentPane.add(bandeau.createBandeau(user, "Ma page"), BorderLayout.NORTH);
 
-		contentPane.add(new Bandeau().createBandeau(user, "Ma page"), BorderLayout.NORTH);
+
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);

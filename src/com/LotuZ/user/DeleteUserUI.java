@@ -51,7 +51,6 @@ public class DeleteUserUI extends JFrame {
 		Administrator adminLog = UserLog.getAdminLog();
 
 		
-		System.out.println(" Le contributor : "+user );
 
 		Bandeau bandeau = new Bandeau();
 		bandeau.setJframe(this);

@@ -37,11 +37,10 @@ public class ViewAccessoryUI extends JFrame{
 	public ViewAccessoryUI(Accessory accessory) throws SQLException, UserNotFoundException 
 	{
 		final Accessory accessorySel =accessory;
-		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
-		System.out.println("Mail page acceuil test : " + user.getMail());
-
+		bandeau.setJframe(this);
+		
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);

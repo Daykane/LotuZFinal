@@ -59,6 +59,7 @@ public class CreateCategoryUI extends JFrame {
 	public CreateCategoryUI() throws SQLException, UserNotFoundException {
 		setLocationRelativeTo(null);
 		User user = UserLog.getUserLog();
+		
 		//Create Window
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

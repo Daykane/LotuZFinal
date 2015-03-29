@@ -99,6 +99,8 @@ public class InscriptionUI extends JFrame {
 		setContentPane(contentPane);
 		
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+
 		contentPane.add(bandeau.createBandeau(UserLog.getUserLog(), "Détail Utilisateur"), BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();

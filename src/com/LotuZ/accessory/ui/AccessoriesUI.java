@@ -40,35 +40,6 @@ public class AccessoriesUI extends JFrame
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AccessoriesUI frame = new AccessoriesUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	/**
 	 * @throws SQLException
@@ -76,11 +47,10 @@ public class AccessoriesUI extends JFrame
 	 */
 	public AccessoriesUI() throws SQLException, UserNotFoundException {
 		
-	FacadeUser.login("jack","jack");
 	User user = UserLog.getUserLog();
 	Bandeau bandeau = new Bandeau();
-	System.out.println("Mail page acceuil test : " + user.getMail());
-
+	bandeau.setJframe(this);
+	
 	setTitle("Zen Lounge");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(300,800, 750, 600);

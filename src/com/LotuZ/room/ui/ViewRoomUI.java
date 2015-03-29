@@ -64,10 +64,10 @@ public class ViewRoomUI extends JFrame
 	public ViewRoomUI(Room room) throws SQLException, UserNotFoundException 
 	{
 		final Room roomSel =room;
-		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
-		System.out.println("Mail page acceuil test : " + user.getMail());
+		bandeau.setJframe(this);
+
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

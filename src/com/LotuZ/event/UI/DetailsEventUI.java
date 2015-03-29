@@ -59,7 +59,6 @@ public class DetailsEventUI extends JFrame {
 		ActivityLeader respo = UserLog.getRespoLog();
 		Administrator admin = UserLog.getAdminLog();
 
-		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

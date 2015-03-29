@@ -44,7 +44,6 @@ public class PaymentUI extends JFrame{
 	 * @throws SQLException 
 	 */
 	public PaymentUI() throws SQLException, UserNotFoundException {
-		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
 

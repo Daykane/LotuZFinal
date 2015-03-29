@@ -67,7 +67,6 @@ public class CreateEventUI extends JFrame {
 	public CreateEventUI() {
 		User user = UserLog.getUserLog();
 
-		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

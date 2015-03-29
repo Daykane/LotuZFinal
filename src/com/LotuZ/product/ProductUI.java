@@ -55,10 +55,12 @@ public class ProductUI extends JFrame{
 	public ProductUI(int idProduct, int idCategory) throws SQLException, UserNotFoundException {
 		//creation du bandeau 
 		idCat = idCategory;
-		FacadeUser.login("jack","jack");
 		final Product product = FacadeBL.loadProduct(idProduct);
+		
 		User user1 = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
+		bandeau.setJframe(this);
+
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

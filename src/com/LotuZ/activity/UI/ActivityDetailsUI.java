@@ -73,13 +73,12 @@ public class ActivityDetailsUI extends JFrame {
 	 */
 	public ActivityDetailsUI(final int idAct) throws DataBaseException, UserNotFoundException {
 		
-		// Déclaration du monde
-		//FacadeUser.login("jack","jack");
+
 		final Activity activity = FacadeActivity.getActivity(idAct);
 		User user = UserLog.getUserLog();
 		ActivityLeader respo = UserLog.getRespoLog();
 		Administrator admin = UserLog.getAdminLog();
-		//
+		
 		
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

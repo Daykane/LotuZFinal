@@ -56,7 +56,7 @@ public class AdministratorJDBC extends Administrator{
 			st = this.cn.createStatement();
 			
 			// Requête de sélection à partir de l'identifiant 
-			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and u.idMember is not null and u.mail="+'"'+idMember+'"';
+			String sql = "Select * From LotuZ.User u,LotuZ.Member m Where u.idMember = m.idMember and m.idAdmin ='1' and u.mail="+'"'+idMember+'"';
 			
 			// Exécution de la requête
 			ResultSet result = st.executeQuery(sql);

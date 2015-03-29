@@ -38,37 +38,7 @@ public class ListProductUI extends JFrame {
 	private JList list;
 	private int idCat;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/*public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListProductUI frame = new ListProductUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
+	
 
 
 	/**
@@ -81,10 +51,9 @@ public class ListProductUI extends JFrame {
 		idCat = idCategory;
 		// creation of the "bandeau"
 
-		FacadeUser.login("jack","jack");
 		User user = UserLog.getUserLog();
 		Bandeau bandeau = new Bandeau();
-		System.out.println("Mail page acceuil test : " + user.getMail());
+		bandeau.setJframe(this);
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
