@@ -1,6 +1,7 @@
 package com.LotuZ.EventInscription;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.LotuZ.PersistKit;
@@ -31,6 +32,7 @@ public class EventInscriptionManager {
 		EventInscription eventInscription = pkit.createEventInscription();
 		eventInscription.setIdMember(user.getMail());
 		lIdEvent = eventInscription.loadUserEvent();
+		lEvent = new ArrayList<Event>();
 		for(int i : lIdEvent){
 			Event envent = FacadeEvent.getEvent(i);
 			lEvent.add(envent);

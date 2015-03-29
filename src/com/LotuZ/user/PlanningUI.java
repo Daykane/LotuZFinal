@@ -3,7 +3,6 @@ package com.LotuZ.user;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFrame;
@@ -11,30 +10,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.EventInscription.FacadeEventInscription;
 import com.LotuZ.event.Event;
-import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.User;
 
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 import java.awt.FlowLayout;
 
-import javax.swing.border.LineBorder;
 
-import java.awt.Color;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.JScrollPane;
 
 import java.awt.Dimension;
 import java.awt.Component;
@@ -43,6 +31,10 @@ import javax.swing.JList;
 
 public class PlanningUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JList<Event> list;
 
@@ -52,7 +44,7 @@ public class PlanningUI extends JFrame {
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	public PlanningUI() throws SQLException, UserNotFoundException {
+	public PlanningUI() throws SQLException {
 		
 		User user = UserLog.getUserLog();
 
@@ -77,16 +69,8 @@ public class PlanningUI extends JFrame {
 		flowLayout.setVgap(20);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-
-
-		// On remplit la liste 
-		List<Event> events = new ArrayList<Event>();
-	    for(int i = 0; i < listEvent.size(); i++)
-	    {
-	    	events.add(listEvent.get(i)); 
-	    }
 		
-	    list = new JList<Event>(new Vector<Event>(events));
+	    list = new JList<Event>(new Vector<Event>(listEvent));
         list.setVisibleRowCount(10);
         list.setCellRenderer(new DefaultListCellRenderer() {
  
@@ -106,7 +90,7 @@ public class PlanningUI extends JFrame {
 		list.setPreferredSize(new Dimension(400, 400));
 
 		list.setVisibleRowCount(10);
-		
+
 
 	}
 	

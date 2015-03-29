@@ -110,14 +110,8 @@ public class ListUserUI extends JFrame {
 			listUser = listUsers.getListUser();
 		}
 
-		// On remplit la liste 
-		List<User> users = new ArrayList<User>();
-	    for(int i = 0; i < listUser.size(); i++)
-	    {
-	    	users.add(listUser.get(i)); 
-	    }
-		
-	    list = new JList<User>(new Vector<User>(users));
+
+	    list = new JList<User>(new Vector<User>(listUser));
         list.setVisibleRowCount(10);
         list.setCellRenderer(new DefaultListCellRenderer() {
  
