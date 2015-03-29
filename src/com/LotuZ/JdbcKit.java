@@ -15,6 +15,8 @@ import java.util.List;
 
 import com.LotuZ.EventInscription.EventInscription;
 import com.LotuZ.EventInscription.EventInscriptionJdbc;
+import com.LotuZ.accessory.bl.Accessory;
+import com.LotuZ.accessory.data.AccessoryJDBC;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityJdbc;
 import com.LotuZ.event.Event;
@@ -31,6 +33,8 @@ import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.product.category.data.CatgeoryJdbc;
 import com.LotuZ.product.category.data.ListCategoryJDBC;
+import com.LotuZ.room.bl.Room;
+import com.LotuZ.room.data.RoomJDBC;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.data.ActivityLeaderJDBC;
@@ -56,7 +60,6 @@ public class JdbcKit extends PersistKit{
 	
 	//List of ConcretObjectJdbc
 	private UserJDBC userJdbc;
-	/*
 	// *************************************Loic*************************************
 	//Category
 	private ListCategoryJDBC listCategoryJDBC;
@@ -65,8 +68,13 @@ public class JdbcKit extends PersistKit{
 	//Notification
 	private NotificationJDBC notificationJDBC;
 	private BoxLetterJDBC boxLetterJDBC;
+	
+	//Room
+	private RoomJDBC roomJDBC;
+	
+	//Accessory
+	private AccessoryJDBC accessoryJDBC;
 	// *************************************Loic*************************************
-	*/
 	
 	
 	public JdbcKit(String url, String login, String passwd){
@@ -158,6 +166,7 @@ public class JdbcKit extends PersistKit{
 
 
 	// *************************************Loïc*************************************
+	//Category
 	public ListCategoryProduct createListCategory()
 	{
 		return new ListCategoryJDBC(this.cn);
@@ -168,7 +177,7 @@ public class JdbcKit extends PersistKit{
 
 		return new CatgeoryJdbc(this.cn);
 	}
-	
+	//Notif
 	public Notification createNotification()
 	{
 		return new NotificationJDBC(this.cn);
@@ -178,6 +187,18 @@ public class JdbcKit extends PersistKit{
 	public BoxLetter createBoxLetter() {
 
 		return new BoxLetterJDBC(this.cn);
+	}
+	
+	//Room
+	public Room createRoom()
+	{
+		return new RoomJDBC(this.cn);
+	}
+	
+	//Accessory
+	public Accessory createAccessory()
+	{
+		return new AccessoryJDBC(this.cn);
 	}
 	
 	

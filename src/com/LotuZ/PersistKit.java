@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.LotuZ.EventInscription.EventInscription;
+import com.LotuZ.accessory.bl.Accessory;
+import com.LotuZ.accessory.data.AccessoryJDBC;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.repetition.Repetition;
@@ -18,6 +20,8 @@ import com.LotuZ.notification.bl.Notification;
 import com.LotuZ.product.Product;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
+import com.LotuZ.room.bl.Room;
+import com.LotuZ.room.data.RoomJDBC;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
@@ -51,6 +55,11 @@ public abstract class PersistKit {
 	public abstract Notification createNotification();
 	public abstract BoxLetter createBoxLetter();
 	public abstract ListUser createListUser() ;
+	//Room
+	public abstract Room createRoom();
+	
+	//Accessory
+	public abstract Accessory createAccessory();
 	
 	// *************************************Loic*************************************
 	}

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.LotuZ.accessory.bl.Accessory;
+import com.LotuZ.accessory.bl.AccessoryManager;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.inscription.InscriptionManager;
@@ -19,6 +21,8 @@ import com.LotuZ.product.ProductManager;
 import com.LotuZ.product.category.bl.CategoryManager;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
+import com.LotuZ.room.bl.Room;
+import com.LotuZ.room.bl.RoomManager;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
 import com.LotuZ.user.contributor.bl.Contributor;
@@ -112,8 +116,6 @@ public class FacadeBL {
 	
 	public static  ArrayList<BoxLetter> getAllNotificationInBox(int idMember) 
 	{
-		System.out.println(idMember);
-		System.out.println("FBL");
 		return notificationManager.getAllNotificationInBox(idMember);
 	}
 	
@@ -151,9 +153,88 @@ public class FacadeBL {
 	{
 		notificationManager.deleteNotification(idNotification);
 	}
+	
+	//Room
+	
+	public static  ArrayList<Room> getAllRoom() 
+	{
+		return roomManager.getAllRoom();
+	}
+	
+	public static  Room getRoom(int idRoom) 
+	{
+		return roomManager.getRoom(idRoom) ;
+	}
+	
+	public static  Room getRoom(String nameRoom) 
+	{
+		return roomManager.getRoom(nameRoom) ;
+	}
+	
+	public static  void createRoom(String nameRoom, int surfaceRoom, int typeRoom,
+			int nbMaxParticipant, ArrayList<Accessory> listAccessory) 
+	{
+		roomManager.createRoom(nameRoom, surfaceRoom, typeRoom,
+				nbMaxParticipant,listAccessory);
+	}
+	
+	public void createRoom(String nameRoom, int surfaceRoom, int typeRoom, ArrayList<Accessory> listAccessory) 
+	{
+		System.out.println("FBL");
+		roomManager.createRoom(nameRoom, surfaceRoom, typeRoom, listAccessory);
+		
+	}
+	
+	
+	public static  void updateRoom(int idRoom, String nameRoom, int surfaceRoom,
+			int typeRoom, int nbMaxParticipant, ArrayList<Accessory> listAccessory) 
+	{
+		roomManager.updateRoom(idRoom, nameRoom, surfaceRoom,
+				typeRoom, nbMaxParticipant,listAccessory);
+	}
+	
+
+	public static  void deleteRoom(int idRoom) 
+	{
+		roomManager.deleteRoom(idRoom);
+	}
+	
+	//Accessory
+	
+	public static  ArrayList<Accessory> getAllAccessory() 
+	{
+		return accessoryManager.getAllAccessory();
+	}
+	
+	
+	public static  Accessory getAccessory(int idAccessory) 
+	{
+		return accessoryManager.getAccessory(idAccessory) ;
+	}
+	
+	public static  void createAccessory(String nameAccessory, String descriptionAccessory) 
+	{
+		accessoryManager.createAccessory(nameAccessory, descriptionAccessory);
+	}
+	
+	
+	
+	public static  void updateAccessory(int idAccessory, String nameAccessory,
+			String descriptionAccessory, int roomAccessory) 
+	{
+		accessoryManager.updateAccessory(idAccessory, nameAccessory,
+				descriptionAccessory);
+	}
+	
+
+	public static  void deleteAccessory(int idAccessory) 
+	{
+		accessoryManager.getAccessory(idAccessory);
+	}
 		
 	
-	// )^.^)*************************************Loic End*************************************(^.^(	
+	// )^.^)*************************************Loic End**************************************(^.^(
+	
 	public static void inscription(String lastName, String firstName, String adress,
 			String phone, String street, String houseNumber, String city,
 			String postCode, String password) throws ClassNotFoundException, SQLException{
