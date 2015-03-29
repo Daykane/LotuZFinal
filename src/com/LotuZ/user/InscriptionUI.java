@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.Border;
@@ -31,10 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.admin.ui.HomepageAdmin;
-import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.UserLog;
@@ -52,9 +50,9 @@ import com.LotuZ.JdbcKit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.Dimension;
-
-
 
 
 
@@ -67,9 +65,7 @@ import com.LotuZ.user.DeleteUserUI;
  * @author Ludo
  *
  */
-public class UserDetailUI extends JFrame {
-	
-	
+public class InscriptionUI extends JFrame {
 	
 	
 	/**
@@ -87,32 +83,51 @@ public class UserDetailUI extends JFrame {
 	private JTextField TFCity;
 	private JTextField TFPostCode;
 	private JTextField TFCotisation;
-	private JTextField TFDateCotisation;	
+	private JTextField TFDateCotisation;
+	
+	private JPasswordField TFPassword;
+	private JPasswordField TFConfirmPw;	
 	private final JLabel jlblStatus = new JLabel("Error dans un champ");
 	
 	static int count = 0;
 	
-	public static UserDetailUI frame;
+	public static InscriptionUI frame;
 
 	
+//	public static void main(String[] args) {
+//		// Info Connection
+//		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
+//		String login = "ROLL";
+//		String passwd = "rolldevelopment";
+//
+//		// Choose the kit
+//		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
+//		jdbcKit.openConnection(url, login, passwd);
+//
+//		// Init the FacadeBL with the kit
+//		FacadeBL.init(jdbcKit);
+//		FacadeUser.init();
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					User user =UserLog.getUserLog();
+//					UserDetailUI frame = new UserDetailUI(user.getMail());
+//					frame.setVisible(true);
+//					frame.setLocationRelativeTo(null);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	/**
 	 * Create the frame.
 	 */
-	public UserDetailUI(String mail) throws SQLException, UserNotFoundException  {
+	public InscriptionUI() throws SQLException, UserNotFoundException  {
 		
 		setPreferredSize(new Dimension(750, 600));
 		
-		final User user = FacadeUser.getUser(mail);
-		final Member member = FacadeUser.getMember(mail);
-		final Contributor contributor = FacadeUser.getContributor(mail);
-		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
 
-
-		
-		Administrator adminLog = UserLog.getAdminLog();
-		ActivityLeader activityLeaderLog = UserLog.getRespoLog();
-		
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
@@ -213,13 +228,29 @@ public class UserDetailUI extends JFrame {
 		gbc_lblPostCode.gridy = 7;
 		panelLabel.add(lblPostCode, gbc_lblPostCode);
 		
+		JLabel lblPassword = new JLabel("Password : ");
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPassword.gridx = 0;
+		gbc_lblPassword.gridy = 8;
+		panelLabel.add(lblPassword, gbc_lblPassword);
+		
+		JLabel lblConfirmPw = new JLabel("Confirm Password : ");
+		GridBagConstraints gbc_lblConfirmPw = new GridBagConstraints();
+		gbc_lblConfirmPw.anchor = GridBagConstraints.EAST;
+		gbc_lblConfirmPw.insets = new Insets(0, 0, 5, 0);
+		gbc_lblConfirmPw.gridx = 0;
+		gbc_lblConfirmPw.gridy = 9;
+		panelLabel.add(lblConfirmPw, gbc_lblConfirmPw);
+		
 		// Label empty garder la mise en page lors de la rï¿½duction fenetre
 		JLabel lblCotisation = new JLabel("Cotisation :");
 		GridBagConstraints gbc_lblCotisation = new GridBagConstraints();
 		gbc_lblCotisation.anchor = GridBagConstraints.EAST;
 		gbc_lblCotisation.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCotisation.gridx = 0;
-		gbc_lblCotisation.gridy = 8;
+		gbc_lblCotisation.gridy = 10;
 		panelLabel.add(lblCotisation, gbc_lblCotisation);
 		
 		JLabel lblDateCotisation = new JLabel("Date Cotisation :");
@@ -227,7 +258,7 @@ public class UserDetailUI extends JFrame {
 		gbc_lblDateCotisation.anchor = GridBagConstraints.EAST;
 		gbc_lblDateCotisation.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDateCotisation.gridx = 0;
-		gbc_lblDateCotisation.gridy = 9;
+		gbc_lblDateCotisation.gridy = 11;
 		panelLabel.add(lblDateCotisation, gbc_lblDateCotisation);
 		
 		JLabel label_1 = new JLabel("");
@@ -331,20 +362,45 @@ public class UserDetailUI extends JFrame {
 		panelTF.add(TFPostCode, gbc_TFPostCode);
 		TFPostCode.setColumns(10);
 		
-		TFCotisation = new JPasswordField();
+		TFPassword = new JPasswordField();
 		GridBagConstraints gbc_TFPassword = new GridBagConstraints();
 		gbc_TFPassword.insets = new Insets(0, 0, 5, 0);
 		gbc_TFPassword.fill = GridBagConstraints.BOTH;
 		gbc_TFPassword.gridx = 0;
 		gbc_TFPassword.gridy = 8;
-		TFCotisation.setColumns(10);
+		panelTF.add(TFPassword, gbc_TFPassword);
+		TFPassword.setColumns(10);
 		
-		TFDateCotisation = new JPasswordField();
+		TFConfirmPw = new JPasswordField();
 		GridBagConstraints gbc_TFConfirmPw = new GridBagConstraints();
 		gbc_TFConfirmPw.insets = new Insets(0, 0, 5, 0);
 		gbc_TFConfirmPw.fill = GridBagConstraints.HORIZONTAL;
 		gbc_TFConfirmPw.gridx = 0;
 		gbc_TFConfirmPw.gridy = 9;
+		panelTF.add(TFConfirmPw, gbc_TFConfirmPw);
+		TFConfirmPw.setColumns(10);
+		
+		
+		/*
+		 * CheckBox + Buttons
+		 */
+		
+		TFCotisation = new JTextField();
+		GridBagConstraints gbc_txtTfcotisation = new GridBagConstraints();
+		gbc_txtTfcotisation.insets = new Insets(0, 0, 5, 0);
+		gbc_txtTfcotisation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtTfcotisation.gridx = 0;
+		gbc_txtTfcotisation.gridy = 10;
+		panelTF.add(TFCotisation, gbc_txtTfcotisation);
+		TFCotisation.setColumns(10);
+		
+		TFDateCotisation = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 0;
+		gbc_textField.gridy = 11;
+		panelTF.add(TFDateCotisation, gbc_textField);
 		TFDateCotisation.setColumns(10);
 		
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
@@ -359,20 +415,6 @@ public class UserDetailUI extends JFrame {
 		gbc_chckbxBecomeContributor.gridx = 0;
 		gbc_chckbxBecomeContributor.gridy = 13;
 		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
-		
-		
-		if (adminLog != null || activityLeaderLog != null)
-		{
-			chckbxBecomeContributor.setVisible(true);
-			chckbxMember.setVisible(true);
-		}
-		else
-		{
-			chckbxBecomeContributor.setVisible(false);
-			chckbxMember.setVisible(false);
-		}
-		
-		
 		
 		JPanel panelButton = new JPanel();
 		FlowLayout fl_panelButton = (FlowLayout) panelButton.getLayout();
@@ -389,7 +431,7 @@ public class UserDetailUI extends JFrame {
 		panelButton.add(jlblStatus);
 		jlblStatus.setVisible(false);
 		
-		if (member == null)
+		if (chckbxMember.isSelected()==true)
 		{
 			TFDateCotisation.setVisible(false);
 			TFCotisation.setVisible(false);
@@ -399,185 +441,7 @@ public class UserDetailUI extends JFrame {
 
 		editableTextField(false);
 
-		TFFirstName.setText(user.getFirstName());
-		TFLastName.setText(user.getLastName());
-		TFAdress.setText(user.getMail());
-		TFStreet.setText(user.getStreetName());
-		TFPhone.setText(user.getPhone());
-		TFHouse.setText(user.getPhone());
-		TFCity.setText(user.getCity());
-		TFPostCode.setText(user.getPostCode());
-		if (member != null){
-			TFCotisation.setText((member.getCotisation()).toString());
-			TFDateCotisation.setText(member.getDateCotisation());
-		}
-		
-		// Gestion des événements Bouton 
 
-		// Bouton Edit
-				final JButton btnEdit = new JButton("Edit");
-				btnEdit.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-					if (this.verifyTF() & verifyNumeric() ){
-						if (btnEdit.getText().equals("Edit")){
-							btnEdit.setText("Validate");
-							editableTextField(true);
-						}
-						else if(btnEdit.getText().equals("Validate")){
-							btnEdit.setText("Edit");
-							user.setLastName(TFLastName.getText());
-							user.setFirstName(TFFirstName.getText());
-							user.setMail(TFAdress.getText());
-							user.setStreetName(TFStreet.getText());
-							user.setPhone(TFPhone.getText());
-							user.setNumHouse(TFHouse.getText());
-							user.setCity(TFCity.getText());
-							user.setPostCode(TFPostCode.getText());
-							editableTextField(false);
-
-							if (member!=null)
-							{
-								member.setCotisation(Double.parseDouble(TFCotisation.getText()));
-								member.setDateCotisation(TFDateCotisation.getText());
-							
-								try {
-									FacadeUser.updateUser(user);
-									FacadeUser.updateMember(member);
-
-								} catch (ClassNotFoundException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (UserNotFoundException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-							}
-							else
-							{
-								try {
-									FacadeUser.updateUser(user);
-								} catch (ClassNotFoundException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (SQLException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (UserNotFoundException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-						}
-					}
-					}
-						private boolean verifyTF() {
-							
-							this.tFisemplty(TFLastName);
-							this.tFisemplty(TFFirstName);
-							this.tFisemplty(TFAdress);
-							this.tFisemplty(TFPhone);
-							this.tFisemplty(TFStreet);
-							this.tFisemplty(TFHouse);
-							this.tFisemplty(TFCity);
-							this.tFisemplty(TFPostCode);
-
-						
-							if (count>0){
-								return false;
-							}
-							else {
-								return true;
-							}
-							}
-					
-						private boolean verifyNumeric() {
-							return verifyPhone() & verifyPostCode();
-						}
-					
-						private void tFisemplty(JTextField textfield){
-							RemoveBorder(textfield);
-							String text = textfield.getText();
-						
-							if(text.equals("")){
-								RedBorder(textfield);
-								count++;
-							}
-						}
-					
-					
-						private boolean verifyPhone(){
-							if (!isNumeric(TFPhone.getText()) || TFPhone.getText().length()!=10 ){
-								RedBorder(TFPhone);
-								return false;
-							};
-							return true;
-						}
-					
-						private boolean verifyPostCode(){
-							if (!isNumeric(TFPostCode.getText()) ){
-								RedBorder(TFPostCode);
-								return false;
-							};
-							return true;
-						}
-					
-					
-						private void RedBorder(JTextField textfield){
-							jlblStatus.setVisible(true);
-							Border border = BorderFactory.createLineBorder(Color.RED, 2);
-							textfield.setBorder(border);
-						}
-					
-						private void RemoveBorder(JTextField textfield){
-							jlblStatus.setVisible(false);
-							Border border = BorderFactory.createLineBorder(Color.white, 2);
-							textfield.setBorder(border);
-						
-						}
-					
-						private boolean isNumeric(String str)  
-						{  
-							try  
-							{  
-								Integer.parseInt(str);  
-							}  
-							catch(Exception e)  
-							{  
-								return false;  
-							}  
-							return true;  
-						}
-					});
-
-				btnEdit.setBounds(537, 150, 89, 23);
-				panelButton.add(btnEdit);
-				
-				// Bouton Delete
-				JButton btnDelete = new JButton("Delete");
-				btnDelete.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						DeleteUserUI deleteUser;
-						try {
-							deleteUser = new DeleteUserUI(user.getMail());
-							deleteUser.setVisible(true);
-							deleteUser.setLocationRelativeTo(null);
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (UserNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						dispose();
-					}
-				});
-				btnDelete.setBounds(537, 226, 89, 23);
-				panelButton.add(btnDelete);
 				
 				// Bouton Cancel
 				JButton btnCancel = new JButton("Cancel");
@@ -601,10 +465,142 @@ public class UserDetailUI extends JFrame {
 						
 					}
 				});
+				
+				JButton btnRegister = new JButton("Register");
+				btnRegister.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
+							
+							try {
+								
+								
+								
+								FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
+								if (chckbxMember.isSelected()){
+									//TODO faire lien vers page payement
+									Date today;
+									String output;
+									SimpleDateFormat formatter;
+
+									formatter = new SimpleDateFormat("yyyy-MM-dd");
+									today = new Date();
+									output = formatter.format(today);
+									Double cotisation = 10.10;
+									System.out.println(output);
+									//FacadeBL.inscriptionMember(cotisation,TFAdress.getText());
+								}
+								JOptionPane.showMessageDialog(null,"Inscription rï¿½ussie","Inscription rï¿½ussie",JOptionPane.INFORMATION_MESSAGE);
+							} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+								e.printStackTrace();
+								//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
+							} catch (ClassNotFoundException e) {
+								e.printStackTrace();
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
+						}
+
+					}
+				
+
+				
+			
+		private boolean verifyTF() {
+		
+			this.tFisemplty(TFLastName);
+			this.tFisemplty(TFFirstName);
+			this.tFisemplty(TFAdress);
+			this.tFisemplty(TFPhone);
+			this.tFisemplty(TFStreet);
+			this.tFisemplty(TFHouse);
+			this.tFisemplty(TFCity);
+			this.tFisemplty(TFPostCode);
+			this.tFisemplty(TFPassword);
+			this.tFisemplty(TFConfirmPw);
+		
+			if (count>0){
+				return false;
+			}
+			else {
+				return true;
+			}
+			}
+	
+		private boolean verifyNumeric() {
+			return verifyPhone() & verifyPostCode();
+		}
+	
+		private void tFisemplty(JTextField textfield){
+			RemoveBorder(textfield);
+			String text = textfield.getText();
+		
+			if(text.equals("")){
+				RedBorder(textfield);
+				count++;
+			}
+		}
+	
+		@SuppressWarnings("deprecation")
+		private boolean verifyPwd() {
+			if (!TFPassword.getText().equals( TFConfirmPw.getText())){
+				RedBorder(TFConfirmPw);
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	
+		private boolean verifyPhone(){
+			if (!isNumeric(TFPhone.getText()) || TFPhone.getText().length()!=10 ){
+				RedBorder(TFPhone);
+				return false;
+			};
+			return true;
+		}
+	
+		private boolean verifyPostCode(){
+			if (!isNumeric(TFPostCode.getText()) ){
+				RedBorder(TFPostCode);
+				return false;
+			};
+			return true;
+		}
+	
+	
+		private void RedBorder(JTextField textfield){
+			jlblStatus.setVisible(true);
+			Border border = BorderFactory.createLineBorder(Color.RED, 2);
+			textfield.setBorder(border);
+		}
+	
+		private void RemoveBorder(JTextField textfield){
+			jlblStatus.setVisible(false);
+			Border border = BorderFactory.createLineBorder(Color.white, 2);
+			textfield.setBorder(border);
+		
+		}
+	
+		private boolean isNumeric(String str)  
+		{  
+			try  
+			{  
+				Integer.parseInt(str);  
+			}  
+			catch(Exception e)  
+			{  
+				return false;  
+			}  
+			return true;  
+		}
+	});
+				
+				panelButton.add(btnRegister);
 				btnCancel.setBounds(537, 301, 89, 23);
 				panelButton.add(btnCancel);
-				
-			}
+	}
+
 
 	/**
 	 * to let to edit the textField
@@ -617,6 +613,8 @@ public class UserDetailUI extends JFrame {
 			TFFirstName.setEditable(true);
 			TFStreet.setEditable(true);
 			TFAdress.setEditable(false);
+			TFPassword.setEditable(false);
+			TFConfirmPw.setEditable(false);
 			TFPhone.setEditable(true);
 			TFHouse.setEditable(true);
 			TFCity.setEditable(true);
@@ -631,6 +629,8 @@ public class UserDetailUI extends JFrame {
 			TFStreet.setEditable(false);
 			TFAdress.setEditable(false);
 			TFPhone.setEditable(false);
+			TFPassword.setEditable(false);
+			TFConfirmPw.setEditable(false);
 			TFHouse.setEditable(false);
 			TFCity.setEditable(false);
 			TFPostCode.setEditable(false);

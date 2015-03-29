@@ -128,6 +128,35 @@ public class ListUserJDBC extends ListUser {
 		ListUser listUsers = new ListUserJDBC(users);
 		return listUsers;
 	}
+	
+	
+	public ListUser loadUsers() throws SQLException{
+		
+		// On déclare une liste d'utilisateurs 
+		List<User> users = new ArrayList<User>();
+
+		try {
+			Statement st =null;
+			// Création d'un statement
+			st = this.cn.createStatement();
+			
+			// Création de la requête de sélection
+			String sql = "Select * From LotuZ.User ";
+
+			// Exécution de la requête
+			ResultSet result = st.executeQuery(sql);
+			
+			// Récupération des données 
+			while( result.next() ){	
+				// Création et ajout d'un utilisateurs dans la liste 
+				users.add( map(result));
+			}
+		} catch (SQLException e) {
+				throw e;
+		}
+		ListUser listUsers = new ListUserJDBC(users);
+		return listUsers;
+	}
     /**
      * @param resultSet
      * @return

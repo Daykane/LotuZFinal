@@ -10,8 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 
+
+
+
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.admin.ui.HomepageAdmin;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
@@ -42,6 +47,10 @@ public class DeleteUserUI extends JFrame {
 		final Contributor contributor = FacadeUser.getContributor(mail);
 		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
 		
+		
+		Administrator adminLog = UserLog.getAdminLog();
+
+		
 		System.out.println(" Le contributor : "+user );
 
 		Bandeau bandeau = new Bandeau();
@@ -60,7 +69,7 @@ public class DeleteUserUI extends JFrame {
 		JPanel panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setHgap(500);
-		flowLayout.setVgap(90);
+		flowLayout.setVgap(40);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		JButton btnDeleteActivityLeader = new JButton("Delete Activity Leader");
@@ -146,7 +155,41 @@ public class DeleteUserUI extends JFrame {
 		});
 		panel.add(btnDeleteContributor);
 		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				HomepageAdmin homepage;
+				try {
+					homepage = new HomepageAdmin();
+					homepage.setVisible(true);
+					homepage.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
+			}
+		});
+		panel.add(btnCancel);
+		
+		if (adminLog != null)
+		{
+			btnDeleteActivityLeader.setVisible(true);
+			btnDeleteContributor.setVisible(true);
+			btnDeleteMember.setVisible(true);
+		}
+		else
+		{
+			btnDeleteActivityLeader.setVisible(false);
+			btnDeleteContributor.setVisible(false);
+			btnDeleteMember.setVisible(false);
+		}
 	}
 
 }

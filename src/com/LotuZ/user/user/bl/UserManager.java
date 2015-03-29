@@ -82,4 +82,13 @@ public class UserManager {
 		ListUser users = pkit.createListUser();
 		return users.loadLeaders();
 	}
+	
+	/**
+	 * @return ListUser
+	 * @throws SQLException
+	 */
+	public ListUser getUsers() throws SQLException {
+		ListUser users = pkit.createListUser();
+		return users.loadUsers();
+	}
 }

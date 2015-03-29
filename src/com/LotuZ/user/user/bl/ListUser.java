@@ -66,4 +66,11 @@ public abstract class ListUser {
 	 */
 	public abstract ListUser loadLeaders() throws SQLException;
 	
+	
+	/**
+	 * @return a ListUser
+	 * @throws SQLException
+	 */
+	public abstract ListUser loadUsers() throws SQLException;
+	
 }

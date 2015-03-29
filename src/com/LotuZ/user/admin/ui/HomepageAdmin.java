@@ -83,11 +83,9 @@ public class HomepageAdmin extends JFrame {
 		FacadeUser.login("jack","jack");
 
 		User user = UserLog.getUserLog();
-
 		Administrator admin = UserLog.getAdminLog();
 		ActivityLeader activityLeader = UserLog.getRespoLog();
 
-		System.out.println(" admin "+admin+"respo : "+activityLeader+" User : "+user.getFirstName());
 		Bandeau bandeau = new Bandeau();
 
 		setTitle("Zen Lounge");
@@ -103,8 +101,8 @@ public class HomepageAdmin extends JFrame {
 		
 		JPanel panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		flowLayout.setVgap(100);
-		flowLayout.setHgap(500);
+		flowLayout.setVgap(60);
+		flowLayout.setHgap(220);
 		contentPane.add(panel, BorderLayout.CENTER);
 
 		
@@ -153,9 +151,32 @@ public class HomepageAdmin extends JFrame {
 		});
 		panel.add(btnGestionDesIntervenants);
 		
+
+		JButton btnGestionDesUtilisateurs = new JButton("Gestion des utilisateurs");
+		btnGestionDesUtilisateurs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ListUserUI listUser;
+				try {
+					listUser = new ListUserUI(4);
+					listUser.setVisible(true);
+					listUser.setLocationRelativeTo(null);
+					dispose();
+
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (UserNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			}
+		});
+		panel.add(btnGestionDesUtilisateurs);
+		
+		
 		JButton btnGestionDesResponsables = new JButton("Gestion des Responsables d'Activit\u00E9s");
 		panel.add(btnGestionDesResponsables);
-		
 		
 		btnGestionDesResponsables.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {

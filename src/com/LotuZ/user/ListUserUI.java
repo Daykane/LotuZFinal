@@ -104,6 +104,11 @@ public class ListUserUI extends JFrame {
 			ListUser listLeaders = FacadeUser.getLeaders();
 			listUser = listLeaders.getListUser();
 		}
+		else if (idRole == 4)
+		{
+			ListUser listUsers = FacadeUser.getUsers();
+			listUser = listUsers.getListUser();
+		}
 
 		// On remplit la liste 
 		List<User> users = new ArrayList<User>();
@@ -145,9 +150,20 @@ public class ListUserUI extends JFrame {
 		btnInscription.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				InscriptionUserUI inscription = new InscriptionUserUI();
-				inscription.setVisible(true);
-				inscription.setLocationRelativeTo(null);
+				InscriptionUI inscription;
+
+				try {
+					inscription = new InscriptionUI();
+					inscription.setVisible(true);
+					inscription.setLocationRelativeTo(null);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 				dispose();
 			}
 		});

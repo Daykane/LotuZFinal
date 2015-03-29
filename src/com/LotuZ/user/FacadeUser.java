@@ -84,6 +84,10 @@ public class FacadeUser {
 		return userManager.getLeaders();
 	}
 	
+	public static ListUser getUsers() throws SQLException {
+		return userManager.getUsers();
+	}
+	
 	public static void deleteLeader(String idLeader) throws SQLException, UserNotFoundException, ClassNotFoundException{
 		activityLeaderManager.deleteActivityLeader(idLeader);
 	}

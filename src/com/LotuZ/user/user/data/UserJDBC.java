@@ -105,7 +105,6 @@ public class UserJDBC extends User{
 		} catch (SQLException e) {
 			throw e;
 		}
-		System.out.println("JDBC");
 		return this;
 	}
 	
