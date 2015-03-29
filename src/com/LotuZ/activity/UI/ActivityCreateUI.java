@@ -155,6 +155,10 @@ public class ActivityCreateUI extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				catch(java.lang.ArrayIndexOutOfBoundsException e){
+					//TODO
+					System.out.println("Il n'y a pas de respo selectionné");
+				}
 			}
 		});
 		btnConfirm.setHorizontalAlignment(SwingConstants.LEFT);

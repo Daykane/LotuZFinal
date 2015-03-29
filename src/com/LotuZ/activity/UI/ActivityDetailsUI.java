@@ -232,10 +232,15 @@ public class ActivityDetailsUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					DetailsEventUI details;
-
+					try{
 					details = new DetailsEventUI(list[listEvents.getSelectedIndex()]);
 					details.setVisible(true);
 					details.setLocationRelativeTo(null);
+					}
+					catch(java.lang.ArrayIndexOutOfBoundsException ex){
+					 System.out.println("Error indice Jlist");
+					}
+					
 			}
 			}
 		});

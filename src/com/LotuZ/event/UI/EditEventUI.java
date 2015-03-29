@@ -62,7 +62,7 @@ public class EditEventUI extends JFrame {
 		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");

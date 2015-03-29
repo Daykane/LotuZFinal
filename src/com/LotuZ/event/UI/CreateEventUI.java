@@ -5,6 +5,7 @@ import interfaceDeBase.Bandeau;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -68,7 +69,7 @@ public class CreateEventUI extends JFrame {
 		System.out.println("Mail page acceuil test : " + user.getMail());
 
 		setTitle("Zen Lounge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
@@ -292,15 +293,17 @@ public class CreateEventUI extends JFrame {
 
 
 						FacadeEvent.createEvent2(name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
+						JOptionPane.showMessageDialog(null,"Event add in system","Sucess",JOptionPane.INFORMATION_MESSAGE);
+						dispose();
 					}
 					}catch (SQLException e) {
-						System.out.println("Error with the base");
-					}
+						JOptionPane.showMessageDialog(null,"Error with the database","Faild creation",JOptionPane.WARNING_MESSAGE);					}
 					catch (java.lang.NumberFormatException e){
-						System.out.println("prix format invalid");
+						JOptionPane.showMessageDialog(null,"prix format invalid","Faild creation",JOptionPane.WARNING_MESSAGE);
 					} 
 					catch (ParseException e) {
-					System.out.println("Date format invalid");
+					JOptionPane.showMessageDialog(null,"dateformat invalid","Faild creation",JOptionPane.WARNING_MESSAGE);
+
 					}
 
 
@@ -311,6 +314,12 @@ public class CreateEventUI extends JFrame {
 		panel_2.add(btnConfirm);
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
 		panel_2.add(btnCancel);
 		}
 
