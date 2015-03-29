@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.PersistKit;
-
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
@@ -95,5 +94,10 @@ public class FacadeUser {
 	public static void deleteContributor(String idContributor) throws SQLException, UserNotFoundException, ClassNotFoundException{
 		contributorManager.deleteContributor(idContributor);
 	}
+
+	public static void inscriptionMember(User user, Double cotisation) throws ClassNotFoundException, SQLException {
+		userManager.inscriptionMember(user,cotisation);
+	}
+
 
 }

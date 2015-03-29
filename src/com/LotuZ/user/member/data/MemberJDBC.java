@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
@@ -108,22 +110,29 @@ public class MemberJDBC extends Member{
 	/**
 	 * save a member in the database 
 	 */
-	public void save(User user) throws ClassNotFoundException, SQLException {
+	public void save(User user,Date date) throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
 			// Création d'un statement
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String output = formatter.format(date);
+			
 			st = this.cn.createStatement();
 
-			String sql = "INSERT INTO `LotuZ`.`Member` ( `cotisation`, `dateCotisation`, `idBoxLetter`, `idAdmin`, `idLeader`, `mailMember` ) VALUES ('"+ this.getCotisation() +"', '"+ this.getDateCotisation() +"', '"+ this.getIdBoxLetter() +"', '"+ this.getIdAdmin() +"', '"+ this.getIdLeader() +"', '"+ user.getMail()+"')";
-			String sql2 = "SELECT idMember FROM LotuZ.Member Where mail='"+ user.getMail() +"'";
+			String sql = "INSERT INTO `LotuZ`.`Member` ( `cotisation`, `dateCotisation`, `mailMember` ) VALUES ('"+ this.getCotisation() +"', '"+ output +"', '"+ user.getMail()+"')";
+			String sql2 = "SELECT idMember FROM LotuZ.Member Where mailMember='"+ user.getMail() +"'";
 
 			
 			// Exécution requête
 			st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql2);
-			int idmembre = result.getInt("idMembre");
-
-			String sql3 = "UPDATE LotuZ.User SET (`idMember`) = ('"+ idmembre +"') Where mail='"+ user.getMail() +"'";
+			int idmembre = 0;
+			while (result.next())
+			{
+				idmembre = result.getInt("idMember");
+			}
+			String sql3 = "UPDATE LotuZ.User SET idMember = ('"+ idmembre +"') Where mail='"+ user.getMail() +"'";
 			st.executeUpdate(sql3);
 
 		} catch (SQLException e) {

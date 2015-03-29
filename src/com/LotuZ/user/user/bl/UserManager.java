@@ -1,8 +1,10 @@
 package com.LotuZ.user.user.bl;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.user.member.bl.Member;
 
 
 
@@ -90,5 +92,12 @@ public class UserManager {
 	public ListUser getUsers() throws SQLException {
 		ListUser users = pkit.createListUser();
 		return users.loadUsers();
+	}
+
+	public void inscriptionMember(User user, Double cotisation) throws ClassNotFoundException, SQLException {
+		Member member = pkit.createMember();
+		member.setCotisation(cotisation);
+		Date today = new Date();
+		member.save(user,today);
 	}
 }

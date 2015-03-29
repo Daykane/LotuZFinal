@@ -220,21 +220,7 @@ public class InscriptionUI extends JFrame {
 		panelLabel.add(lblConfirmPw, gbc_lblConfirmPw);
 		
 		// Label empty garder la mise en page lors de la rï¿½duction fenetre
-		JLabel lblCotisation = new JLabel("Cotisation :");
-		GridBagConstraints gbc_lblCotisation = new GridBagConstraints();
-		gbc_lblCotisation.anchor = GridBagConstraints.EAST;
-		gbc_lblCotisation.insets = new Insets(0, 0, 5, 0);
-		gbc_lblCotisation.gridx = 0;
-		gbc_lblCotisation.gridy = 10;
-		panelLabel.add(lblCotisation, gbc_lblCotisation);
-		
-		JLabel lblDateCotisation = new JLabel("Date Cotisation :");
-		GridBagConstraints gbc_lblDateCotisation = new GridBagConstraints();
-		gbc_lblDateCotisation.anchor = GridBagConstraints.EAST;
-		gbc_lblDateCotisation.insets = new Insets(0, 0, 5, 0);
-		gbc_lblDateCotisation.gridx = 0;
-		gbc_lblDateCotisation.gridy = 11;
-		panelLabel.add(lblDateCotisation, gbc_lblDateCotisation);
+
 		
 		JLabel label_1 = new JLabel("");
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
@@ -383,13 +369,7 @@ public class InscriptionUI extends JFrame {
 		panelButton.add(jlblStatus);
 		jlblStatus.setVisible(false);
 		
-		if (chckbxMember.isSelected()==true)
-		{
-			TFDateCotisation.setVisible(true);
-			TFCotisation.setVisible(true);
-			lblCotisation.setVisible(true);
-			lblDateCotisation.setVisible(true);
-		}
+
 
 
 
@@ -425,6 +405,7 @@ public class InscriptionUI extends JFrame {
 							
 							try {
 								FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
+								User user = FacadeUser.getUser(TFAdress.getText());
 								if (chckbxMember.isSelected()){
 									//TODO faire lien vers page payement
 									Date today;
@@ -435,8 +416,7 @@ public class InscriptionUI extends JFrame {
 									today = new Date();
 									output = formatter.format(today);
 									Double cotisation = 10.10;
-									System.out.println(output);
-									//FacadeBL.inscriptionMember(cotisation,TFAdress.getText());
+									FacadeUser.inscriptionMember(user,cotisation);
 								}
 								JOptionPane.showMessageDialog(null,"Inscription réussie","Inscription réussie",JOptionPane.INFORMATION_MESSAGE);
 							} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
@@ -445,6 +425,9 @@ public class InscriptionUI extends JFrame {
 							} catch (ClassNotFoundException e) {
 								e.printStackTrace();
 							} catch (SQLException e) {
+								e.printStackTrace();
+							} catch (UserNotFoundException e) {
+								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}

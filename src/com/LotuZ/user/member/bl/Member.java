@@ -4,6 +4,9 @@
 package com.LotuZ.user.member.bl;
 
 import java.sql.SQLException;
+import java.util.Date;
+
+import com.LotuZ.user.user.bl.User;
 
 
 
@@ -152,4 +155,5 @@ public abstract class Member {
 	 */
 	public abstract void update(Member member) throws SQLException;
 
+	public abstract void save(User user, Date today) throws ClassNotFoundException, SQLException; 
 }
