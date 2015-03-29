@@ -391,7 +391,6 @@ public class InscriptionUI extends JFrame {
 			lblDateCotisation.setVisible(true);
 		}
 
-		editableTextField(true);
 
 
 				
@@ -551,41 +550,5 @@ public class InscriptionUI extends JFrame {
 	}
 
 
-	/**
-	 * to let to edit the textField
-	 * @param show
-	 */
-	private void editableTextField(Boolean show) {
-		if (show)
-		{
-			TFLastName.setEditable(true);
-			TFFirstName.setEditable(true);
-			TFStreet.setEditable(true);
-			TFAdress.setEditable(true);
-			TFPassword.setEditable(true);
-			TFConfirmPw.setEditable(true);
-			TFPhone.setEditable(true);
-			TFHouse.setEditable(true);
-			TFCity.setEditable(true);
-			TFPostCode.setEditable(true);
-			TFCotisation.setEditable(true);
-			TFDateCotisation.setEditable(true);
-		}
-		else
-		{
-			TFLastName.setEditable(false);
-			TFFirstName.setEditable(false);
-			TFStreet.setEditable(false);
-			TFAdress.setEditable(false);
-			TFPhone.setEditable(false);
-			TFPassword.setEditable(false);
-			TFConfirmPw.setEditable(false);
-			TFHouse.setEditable(false);
-			TFCity.setEditable(false);
-			TFPostCode.setEditable(false);
-			TFCotisation.setEditable(false);
-			TFDateCotisation.setEditable(false);	
-			
-		}
-	}
+
 }
