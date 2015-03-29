@@ -4,14 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.activityLeader.data.ActivityLeaderJDBC;
 import com.LotuZ.user.contributor.bl.Contributor;
-import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
+
 
 
 /**
@@ -42,7 +37,7 @@ public class ContributorJDBC extends Contributor{
 	
 
 	/**
-	 * Lecture d'un intervenant en base à partir de son identifiant 
+	 * save a contributor in database 
 	 */
 	public void save(String mailContributor) throws ClassNotFoundException, SQLException {
 		try {		
@@ -66,6 +61,10 @@ public class ContributorJDBC extends Contributor{
 		}
 	}
 
+	
+	/**
+	 * load a contributor in database with his mail
+	 */
 	public Contributor load(String mailContributor) throws SQLException {
 
 		Contributor contributor = null;
@@ -94,6 +93,11 @@ public class ContributorJDBC extends Contributor{
 		}
 }
 	
+
+	
+	/**
+	 * delete a contributor in database 
+	 */
 	public void delete() throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;

@@ -3,7 +3,6 @@ package com.LotuZ.user.contributor.bl;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.LotuZ.user.user.bl.User;
 import com.LotuZ.event.Event;
 
 /**
@@ -11,9 +10,9 @@ import com.LotuZ.event.Event;
  *
  */
 
-
 public abstract class Contributor{
 	
+
 
 	public Contributor() {
 		super();
@@ -24,6 +23,9 @@ public abstract class Contributor{
 	private String idContributor;
 
 	
+	/**
+	 * @param events
+	 */
 	public Contributor(List<Event> events ) {
 		super();
 		this.setEvents(events);
@@ -32,11 +34,17 @@ public abstract class Contributor{
 
 	
 
+	/**
+	 * @return events
+	 */
 	public List<Event> getEvents() {
 		return events;
 	}
 
 
+	/**
+	 * @param events to set
+	 */
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
@@ -54,6 +62,9 @@ public abstract class Contributor{
 
 
 
+	/**
+	 * @return the id of the contributor
+	 */
 	public String getIdContributor() {
 		return idContributor;
 	}
@@ -61,6 +72,9 @@ public abstract class Contributor{
 
 
 
+	/**
+	 * @param idContributor to set
+	 */
 	public void setIdContributor(String idContributor) {
 		this.idContributor = idContributor;
 	}
@@ -68,6 +82,11 @@ public abstract class Contributor{
 
 
 
+	/**
+	 * delete a contributor
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public abstract void delete() throws ClassNotFoundException, SQLException;
 	
 

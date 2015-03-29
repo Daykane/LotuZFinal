@@ -27,7 +27,7 @@ public class ContributorManager {
 	
 	/**
 	 * @param idContributor
-	 * @return
+	 * @return contributor
 	 * @throws SQLException
 	 */
 	public Contributor getContributor(String idContributor) throws SQLException {
@@ -36,6 +36,14 @@ public class ContributorManager {
 		return contributor;
 	}
 	
+	
+	
+	/**
+	 * get the events of a contributor
+	 * @param idContributor
+	 * @return contributor
+	 * @throws SQLException
+	 */
 	public Contributor getContributorEvents(String idContributor) throws SQLException {
 		List<Event> listEvents = new ArrayList<Event>();
 		int idContrib = (Integer.parseInt(idContributor));
@@ -43,7 +51,6 @@ public class ContributorManager {
 		Contributor contributor = pkit.createContributor();
 		contributor.setEvents(listEvents);
 		contributor.setIdContributor(idContributor);
-		System.out.println("Manager contrib : "+(contributor.getEvents()).size());
 		return contributor;
 	}
 	
