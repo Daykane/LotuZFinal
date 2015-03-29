@@ -10,10 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import com.LotuZ.PageAccueil;
-import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.Homepage;
-import com.LotuZ.user.HomepageUI;
+import com.LotuZ.user.InscriptionUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -103,7 +102,7 @@ public class LoginUI extends JFrame {
 		lblInscription.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				InscriptionUserUI frame =  new InscriptionUserUI();				
+				InscriptionUI frame =  new InscriptionUI();				
 				frame.setVisible(true);
 			}
 		});

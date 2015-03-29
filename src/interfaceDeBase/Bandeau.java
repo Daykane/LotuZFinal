@@ -17,6 +17,8 @@ import javax.swing.border.TitledBorder;
 
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.notification.ui.NotificationCenterUI;
+import com.LotuZ.product.category.ui.CategoryUI;
 import com.LotuZ.user.Homepage;
 import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.UserLog;
@@ -119,6 +121,21 @@ public Component createBandeau(final User user,String name){
 	lblBoutique.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
+			CategoryUI categoryUI=null;
+			try {
+				categoryUI = new CategoryUI();
+				categoryUI.setLocationRelativeTo(null);
+				categoryUI.setVisible(true);
+				getJframe().dispose();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UserNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			System.out.println("Clicked sur acces boutique");
 		}
 		@Override
@@ -132,9 +149,47 @@ public Component createBandeau(final User user,String name){
 	});
 	lblBoutique.setHorizontalAlignment(SwingConstants.LEFT);
 	
-	JLabel lblIconeMail = new JLabel("icone mail");
+	JLabel lblIconeMail = new JLabel(new ImageIcon("notif.png"));
 	lblIconeMail.setHorizontalAlignment(SwingConstants.RIGHT);
 	panelOptions.add(lblIconeMail);
+	lblIconeMail.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			if (user == null){
+				LoginUI loginUI = new LoginUI();
+				loginUI.setVisible(true);
+				loginUI.setLocationRelativeTo(null);
+				getJframe().dispose();
+			}
+			else{
+				NotificationCenterUI notifCenter;
+				try {
+					getJframe().dispose();
+					notifCenter = new NotificationCenterUI(user);
+					notifCenter.setVisible(true);
+					notifCenter.setLocationRelativeTo(null);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+				
+		}
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			lblConnexion.setText("<html><u><font color = #1373cc >"+Connexion +" </u></font></html>");
+		}
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			lblConnexion.setText(Connexion);
+		}
+		
+		
+	});
 	lblConnexion.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -143,7 +198,6 @@ public Component createBandeau(final User user,String name){
 				loginUI.setVisible(true);
 				loginUI.setLocationRelativeTo(null);
 				getJframe().dispose();
-
 			}
 			else{
 				UserLog.logOff();

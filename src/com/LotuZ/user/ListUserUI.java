@@ -160,17 +160,10 @@ public class ListUserUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				InscriptionUI inscription;
 
-				try {
 					inscription = new InscriptionUI();
 					inscription.setVisible(true);
 					inscription.setLocationRelativeTo(null);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (UserNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+
 
 				dispose();
 			}

@@ -86,7 +86,7 @@ public class InscriptionUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InscriptionUI() throws SQLException, UserNotFoundException  {
+	public InscriptionUI() {
 		
 		setPreferredSize(new Dimension(750, 600));
 		
