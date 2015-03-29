@@ -10,14 +10,28 @@ import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.user.bl.User;
 
+/**
+ * @author Alexis
+ *
+ */
 public class EventInscriptionManager {
 
 	private PersistKit pkit;
 
+	/**
+	 * initialize Manager with the persistance
+	 * @param kit persistance kit
+	 */
 	public EventInscriptionManager(PersistKit kit) {
 		this.pkit=kit;
 	}
 
+	/**
+	 * register the user in the event
+	 * @param user
+	 * @param event
+	 * @throws SQLException
+	 */
 	public void addUserInEvent(User user, Event event) throws SQLException {
 		EventInscription eventInscr = pkit.createEventInscription();
 		eventInscr.setIdMember(user.getMail());
@@ -26,6 +40,11 @@ public class EventInscriptionManager {
 		
 	}
 
+	/**
+	 * ListEvent where the user is register
+	 * @param user
+	 * @throws SQLException
+	 */
 	public List<Event> getUserEvent(User user) throws SQLException {
 		List<Integer> lIdEvent;
 		List<Event> lEvent = null;
@@ -40,6 +59,12 @@ public class EventInscriptionManager {
 		return lEvent;
 	}
 
+	/**
+	 * List identifer User register in the Event
+	 * @param event
+	 * @return List user identifier
+	 * @throws SQLException
+	 */
 	public List<String> getEventUser(Event event) throws SQLException {
 		List<String> lUser;
 		EventInscription eventInscription = pkit.createEventInscription();

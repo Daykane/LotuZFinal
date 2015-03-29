@@ -7,6 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Alexis
+ *
+ */
 public class EventInscriptionJdbc extends EventInscription {
 	
 	private Connection cn;
