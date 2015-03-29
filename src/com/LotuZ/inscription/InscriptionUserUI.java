@@ -57,6 +57,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.Dimension;
+import javax.swing.DropMode;
 
 /**
  * @author Alexis
@@ -220,12 +221,13 @@ public class InscriptionUserUI extends JFrame {
 		 * Panel for TextField
 		 */
 		JPanel panelTF = new JPanel();
+		panelTF.setPreferredSize(new Dimension(8, 8));
 		contentPane.add(panelTF, BorderLayout.CENTER);
 		GridBagLayout gbl_panelTF = new GridBagLayout();
 		gbl_panelTF.columnWidths = new int[]{0, 0};
-		gbl_panelTF.rowHeights = new int[]{25, 25, 0, 0, 0, 0, 0, 0, 25, 25, 0, 0};
+		gbl_panelTF.rowHeights = new int[]{25, 25, 0, 0, 0, 0, 0, 0, 25, 25, 0, 0, 0};
 		gbl_panelTF.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panelTF.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelTF.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelTF.setLayout(gbl_panelTF);
 		
 		/*
@@ -333,10 +335,16 @@ public class InscriptionUserUI extends JFrame {
 		 */
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
 		GridBagConstraints gbc_chckbxMember = new GridBagConstraints();
-		gbc_chckbxMember.anchor = GridBagConstraints.WEST;
+		gbc_chckbxMember.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxMember.gridx = 0;
 		gbc_chckbxMember.gridy = 10;
 		panelTF.add(chckbxMember, gbc_chckbxMember);
+		
+		JCheckBox chckbxBecomeContributor = new JCheckBox("Become Contributor");
+		GridBagConstraints gbc_chckbxBecomeContributor = new GridBagConstraints();
+		gbc_chckbxBecomeContributor.gridx = 0;
+		gbc_chckbxBecomeContributor.gridy = 11;
+		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
 		
 		JPanel panelButton = new JPanel();
 		FlowLayout fl_panelButton = (FlowLayout) panelButton.getLayout();
