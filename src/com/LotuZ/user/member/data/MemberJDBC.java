@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 
@@ -47,7 +46,7 @@ public class MemberJDBC extends Member{
 	
 
 	/**
-	 * Lecture d'un membre en base à partir de son identifiant 
+	 * load a member from the database 
 	 */
 	@Override
 	public Member load(String mailMember) throws SQLException {
@@ -87,9 +86,8 @@ public class MemberJDBC extends Member{
 	
 
 	/**
-	 * Modification d'un membre en base à partir de son identifiant 
+	 * update a member  
 	 */
-
 	public void update(Member member) throws SQLException {
 		try {		
 			Statement st =null;
@@ -110,18 +108,20 @@ public class MemberJDBC extends Member{
 	
 
 
-
+	/**
+	 * save a member in the database 
+	 */
 	public void save(User user) throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
-			// Etape 3 : Création d'un statement
+			// Création d'un statement
 			st = this.cn.createStatement();
 
 			String sql = "INSERT INTO `LotuZ`.`Member` ( `cotisation`, `dateCotisation`, `idBoxLetter`, `idAdmin`, `idLeader`, `mailMember` ) VALUES ('"+ this.getCotisation() +"', '"+ this.getDateCotisation() +"', '"+ this.getIdBoxLetter() +"', '"+ this.getIdAdmin() +"', '"+ this.getIdLeader() +"', '"+ user.getMail()+"')";
 			String sql2 = "SELECT idMember FROM LotuZ.Member Where mail='"+ user.getMail() +"'";
 
 			
-			// Etape 4 : exécution requête
+			// Exécution requête
 			st.executeUpdate(sql);
 			ResultSet result = st.executeQuery(sql2);
 			int idmembre = result.getInt("idMembre");
@@ -134,33 +134,27 @@ public class MemberJDBC extends Member{
 		}
 	}
 
-
-	public void delete(Member member) throws ClassNotFoundException, SQLException {
+	/**
+	 * delete a member  
+	 */
+	public void delete() throws ClassNotFoundException, SQLException {
 		try {		
 			Statement st =null;
-			// Etape 3 : Création d'un statement
+			// Création d'un statement
 			st = this.cn.createStatement();
 			
-			String sql = "UPDATE LotuZ.User SET `idMember` = null Where idMember='"+ member.getIdMember() +"'";
+			String sql = "UPDATE LotuZ.User SET `idMember` = null Where idMember='"+ this.getIdMember() +"'";
 
-			String sql2 = "Delete From LotuZ.Member Where idMember='"+ member.getIdMember() +"'";
+			String sql2 = "Delete From LotuZ.Member Where idMember='"+ this.getIdMember() +"'";
 
-			// Etape 4 : exécution requête
+			// Exécution requête
 			st.executeUpdate(sql);
 			st.executeUpdate(sql2);
-			System.out.println("Delete MembreJDBC : "+member.getIdMember());
 
 		} catch (SQLException e) {
 			throw e;
 		}
 	}
-
-
-
-
-
-
-
 
 }
 

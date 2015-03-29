@@ -3,18 +3,15 @@ package com.LotuZ.user;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
+
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
@@ -92,7 +89,7 @@ public class DeleteUserUI extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					FacadeUser.deleteLeader(leader.getIdLeader());
-					FacadeUser.deleteMember(member);
+					FacadeUser.deleteMember(member.getIdMember());
 					FacadeUser.deleteUser(user);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -113,7 +110,7 @@ public class DeleteUserUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					FacadeUser.deleteMember(member);
+					FacadeUser.deleteMember(member.getIdMember());
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

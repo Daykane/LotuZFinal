@@ -7,6 +7,10 @@ import java.util.List;
  * @author Ludo
  *
  */
+/**
+ * @author Ludo
+ *
+ */
 public abstract class ListUser {
 
 	/**
@@ -47,7 +51,19 @@ public abstract class ListUser {
 	 * @throws SQLException 
 	 */
 	public abstract ListUser loadMembers() throws SQLException;
+	
+	
+	/**
+	 * @return a ListUser
+	 * @throws SQLException
+	 */
 	public abstract ListUser loadContributors() throws SQLException;
+	
+	
+	/**
+	 * @return a ListUser
+	 * @throws SQLException
+	 */
 	public abstract ListUser loadLeaders() throws SQLException;
 	
 }

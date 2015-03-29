@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 
 
@@ -37,6 +36,19 @@ public class UserJDBC extends User{
 		this.cn = cn;
 	}
 
+	/**
+	 * @param lastName
+	 * @param firstName
+	 * @param mail
+	 * @param tel
+	 * @param streetName
+	 * @param numHouse
+	 * @param city
+	 * @param postCode
+	 * @param password
+	 * @param idContributor
+	 * @param idMember
+	 */
 	public UserJDBC(String lastName, String firstName, String mail, String tel,
 			String streetName, String numHouse, String city, String postCode,
 			String password, int idContributor, int idMember) {
@@ -49,6 +61,7 @@ public class UserJDBC extends User{
 	public UserJDBC() {
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public void save() throws ClassNotFoundException, SQLException {		
 			Statement st =null;

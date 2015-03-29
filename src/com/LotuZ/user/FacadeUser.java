@@ -1,16 +1,11 @@
 package com.LotuZ.user;
 
-import java.util.List;
 import java.sql.SQLException;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.PersistKit;
-import com.LotuZ.activity.ActivityManager;
-import com.LotuZ.inscription.InscriptionManager;
-import com.LotuZ.login.LoginManager;
+
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.product.ProductManager;
-import com.LotuZ.product.category.bl.CategoryManager;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
 import com.LotuZ.user.contributor.bl.Contributor;
@@ -23,8 +18,7 @@ import com.LotuZ.user.user.bl.UserManager;
 
 public class FacadeUser {
 	
-	private static LoginManager loginManager;
-	private static InscriptionManager inscriptionManager;
+
 	private static ActivityLeaderManager activityLeaderManager;
 	private static ContributorManager contributorManager;
 	private static UserManager userManager;
@@ -33,8 +27,6 @@ public class FacadeUser {
 
 	
 	public static void init(PersistKit kit){
-		loginManager = new LoginManager(kit);
-		inscriptionManager = new InscriptionManager(kit);
 		activityLeaderManager = new ActivityLeaderManager(kit);
 		contributorManager = new ContributorManager(kit);
 		userManager = new UserManager(kit);
@@ -72,8 +64,8 @@ public class FacadeUser {
 		userManager.updateUser(user);
 	}
 	
-	public static void deleteMember(Member member) throws SQLException, UserNotFoundException, ClassNotFoundException{
-		memberManager.deleteMember(member);
+	public static void deleteMember(int idMember) throws SQLException, UserNotFoundException, ClassNotFoundException{
+		memberManager.deleteMember(idMember);
 	}
 	
 	public static void deleteUser(User user) throws SQLException, UserNotFoundException, ClassNotFoundException{

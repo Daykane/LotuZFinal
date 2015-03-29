@@ -3,7 +3,7 @@ package com.LotuZ.user.member.bl;
 import java.sql.SQLException;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.user.user.bl.User;
+
 
 
 /**
@@ -30,7 +30,6 @@ public class MemberManager {
 	public Member getMember(String idMember) throws SQLException {
 		Member member = pkit.createMember();
 		member = member.load(idMember);
-		System.out.println(" le membre dans le manager : "+member);
 		return member;
 	}
 	
@@ -41,11 +40,19 @@ public class MemberManager {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException 
 	 */
-	public void deleteMember(Member member1) throws SQLException, ClassNotFoundException {
+	public void deleteMember(int idMember) throws SQLException, ClassNotFoundException {
 		Member member = pkit.createMember();
-		member.delete(member1);
+		member.setIdMember(idMember);
+		member.delete();
 	}
 	
+	
+	
+	/**
+	 * @param member1
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public void updateMember(Member member1) throws SQLException, ClassNotFoundException {
 		Member member = pkit.createMember();
 		member.update(member1);
