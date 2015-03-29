@@ -225,12 +225,12 @@ public class Homepage extends JFrame {
 			btnGestionDesUtilisateurs.setVisible(false);
 			btnGestionDesEvents.setVisible(true);
 		}
-		else if (admin == null && activityLeader == null && user != null)
+		else 
 		{
 			btnGestionDesResponsables.setVisible(false);
 			btnGestionDesMembres.setVisible(false);
 			btnGestionDesIntervenants.setVisible(false);
-			btnGestionDesEvents.setVisible(true);
+			btnGestionDesEvents.setVisible(false);
 			btnGestionDesUtilisateurs.setVisible(false);
 		}
 	}

@@ -8,6 +8,7 @@ import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
+import com.LotuZ.user.admin.ui.Homepage;
 
 public class Main {
 
@@ -31,7 +32,7 @@ public class Main {
 		//FacadeUser.init();
 		
 		//First UI to call
-		PageAccueil pageAcceuil = new PageAccueil();
+		Homepage pageAcceuil = new Homepage();
 		pageAcceuil.setVisible(true);
 		pageAcceuil.setLocationRelativeTo(null);
 

@@ -63,7 +63,7 @@ public class PlanningUI extends JFrame {
 		bandeau.setJframe(this);
 
 		setTitle("Zen Lounge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
@@ -116,7 +116,6 @@ public class PlanningUI extends JFrame {
 					detailsEvent = new DetailsEventUI(this.event);
 					detailsEvent.setVisible(true);
 					detailsEvent.setLocationRelativeTo(null);
-					dispose();
 				}
 			}
 		});
