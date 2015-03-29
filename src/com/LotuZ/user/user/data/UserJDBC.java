@@ -130,7 +130,7 @@ public class UserJDBC extends User{
 
 			String sql = "UPDATE User SET `lastName`='"+user.getLastName() +"',`firstName`='"+ user.getFirstName() +"',`mail`='"+user.getMail()
 					+"',`tel`='"+user.getPhone()+"',`streetName`='"+user.getStreetName()+"',`numHouse`='"+user.getNumHouse()+"',`city`='"+user.getCity()+"',`postCode`='"+user.getPostCode()
-					+"',`idMember`='"+user.getIdMember()+"',`idContributor`='"+user.getIdContributor()+"' Where `mail`='"+user.getMail()+"'";
+					+"' Where `mail`='"+user.getMail()+"'";
 			
 					
 			// Etape 4 : exécution requête

@@ -42,7 +42,7 @@ public class DeleteUserUI extends JFrame {
 		final Contributor contributor = FacadeUser.getContributor(mail);
 		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
 		
-	
+		System.out.println(" Le contributor : "+user );
 
 		Bandeau bandeau = new Bandeau();
 

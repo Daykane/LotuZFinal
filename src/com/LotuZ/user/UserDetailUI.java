@@ -3,31 +3,20 @@ package com.LotuZ.user;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
-import com.LotuZ.event.Event;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.admin.ui.HomepageAdmin;
-import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
-import com.LotuZ.user.member.data.MemberJDBC;
 import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
 import com.LotuZ.user.UserLog;
-
-import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -38,6 +27,9 @@ import java.awt.event.MouseEvent;
 
 
 public class UserDetailUI extends JFrame {
+
+
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
@@ -52,24 +44,26 @@ public class UserDetailUI extends JFrame {
 	private JTextField Cotisation;
 	private JTextField DateCotisation;
 	private JTextField NameActivity;
-	private JLabel lblLastName;
-	private JLabel lblDateCotisation;
-	private JLabel lblCotisation;
-	private JTextField textField;
+
+	
+	
 	/**
-	 * Create the frame.
+	 * Create the frame for the user details
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
+	 */
+	/**
+	 * @param mail
+	 * @throws SQLException
+	 * @throws UserNotFoundException
 	 */
 	public UserDetailUI(String mail) throws SQLException, UserNotFoundException {
 		
 
 		final User user = FacadeUser.getUser(mail);
 		final Member member = FacadeUser.getMember(mail);
-		final Contributor contributor = FacadeUser.getContributor(mail);
 		final ActivityLeader leader = FacadeUser.getActivityLeader(mail);
 		
-		System.out.println(" user : "+user+" mail :"+mail);
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
 		Bandeau bandeau = new Bandeau();
@@ -86,6 +80,7 @@ public class UserDetailUI extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
 		
 		// Création des labels 
 		
@@ -218,8 +213,10 @@ public class UserDetailUI extends JFrame {
 			Cotisation.setText((member.getCotisation()).toString());
 			DateCotisation.setText(member.getDateCotisation());
 		}
+		
 		// Gestion des événements Bouton 
 
+		// Bouton Edit
 		final JButton btnEdit = new JButton("Edit");
 		btnEdit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -244,26 +241,43 @@ public class UserDetailUI extends JFrame {
 					{
 						member.setCotisation(Double.parseDouble(Cotisation.getText()));
 						member.setDateCotisation(DateCotisation.getText());
-					}
-					try {
-						FacadeUser.updateUser(user);
-						FacadeUser.updateMember(member);
+					
+						try {
+							FacadeUser.updateUser(user);
+							FacadeUser.updateMember(member);
 
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (UserNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (UserNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					else
+					{
+						try {
+							FacadeUser.updateUser(user);
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (UserNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 		}});
 		btnEdit.setBounds(537, 150, 89, 23);
 		panel.add(btnEdit);
 		
+		// Bouton Delete
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
@@ -286,6 +300,7 @@ public class UserDetailUI extends JFrame {
 		btnDelete.setBounds(537, 226, 89, 23);
 		panel.add(btnDelete);
 		
+		// Bouton Cancel
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -310,11 +325,12 @@ public class UserDetailUI extends JFrame {
 		btnCancel.setBounds(537, 301, 89, 23);
 		panel.add(btnCancel);
 		
-
-
-
 	}
 	
+	/**
+	 * to let to edit the textField
+	 * @param show
+	 */
 	private void editableTextField(Boolean show) {
 		if (show)
 		{
