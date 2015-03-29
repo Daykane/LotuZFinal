@@ -394,19 +394,19 @@ public class ViewCategoryUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e)
 			{
-//				ListProductUI listProductUI = null;
-//				try {
-//					//listProductUI = new listProductUI(categorySel.getIdCategoryProduct());
-//				} catch (SQLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				} catch (UserNotFoundException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				listProductUI.setVisible(true);
-//				listProductUI.setLocationRelativeTo(null);
-//				dispose();
+				ListProductUI listProductUI = null;
+				try {
+					listProductUI = new ListProductUI(categorySel.getIdCategoryProduct());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				listProductUI.setVisible(true);
+				listProductUI.setLocationRelativeTo(null);
+				dispose();
 				
 				
 			}
