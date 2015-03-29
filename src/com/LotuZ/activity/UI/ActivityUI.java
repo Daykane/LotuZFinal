@@ -15,6 +15,7 @@ import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.admin.ui.HomepageAdmin;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JLabel;
@@ -34,6 +35,7 @@ import com.jgoodies.forms.factories.FormFactory;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
 
 /**
  * @author Alexis
@@ -119,10 +121,46 @@ public class ActivityUI extends JFrame {
 		panelButton.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("98px"),
 				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,},
-				new RowSpec[] {
+			new RowSpec[] {
 				RowSpec.decode("23px"),
 				RowSpec.decode("23px"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -189,6 +227,34 @@ public class ActivityUI extends JFrame {
 
 		JPanel panel = new JPanel();
 		mainPanel.add(panel, BorderLayout.SOUTH);
+		
+		JPanel panel_1 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
+		contentPane.add(panel_1, BorderLayout.SOUTH);
+		
+		JButton btnHome = new JButton("Back home");
+		btnHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				HomepageAdmin homepage;
+				try {
+					homepage = new HomepageAdmin();
+					homepage.setVisible(true);
+					homepage.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		btnHome.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_1.add(btnHome);
 
 		//If not admin no add and remove button
 		if ( admin == null){
