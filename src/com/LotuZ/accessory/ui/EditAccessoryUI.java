@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import com.LotuZ.FacadeBL;
 import com.LotuZ.accessory.bl.Accessory;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
@@ -171,6 +172,7 @@ public class EditAccessoryUI extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				FacadeBL.updateAccessory(accessorySel.getIdAccesorry(), txtFName.getText(), txtAdescription.getText());
 				AccessoriesUI accessoriesUI = null;
 				try {
 					accessoriesUI = new AccessoriesUI();

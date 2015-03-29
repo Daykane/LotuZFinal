@@ -215,7 +215,7 @@ public class FacadeBL {
 	
 	
 	public static  void updateAccessory(int idAccessory, String nameAccessory,
-			String descriptionAccessory, int roomAccessory) 
+			String descriptionAccessory) 
 	{
 		accessoryManager.updateAccessory(idAccessory, nameAccessory,
 				descriptionAccessory);
