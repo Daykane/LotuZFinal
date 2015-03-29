@@ -59,6 +59,8 @@ import java.awt.Dimension;
 
 
 
+
+
 import com.LotuZ.user.DeleteUserUI;
 
 
@@ -93,6 +95,8 @@ public class UserDetailUI extends JFrame {
 	static int count = 0;
 	
 	public static UserDetailUI frame;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	
 	/**
@@ -332,20 +336,22 @@ public class UserDetailUI extends JFrame {
 		panelTF.add(TFPostCode, gbc_TFPostCode);
 		TFPostCode.setColumns(10);
 		
-		TFCotisation = new JPasswordField();
-		GridBagConstraints gbc_TFPassword = new GridBagConstraints();
-		gbc_TFPassword.insets = new Insets(0, 0, 5, 0);
-		gbc_TFPassword.fill = GridBagConstraints.BOTH;
-		gbc_TFPassword.gridx = 0;
-		gbc_TFPassword.gridy = 8;
+		TFCotisation = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 0;
+		gbc_textField.gridy = 8;
+		panelTF.add(textField, gbc_textField);
 		TFCotisation.setColumns(10);
 		
-		TFDateCotisation = new JPasswordField();
-		GridBagConstraints gbc_TFConfirmPw = new GridBagConstraints();
-		gbc_TFConfirmPw.insets = new Insets(0, 0, 5, 0);
-		gbc_TFConfirmPw.fill = GridBagConstraints.HORIZONTAL;
-		gbc_TFConfirmPw.gridx = 0;
-		gbc_TFConfirmPw.gridy = 9;
+		TFDateCotisation = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 0;
+		gbc_textField_1.gridy = 9;
+		panelTF.add(textField_1, gbc_textField_1);
 		TFDateCotisation.setColumns(10);
 		
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
@@ -355,7 +361,7 @@ public class UserDetailUI extends JFrame {
 		gbc_chckbxMember.gridy = 12;
 		panelTF.add(chckbxMember, gbc_chckbxMember);
 		
-		JCheckBox chckbxBecomeContributor = new JCheckBox("Become Contributor");
+		final JCheckBox chckbxBecomeContributor = new JCheckBox("Become Contributor");
 		GridBagConstraints gbc_chckbxBecomeContributor = new GridBagConstraints();
 		gbc_chckbxBecomeContributor.gridx = 0;
 		gbc_chckbxBecomeContributor.gridy = 13;
@@ -392,8 +398,8 @@ public class UserDetailUI extends JFrame {
 		
 		if (member == null)
 		{
-			TFDateCotisation.setVisible(true);
-			TFCotisation.setVisible(true);
+			TFDateCotisation.setVisible(false);
+			TFCotisation.setVisible(false);
 			lblCotisation.setVisible(false);
 			lblDateCotisation.setVisible(false);
 		}
@@ -577,8 +583,27 @@ public class UserDetailUI extends JFrame {
 						dispose();
 					}
 				});
-				btnDelete.setBounds(537, 226, 89, 23);
 				panelButton.add(btnDelete);
+
+				JButton btnNewRole = new JButton("New role");
+				btnNewRole.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (chckbxBecomeContributor.isSelected() == true && contributor == null )
+							try {
+								FacadeUser.inscriptionContributor(user);
+							} catch (ClassNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							};
+					}
+				});
+				panelButton.add(btnNewRole);
+				btnDelete.setBounds(537, 226, 89, 23);
+				
 				
 				// Bouton Cancel
 				JButton btnCancel = new JButton("Cancel");

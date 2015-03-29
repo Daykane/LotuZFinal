@@ -98,6 +98,10 @@ public class FacadeUser {
 	public static void inscriptionMember(User user, Double cotisation) throws ClassNotFoundException, SQLException {
 		userManager.inscriptionMember(user,cotisation);
 	}
+	public static void inscriptionContributor(User user) throws ClassNotFoundException, SQLException {
+		userManager.inscriptionContributor(user);
+
+	}
 
 
 }

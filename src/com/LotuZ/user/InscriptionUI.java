@@ -345,6 +345,13 @@ public class InscriptionUI extends JFrame {
 		/*
 		 * CheckBox + Buttons
 		 */
+		
+		JCheckBox chckbxBecomeContributor = new JCheckBox("Become Contributor");
+		GridBagConstraints gbc_chckbxBecomeContributor = new GridBagConstraints();
+		gbc_chckbxBecomeContributor.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxBecomeContributor.gridx = 0;
+		gbc_chckbxBecomeContributor.gridy = 11;
+		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
 
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
 		GridBagConstraints gbc_chckbxMember = new GridBagConstraints();

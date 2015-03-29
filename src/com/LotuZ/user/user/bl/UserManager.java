@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 
 
@@ -99,5 +100,10 @@ public class UserManager {
 		member.setCotisation(cotisation);
 		Date today = new Date();
 		member.save(user,today);
+	}
+
+	public void inscriptionContributor(User user) throws ClassNotFoundException, SQLException {
+		Contributor contributor = pkit.createContributor();
+		contributor.save(user.getMail());
 	}
 }

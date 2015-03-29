@@ -17,8 +17,11 @@ import javax.swing.border.EmptyBorder;
 
 
 
+
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
@@ -36,8 +39,10 @@ import javax.swing.JList;
 
 
 
+
 import java.awt.Component;
 import java.awt.Dimension;
+
 import javax.swing.JScrollPane;
 
 
@@ -62,6 +67,9 @@ public class ListUserUI extends JFrame {
 	public ListUserUI(int idRole) throws SQLException, UserNotFoundException {
 		
 		User user = UserLog.getUserLog();
+		Administrator adminLog = UserLog.getAdminLog();
+		ActivityLeader activityLeaderLog = UserLog.getRespoLog();
+		
 
 		// Initialisation du bandeau et création de la Frame
 		contentPane = new JPanel();
@@ -131,7 +139,9 @@ public class ListUserUI extends JFrame {
         });
 		list.setPreferredSize(new Dimension(600, 600));
 
-		panel.add(new JScrollPane(list));
+		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane.setPreferredSize(new Dimension(500, 250));
+		panel.add(scrollPane);
 
 		list.setVisibleRowCount(10);
 		

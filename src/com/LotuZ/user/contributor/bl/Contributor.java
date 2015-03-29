@@ -88,7 +88,11 @@ public abstract class Contributor{
 	 * @throws SQLException
 	 */
 	public abstract void delete() throws ClassNotFoundException, SQLException;
-	
+
+
+
+
+	public abstract void save(String mail) throws ClassNotFoundException, SQLException;
 
 
 
