@@ -7,7 +7,7 @@ package com.LotuZ.activity;
 
 import java.sql.SQLException;
 import java.util.List;
-
+// coucou
 
 public abstract class Activity {	
 	
