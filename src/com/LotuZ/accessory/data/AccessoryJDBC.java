@@ -44,7 +44,7 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Accessory where idAccessory="+idAccessory;
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
@@ -66,11 +66,9 @@ public class AccessoryJDBC extends Accessory
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Accessory ";
-		System.out.println("cJDEEBC1");
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
-		System.out.println("cJDBC1");
 		
 		// R�cup�ration des donn�es 
 		while( result.next() ){	
@@ -99,20 +97,15 @@ public class AccessoryJDBC extends Accessory
 	public void update(int idAccessory, String nameAccessory,
 			String descriptionAccessory) throws SQLException 
 	{
-		System.out.println("cJDEEBC1");	
 		Statement st =null;
-		System.out.println("cJDBC1'");
 		// Cr�ation d'un statement
 		st = this.cn.createStatement();
-		System.out.println("cJDBC2");
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Update LotuZ.Accessory Set name='"+nameAccessory+"' and description='"+descriptionAccessory+" Where idAccessory="+idAccessory;
 		System.out.println(sql);
-		System.out.println("cJDBC3");
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
-		System.out.println("cJDBC4");
 		
 	}
 
@@ -127,7 +120,7 @@ public class AccessoryJDBC extends Accessory
 				+ "("
 				+'"'+this.getNameAccessory()+'"'+","
 				+'"'+this.getDescriptionAccessory()+'"'+")";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
@@ -162,7 +155,6 @@ public class AccessoryJDBC extends Accessory
 		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
-		System.out.println("cJDBC3");
 		
 		
 	}

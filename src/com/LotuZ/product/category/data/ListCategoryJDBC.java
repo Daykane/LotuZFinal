@@ -54,7 +54,7 @@ public class ListCategoryJDBC extends ListCategoryProduct
 			
 			// Cr�ation de la requ�te de s�lection
 			String sql = "Select * From LotuZ.Category";
-
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
@@ -83,7 +83,7 @@ public class ListCategoryJDBC extends ListCategoryProduct
 			
 			// Cr�ation de la requ�te de s�lection
 			String sql = "Select * From LotuZ.Category Where levelCategory="+levelCategory;
-
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
@@ -110,7 +110,7 @@ public class ListCategoryJDBC extends ListCategoryProduct
 			
 			// Cr�ation de la requ�te de s�lection
 			String sql = "Select * From LotuZ.Category Where levelCategory="+1;
-
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
@@ -136,7 +136,7 @@ public class ListCategoryJDBC extends ListCategoryProduct
 			
 			// Cr�ation de la requ�te de s�lection
 			String sql = "Select * From LotuZ.Category Where fatherCategory="+idFatherCategoryProduct;
-
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			

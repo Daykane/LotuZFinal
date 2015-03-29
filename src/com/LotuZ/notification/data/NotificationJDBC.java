@@ -51,7 +51,7 @@ public class NotificationJDBC extends Notification {
 			
 			// Requ�te de s�lection � partir de l'identifiant 
 			String sql = "Select * From LotuZ.Notification where idNotification="+idNotification;
-			
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			ResultSet result = st.executeQuery(sql);
 			
@@ -67,19 +67,15 @@ public class NotificationJDBC extends Notification {
 	//Update
 	public void update(int idNotification, String textNotification,String objetNotification) throws SQLException 
 	{
-		System.out.println("cJDBC1");	
 		Statement st =null;
-		System.out.println("cJDBC1'");
 		// Cr�ation d'un statement
 		st = this.cn.createStatement();
-		System.out.println("cJDBC2");
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Update LotuZ.Notification Set textNotification='"+textNotification+"', objetNotification='"+objetNotification+"' Where idCategory="+idNotification;
-		System.out.println("cJDBC3");
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
-		System.out.println("cJDBC4");
 		
 	}
 
@@ -97,7 +93,7 @@ public class NotificationJDBC extends Notification {
 					+ "("
 					+this.getTextNotification()+","
 					+this.getObjetNotification()+")";
-			
+			System.out.println(sql);
 			// Ex�cution de la requ�te
 			st.executeQuery(sql);
 		
@@ -118,7 +114,7 @@ public class NotificationJDBC extends Notification {
 				+this.getIdNotification()+","
 				+'"'+textNotification+'"'+","
 				+'"'+objetNotification+'"'+")";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeQuery(sql);
 		
@@ -138,7 +134,6 @@ public class NotificationJDBC extends Notification {
 		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
-		System.out.println("cJDBC3");
 		
 	}
 

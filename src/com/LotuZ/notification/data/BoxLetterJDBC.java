@@ -59,7 +59,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.BoxLetter where idNotification="+idNotification+" and idMember="+idMember;
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
@@ -85,6 +85,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.BoxLetter where idMember="+idMember;
+		System.out.println(sql);
 		
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
@@ -117,20 +118,15 @@ public class BoxLetterJDBC extends BoxLetter {
 
 	public void update(int idBoxLetter, int idNotification, int idMember,
 			int readNotification) throws SQLException {
-		System.out.println("cJDBC1");	
 		Statement st =null;
-		System.out.println("cJDBC1'");
 		// Cr�ation d'un statement
 		st = this.cn.createStatement();
-		System.out.println("cJDBC2");
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Update LotuZ.BoxLetter Set readNotification="+readNotification+" Where idBoxLetter="+idBoxLetter+" and idNotification="+idNotification+" and idMember="+idMember;
 		System.out.println(sql);
-		System.out.println("cJDBC3");
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
-		System.out.println("cJDBC4");
 		
 	}
 
@@ -148,7 +144,7 @@ public class BoxLetterJDBC extends BoxLetter {
 				+this.getIdMember()+","
 				+this.getDateReceived()+","
 				+this.getReadNotification()+")";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeQuery(sql);
 		
@@ -188,7 +184,6 @@ public class BoxLetterJDBC extends BoxLetter {
 		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
-		System.out.println("cJDBC3");
 		
 	}
 

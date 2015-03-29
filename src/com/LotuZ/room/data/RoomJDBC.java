@@ -46,7 +46,7 @@ public class RoomJDBC extends Room
 		
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Room where idRoom="+idRoom;
-		
+		System.out.println(sql);	
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
 		
@@ -64,6 +64,7 @@ public class RoomJDBC extends Room
 		
 		String sql1 = "Select * From LotuZ.AffectationAccessoryRoom where idRoom="+this.getIdRoom();
 		ResultSet result1 = st.executeQuery(sql1);
+		System.out.println(sql1);
 		while( result1.next() )
 		{	
 			// Cr�ation et ajout d'un utilisateurs dans la liste 
@@ -80,12 +81,10 @@ public class RoomJDBC extends Room
 		
 		// Cr�ation d'un statement
 		st = this.cn.createStatement();
-		System.out.println("jjambon");
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Room where name="+'"'+nameRoom+'"';
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
-		System.out.println(sql);
 		// R�cup�ration des donn�es 
 		while(result.next()){	
 			this.setIdRoom((result.getInt("idRoom")));
@@ -99,6 +98,7 @@ public class RoomJDBC extends Room
 		}
 		
 		String sql1 = "Select LotuZ.Accessory.idAccessory,LotuZ.Accessory.name,LotuZ.Accessory.description From LotuZ.AffectationAccessoryRoom, LotuZ.Accessory where LotuZ.AffectationAccessoryRoom.idRoom="+this.getIdRoom()+" and LotuZ.AffectationAccessoryRoom.idAccessory=LotuZ.Accessory.idAccessory";
+		System.out.println(sql1);
 		ResultSet result1 = st.executeQuery(sql1);
 		while( result1.next() )
 		{	
@@ -117,17 +117,14 @@ public class RoomJDBC extends Room
 		
 		// Cr�ation d'un statement
 		st = this.cn.createStatement();
-		System.out.println("Pingu");
 		// Requ�te de s�lection � partir de l'identifiant 
 		String sql = "Select * From LotuZ.Room ";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		ResultSet result = st.executeQuery(sql);
-		System.out.println("Pingu");
 		// R�cup�ration des donn�es 
 		while( result.next() ){	
 			// Cr�ation et ajout d'un utilisateurs dans la liste 
-			System.out.println("Pingooo");
 			allRoom.add( mapRoom(result,this.cn));
 		}
 		System.out.println("roomAcc");
@@ -145,9 +142,7 @@ public class RoomJDBC extends Room
     	
     	// On lui ajoute ses attributs � partir des r�sultats de la requ�te
     	room.setIdRoom((resultSet.getInt("idRoom")));
-    	System.out.println("Pinga");
     	room.setNameRoom((resultSet.getString("name")));
-    	System.out.println("Pinga");
     	room.setSurfaceRoom((resultSet.getInt("surface")));
     	room.setTypeRoom(resultSet.getInt("type"));
 		if (resultSet.getInt("type") == 0) //Si salle de cour
@@ -156,6 +151,7 @@ public class RoomJDBC extends Room
 		}
 		
 		String sql1 = "Select LotuZ.Accessory.idAccessory,LotuZ.Accessory.name,LotuZ.Accessory.description From LotuZ.AffectationAccessoryRoom, LotuZ.Accessory where LotuZ.AffectationAccessoryRoom.idRoom="+room.getIdRoom()+" and LotuZ.AffectationAccessoryRoom.idAccessory=LotuZ.Accessory.idAccessory";
+		System.out.println(sql1);
 		Statement st =null;
 		ArrayList<Accessory> roomAccessory = new ArrayList<Accessory>();
 		// Cr�ation d'un statement
@@ -167,9 +163,7 @@ public class RoomJDBC extends Room
 			// Cr�ation et ajout d'un utilisateurs dans la liste 
 			roomAccessory.add( mapAccessory(result1));
 		}
-		System.out.println("roomAccessory");
 		room.setListAccessory(roomAccessory);
-		System.out.println("roomAccessory");
 		
         return room;
     }
@@ -177,12 +171,9 @@ public class RoomJDBC extends Room
     private static Accessory mapAccessory( ResultSet resultSet ) throws SQLException {
     	// On cr��e un utlisateur 
     	Accessory accessory = new AccessoryJDBC();
-    	System.out.println("Pingu");
     	// On lui ajoute ses attributs � partir des r�sultats de la requ�te
     	accessory.setIdAccesorry((resultSet.getInt("idAccessory")));
-    	System.out.println("Pingui");
     	accessory.setNameAccessory((resultSet.getString("name")));
-    	System.out.println("Pingui");
     	accessory.setDescriptionAccessory((resultSet.getString("description")));
 
         return accessory ;
@@ -190,19 +181,18 @@ public class RoomJDBC extends Room
     
 	public void update(int idRoom, String nameRoom, int surfaceRoom,
 			int typeRoom, int nbMaxParticipant,ArrayList<Accessory> listAccessory ) throws SQLException {
-		System.out.println("cJDBC1");	
 		Statement st =null;
-		System.out.println("cJDBC1'");
 		// Cr�ation d'un statement
 		st = this.cn.createStatement();
-		System.out.println("cJDBC2");
 		
 		// Requ�te de s�lection � partir de l'identifiant
 		String sql = "Update LotuZ.Room Set name='"+nameRoom+"' and surface="+surfaceRoom+" and type="+typeRoom+" and nbMaxParticipant="+nbMaxParticipant+" Where idBoxLetter="+idRoom;
+		System.out.println(sql);
 		st.executeUpdate(sql);
 		for (int i=0;i<listAccessory.size();i++)
 		{
 			String sql1 = "Insert Into LotuZ.AffectionAccessoryRoom (idAccessory,idRoom) values("+listAccessory.get(i).getIdAccesorry()+","+idRoom+")";
+			System.out.println(sql1);
 			st.executeUpdate(sql1);
 		}
 		
@@ -212,19 +202,17 @@ public class RoomJDBC extends Room
 			int typeRoom, ArrayList<Accessory> listAccessory)
 			throws SQLException 
 	{
-		System.out.println("cJDBC1");	
 		Statement st =null;
-		System.out.println("cJDBC1'");
 		// Cr�ation d'un statement
-		st = this.cn.createStatement();
-		System.out.println("cJDBC2");
-		
+		st = this.cn.createStatement();		
 		// Requ�te de s�lection � partir de l'identifiant
 		String 	sql = "Update LotuZ.Room Set name='"+nameRoom+"' and surface="+surfaceRoom+" and type="+typeRoom+" Where idBoxLetter="+idRoom;
+		System.out.println(sql);
 		st.executeUpdate(sql);
 		for (int i=0;i<listAccessory.size();i++)
 		{
 			String sql1 = "Insert Into LotuZ.AffectionAccessoryRoom (idAccessory,idRoom) values("+listAccessory.get(i).getIdAccesorry()+","+idRoom+")";
+			System.out.println(sql1);
 			st.executeUpdate(sql1);
 		}
 		
@@ -256,6 +244,7 @@ public class RoomJDBC extends Room
 					+this.getSurfaceRoom()+","
 					+this.getTypeRoom()+")";
 		}
+		System.out.println(sql);
 		
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
@@ -318,11 +307,12 @@ public class RoomJDBC extends Room
 					+'"'+nameRoom+'"'+","
 					+surfaceRoom+","
 					+typeRoom+")";
-		
+		System.out.println(sql);
 		// Ex�cution de la requ�te
 		st.executeUpdate(sql);
 		
 		String sql2 = "Select idRoom from LotuZ.Room where name="+'"'+nameRoom+'"';
+		System.out.println(sql2);
 		ResultSet result =st.executeQuery(sql2);
 		int idRoom=0;
 		while(result.next()){	
@@ -349,7 +339,6 @@ public class RoomJDBC extends Room
 		System.out.println(sql);
 		// Execution de la requete
 		st.executeUpdate(sql);
-		System.out.println("cJDBC3");
 		
 	}
 
