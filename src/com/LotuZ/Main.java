@@ -8,7 +8,7 @@ import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
-import com.LotuZ.user.admin.ui.Homepage;
+import com.LotuZ.user.Homepage;
 
 public class Main {
 

@@ -14,9 +14,9 @@ import com.LotuZ.DataBaseException;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.Homepage;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JLabel;

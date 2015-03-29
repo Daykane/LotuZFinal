@@ -17,9 +17,9 @@ import javax.swing.border.TitledBorder;
 
 import com.LotuZ.login.LoginUI;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.Homepage;
 import com.LotuZ.user.UserDetailUI;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.User;
 
 public class Bandeau extends JFrame {

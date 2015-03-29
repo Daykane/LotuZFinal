@@ -33,7 +33,6 @@ import javax.swing.JCheckBox;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
@@ -53,6 +52,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Dimension;
+
 
 
 
@@ -97,8 +97,7 @@ public class UserDetailUI extends JFrame {
 	static int count = 0;
 	
 	public static UserDetailUI frame;
-	private JTextField textField;
-	private JTextField textField_1;
+
 
 	
 	/**

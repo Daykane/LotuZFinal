@@ -18,11 +18,11 @@ import javax.swing.border.EmptyBorder;
 
 
 
+
 import com.LotuZ.inscription.InscriptionUserUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.admin.ui.Homepage;
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 
@@ -35,6 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JList;
+
 
 
 

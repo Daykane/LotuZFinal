@@ -1,8 +1,9 @@
-package com.LotuZ.user.admin.ui;
+package com.LotuZ.user;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
 
 
 
@@ -19,16 +20,13 @@ import java.awt.FlowLayout;
 
 
 
+
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.activity.UI.ActivityUI;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.FacadeUser;
-import com.LotuZ.user.ListUserUI;
-import com.LotuZ.user.PlanningUI;
-import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.User;
@@ -36,6 +34,7 @@ import com.LotuZ.user.user.bl.User;
 import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 
 
