@@ -2,7 +2,10 @@ package com.LotuZ.notification.bl;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.LotuZ.PersistKit;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
@@ -47,9 +50,12 @@ public class NotificationManager
 
 	public void createBoxLetter(int idNotification, int idMember) 
 	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		//System.out.println(dateFormat.format(cal.getTime()));
 		BoxLetter boxLetter = pkit.createBoxLetter();
 		try {
-			boxLetter.save(idNotification, idMember, 0);
+			boxLetter.save(idNotification, idMember,dateFormat.format(cal.getTime()), 0);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	

@@ -58,6 +58,11 @@ public abstract class BoxLetter
 	 * @see Member
 	 */
 	private int idMember;
+
+	/**
+	 * dateReceived permet de savoir la date à laquelle la notification a été envoyé
+	 */
+	private String dateReceived;
 	
 	/**
 	 * readNotification permet de savoir si un notification a deja ete lu par son proprietaire
@@ -68,6 +73,9 @@ public abstract class BoxLetter
 	
 	//Get & Set
 
+	/**
+	 * @return
+	 */
 	public int getIdBoxLetter() {
 		return idBoxLetter;
 	}
@@ -90,6 +98,14 @@ public abstract class BoxLetter
 
 	public void setIdMember(int idMember) {
 		this.idMember = idMember;
+	}
+	
+	public String getDateReceived() {
+		return dateReceived;
+	}
+
+	public void setDateReceived(String dateReceived) {
+		this.dateReceived = dateReceived;
 	}
 	
 	public int getReadNotification() {
@@ -123,10 +139,11 @@ public abstract class BoxLetter
 	
 	//Save
 	public abstract void save() throws SQLException;
-	public abstract void save(int idNotification, int idMember, int readNotification) throws SQLException;
+	public abstract void save(int idNotification, int idMember, String dateReceived, int readNotification) throws SQLException;
 	
 	//Delete
 	public abstract void delete(int idNotification, int idMember) throws SQLException;
+
 
 	
 }

@@ -73,7 +73,7 @@ public class NotificationCenterUI extends JFrame
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NotificationCenterUI frame = new NotificationCenterUI();
+					NotificationCenterUI frame = new NotificationCenterUI(null);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -88,11 +88,11 @@ public class NotificationCenterUI extends JFrame
 	 * @throws UserNotFoundException 
 	 * @throws SQLException 
 	 */
-	/*
-	public NotificationCenterUI() throws SQLException, UserNotFoundException 
+	
+	public NotificationCenterUI(User userMember) throws SQLException, UserNotFoundException 
 	{
 		FacadeUser.login("jack","jack");
-		User user = UserLog.getUserLog();
+		final User user = UserLog.getUserLog();
 
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -227,8 +227,6 @@ public class NotificationCenterUI extends JFrame
 			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
 			if (renderer instanceof JLabel && value instanceof Notification) 
 			{ 
-				// Here value will be of the Type 'CD' 
-				((JLabel) renderer).setText(((Notification) value).getObjetNotification());
 				//While à ameliorer
 				int i =0;
 				int f =0;
@@ -237,10 +235,14 @@ public class NotificationCenterUI extends JFrame
 					if (boxLetter.get(i).getIdNotification() == ((Notification) value).getIdNotification())
 					{
 						f=1;
+						i--; //-1 pour obtenir l'index
 					}
 					i++;
 				}
 				//Fin While
+				// Here value will be of the Type 'CD' 
+				((JLabel) renderer).setText(((Notification) value).getObjetNotification()+" at "+boxLetter.get(i).getDateReceived());
+
 				((Notification) value).getObjetNotification();
 				if (boxLetter.get(i).getReadNotification()==0)
 				{
@@ -294,7 +296,7 @@ public class NotificationCenterUI extends JFrame
 			{
 				ViewNotificationUI viewNotificationUI = null;
 				try {
-					viewNotificationUI = new ViewNotificationUI(jListNotifications.getSelectedValue());
+					viewNotificationUI = new ViewNotificationUI(notifications.get(jListNotifications.getSelectedIndex()),boxLetter.get(jListNotifications.getSelectedIndex()).getDateReceived(),user);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -302,6 +304,8 @@ public class NotificationCenterUI extends JFrame
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				System.out.println("idBox:"+boxLetter.get(jListNotifications.getSelectedIndex()).getIdBoxLetter()+"  id notif:"+boxLetter.get(jListNotifications.getSelectedIndex()).getIdNotification()+"  idMember:"+boxLetter.get(jListNotifications.getSelectedIndex()).getIdMember());
+				FacadeBL.updateBoxLetter(boxLetter.get(jListNotifications.getSelectedIndex()).getIdBoxLetter(), boxLetter.get(jListNotifications.getSelectedIndex()).getIdNotification(), boxLetter.get(jListNotifications.getSelectedIndex()).getIdMember(), 1);
 				viewNotificationUI.setLocationRelativeTo(null);
 				viewNotificationUI.setVisible(true);
 				dispose();
@@ -320,12 +324,11 @@ public class NotificationCenterUI extends JFrame
 		public void actionPerformed(ActionEvent e) 
 		{
 			if (!jListNotifications.getSelectedValue().equals(null))
-			{		
-//				boxLetter.remove(jListNotifications.getSelectedIndex());
-//				notifications.remove(jListNotifications.getSelectedIndex());
-//				jListNotifications.setListData(notifications.toArray());
-//				
-//				facadeBL.deleteNotificationInBox(jListNotifications.getSelectedValue().getIdNotification(), user.getIdMember());
+			{				
+				facadeBL.deleteNotificationInBox(notifications.get(jListNotifications.getSelectedIndex()).getIdNotification(),user.getIdMember());
+				boxLetter.remove(jListNotifications.getSelectedIndex());
+				notifications.remove(jListNotifications.getSelectedIndex());
+				jListNotifications.setListData(notifications.toArray());
 			}
 			if (notifications.isEmpty())
 			{
@@ -346,5 +349,4 @@ public class NotificationCenterUI extends JFrame
 		
 			//South
 	}
-	*/
 }
