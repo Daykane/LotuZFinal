@@ -93,7 +93,7 @@ public class MemberJDBC extends Member{
 
 			// Requête de modification
 			String sql = "UPDATE LotuZ.User u, LotuZ.Member m SET `cotisation`='"+member.getCotisation()+"',`dateCotisation`='"+member.getDateCotisation()
-					+"',`idAdmin`='"+member.getIdAdmin()+"',`idLeader`='"+member.getIdLeader()+"' Where u.idMember = m.idMember and m.idMember='"+member.getIdMember()+"'";
+					+"' Where u.idMember = m.idMember and m.idMember='"+member.getIdMember()+"'";
 			
 			// Exécution requête
 			st.executeUpdate(sql);

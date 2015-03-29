@@ -88,8 +88,8 @@ public class DeleteUserUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					FacadeUser.deleteLeader(leader.getIdLeader());
-					FacadeUser.deleteMember(member.getIdMember());
+					//FacadeUser.deleteLeader(leader.getIdLeader());
+					//FacadeUser.deleteMember(member.getIdMember());
 					FacadeUser.deleteUser(user);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block

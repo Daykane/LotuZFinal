@@ -115,7 +115,6 @@ public class UserJDBC extends User{
 			st = this.cn.createStatement();
 
 			String sql = "Delete From LotuZ.User Where mail = '"+ user.getMail() +"'";
-			System.out.println("Delete User" +user);
 	
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
