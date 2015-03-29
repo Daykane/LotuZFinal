@@ -120,7 +120,7 @@ public class CategoryUI extends JFrame {
 
 		//JListe Category
 		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getAllCategories().getListCategoryProduct();
-		final ArrayList<String> categoriesNames = new ArrayList<StrinProductg>();
+		final ArrayList<String> categoriesNames = new ArrayList<String>();
 //		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 //			Component renderer =  super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus)
 //		    setText(entry.getTitle());
