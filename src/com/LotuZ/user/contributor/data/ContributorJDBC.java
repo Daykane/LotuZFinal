@@ -45,14 +45,21 @@ public class ContributorJDBC extends Contributor{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "INSERT INTO `LotuZ`.`Contributor` (`mailContributor` ) VALUES ('"+ mailContributor +"')'";
+			String sql = "INSERT INTO Contributor (`mailContributor`) VALUES ('"+ mailContributor +"')";
 			String sql2 = "SELECT idContributor FROM LotuZ.Contributor Where mailContributor='"+ mailContributor +"'";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-			int result = st.executeUpdate(sql2);
+			ResultSet result = st.executeQuery(sql2);
+			System.out.println(" RESULT : "+result);
 			
-			String sql3 = "INSERT INTO `LotuZ`.`User` (`idContributor` ) VALUES ('"+ result +"')'";
+			int idContrib = 0;
+			while (result.next())
+			{
+				idContrib = result.getInt("idContributor");
+			}
+			
+			String sql3 = "INSERT INTO User (`idContributor`) VALUES ('"+ idContrib +"')";
 			st.executeUpdate(sql3);
 
 
