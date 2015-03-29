@@ -12,9 +12,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.FacadeBL;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.payment.PaymentUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
+
 
 
 import javax.swing.JLabel;
@@ -24,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 
 import javax.swing.JTextField;
@@ -245,6 +248,27 @@ public class ProductUI extends JFrame{
 		//button DELETE added to the central panel
 		btnNewButton.setBounds(112, 361, 89, 23);
 		panel.add(btnNewButton);
+		
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PaymentUI paymentUI = null;
+				try {
+					paymentUI = new PaymentUI();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				paymentUI.setVisible(true);
+				paymentUI.setLocationRelativeTo(null);
+				dispose();
+				
+			}
+		});
+		btnBuy.setBounds(411, 361, 89, 23);
+		panel.add(btnBuy);
 
 	}
 }
