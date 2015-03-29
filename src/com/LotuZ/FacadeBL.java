@@ -32,8 +32,12 @@ public class FacadeBL {
 	private static ActivityManager activityManager;
 	private static ActivityLeaderManager activityLeaderManager;
 	private static ContributorManager contributorManager;
+	//(^.^(*************************************Loic Start*************************************)^.^)
 	private static CategoryManager categoryManager;
 	private static NotificationManager notificationManager;
+	private static RoomManager roomManager;
+	private static AccessoryManager accessoryManager;
+	//)^.^)**************************************Loic end**************************************(^.^(
 	private static ProductManager productManager;
 
 	
@@ -43,8 +47,12 @@ public class FacadeBL {
 		activityManager = new ActivityManager(kit);
 		activityLeaderManager = new ActivityLeaderManager(kit);
 		contributorManager = new ContributorManager(kit);
+		//(^.^(*************************************Loic Start*************************************)^.^)
 		categoryManager = new CategoryManager(kit);
 		notificationManager = new NotificationManager(kit);
+		roomManager = new RoomManager(kit);
+		accessoryManager =  new AccessoryManager(kit);
+		//)^.^)**************************************Loic end**************************************(^.^(
 		productManager = new ProductManager(kit);
 		
 	}
