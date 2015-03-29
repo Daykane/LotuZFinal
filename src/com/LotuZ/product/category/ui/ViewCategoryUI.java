@@ -411,7 +411,7 @@ public class ViewCategoryUI extends JFrame {
 				
 			}
 		};
-		btnCancel.addActionListener(btnCancelListeners);
+		btnProduct.addActionListener(btnProductListeners);
 		
 		//btnEditListeners
 		
