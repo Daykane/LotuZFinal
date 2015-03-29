@@ -108,14 +108,6 @@ public class AccessoriesUI extends JFrame
 		{ 
 			// Here value will be of the Type 'CD' 
 			((JLabel) renderer).setText(((Accessory) value).getNameAccessory()); 
-			if (((Room) value).getTypeRoom()==0)
-			{
-				setIcon(new ImageIcon(""));
-			}
-			else
-			{
-				setIcon(new ImageIcon(""));
-			}
 		}	 
 		return renderer; 
 	} 
@@ -165,7 +157,15 @@ public class AccessoriesUI extends JFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			AddAccessoryUI add = null;
-			add = new AddAccessoryUI();
+			try {
+				add = new AddAccessoryUI();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (UserNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			add.setLocationRelativeTo(null);
 			add.setVisible(true);
 			dispose();
