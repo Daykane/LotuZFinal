@@ -29,6 +29,7 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.ListProductUI;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.UserLog;
@@ -338,12 +339,19 @@ public class ViewCategoryUI extends JFrame {
 		validationPan.setLayout(new GridBagLayout());
 		contentPaneCenter.add(validationPan, BorderLayout.SOUTH);
 			
-			//Cancel
+		//Cancel
 		JButton btnCancel =new JButton("Cancel");
 		GridBagConstraints gbc_btnCancel= new GridBagConstraints();
 		gbc_btnCancel.gridx = 0;
 		gbc_btnCancel.gridy = 5;
 		categoryPan.add(btnCancel, gbc_btnCancel);
+		
+		//Product
+		JButton btnProduct =new JButton("Products");
+		GridBagConstraints gbc_btnProduct= new GridBagConstraints();
+		gbc_btnProduct.gridx = 2;
+		gbc_btnProduct.gridy = 5;
+		categoryPan.add(btnProduct, gbc_btnProduct);
 		
 //			//Submit
 //		JButton btnOk=new JButton("Ok");
@@ -379,6 +387,32 @@ public class ViewCategoryUI extends JFrame {
 		};
 		btnCancel.addActionListener(btnCancelListeners);
 		
+		//btnProductsListeners
+		
+		ActionListener btnProductListeners = new ActionListener() 
+		{
+			
+			public void actionPerformed(ActionEvent e)
+			{
+				ListProductUI listProductUI = null;
+				try {
+					listProductUI = new listProductUI(categorySel.getIdCategoryProduct());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				listProductUI.setVisible(true);
+				listProductUI.setLocationRelativeTo(null);
+				dispose();
+				
+				
+			}
+		};
+		btnCancel.addActionListener(btnCancelListeners);
+		
 		//btnEditListeners
 		
 		ActionListener btnEditListeners = new ActionListener() 
@@ -397,6 +431,7 @@ public class ViewCategoryUI extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				EditCategoryUI.setLocationRelativeTo(null);
 				EditCategoryUI.setVisible(true);
 				dispose();
 				
