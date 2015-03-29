@@ -397,13 +397,14 @@ public class AddRoomUI extends JFrame
 				{	
 					int surface = (Integer) spnrSurface.getValue();
 					int nbMaxParticipant = (Integer) spnrNbMaxParticipant.getValue();
-					//facadeBL.createRoom(txtFName.getText(), surface , 0, nbMaxParticipant, accessoriesSel); //Code salle de cours = 0
+					facadeBL.createRoom(txtFName.getText(), surface , 0, nbMaxParticipant, accessoriesSel); //Code salle de cours = 0
 				}
 				else if (cBoxTypeRoom.getSelectedItem().equals("Cabinet"))
 				{
 					System.out.println("yrert");
 					int surface = (Integer) spnrSurface.getValue();
-					System.out.println("yrertooo");
+					System.out.println(surface);
+					System.out.println(accessoriesSel.get(1).getClass());
 					facadeBL.createRoom(txtFName.getText(), surface , 0, accessoriesSel); //Code cabinet = 1
 				}
 				RoomsUI roomsUI = null;

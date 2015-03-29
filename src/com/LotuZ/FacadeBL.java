@@ -178,7 +178,7 @@ public class FacadeBL {
 				nbMaxParticipant,listAccessory);
 	}
 	
-	public void createRoom(String nameRoom, int surfaceRoom, int typeRoom, ArrayList<Accessory> listAccessory) 
+	public static void createRoom(String nameRoom, int surfaceRoom, int typeRoom, ArrayList<Accessory> listAccessory) 
 	{
 		System.out.println("FBL");
 		roomManager.createRoom(nameRoom, surfaceRoom, typeRoom, listAccessory);
