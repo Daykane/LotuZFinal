@@ -129,9 +129,9 @@ public class ListUserUI extends JFrame {
                 return renderer;
             }
         });
-		panel.add(new JScrollPane(list));
+		list.setPreferredSize(new Dimension(600, 600));
 
-		list.setPreferredSize(new Dimension(500, 300));
+		panel.add(new JScrollPane(list));
 
 		list.setVisibleRowCount(10);
 		

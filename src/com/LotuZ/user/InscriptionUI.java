@@ -359,25 +359,7 @@ public class InscriptionUI extends JFrame {
 		/*
 		 * CheckBox + Buttons
 		 */
-		
-		TFCotisation = new JTextField();
-		GridBagConstraints gbc_txtTfcotisation = new GridBagConstraints();
-		gbc_txtTfcotisation.insets = new Insets(0, 0, 5, 0);
-		gbc_txtTfcotisation.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtTfcotisation.gridx = 0;
-		gbc_txtTfcotisation.gridy = 10;
-		panelTF.add(TFCotisation, gbc_txtTfcotisation);
-		TFCotisation.setColumns(10);
-		
-		TFDateCotisation = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 0;
-		gbc_textField.gridy = 11;
-		panelTF.add(TFDateCotisation, gbc_textField);
-		TFDateCotisation.setColumns(10);
-		
+
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
 		GridBagConstraints gbc_chckbxMember = new GridBagConstraints();
 		gbc_chckbxMember.insets = new Insets(0, 0, 5, 0);
@@ -385,11 +367,6 @@ public class InscriptionUI extends JFrame {
 		gbc_chckbxMember.gridy = 12;
 		panelTF.add(chckbxMember, gbc_chckbxMember);
 		
-		JCheckBox chckbxBecomeContributor = new JCheckBox("Become Contributor");
-		GridBagConstraints gbc_chckbxBecomeContributor = new GridBagConstraints();
-		gbc_chckbxBecomeContributor.gridx = 0;
-		gbc_chckbxBecomeContributor.gridy = 13;
-		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
 		
 		JPanel panelButton = new JPanel();
 		FlowLayout fl_panelButton = (FlowLayout) panelButton.getLayout();
@@ -408,10 +385,10 @@ public class InscriptionUI extends JFrame {
 		
 		if (chckbxMember.isSelected()==true)
 		{
-			TFDateCotisation.setVisible(false);
-			TFCotisation.setVisible(false);
-			lblCotisation.setVisible(false);
-			lblDateCotisation.setVisible(false);
+			TFDateCotisation.setVisible(true);
+			TFCotisation.setVisible(true);
+			lblCotisation.setVisible(true);
+			lblDateCotisation.setVisible(true);
 		}
 
 		editableTextField(true);
@@ -448,9 +425,6 @@ public class InscriptionUI extends JFrame {
 						if(this.verifyTF() & verifyNumeric() & this.verifyPwd()){
 							
 							try {
-								
-								
-								
 								FacadeBL.inscription(TFLastName.getText(),TFFirstName.getText(),TFAdress.getText(),TFPhone.getText(),TFStreet.getText(),TFHouse.getText(),TFCity.getText(),TFPostCode.getText(),TFPassword.getText());
 								if (chckbxMember.isSelected()){
 									//TODO faire lien vers page payement
@@ -465,7 +439,7 @@ public class InscriptionUI extends JFrame {
 									System.out.println(output);
 									//FacadeBL.inscriptionMember(cotisation,TFAdress.getText());
 								}
-								JOptionPane.showMessageDialog(null,"Inscription rï¿½ussie","Inscription rï¿½ussie",JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null,"Inscription réussie","Inscription réussie",JOptionPane.INFORMATION_MESSAGE);
 							} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 								e.printStackTrace();
 								//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
@@ -587,9 +561,9 @@ public class InscriptionUI extends JFrame {
 			TFLastName.setEditable(true);
 			TFFirstName.setEditable(true);
 			TFStreet.setEditable(true);
-			TFAdress.setEditable(false);
-			TFPassword.setEditable(false);
-			TFConfirmPw.setEditable(false);
+			TFAdress.setEditable(true);
+			TFPassword.setEditable(true);
+			TFConfirmPw.setEditable(true);
 			TFPhone.setEditable(true);
 			TFHouse.setEditable(true);
 			TFCity.setEditable(true);

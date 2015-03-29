@@ -52,39 +52,6 @@ public class Homepage extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		// Info Connection
-		String url = "jdbc:mysql://lotuz.c48krzyl3nim.eu-west-1.rds.amazonaws.com:3306/LotuZ";
-		String login = "ROLL";
-		String passwd = "rolldevelopment";
-
-		// Choose the kit
-		JdbcKit jdbcKit = new JdbcKit(url,login,passwd);
-		jdbcKit.openConnection(url, login, passwd);
-
-		// Init the FacadeBL with the kit
-		FacadeBL.init(jdbcKit);
-		FacadeUser.init(jdbcKit);
-		FacadeEvent.init(jdbcKit);
-		FacadeActivity.init(jdbcKit);
-		//FacadeUser.init();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomepageAdmin frame = new HomepageAdmin();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
 
 	/**
 	 * Create the frame.
@@ -93,8 +60,6 @@ public class Homepage extends JFrame {
 	 */
 	public Homepage() throws SQLException, UserNotFoundException {
 		
-		FacadeUser.login("jack","jack");
-
 		User user = UserLog.getUserLog();
 		Administrator admin = UserLog.getAdminLog();
 		ActivityLeader activityLeader = UserLog.getRespoLog();
