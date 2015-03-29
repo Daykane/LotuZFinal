@@ -7,11 +7,13 @@ import java.awt.EventQueue;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.FlowLayout;
+
 
 
 
@@ -25,6 +27,7 @@ import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.ListUserUI;
+import com.LotuZ.user.PlanningUI;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -33,6 +36,7 @@ import com.LotuZ.user.user.bl.User;
 import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 
 
@@ -110,8 +114,8 @@ public class HomepageAdmin extends JFrame {
 		
 		JPanel panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		flowLayout.setVgap(60);
-		flowLayout.setHgap(220);
+		flowLayout.setVgap(10);
+		flowLayout.setHgap(300);
 		contentPane.add(panel, BorderLayout.CENTER);
 
 		
@@ -198,6 +202,28 @@ public class HomepageAdmin extends JFrame {
 			}
 		});
 		panel.add(btnGestionDesActivitées);
+		
+		JButton btnGestionDesEvents = new JButton("Mes activit\u00E9es");
+		btnGestionDesEvents.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				PlanningUI planning;
+				try {
+					planning = new PlanningUI();
+					planning.setVisible(true);
+					planning.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		panel.add(btnGestionDesEvents);
 		
 		btnGestionDesResponsables.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
