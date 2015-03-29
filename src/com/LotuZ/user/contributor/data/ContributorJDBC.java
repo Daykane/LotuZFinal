@@ -58,8 +58,9 @@ public class ContributorJDBC extends Contributor{
 			{
 				idContrib = result.getInt("idContributor");
 			}
-			
-			String sql3 = "INSERT INTO User (`idContributor`) VALUES ('"+ idContrib +"')";
+			System.out.println(" RESULT : "+idContrib);
+
+			String sql3 = "UPDATE User SET idContributor = ('"+ idContrib +"') Where mail='"+ mailContributor +"'";
 			st.executeUpdate(sql3);
 
 

@@ -342,7 +342,7 @@ public class UserDetailUI extends JFrame {
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 0;
 		gbc_textField.gridy = 8;
-		panelTF.add(textField, gbc_textField);
+		panelTF.add(TFCotisation, gbc_textField);
 		TFCotisation.setColumns(10);
 		
 		TFDateCotisation = new JTextField();
@@ -351,7 +351,7 @@ public class UserDetailUI extends JFrame {
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 0;
 		gbc_textField_1.gridy = 9;
-		panelTF.add(textField_1, gbc_textField_1);
+		panelTF.add(TFDateCotisation, gbc_textField_1);
 		TFDateCotisation.setColumns(10);
 		
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
@@ -590,6 +590,7 @@ public class UserDetailUI extends JFrame {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						if (chckbxBecomeContributor.isSelected() == true && contributor == null )
+							System.out.println("  Userdetail : ");
 							try {
 								FacadeUser.inscriptionContributor(user);
 							} catch (ClassNotFoundException e1) {
