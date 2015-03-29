@@ -53,7 +53,6 @@ public class PlanningUI extends JFrame {
 	 * @throws SQLException 
 	 */
 	public PlanningUI() throws SQLException, UserNotFoundException {
-		FacadeUser.login("jack","jack");
 		
 		User user = UserLog.getUserLog();
 
