@@ -247,7 +247,16 @@ public class RoomsUI extends JFrame
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		AccessoriesUI accessorieUI = new AccessoriesUI();
+		AccessoriesUI accessorieUI=null;
+		try {
+			accessorieUI = new AccessoriesUI();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UserNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		accessorieUI.setLocationRelativeTo(null);
 		accessorieUI.setVisible(true);
 		dispose();	
