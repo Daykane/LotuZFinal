@@ -439,7 +439,7 @@ public class InscriptionUI extends JFrame {
 			lblDateCotisation.setVisible(false);
 		}
 
-		editableTextField(false);
+		editableTextField(true);
 
 
 				
