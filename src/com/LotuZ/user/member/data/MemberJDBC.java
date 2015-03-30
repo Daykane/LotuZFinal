@@ -146,7 +146,7 @@ public class MemberJDBC extends Member{
 			{
 				idbox = result2.getInt("idBoxLetter");
 			}
-			String sql6 = "UPDATE LotuZ.Member SET idBoxLetter = ('"+ idbox +"') Where mail='"+ user.getMail() +"'";
+			String sql6 = "UPDATE LotuZ.Member SET idBoxLetter = ('"+ idbox +"') Where mailMember ='"+ user.getMail() +"'";
 			st.executeUpdate(sql6);
 
 

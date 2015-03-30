@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.notification.bl.BoxLetter;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
@@ -54,6 +55,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Dimension;
+
 
 
 
@@ -637,6 +639,7 @@ public class UserDetailUI extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+
 							JOptionPane.showMessageDialog(null, "Inscription succeed");
 						}
 						if (chckbxBecomeLeader.isSelected() == true && leader == null ) {
