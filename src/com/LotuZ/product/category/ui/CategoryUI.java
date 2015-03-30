@@ -41,11 +41,14 @@ import javax.swing.border.TitledBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.ProductCreateUI;
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
+
+import java.awt.Insets;
 
 /**
  * @author Loïc
@@ -125,6 +128,7 @@ public class CategoryUI extends JFrame {
 		
 		
 		GridBagConstraints gbc_jListCategories= new GridBagConstraints();
+		gbc_jListCategories.insets = new Insets(0, 0, 5, 5);
 		gbc_jListCategories.gridx = 0;
 		gbc_jListCategories.gridy = 1;		
 		jListCategories.setVisible(true);
@@ -134,6 +138,7 @@ public class CategoryUI extends JFrame {
 		
 		JButton btnAddCat = new JButton("Add");
 		GridBagConstraints gbc_btnAddCat= new GridBagConstraints();
+		gbc_btnAddCat.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAddCat.gridx = 1;
 		gbc_btnAddCat.gridy = 1;		
 		btnAddCat.setVisible(true);
@@ -143,6 +148,7 @@ public class CategoryUI extends JFrame {
 		
 		JButton btnViewCat = new JButton("View");
 		GridBagConstraints gbc_btnViewCat= new GridBagConstraints();
+		gbc_btnViewCat.insets = new Insets(0, 0, 5, 0);
 		gbc_btnViewCat.gridx = 1;
 		gbc_btnViewCat.gridy = 2;		
 		btnViewCat.setVisible(true);
@@ -152,6 +158,7 @@ public class CategoryUI extends JFrame {
 		
 		final JButton btnRemoveCat = new JButton("Remove");
 		GridBagConstraints gbc_btnRemoveCat= new GridBagConstraints();
+		gbc_btnRemoveCat.insets = new Insets(0, 0, 5, 0);
 		gbc_btnRemoveCat.gridx = 1;
 		gbc_btnRemoveCat.gridy = 3;		
 		btnRemoveCat.setVisible(true);
@@ -257,6 +264,36 @@ public class CategoryUI extends JFrame {
 
 				//set ScrollPan
 		JScrollPane scrollPpanelCategory = new JScrollPane(categoryPan);
+		
+		JButton btnAddProduct = new JButton("Add Product");
+		btnAddProduct.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+					ProductCreateUI productcreate = null;
+					
+					try {
+						productcreate = new ProductCreateUI();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (UserNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}			
+			
+				
+					productcreate.setLocationRelativeTo(null);
+					productcreate.setVisible(true);
+					dispose();
+				}
+				
+			
+		});
+		GridBagConstraints gbc_btnAddProduct = new GridBagConstraints();
+		gbc_btnAddProduct.gridx = 1;
+		gbc_btnAddProduct.gridy = 4;
+		categoryPan.add(btnAddProduct, gbc_btnAddProduct);
 //		scrollPpanelCategory.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
 		contentPane.add(scrollPpanelCategory, BorderLayout.CENTER);
 					//add  JScrollBar
