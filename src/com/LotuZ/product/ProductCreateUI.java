@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.ui.CategoryUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
@@ -289,12 +290,24 @@ public class ProductCreateUI extends JFrame {
 		//button CANCEL
 		JButton btnCancel = new JButton("CANCEL");
 		btnCancel.addMouseListener(new MouseAdapter() {
+			CategoryUI categoryUI = null;
 
 			//when we click on the button CANCEL
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//TODO renvoyer vers la liste des catégory
-				System.out.println("cancel");
+				try {
+					categoryUI = new CategoryUI();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UserNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				categoryUI.setVisible(true);
+				categoryUI.setLocationRelativeTo(null);		
+				dispose();
 			}
 		});
 
