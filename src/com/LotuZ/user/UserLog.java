@@ -4,9 +4,8 @@ package com.LotuZ.user;
  * @author Alexis
  */
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -27,9 +26,7 @@ public final class UserLog extends User{
 	//private Connection cn;
 
 
-	private UserLog() {
-		super();
-	}
+
 
 
 	public UserLog(User user, Member member, ActivityLeader respo, Administrator admin, Contributor contrib) throws SQLException {

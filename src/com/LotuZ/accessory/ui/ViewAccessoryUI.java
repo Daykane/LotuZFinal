@@ -21,7 +21,6 @@ import javax.swing.border.TitledBorder;
 
 import com.LotuZ.accessory.bl.Accessory;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 

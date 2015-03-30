@@ -3,9 +3,6 @@ package com.LotuZ.product.category.bl;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.ComboBoxModel;
-
-import com.LotuZ.user.user.bl.User;
 
 /**
  * <b> ListCategoryProduct est la classe représentant une liste de CategoryProduct </b>

@@ -3,9 +3,7 @@ package com.LotuZ.notification.ui;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

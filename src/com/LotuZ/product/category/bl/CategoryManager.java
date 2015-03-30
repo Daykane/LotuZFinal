@@ -1,12 +1,10 @@
 package com.LotuZ.product.category.bl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.activity.Activity;
-import com.LotuZ.notification.bl.BoxLetter;
+
 
 public class CategoryManager 
 {

@@ -1,6 +1,5 @@
 package com.LotuZ.notification.data;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +8,7 @@ import java.util.ArrayList;
 
 import com.LotuZ.notification.bl.BoxLetter;
 import com.LotuZ.notification.bl.Notification;
-import com.LotuZ.product.category.bl.CategoryProduct;
-import com.LotuZ.product.category.data.CatgeoryJdbc;
+
 /**
  * <b> NotificationJDBC est la classe représentant les notifications dans le système via JDBC. </b>
  * <p> 

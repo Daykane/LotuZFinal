@@ -47,7 +47,6 @@ public Component createBandeau(final User user,String name){
 	image.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			UserDetailUI userDetail;
 			try {
 				Homepage homepage = new Homepage();
 				homepage.setVisible(true);

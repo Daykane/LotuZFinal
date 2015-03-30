@@ -7,7 +7,6 @@ import java.util.List;
 import com.LotuZ.PersistKit;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
-import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.user.user.bl.User;
 
 /**

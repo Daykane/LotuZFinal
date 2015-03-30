@@ -1,7 +1,6 @@
 package com.LotuZ;
 
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.contributor.bl.ContributorManager;
-import com.LotuZ.user.user.bl.User;
 
 public class FacadeBL {
 	

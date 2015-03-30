@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.LotuZ.PersistKit;
 import com.LotuZ.accessory.bl.Accessory;
-import com.LotuZ.notification.bl.Notification;
 
 public class RoomManager 
 {

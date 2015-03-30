@@ -3,7 +3,6 @@
  */
 package com.LotuZ.notification.bl;
 
-import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,15 +14,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
-import com.LotuZ.EventInscription.FacadeEventInscription;
-import com.LotuZ.activity.FacadeActivity;
-import com.LotuZ.event.FacadeEvent;
-import com.LotuZ.event.repetition.Repetition;
-import com.LotuZ.event.repetition.RepetitionJdbc;
+
 import com.LotuZ.notification.data.BoxLetterJDBC;
-import com.LotuZ.user.FacadeUser;
 
 /**
  * @author lowx

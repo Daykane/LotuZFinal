@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.LotuZ.accessory.bl.Accessory;
-import com.LotuZ.notification.bl.Notification;
 
 /**
  * <b> Room est la classe représentant les salles dans le systeme. </b>

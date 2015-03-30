@@ -5,13 +5,9 @@ import java.sql.Date;
 import java.util.List;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.activity.Activity;
-import com.LotuZ.activity.ActivityManager;
 import com.LotuZ.event.repetition.Repetition;
 import com.LotuZ.event.repetition.RepetitionManager;
-import com.LotuZ.inscription.InscriptionManager;
-import com.LotuZ.login.LoginManager;
-import com.LotuZ.user.activityLeader.bl.ActivityLeaderManager;
+
 
 
 public class FacadeEvent {

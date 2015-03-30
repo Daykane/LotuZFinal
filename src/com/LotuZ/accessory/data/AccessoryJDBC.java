@@ -7,8 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.LotuZ.accessory.bl.Accessory;
-import com.LotuZ.room.bl.Room;
-import com.LotuZ.room.data.RoomJDBC;
+
 
 public class AccessoryJDBC extends Accessory 
 {

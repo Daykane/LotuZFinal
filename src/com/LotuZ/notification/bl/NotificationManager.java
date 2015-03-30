@@ -1,6 +1,5 @@
 package com.LotuZ.notification.bl;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.LotuZ.PersistKit;
-import com.LotuZ.product.category.bl.ListCategoryProduct;
 
 
 

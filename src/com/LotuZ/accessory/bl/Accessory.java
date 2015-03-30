@@ -3,8 +3,6 @@ package com.LotuZ.accessory.bl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.LotuZ.notification.bl.BoxLetter;
-import com.LotuZ.notification.bl.Notification;
 
 /**
  * <b> Accessory est la classe représentant les accessoires dans le systeme. </b>

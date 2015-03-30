@@ -14,10 +14,7 @@ import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.Homepage;
 import com.LotuZ.user.InscriptionUI;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.admin.bl.Administrator;
-import com.LotuZ.user.contributor.bl.Contributor;
-import com.LotuZ.user.member.bl.Member;
+
 import com.LotuZ.user.user.bl.User;
 
 import java.awt.event.MouseAdapter;

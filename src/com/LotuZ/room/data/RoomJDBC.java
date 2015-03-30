@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 import com.LotuZ.accessory.bl.Accessory;
 import com.LotuZ.accessory.data.AccessoryJDBC;
-import com.LotuZ.notification.bl.BoxLetter;
-import com.LotuZ.notification.data.BoxLetterJDBC;
+
 import com.LotuZ.room.bl.Room;
 
 public class RoomJDBC extends Room

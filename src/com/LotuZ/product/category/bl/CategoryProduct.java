@@ -2,7 +2,6 @@ package com.LotuZ.product.category.bl;
 
 import java.sql.SQLException;
 
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 /**
  * <b> CategoryProduct est la classe représentant les catégories des produits. </b>

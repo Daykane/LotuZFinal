@@ -187,8 +187,6 @@ public class DetailsEventUI extends JFrame {
 		JLabel lblContributor = new JLabel("Contributor : ");
 		panelMain.add(lblContributor, "2, 18, right, default");
 
-		//TODO le nom du contributor
-		String mail = null;
 		//FacadeUser.getContributor(mail);
 		TfContrib = new JTextField();
 		panelMain.add(TfContrib, "4, 18, left, default");

@@ -9,8 +9,7 @@ import java.util.List;
 
 import com.LotuZ.product.category.bl.CategoryProduct;
 import com.LotuZ.product.category.bl.ListCategoryProduct;
-import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
+
 
 public class ListCategoryJDBC extends ListCategoryProduct 
 {

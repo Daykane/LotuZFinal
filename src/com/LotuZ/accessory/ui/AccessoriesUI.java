@@ -4,7 +4,6 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -13,27 +12,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
+
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
 import com.LotuZ.accessory.bl.Accessory;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 
 public class AccessoriesUI extends JFrame 
 {
-	private FacadeBL facadeBL;
 	/**
 	 * 
 	 */

@@ -11,7 +11,6 @@ import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
-import com.LotuZ.user.user.data.UserJDBC;
 
 
 public class LoginManager {

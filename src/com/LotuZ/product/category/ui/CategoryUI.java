@@ -1,7 +1,6 @@
 package com.LotuZ.product.category.ui;
 
 import interfaceDeBase.Bandeau;
-import interfaceDeBase.PageAccueiltest;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

@@ -1,11 +1,7 @@
 package com.LotuZ.notification.bl;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-import com.LotuZ.product.category.bl.CategoryProduct;
 
 /**
  * <b> Notification est la classe représentant les notfications dans le systeme. </b>

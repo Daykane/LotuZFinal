@@ -21,7 +21,6 @@ import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.notification.bl.BoxLetter;
 import com.LotuZ.user.Homepage;
 import com.LotuZ.user.UserLog;
-import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.User;
 
 import javax.swing.JLabel;
@@ -60,7 +59,6 @@ public class InscriptionEventUI extends JFrame {
 	public InscriptionEventUI() {
 
 		final User user = UserLog.getUserLog();
-		Administrator admin = UserLog.getAdminLog();
 		setTitle("Zen Lounge");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300,800, 750, 600);

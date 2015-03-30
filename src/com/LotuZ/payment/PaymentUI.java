@@ -3,7 +3,6 @@ package com.LotuZ.payment;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -12,11 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
+
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.product.category.ui.CategoryUI;
-import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
 

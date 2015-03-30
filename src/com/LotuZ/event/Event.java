@@ -7,8 +7,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.LotuZ.event.repetition.Repetition;
-import com.LotuZ.room.bl.Room;
+
 
 public abstract class Event {
 	

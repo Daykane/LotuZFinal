@@ -4,16 +4,13 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.OptionPaneUI;
 
 import java.awt.GridBagLayout;
 
@@ -33,7 +30,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.notification.bl.BoxLetter;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.contributor.bl.Contributor;
@@ -48,8 +44,7 @@ import com.LotuZ.user.UserLog;
 
 
 
-import com.LotuZ.FacadeBL;
-import com.LotuZ.JdbcKit;
+
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

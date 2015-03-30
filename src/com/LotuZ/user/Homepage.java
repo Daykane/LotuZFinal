@@ -13,11 +13,9 @@ import java.awt.FlowLayout;
 
 
 
-import com.LotuZ.FacadeBL;
 import com.LotuZ.EventInscription.InscriptionEventUI;
 import com.LotuZ.activity.UI.ActivityUI;
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.notification.bl.BoxLetter;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
 import com.LotuZ.user.user.bl.User;

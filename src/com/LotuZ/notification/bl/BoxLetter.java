@@ -1,6 +1,5 @@
 package com.LotuZ.notification.bl;
 
-import java.awt.List;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

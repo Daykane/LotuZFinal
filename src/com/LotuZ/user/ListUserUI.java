@@ -20,8 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 
 import com.LotuZ.login.UserNotFoundException;
-import com.LotuZ.user.activityLeader.bl.ActivityLeader;
-import com.LotuZ.user.admin.bl.Administrator;
+
 import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 
@@ -68,8 +67,7 @@ public class ListUserUI extends JFrame {
 	public ListUserUI(int idRole) throws SQLException, UserNotFoundException {
 		
 		User user = UserLog.getUserLog();
-		Administrator adminLog = UserLog.getAdminLog();
-		ActivityLeader activityLeaderLog = UserLog.getRespoLog();
+
 		
 
 		// Initialisation du bandeau et création de la Frame

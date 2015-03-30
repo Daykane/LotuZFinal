@@ -188,9 +188,7 @@ public class EditEventUI extends JFrame {
 		
 		JLabel lblSalle = new JLabel("Salle : ");
 		panelMain.add(lblSalle, "2, 16, right, default");
-		
-		//TODO get list room
-		String mail;
+
 		Choice choiceRoom = new Choice();
 		panelMain.add(choiceRoom, "4, 16, left, default");
 		

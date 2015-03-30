@@ -10,8 +10,7 @@ import java.sql.SQLException;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import com.LotuZ.EventInscription.EventInscription;
 import com.LotuZ.EventInscription.EventInscriptionJdbc;
