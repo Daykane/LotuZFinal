@@ -121,6 +121,7 @@ public class MemberJDBC extends Member{
 			st = this.cn.createStatement();
 
 			String sql = "INSERT INTO `LotuZ`.`Member` ( `cotisation`, `dateCotisation`, `mailMember` ) VALUES ('"+ this.getCotisation() +"', '"+ output +"', '"+ user.getMail()+"')";
+			
 			String sql2 = "SELECT idMember FROM LotuZ.Member Where mailMember='"+ user.getMail() +"'";
 
 			
@@ -134,6 +135,20 @@ public class MemberJDBC extends Member{
 			}
 			String sql3 = "UPDATE LotuZ.User SET idMember = ('"+ idmembre +"') Where mail='"+ user.getMail() +"'";
 			st.executeUpdate(sql3);
+			
+			String sql4 = "INSERT INTO BoxLetter (`idMember`) VALUES ('"+ idmembre +"')";
+			st.executeUpdate(sql4);
+			String sql5 = "SELECT * FROM LotuZ.BoxLetter Where idMember='"+ idmembre +"'";
+			
+			ResultSet result2 = st.executeQuery(sql5);
+			int idbox = 0;
+			while (result2.next())
+			{
+				idbox = result2.getInt("idBoxLetter");
+			}
+			String sql6 = "UPDATE LotuZ.Member SET idBoxLetter = ('"+ idbox +"') Where mail='"+ user.getMail() +"'";
+			st.executeUpdate(sql6);
+
 
 		} catch (SQLException e) {
 			throw e;

@@ -3,8 +3,11 @@ package com.LotuZ.event.UI;
 import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpinnerModel;
@@ -12,10 +15,13 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.DataBaseException;
+import com.LotuZ.FacadeBL;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.repetition.Repetition;
+import com.LotuZ.notification.bl.BoxLetter;
+import com.LotuZ.room.bl.Room;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -37,7 +43,9 @@ import java.awt.Choice;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -197,8 +205,22 @@ public class CreateEventUI extends JFrame {
 		panelMain.add(lblSalle, "2, 16, right, default");
 
 		//TODO get list room
-		Choice choiceRoom = new Choice();
-		panelMain.add(choiceRoom, "4, 16, left, default");
+		ArrayList<Room> rooms =FacadeBL.getAllRoom();		
+		JComboBox cBoxRoom = new JComboBox(rooms.toArray());
+		cBoxRoom.setRenderer(new DefaultListCellRenderer() {
+ 
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (renderer instanceof JLabel && value instanceof Room) {
+                    ((JLabel) renderer).setText(((Room) value).getNameRoom()+" "+((Room) value).getSurfaceRoom());
+                }
+                return renderer;
+            }
+        });
+		panelMain.add(cBoxRoom, "4, 16, left, default");
 
 		JLabel lblContributor = new JLabel("Contributor : ");
 		panelMain.add(lblContributor, "2, 18, right, default");
@@ -247,9 +269,12 @@ public class CreateEventUI extends JFrame {
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 
 		JButton btnConfirm = new JButton("Confirm");
+		
+		final BoxLetter boxLetter = FacadeBL.getBoxLetter(UserLog.getUserLog().getIdMember());
 		btnConfirm.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
 				try {
 					if (control()){
 						String name = TfName.getText();
@@ -293,6 +318,8 @@ public class CreateEventUI extends JFrame {
 
 						FacadeEvent.createEvent2(name, nbParticipant, price, startingTime, finishingTime, date, description, idRepetition, idActivity, idContrib, idRoom);
 						JOptionPane.showMessageDialog(null,"Event add in system","Sucess",JOptionPane.INFORMATION_MESSAGE);
+						
+						boxLetter.sendNotification(14, UserLog.getUserLog().getIdMember());
 						dispose();
 					}
 					}catch (SQLException e) {

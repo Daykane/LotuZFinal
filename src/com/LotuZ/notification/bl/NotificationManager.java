@@ -66,6 +66,18 @@ public class NotificationManager
 			e.printStackTrace();
 		}	
 	}
+	
+	public BoxLetter getBoxLetter(int idMember) 
+	{
+		BoxLetter boxLetter = pkit.createBoxLetter();
+		try {
+			boxLetter= boxLetter.loadBoxLetter(idMember);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return boxLetter;
+		
+	}
 
 	public void updateNotification(int idNotification, String textNotification,
 			String objectNotification) 
@@ -110,5 +122,6 @@ public class NotificationManager
 		e.printStackTrace();
 	}	
 	}
+
 
 }

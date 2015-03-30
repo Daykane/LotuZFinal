@@ -129,13 +129,14 @@ public abstract class BoxLetter
 		this.readNotification = readNotification;
 	}
 	
-	protected BoxLetter(){}
+	public BoxLetter(){}
 	
 	//Methodes
 	
 	//Load
 	public abstract BoxLetter loadLetter(int idNotification, int idMember) throws SQLException;
 	public abstract ArrayList<BoxLetter> loadAllLetter(int idMember) throws SQLException;
+	public abstract BoxLetter loadBoxLetter(int idMember) throws SQLException;
 	
 	//Update
 	public abstract void update(int idBoxLetter, int idNotification, int idMember, int readNotification) throws SQLException;
@@ -154,6 +155,8 @@ public abstract class BoxLetter
 		Calendar cal = Calendar.getInstance();
 		this.save(idNotification,idMember,(String) dateFormat.format(cal.getTime()),0);
 	}
+
+
 	
 
 

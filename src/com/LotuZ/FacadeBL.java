@@ -134,6 +134,11 @@ public class FacadeBL {
 		notificationManager.createBoxLetter(idNotification, idMember);
 	}
 	
+	public static  BoxLetter getBoxLetter(int idMember) 
+	{
+		return notificationManager.getBoxLetter(idMember);
+	}
+	
 	public static  void updateNotification(int idNotification, String textNotification, String objectNotification) 
 	{
 		notificationManager.updateNotification(idNotification,textNotification, objectNotification);

@@ -72,6 +72,28 @@ public class BoxLetterJDBC extends BoxLetter {
 		}
 	return this;
 	}
+	
+	public BoxLetter loadBoxLetter(int idMember) throws SQLException 
+	{
+		Statement st =null;
+		
+		// Cr�ation d'un statement
+		st = this.cn.createStatement();
+		
+		// Requ�te de s�lection � partir de l'identifiant 
+		String sql = "Select * From LotuZ.BoxLetter where idMember="+idMember+" and idNotification is null";
+		// Ex�cution de la requ�te
+		ResultSet result = st.executeQuery(sql);
+		
+		// R�cup�ration des donn�es 
+		while(result.next())
+		{	
+			this.setIdBoxLetter(result.getInt("idBoxLetter"));
+			this.setIdMember(result.getInt("idMember"));
+		}
+	return this;
+		
+	}
 
 	public ArrayList<BoxLetter> loadAllLetter(int idMember)
 			throws SQLException {
@@ -180,5 +202,7 @@ public class BoxLetterJDBC extends BoxLetter {
 		st.executeUpdate(sql);
 		
 	}
+
+
 
 }
