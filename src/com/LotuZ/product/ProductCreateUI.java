@@ -6,18 +6,24 @@ import interfaceDeBase.Bandeau;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale.Category;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -27,10 +33,14 @@ import javax.swing.border.EmptyBorder;
 import com.LotuZ.FacadeBL;
 import com.LotuZ.JdbcKit;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.product.category.bl.CategoryProduct;
+import com.LotuZ.product.category.bl.ListCategoryProduct;
 import com.LotuZ.product.category.ui.CategoryUI;
 import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.user.bl.User;
+
+import javax.swing.JComboBox;
 
 public class ProductCreateUI extends JFrame {
 
@@ -39,7 +49,6 @@ public class ProductCreateUI extends JFrame {
 	private JTextField TFProductName;
 	private JTextField TFPrice;
 	private JTextField TFQuantity;
-	private JTextField TFCategory;
 	private JTextField TFReduction;
 	private final JLabel jlblStatus = new JLabel("Error dans un champ");
 
@@ -109,6 +118,26 @@ public class ProductCreateUI extends JFrame {
 		TFQuantity.setColumns(10);
 		TFQuantity.setBounds(271, 197, 165, 27);
 		panelCenter.add(TFQuantity);
+		final ArrayList<CategoryProduct> categories = (ArrayList<CategoryProduct>) FacadeBL.getAllCategories().getListCategoryProduct();
+		final ArrayList<String> categoriesNames = new ArrayList<String>();
+		final JComboBox comboBox = new JComboBox(categories.toArray());
+		comboBox.setRenderer(new DefaultListCellRenderer() 
+		{ 
+		@Override 
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
+		{ 
+			Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); 
+			if (renderer instanceof JLabel && value instanceof CategoryProduct) 
+			{ 
+				// Here value will be of the Type 'CD' 
+				((JLabel) renderer).setText(((CategoryProduct) value).getNameCategory()+" "+((CategoryProduct) value).getDecriptionCategory()); 
+			}	 
+			return renderer; 
+		} 
+		}
+		);
+		comboBox.setBounds(271, 313, 165, 20);
+		panelCenter.add(comboBox);
 
 		//label category
 		JLabel lblCategory = new JLabel("Category:");
@@ -119,12 +148,6 @@ public class ProductCreateUI extends JFrame {
 		JLabel lblReduction = new JLabel("Reduction: (number in %)");
 		lblReduction.setBounds(112, 260, 149, 14);
 		panelCenter.add(lblReduction);
-
-		//textfield category
-		TFCategory = new JTextField();
-		TFCategory.setColumns(10);
-		TFCategory.setBounds(271, 310, 165, 27);
-		panelCenter.add(TFCategory);
 
 		//textfield reduction
 		TFReduction = new JTextField();
@@ -148,7 +171,7 @@ public class ProductCreateUI extends JFrame {
 						//the product is added
 						Date creationDate = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),Integer.parseInt(TFCategory.getText()),Integer.parseInt(TFReduction.getText()), dateFormat.format(creationDate));
+						FacadeBL.product(TFProductName.getText(),Integer.parseInt(TFPrice.getText()),Integer.parseInt(TFQuantity.getText()),categories.get(comboBox.getSelectedIndex()).getIdCategoryProduct(),Integer.parseInt(TFReduction.getText()), dateFormat.format(creationDate));
 
 						//a message to inform that the product is added
 						JOptionPane.showMessageDialog(null,"Product added","Product added",JOptionPane.INFORMATION_MESSAGE);
@@ -176,7 +199,6 @@ public class ProductCreateUI extends JFrame {
 				this.TFisempty(TFProductName);
 				this.TFisempty(TFPrice);
 				this.TFisempty(TFQuantity);
-				this.TFisempty(TFCategory);
 				this.TFisempty(TFReduction);
 
 				if (count>0){
@@ -314,6 +336,9 @@ public class ProductCreateUI extends JFrame {
 		//the button CANCEL is added to the center panel
 		btnCancel.setBounds(315, 451, 89, 23);
 		panelCenter.add(btnCancel);
+		
+		
+
 
 	}
 

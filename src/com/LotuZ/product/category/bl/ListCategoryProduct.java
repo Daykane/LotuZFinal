@@ -3,6 +3,8 @@ package com.LotuZ.product.category.bl;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.ComboBoxModel;
+
 import com.LotuZ.user.user.bl.User;
 
 /**
@@ -63,6 +65,6 @@ public abstract class ListCategoryProduct {
 
 	public abstract ListCategoryProduct loadSubCategories(int idFatherCategoryProduct) throws SQLException;
 	
-	public abstract ListCategoryProduct loadSubCategories() throws SQLException;	
+	public abstract ListCategoryProduct loadSubCategories() throws SQLException;
 
 }
