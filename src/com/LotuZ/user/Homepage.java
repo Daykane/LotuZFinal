@@ -12,7 +12,9 @@ import java.awt.FlowLayout;
 
 
 
+
 import com.LotuZ.FacadeBL;
+import com.LotuZ.EventInscription.InscriptionEventUI;
 import com.LotuZ.activity.UI.ActivityUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.notification.bl.BoxLetter;
@@ -23,6 +25,7 @@ import com.LotuZ.user.user.bl.User;
 import java.sql.SQLException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 
 
 
@@ -181,14 +184,11 @@ public class Homepage extends JFrame {
 		btnSinscrireUn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				BoxLetter boxLetter = FacadeBL.getBoxLetter(UserLog.getMemberLog().getIdMember());
-
-				try {
-					boxLetter.sendNotification(14, UserLog.getMemberLog().getIdMember());
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				InscriptionEventUI inscriptionEvent;
+				inscriptionEvent = new InscriptionEventUI();
+				inscriptionEvent.setVisible(true);
+				inscriptionEvent.setLocationRelativeTo(null);
+				dispose();
 
 			}
 		});
@@ -241,6 +241,7 @@ public class Homepage extends JFrame {
 			btnGestionDesIntervenants.setVisible(false);
 			btnGestionDesEvents.setVisible(false);
 			btnGestionDesUtilisateurs.setVisible(false);
+			btnSinscrireUn.setVisible(false);
 		}
 	}
 

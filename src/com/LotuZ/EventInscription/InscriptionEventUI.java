@@ -11,12 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.LotuZ.DataBaseException;
+import com.LotuZ.FacadeBL;
 import com.LotuZ.activity.Activity;
 import com.LotuZ.activity.FacadeActivity;
 import com.LotuZ.event.Event;
 import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.UI.DetailsEventUI;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.notification.bl.BoxLetter;
 import com.LotuZ.user.Homepage;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -102,6 +104,8 @@ public class InscriptionEventUI extends JFrame {
 					details = new DetailsEventUI(list[listEvent.getSelectedIndex()]);
 					details.setVisible(true);
 					details.setLocationRelativeTo(null);
+
+
 					}
 				}
 			}
@@ -180,6 +184,13 @@ public class InscriptionEventUI extends JFrame {
 						FacadeEventInscription.addUserInEvent(user, list[listEvent.getSelectedIndex()]);
 					}catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
 						JOptionPane.showMessageDialog(null,"Alrady register","already register",JOptionPane.INFORMATION_MESSAGE);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					BoxLetter boxLetter = FacadeBL.getBoxLetter(UserLog.getMemberLog().getIdMember());
+					try {
+						boxLetter.sendNotification(14, UserLog.getMemberLog().getIdMember());
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
