@@ -37,6 +37,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JList;
 
+/**
+ * @author Ludo
+ *
+ */
 public class PlanningUI extends JFrame {
 
 	/**

@@ -31,6 +31,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
+import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.UserLog;
 
@@ -89,6 +92,9 @@ public class InscriptionUI extends JFrame {
 	public InscriptionUI() {
 		
 		setPreferredSize(new Dimension(750, 600));
+		
+		Administrator adminLog = UserLog.getAdminLog();
+		ActivityLeader activityLeaderLog = UserLog.getRespoLog();
 		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -342,6 +348,7 @@ public class InscriptionUI extends JFrame {
 		gbc_chckbxBecomeContributor.gridx = 0;
 		gbc_chckbxBecomeContributor.gridy = 11;
 		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
+		chckbxBecomeContributor.setVisible(false);
 
 		final JCheckBox chckbxMember = new JCheckBox("Become Member");
 		GridBagConstraints gbc_chckbxMember = new GridBagConstraints();
@@ -349,6 +356,12 @@ public class InscriptionUI extends JFrame {
 		gbc_chckbxMember.gridx = 0;
 		gbc_chckbxMember.gridy = 12;
 		panelTF.add(chckbxMember, gbc_chckbxMember);
+		
+		
+		if (adminLog != null || activityLeaderLog != null)
+		{
+			chckbxBecomeContributor.setVisible(true);
+		}
 		
 		
 		JPanel panelButton = new JPanel();
@@ -419,16 +432,15 @@ public class InscriptionUI extends JFrame {
 								Homepage homepage = new Homepage();
 								homepage.setVisible(true);
 								homepage.setLocationRelativeTo(null);
+								dispose();
 
 							} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
 								e.printStackTrace();
-								//JOptionPane.showMessageDialog(null,"Mail identique","Mail identique",JOptionPane.ERROR_MESSAGE);
 							} catch (ClassNotFoundException e) {
 								e.printStackTrace();
 							} catch (SQLException e) {
 								e.printStackTrace();
 							} catch (UserNotFoundException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}

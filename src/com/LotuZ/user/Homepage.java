@@ -13,11 +13,13 @@ import java.awt.FlowLayout;
 
 
 
+
 import com.LotuZ.EventInscription.InscriptionEventUI;
 import com.LotuZ.activity.UI.ActivityUI;
 import com.LotuZ.login.UserNotFoundException;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
+import com.LotuZ.user.member.bl.Member;
 import com.LotuZ.user.user.bl.User;
 
 import java.sql.SQLException;
@@ -32,14 +34,17 @@ import java.awt.event.MouseEvent;
 
 
 
+
 import javax.swing.JButton;
 
 
+/**
+ * @author Ludo
+ *
+ */
 public class Homepage extends JFrame {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -54,7 +59,8 @@ public class Homepage extends JFrame {
 		User user = UserLog.getUserLog();
 		Administrator admin = UserLog.getAdminLog();
 		ActivityLeader activityLeader = UserLog.getRespoLog();
-
+		Member member = UserLog.getMemberLog();
+		
 		Bandeau bandeau = new Bandeau();
 		bandeau.setJframe(this);
 		setTitle("Zen Lounge");
@@ -147,7 +153,7 @@ public class Homepage extends JFrame {
 		JButton btnGestionDesResponsables = new JButton("Gestion des Responsables d'Activit\u00E9s");
 		panel.add(btnGestionDesResponsables);
 		
-		JButton btnGestionDesActivitees = new JButton("Gestion des activit\u00E9es");
+		JButton btnGestionDesActivitees = new JButton("Gestion des activit\u00E9s");
 		btnGestionDesActivitees.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -159,7 +165,7 @@ public class Homepage extends JFrame {
 		});
 		panel.add(btnGestionDesActivitees);
 		
-		JButton btnGestionDesEvents = new JButton("Mes activit\u00E9es");
+		JButton btnGestionDesEvents = new JButton("Mes activit\u00E9s");
 		btnGestionDesEvents.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -232,7 +238,16 @@ public class Homepage extends JFrame {
 			btnGestionDesUtilisateurs.setVisible(false);
 			btnGestionDesEvents.setVisible(true);
 		}
-		else 
+		else if (member != null)
+		{
+			btnGestionDesResponsables.setVisible(false);
+			btnGestionDesMembres.setVisible(false);
+			btnGestionDesIntervenants.setVisible(false);
+			btnGestionDesEvents.setVisible(false);
+			btnGestionDesUtilisateurs.setVisible(false);
+			btnSinscrireUn.setVisible(true);
+		}
+		else
 		{
 			btnGestionDesResponsables.setVisible(false);
 			btnGestionDesMembres.setVisible(false);

@@ -46,11 +46,13 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 
 
+/**
+ * @author Ludo
+ *
+ */
 public class ListUserUI extends JFrame {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JList<User> list;

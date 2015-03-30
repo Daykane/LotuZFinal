@@ -15,6 +15,10 @@ import com.LotuZ.user.user.bl.ListUser;
 import com.LotuZ.user.user.bl.User;
 import com.LotuZ.user.user.bl.UserManager;
 
+/**
+ * @author Ludo
+ *
+ */
 public class FacadeUser {
 	
 

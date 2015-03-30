@@ -3,10 +3,7 @@ package com.LotuZ.user.user.bl;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * @author Ludo
- *
- */
+
 /**
  * @author Ludo
  *

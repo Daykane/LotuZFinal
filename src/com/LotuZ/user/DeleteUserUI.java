@@ -6,8 +6,10 @@ import java.awt.BorderLayout;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 
 
 
@@ -27,6 +29,10 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * @author Ludo
+ *
+ */
 public class DeleteUserUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -89,6 +95,8 @@ public class DeleteUserUI extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				JOptionPane.showMessageDialog(null,"Leader deleted","Leader deleted",JOptionPane.ERROR_MESSAGE);
+
 			}
 		});
 		panel.add(btnDeleteActivityLeader);
@@ -98,8 +106,7 @@ public class DeleteUserUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					//FacadeUser.deleteLeader(leader.getIdLeader());
-					//FacadeUser.deleteMember(member.getIdMember());
+
 					FacadeUser.deleteUser(user);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -111,6 +118,8 @@ public class DeleteUserUI extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				JOptionPane.showMessageDialog(null,"User deleted","User deleted",JOptionPane.ERROR_MESSAGE);
+
 			}
 		});
 		panel.add(btnDeleteUser);
@@ -131,6 +140,8 @@ public class DeleteUserUI extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				JOptionPane.showMessageDialog(null,"Member deleted","Member deleted",JOptionPane.ERROR_MESSAGE);
+
 			}
 		});
 		panel.add(btnDeleteMember);
@@ -140,7 +151,6 @@ public class DeleteUserUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					System.out.println("le contributoooor : "+contributor);
 					FacadeUser.deleteContributor(contributor.getIdContributor());
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -152,6 +162,8 @@ public class DeleteUserUI extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				JOptionPane.showMessageDialog(null,"Contributor deleted","Contributor deleted",JOptionPane.ERROR_MESSAGE);
+
 			}
 		});
 		panel.add(btnDeleteContributor);
@@ -179,17 +191,21 @@ public class DeleteUserUI extends JFrame {
 		});
 		panel.add(btnCancel);
 		
-		if (adminLog != null)
+		btnDeleteActivityLeader.setVisible(false);
+		btnDeleteContributor.setVisible(false);
+		btnDeleteMember.setVisible(false);
+		
+		if (contributor != null)
 		{
-			btnDeleteActivityLeader.setVisible(true);
 			btnDeleteContributor.setVisible(true);
+		}
+		if (member != null)
+		{
 			btnDeleteMember.setVisible(true);
 		}
-		else
+		if (leader != null)
 		{
-			btnDeleteActivityLeader.setVisible(false);
-			btnDeleteContributor.setVisible(false);
-			btnDeleteMember.setVisible(false);
+			btnDeleteActivityLeader.setVisible(true);
 		}
 	}
 

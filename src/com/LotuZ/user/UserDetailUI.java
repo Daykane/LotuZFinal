@@ -370,8 +370,15 @@ public class UserDetailUI extends JFrame {
 		gbc_chckbxBecomeContributor.gridy = 13;
 		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
 		
+		final JCheckBox chckbxBecomeLeader = new JCheckBox("Become Leader");
+		GridBagConstraints gbc_chckbxBecomeLeader = new GridBagConstraints();
+		gbc_chckbxBecomeLeader.gridx = 0;
+		gbc_chckbxBecomeLeader.gridy = 14;
+		panelTF.add(chckbxBecomeLeader, gbc_chckbxBecomeLeader);
+		
 		chckbxBecomeContributor.setVisible(false);
 		chckbxMember.setVisible(false);
+		chckbxBecomeLeader.setVisible(false);
 		
 		if (adminLog != null || activityLeaderLog != null)
 		{
@@ -383,12 +390,12 @@ public class UserDetailUI extends JFrame {
 			{
 				chckbxMember.setVisible(true);
 			}
+			if (leader == null)
+			{
+				chckbxBecomeLeader.setVisible(true);
+			}
 		}
-		else
-		{
-			chckbxBecomeContributor.setVisible(false);
-			chckbxMember.setVisible(false);
-		}
+
 		
 		
 		
@@ -426,16 +433,7 @@ public class UserDetailUI extends JFrame {
 		TFCity.setText(user.getCity());
 		TFPostCode.setText(user.getPostCode());
 		
-		final JCheckBox chckbxBecomeLeader = new JCheckBox("Become Leader");
-		chckbxBecomeLeader.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		GridBagConstraints gbc_chckbxBecomeLeader = new GridBagConstraints();
-		gbc_chckbxBecomeLeader.gridx = 0;
-		gbc_chckbxBecomeLeader.gridy = 14;
-		panelTF.add(chckbxBecomeLeader, gbc_chckbxBecomeLeader);
+
 		if (member != null){
 			TFCotisation.setText((member.getCotisation()).toString());
 			TFDateCotisation.setText(member.getDateCotisation());
