@@ -20,6 +20,7 @@ import com.LotuZ.event.FacadeEvent;
 import com.LotuZ.event.UI.CreateEventUI;
 import com.LotuZ.event.UI.DetailsEventUI;
 import com.LotuZ.login.UserNotFoundException;
+import com.LotuZ.user.FacadeUser;
 import com.LotuZ.user.UserLog;
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.admin.bl.Administrator;
@@ -33,6 +34,7 @@ import java.awt.event.MouseEvent;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
 
 
 
@@ -194,7 +196,14 @@ public class ActivityDetailsUI extends JFrame {
 		panel.add(lblRespo, "4, 6, right, default");
 		
 		//TODO get le name et pas l'id du respo
-		tfRespo = new JTextField(activity.getIdRespo());
+		User userRespo = null;
+		try {
+			userRespo = FacadeUser.getUser(activity.getIdRespo());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		tfRespo = new JTextField(userRespo.getFirstName());
 		tfRespo.setEditable(false);
 		panel.add(tfRespo, "6, 6, fill, top");
 		tfRespo.setColumns(10);

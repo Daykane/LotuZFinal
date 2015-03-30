@@ -66,6 +66,7 @@ public class ActivityManager {
 			try {
 				activity.save();
 			} catch (SQLException e) {
+				e.printStackTrace();
 				throw new DataBaseException();
 			} catch (ClassNotFoundException e) {
 				throw e;

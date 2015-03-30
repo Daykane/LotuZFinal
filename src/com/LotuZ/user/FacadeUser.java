@@ -102,6 +102,10 @@ public class FacadeUser {
 		userManager.inscriptionContributor(user);
 
 	}
+	public static void inscriptionLeader(User user) throws ClassNotFoundException, SQLException {
+		userManager.inscriptionLeader(user);
+
+	}
 
 
 }

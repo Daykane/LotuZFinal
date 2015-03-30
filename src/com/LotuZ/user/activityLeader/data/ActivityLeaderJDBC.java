@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
+
 import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 
 
@@ -106,15 +107,20 @@ public class ActivityLeaderJDBC extends ActivityLeader{
 			// Etape 3 : Création d'un statement
 			st = this.cn.createStatement();
 
-			String sql = "INSERT INTO `LotuZ`.`Leader` (`mailLeader` ) VALUES ('"+ mailLeader +"')'";
+			String sql = "INSERT INTO LotuZ.Leader (mailLeader) VALUES ('"+ mailLeader +"')";
 			String sql2 = "SELECT idLeader FROM LotuZ.Leader Where mailLeader='"+ mailLeader +"'";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
+			ResultSet result = st.executeQuery(sql2);
+			int id = 0;
+			while(result.next()){
+				id = result.getInt("idLeader");
+			}
 			
-			int result = st.executeUpdate(sql2);
 			
-			String sql3 = "INSERT INTO `LotuZ`.`Member` (`idLeader` ) VALUES ('"+ result +"')'";
+			String sql3 = "UPDATE Member SET idLeader = ('"+id+"') where mailMember='"+mailLeader+"'";
+
 			st.executeUpdate(sql3);
 
 

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import com.LotuZ.PersistKit;
+import com.LotuZ.user.activityLeader.bl.ActivityLeader;
 import com.LotuZ.user.contributor.bl.Contributor;
 import com.LotuZ.user.member.bl.Member;
 
@@ -106,4 +107,11 @@ public class UserManager {
 		Contributor contributor = pkit.createContributor();
 		contributor.save(user.getMail());
 	}
+
+	public void inscriptionLeader(User user) throws ClassNotFoundException, SQLException {
+		ActivityLeader leader = pkit.createActivityLeader();
+		leader.save(user.getMail());		
+	}
+
+
 }

@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -108,16 +109,19 @@ public class ActivityCreateUI extends JFrame {
 		
 		// Fill the choice box
 		
-		final List<User> listUser;
+		List<User> listUser = new ArrayList<User>();
 		ListUser u = null;
 		try {
 			u = FacadeUser.getLeaders();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		System.out.println(u);
 		listUser = u.getListUser();
 		final User[] arrayLeader;
 		arrayLeader = toUserArray(listUser);
+		System.out.println(listUser);
+
 		
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox choiceRespo = new JComboBox(arrayLeader);

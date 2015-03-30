@@ -8,10 +8,12 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.OptionPaneUI;
 
 import java.awt.GridBagLayout;
 
@@ -52,6 +54,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.Dimension;
+
+
 
 
 
@@ -251,9 +255,9 @@ public class UserDetailUI extends JFrame {
 		contentPane.add(panelTF, BorderLayout.CENTER);
 		GridBagLayout gbl_panelTF = new GridBagLayout();
 		gbl_panelTF.columnWidths = new int[]{0, 0};
-		gbl_panelTF.rowHeights = new int[]{25, 25, 0, 0, 0, 0, 0, 0, 25, 25, 0, 0, 0, 0, 0};
+		gbl_panelTF.rowHeights = new int[]{25, 25, 0, 0, 0, 0, 0, 0, 25, 25, 0, 0, 0, 0, 0, 0};
 		gbl_panelTF.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panelTF.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelTF.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelTF.setLayout(gbl_panelTF);
 		
 		/*
@@ -364,15 +368,24 @@ public class UserDetailUI extends JFrame {
 		
 		final JCheckBox chckbxBecomeContributor = new JCheckBox("Become Contributor");
 		GridBagConstraints gbc_chckbxBecomeContributor = new GridBagConstraints();
+		gbc_chckbxBecomeContributor.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxBecomeContributor.gridx = 0;
 		gbc_chckbxBecomeContributor.gridy = 13;
 		panelTF.add(chckbxBecomeContributor, gbc_chckbxBecomeContributor);
 		
+		chckbxBecomeContributor.setVisible(false);
+		chckbxMember.setVisible(false);
 		
 		if (adminLog != null || activityLeaderLog != null)
 		{
-			chckbxBecomeContributor.setVisible(true);
-			chckbxMember.setVisible(true);
+			if (contributor == null )
+			{
+				chckbxBecomeContributor.setVisible(true);
+			}
+			if (member == null)
+			{
+				chckbxMember.setVisible(true);
+			}
 		}
 		else
 		{
@@ -415,6 +428,17 @@ public class UserDetailUI extends JFrame {
 		TFHouse.setText(user.getPhone());
 		TFCity.setText(user.getCity());
 		TFPostCode.setText(user.getPostCode());
+		
+		final JCheckBox chckbxBecomeLeader = new JCheckBox("Become Leader");
+		chckbxBecomeLeader.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		GridBagConstraints gbc_chckbxBecomeLeader = new GridBagConstraints();
+		gbc_chckbxBecomeLeader.gridx = 0;
+		gbc_chckbxBecomeLeader.gridy = 14;
+		panelTF.add(chckbxBecomeLeader, gbc_chckbxBecomeLeader);
 		if (member != null){
 			TFCotisation.setText((member.getCotisation()).toString());
 			TFDateCotisation.setText(member.getDateCotisation());
@@ -590,7 +614,7 @@ public class UserDetailUI extends JFrame {
 				btnNewRole.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if (chckbxBecomeContributor.isSelected() == true && contributor == null )
+						if (chckbxBecomeContributor.isSelected() == true && contributor == null ){
 							try {
 								FacadeUser.inscriptionContributor(user);
 							} catch (ClassNotFoundException e1) {
@@ -600,6 +624,9 @@ public class UserDetailUI extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							};
+						JOptionPane.showMessageDialog(null, "Inscription succeed");
+
+						}
 						if (chckbxMember.isSelected() == true && member == null ) {
 							try {
 								FacadeUser.inscriptionMember(user,10.0);
@@ -610,6 +637,19 @@ public class UserDetailUI extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+							JOptionPane.showMessageDialog(null, "Inscription succeed");
+						}
+						if (chckbxBecomeLeader.isSelected() == true && leader == null ) {
+							try {
+								FacadeUser.inscriptionLeader(user);
+							} catch (ClassNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							JOptionPane.showMessageDialog(null, "Inscription succeed");
 						}
 					}
 				});
@@ -659,8 +699,8 @@ public class UserDetailUI extends JFrame {
 			TFHouse.setEditable(true);
 			TFCity.setEditable(true);
 			TFPostCode.setEditable(true);
-			TFCotisation.setEditable(true);
-			TFDateCotisation.setEditable(true);
+			TFCotisation.setEditable(false);
+			TFDateCotisation.setEditable(false);
 		}
 		else
 		{
